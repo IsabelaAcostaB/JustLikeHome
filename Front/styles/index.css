@@ -2,12 +2,9 @@
 
 
 /*------------ HEADER ------------------------*/
-.header-boxes{
-    height: 80px;
-}
-
 
 .header-boxes{
+    height: 10vh;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -15,6 +12,21 @@
     margin: 0px 20px;
 }
 
+.logotype{
+    display: flex;
+    flex-direction: row;
+}
+
+
+.logo{
+    height: 50px;
+}
+
+.phrase{
+    color: var(--third-color);
+    margin-left: 15px;
+    margin-top: 25px;
+}
 
 
 .phrase, .user-info, .user-login{
@@ -46,16 +58,70 @@
     color: #fff;
 }
 
+.menu{
+    cursor: pointer;
+    color: var(--third-color);
+    font-size: 25px;
+
+}
 
 
 
 /*-------------- MAIN -------------------------*/
 main{
     width: 100%;
-    height: 820px;
+    height: 100vh;
     background-color: var(--fourth-color);
 }
 
+
+.side-bar{
+   
+
+    background-color: #fff;
+    width: 73%;
+    height: 100vh;
+    top: 0;
+    right: 0;
+    position: absolute;
+    transition: all 500ms ease;
+
+}
+
+.side-bar-out{
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: var(--first-color);
+    height: 23vh;
+    color: #fff;
+
+}
+.side-bar-out i{
+    font-size: 30px;
+    padding: 10px;
+    align-self: flex-start
+
+}
+
+.side-bar-out h2{
+    align-self: flex-end
+
+}
+
+.side-bar-options ul{
+    list-style: none;
+    
+}
+
+.side-bar-options ul li a{
+    padding: 15px;
+}
+
+.side-bar-options ul li a h3{
+    color: var(--second-color);
+}
 
 
 /*---------------- FOOTER -----------------*/
@@ -63,11 +129,12 @@ main{
 footer{
     background-color: var(--first-color);
     width: 100%;
+    height: 7vh;
     color: #fff;
 }
 
-footer, .footer-boxes{
-    height: 58px;
+.footer-boxes{
+    height: 7vh;
 }
 
 .footer-boxes{
@@ -126,20 +193,9 @@ footer, .footer-boxes{
     .header-boxes{
         margin: 0px 40px;
     }
-    .logotype{
-        display: flex;
-        flex-direction: row;
-    }
     
     .phrase{
         display: unset;
-        color: var(--third-color);
-        margin-left: 15px;
-        margin-top: 25px;
-    }
-    main{
-        height: 800px;
-
     }
 
     .footer-boxes{
