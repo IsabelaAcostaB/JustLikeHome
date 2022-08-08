@@ -1,5 +1,5 @@
 import React from "react";
-import footer from "../../styles/footer.css"
+import footer from "./footer.css"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFacebook } from '@fortawesome/free-brands-svg-icons'
 import { faLinkedinIn } from '@fortawesome/free-brands-svg-icons'
@@ -12,7 +12,7 @@ const Footer = () => {
             <div className="footer-boxes">
                 <div className="copyright">
 
-                    <p>2022</p>
+                    <p> <span>&copy;</span> 2022</p>
                     <p>Digital Booking</p>
 
                 </div>

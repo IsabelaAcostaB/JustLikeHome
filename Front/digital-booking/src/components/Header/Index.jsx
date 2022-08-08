@@ -1,51 +1,68 @@
-import React from "react";
-import header from "../../styles/header.css"
+import React from "react"
+import header from "./header.css"
 import logo from "../../asserts/icons/logo 1.svg"
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBars } from '@fortawesome/free-solid-svg-icons'
 import Sidebar from "../SideBar/Sidebar.jsx"
+import { Link } from "react-router-dom"
+
 
 const Header = () => {
 
+
+    
     return (
         <header>
             <div className="header-boxes">
-                <div className="logotype">
-                    <a className="logo" href="">
-                        <img src={logo} alt="logo Digital Booking" />
-                    </a>
-                    <a className="phrase" href="home.html">Sentite como en tu hogar</a>
-                </div>
-
-                <div className="user-login">
-                    <div className="login-buttons">
-                        <div className="button-6">
-                            <a href="sign-up.html">Crear cuenta</a>
+                <Link to="/" >
+                    <div className="logotype">
+                    
+                        <div className="logo">
+                            <img src={logo} alt="logo Digital Booking"/>
                         </div>
-                        <div className="button-6">
-                            <a href="sign-in.html">Iniciar sesion</a>
-                        </div>
+                
+                        <p className="phrase">Sentite como en tu hogar
+                        </p>
 
                     </div>
+                </Link>
+
+                
+                <div className="user-login">
+                    <div className="login-buttons">
+                        <div className="button-6 buttonSignUp" >
+                            <Link to="/signUp" >Crear Cuenta</Link>
+                        </div>
+            
+                        <div className="button-6 buttonSignIn">
+                            <Link to="/signIn" >Iniciar sesión</Link>
+                        </div>
+                    </div>
+                    
                 </div>
 
                 <div className="user-info">
-                    <div className="user-avatar">NU</div>
-                    <p>Nombre Usuario</p>
-                    <a href="">Cerrar sesión</a>
+                    <div className="user-name">
+                        <div className="user-avatar">
+                            <p>NU</p>
+                        </div>
+                        <p className="name">nombre</p>
+                    </div>
+                    
+                    
+                    <Link to="/">Cerrar sesión</Link>
                 </div>
 
 
                 <div className="menu">
-                    <FontAwesomeIcon icon={faBars}/>
-             
+                    <Sidebar />
                 </div>
 
                 
 
             </div>
+            
         </header>
     )
 }
+    
 
 export default Header

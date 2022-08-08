@@ -1,5 +1,4 @@
-@import url("App.css");
-
+@import url("../../styles/App.css");
 
 header{
     width: 100%;
@@ -27,19 +26,11 @@ header{
 }
 
 
-.logo{
-    height: 50px;
-}
 
 .phrase{
     color: var(--third-color);
     margin-left: 15px;
     margin-top: 25px;
-}
-
-
-.phrase, .user-info, .user-login{
-    display: none;
 }
 
 
@@ -50,8 +41,15 @@ header{
 }
 
 
+    
 .user-info{
     color: var(--first-color);
+    width: 300px;
+    height: 5vh;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between
 }
 
 
@@ -59,12 +57,24 @@ header{
     color: var(--third-color);
 }
 
+.user-name{
+    width: 150px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+}
 .user-avatar{
     width: 37px;
     height: 37px;
     border-radius: 50%;
     background-color: var(--second-color);
     color: #fff;
+    text-align: center;
+}
+
+.name {
+    margin-left: 20px;
 }
 
 .menu{
@@ -72,6 +82,10 @@ header{
     font-size: 25px;
     color: var(--third-color);
 
+}
+
+.phrase, .user-info, .user-login{
+    display: none;
 }
 
 
@@ -83,6 +97,10 @@ header{
         margin: 0px 30px;
     }
     
+    .logo img{
+        height: 8vh;
+
+    }
     .menu{
         display: none;
     }
@@ -90,9 +108,13 @@ header{
     .side-bar{
         display: none;
     }
+
+    
     .user-login{
         display: unset; 
     }
+    
+    
 
     
 }

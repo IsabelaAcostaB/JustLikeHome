@@ -9,30 +9,27 @@
 }
 
 *{
+    padding: 0;
     margin: 0;
-    padding:0;
     box-sizing: border-box;
 }
 
+
 body{
+
     font-family: 'Poppins', sans-serif;
-    margin: 0;
-    padding:0;
-    height: 100vh;
 }
 
-
-.container{
-    height: 100vh;
+.main{
+    min-height: 83vh;
+    margin-top: 10vh;
+    background-color: var(--fourth-color);
     
 }
 
-
-h1{
-    font-size: 24px;
-    font-weight: bold;
+a{
+    text-decoration: none;
 }
-
 
 h1{
     font-size: 24px;
@@ -54,6 +51,7 @@ h4, .button-6{
     font-weight: bold;
 }
 
+/*------------- BUTTONS ------------------*/
 
 .button-2{
     background-color: var(--first-color);
@@ -84,189 +82,56 @@ h4, .button-6{
 }
 
 
-a{
-    text-decoration: none;
-}
-
 
 .button-6 a{
     color: var(--first-color);
     padding: 10px 25px;
 }
 
-.App{
-    height: 100vh;
-}
-
-
-
-
-
-/*-------------- MAIN -------------------------*/
-main{
-    width: 100%;
+/*------------ FORM--------------*/
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     height: 83vh;
-    margin-top: 10vh;
-    background-color: var(--fourth-color);
     
 }
 
 
-
-
-
-.side-bar{
-   
-
-    background-color: #fff;
-    width: 73%;
-    height: 100vh;
-    top: 0;
-    right: 0;
-    position: absolute;
-    transition: all 500ms ease;
+.form-labels {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-
-}
-
-.side-bar-out{
-    background-color: var(--first-color);
-    height: 23vh;
-    color: #fff;
-}
-
-.side-bar-out-elements{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    height: 23vh;
-    padding: 5px 20px 10px 10px;
-}
-
-.side-bar-out-elements a{
-    padding: 10px;
-    height: 100px;
-    width: 50px;
-}
-.side-bar-out-elements a i{
-    font-size: 30px;
-    align-self: flex-start;
-    color: #fff;
-
-}
-
-.side-bar-out-elements h2{
-    align-self: flex-end
-
-}
-
-.side-bar-options{
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    height: 72vh;
-}
-.side-bar-options ul{
-    list-style: none;
-    margin-top: 40px;
-    padding: 0px 20px 10px 0px;
-    height: 400px;
-    
 }
 
 
-.side-bar-options ul li {
-    padding: 30px 0px;
-}
-
-.side-bar-options ul li a h3{
+label {
+    font-size: 12px;
+    font-weight: 500;
     color: var(--second-color);
 }
 
-.side-bar-social-media{
-    padding: 0px 20px 10px 0px;
-    height: 5vh;
-}
-.side-bar-social-media ul{
-    
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-    list-style: none;
-
-}
-
-.side-bar-social-media ul li{
-    margin-left: 10px;
-}
-.side-bar-social-media ul li a i{
-    color: var(--third-color);
-}
-
-/*---------------- FOOTER -----------------*/
-
-footer{
-    background-color: var(--first-color);
-    width: 100%;
-    height: 7vh;
-    bottom: 0;
-    color: #fff;
-}
-
-.footer-boxes{
-    height: 7vh;
-}
-
-.footer-boxes{
-    margin: 0px 25px;
-    justify-content: space-between;
-}
-.footer-boxes, .copyright{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-}
-
-
-
-.copyright p {
-    padding-left: 10px;
-    font-size: 14px;
-}
-
-
-.social-media{
-    display: none;
-}
-
-
-/*----------- RESPONSIVE ------------------*/
-@media screen and (min-width:768px){
-
-    .social-media{
-        display: unset;
-        font-size: 20px;
-    }
-    .social-media i{
-        margin-left: 25px;
-    }
-
-    .footer-boxes{
-        margin: 0px 40px;
-
-    }
-}
-
-@media screen and (min-width: 1024px){
-
-
-    .footer-boxes{
-        margin: 0px 60px;
-
-    }
-        
-    
+input {
+    width: 72vw;
+    height: 40px;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 5px 5px rgb(175, 172, 172);
+    color: var(--second-color);
+    font-size: 12px;
     
 }
+
+input:focus {
+    outline: none;
+    border: 1px solid var(--first-color);
+}
+
+.error{
+    color: #FF0000;
+    
+    font-size: 10px;
+    text-align: end;
+}
+
+
