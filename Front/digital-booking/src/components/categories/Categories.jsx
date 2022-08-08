@@ -5,7 +5,8 @@ import Header from "../Header/Index.jsx";
 import Footer from "../Footer/Index.jsx"
 
 
-const categories = ()=>{
+
+export default function categories({handlerValueCount}){
     return(
         <div className="categories">         
            <Header> </Header>
@@ -22,4 +23,10 @@ const categories = ()=>{
         
     )
 }
-export default Categories
+
+// const categoryOptions = categories?.map((c) => ({
+//    label: c.titulo,
+//    value: c.titulo,
+//    id: c.id,
+//   }));
+
