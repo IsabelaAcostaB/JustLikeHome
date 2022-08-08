@@ -4,6 +4,7 @@ import Categories from "../categorias.json";
 import Header from "../Header/Index.jsx";
 import Footer from "../Footer/Index.jsx"
 
+
 const categories = ()=>{
     return(
         <div className="categories">         
