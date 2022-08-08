@@ -8,7 +8,18 @@ function listado(){
 <div className="card text-center">
     <img src="../listado.json/listado/img"/>
     <div className="card-body">
-        <p className="card-text-secondary" src="../listado.json/listado/descripcion"></p>
+    <img src="../listado.json/listado/img" key={listado.id}/>  
+            {
+                listado.map(listado =>{return (
+                
+                    <p className="card-text-secondary" key={listado.id}>
+                        {listado.description}
+                    </p>
+                    )
+                
+                } )
+            }
+        
          <a href="#!">Ver detalle</a>
          </div>
 </div>
