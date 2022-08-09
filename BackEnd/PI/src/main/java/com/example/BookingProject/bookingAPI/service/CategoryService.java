@@ -13,7 +13,7 @@ public interface CategoryService {
 
     List<Category> getAllCategories();
 
-    void deleteCategory(Long id);
+    String deleteCategory(Long id);
 
     Category updateCategory(Category category);
 }

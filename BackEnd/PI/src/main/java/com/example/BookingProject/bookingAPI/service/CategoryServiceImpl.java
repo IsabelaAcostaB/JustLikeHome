@@ -4,6 +4,7 @@ import com.example.BookingProject.bookingAPI.persistence.model.Category;
 import com.example.BookingProject.bookingAPI.persistence.repository.CategoryRepository;
 
 import com.example.BookingProject.bookingAPI.service.CategoryService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,7 +13,7 @@ import java.util.List;
 @Service
 public class CategoryServiceImpl implements CategoryService {
 
-
+    @Autowired
     private final CategoryRepository categoryRepository;
 
     public CategoryServiceImpl(CategoryRepository categoryRepository) {
@@ -36,15 +37,20 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public List<Category> getAllCategories() {
-        return categoryRepository.findAll();
+        if(categoryRepository.findAll().size()>0){
+            return categoryRepository.findAll();
+        }
+        return null;
     }
 
     @Override
-    public void deleteCategory(Long id) {
+    public String deleteCategory(Long id) {
         if(categoryRepository.findById(id).isPresent()){
             categoryRepository.deleteById(id);
+            return "Category with id:" + id + " has been succesfully deleted";
         }
-    }
+        return "Category with id:" + id + " doesn`t exist";
+    };
 
     @Override
     public  Category updateCategory (Category category) {
