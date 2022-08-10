@@ -18,7 +18,9 @@ header{
     margin: 0px 20px;
 }
 
-
+header img{
+    height: 10vh;
+}
 
 .logotype{
     display: flex;
@@ -98,7 +100,7 @@ header{
     }
     
     .logo img{
-        height: 8vh;
+        height: 11vh;
 
     }
     .menu{
