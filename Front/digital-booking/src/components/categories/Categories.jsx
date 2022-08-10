@@ -1,24 +1,18 @@
-
 import React from "react";
-import Categories from "../categorias.json";
-import Header from "../Header/Index.jsx";
-import Footer from "../Footer/Index.jsx"
+import categories from "./categorias.json";
+import Cards from "../List/Card";
 
 
 
-export default function categories({handlerValueCount}){
+
+export default function Categories({handlerValueCount}){
     return(
         <div className="categories">         
-           <Header> </Header>
             <h1>Categorías</h1>
             <p>Buscar por tipo de alojamiento</p>
-            {categories.map(alojamiento => 
-            <Item categories={alojamiento} handlerValueCount={handlerValueCount}/>
-
-           )}
             
+            {categories.map(alojamiento => <Cards categories={alojamiento} handlerValueCount={handlerValueCount}/>)}
             
-            <Footer></Footer>
         </div>
         
     )
@@ -29,4 +23,5 @@ export default function categories({handlerValueCount}){
 //    value: c.titulo,
 //    id: c.id,
 //   }));
+
 

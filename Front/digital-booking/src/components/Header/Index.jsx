@@ -1,15 +1,17 @@
-import React from "react"
+import React, { useContext } from "react"
 import header from "./header.css"
 import logo from "../../asserts/icons/logo 1.svg"
 import Sidebar from "../SideBar/Sidebar.jsx"
 import { Link } from "react-router-dom"
+import UserContext from "../context"
 
 
 const Header = () => {
 
-
+    const user = useContext(UserContext)
     
     return (
+      
         <header>
             <div className="header-boxes">
                 <Link to="/" >
@@ -44,7 +46,7 @@ const Header = () => {
                         <div className="user-avatar">
                             <p>NU</p>
                         </div>
-                        <p className="name">nombre</p>
+                        <p className="name">Hola, </p>
                     </div>
                     
                     

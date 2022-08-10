@@ -21,7 +21,7 @@ body{
 }
 
 .main{
-    min-height: 83vh;
+    min-height: 100vh;
     margin-top: 10vh;
     background-color: var(--fourth-color);
     
@@ -51,6 +51,10 @@ h4, .button-6{
     font-weight: bold;
 }
 
+
+.hide{
+    display: none;
+}
 /*------------- BUTTONS ------------------*/
 
 .button-2{

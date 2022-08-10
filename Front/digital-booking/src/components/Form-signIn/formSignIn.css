@@ -30,15 +30,17 @@ input{
 .go-sign{
     margin-top: 5px;
 }
-.go-sign a {
+.go-sign a p{
     color: var(--second-color);
     font-size: 12px;
     font-weight: 500;
 }
 
-.go-sign span {
+.go-sign a p span {
     color: #4285F4;
 }
+
+
 
 
 /*------------------ RESPONSIVE --------------------------*/
