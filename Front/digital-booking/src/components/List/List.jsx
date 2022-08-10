@@ -3,6 +3,7 @@ import React from "react";
 /* import listado from "../../../public/listado.json"; */
 import listado from "./listado.json";
 
+<<<<<<< HEAD
 /* Acá se renderizan todas las cartas */
 function Cards(){
     return (listado.listado.map(item =>(
@@ -10,6 +11,18 @@ function Cards(){
             <img src={item.img} class="img-fluid rounded" />
             <p className="card-text-secondary" key={item.id}>
             {item.description}</p>
+=======
+import "bootstrap";
+
+/* Acá se renderizan todas las cartas */
+function Cards(){
+    return (listado.listado.map(item =>
+        (<div key={item.id}>
+        <img src={item.img}/>
+        <p className="card-text-secondary" key={item.id}>
+            {item.description}
+        </p>
+>>>>>>> a3547e26a9c348bf6e74d2dbf632e8c588bb6686
         </div>)
     )
     ) 
@@ -67,4 +80,8 @@ function Listar(){
 )  */
 
 
+<<<<<<< HEAD
 export default Listar;
+=======
+export default Listar;
+>>>>>>> a3547e26a9c348bf6e74d2dbf632e8c588bb6686
