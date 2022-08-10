@@ -10,7 +10,10 @@ function ListarCat() {
         <div class="d-flex-row">
 
             {Categorize()}
-</div>
-</div>
+
+        </div>
+        </div>
 
     )}
+
+export default ListarCat;
