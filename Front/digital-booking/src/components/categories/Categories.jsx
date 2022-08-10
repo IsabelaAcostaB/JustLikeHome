@@ -10,25 +10,7 @@ function ListarCat() {
         <div class="d-flex-row">
 
             {Categorize()}
+</div>
+</div>
 
-
-export default function Categories({handlerValueCount}){
-    return(
-        <div className="categories">         
-            <h1>Categorías</h1>
-            <p>Buscar por tipo de alojamiento</p>
-            
-            {categories.map(alojamiento => <Cards categories={alojamiento} handlerValueCount={handlerValueCount}/>)}
-            
-        </div>
-        
-    )
-}
-
-// const categoryOptions = categories?.map((c) => ({
-//    label: c.titulo,
-//    value: c.titulo,
-//    id: c.id,
-//   }));
-
-
+    )}
