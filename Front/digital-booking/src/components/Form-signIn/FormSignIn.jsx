@@ -1,13 +1,12 @@
 import formData from "../../db/formData"
 import React, { useState} from "react";
 import {Link} from "react-router-dom"
+import formSignIn from "./formSignIn.css"
 
 
 const FormSignIn = () =>{
 
-    const [stateData, setStateData] = useState(false);
-
-    const userData = formData;
+    const [validData, setValidData] = useState(true);
 
     const getValues = (target) =>{
         return {
@@ -21,12 +20,16 @@ const FormSignIn = () =>{
 
         const data = getValues(event.target);
 
-        for (var i in userData) {
-            if (data.email !== userData[i].email && data.password !==userData[i].password){
-                setStateData(true)
-            }
-        }
+        const users = JSON.parse(localStorage.getItem('users'));
+
+        const foundUser = users.find(user => user.email === data.email && user.password === data.password)
         
+        if (foundUser){
+            alert("Ingreso exitoso")
+
+        }else{
+            setValidData(false)
+        }
     }
 
     return (
@@ -37,15 +40,16 @@ const FormSignIn = () =>{
                 </div>
 
                 <div className="form-labels">
-                    <label for="email">Correo electrónico:</label>
+                    <label htmlFor="email">Correo electrónico:</label>
                     <input type="email"  name="email" id="email"/>
                     
                 
-                    <label>Contraseña:</label>
+                    <label htmlFor="password">Contraseña:</label>
                     <input type="password" name="password" id="password"/>
                     
                 </div>
-                <p className="error">{stateData? "Los datos son incorrectos. Por favor vuelve a intentarlo ": " "}</p>
+                <p className ={validData?"hide":"error"}>Por favor vuelva a intentarlo, sus credenciales son inválidas</p>
+        
 
 
                 <button className="button-2" type="submit" >Ingresar</button>

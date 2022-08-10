@@ -6,6 +6,7 @@ import styles from "../../styles/App.css";
 import "bootstrap"
 
 
+
 /* Acá se renderizan todas las cartas */
 function Cards(){
     return (listado.listado.map(item =>
@@ -16,6 +17,7 @@ function Cards(){
           <p className="card-text">{item.description}</p>
             <a href="#!"class="btn btn-primary">Ver Listado</a>
         </p>
+
         </div>)
     )
     ) 
@@ -51,7 +53,7 @@ function Listar(){
          <a href="#!">Ver detalle</a>
          </div>
 </div>)
- */
+
 /* listado.map(listado =>{return (
     <div key={listado.id}>
     <img src={listado.img}/>
@@ -76,3 +78,6 @@ function Listar(){
 
 
 export default Listar;
+
+
+

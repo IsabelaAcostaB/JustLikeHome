@@ -5,10 +5,12 @@ import { faX, faBars } from '@fortawesome/free-solid-svg-icons'
 import { faFacebook, faLinkedinIn, faTwitter, faInstagram } from '@fortawesome/free-brands-svg-icons'
 import {Link} from "react-router-dom"
 
+
 function Sidebar(){
     const [showSideBar, setShowSideBar] = useState(false);
     if (showSideBar) {
         return (
+       
             <div className="side-bar">
                 <div className="side-bar-out">
                     <div className="side-bar-out-elements">
@@ -16,14 +18,24 @@ function Sidebar(){
                         <FontAwesomeIcon icon={faX} onClick={()=>setShowSideBar(false)}/>
                         
                         <h2>Menú</h2>
-    
+
+                        <div className="user-info-bar hide">
+                            <div className="user-avatar-bar">
+                                <h2>NU</h2>
+                            </div>
+                            
+                            <p>Hola,</p>
+                            <p className="name-bar"></p>
+                        </div>
+                        
+
                     </div>
                 
                 </div>
             
     
                 <div className="side-bar-options">
-                    <ul>
+                    <ul className="options">
                         <li className="sign-up">
                             
                             <Link to="/signUp">
@@ -36,13 +48,13 @@ function Sidebar(){
                             <Link to="/signIn" >
                                 <h3>Iniciar sesión</h3>
                             </Link>
-                            
-                            
-                     
                         </li>
-    
+                        
                     </ul>
 
+                    <Link className="hide" to="/">¿Deseas <span>cerrar sesión?</span></Link>
+
+                    
 
                     
                 </div>
@@ -58,6 +70,7 @@ function Sidebar(){
                 </div>
     
             </div>  
+  
 
             
         )  

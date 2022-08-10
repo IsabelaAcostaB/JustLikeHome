@@ -1,29 +1,30 @@
-{ "categorias":  [ 
-     {    "id":"1",
-           "image": "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
-         "nombre": "Hoteles",
-         "caption":"807.105 hoteles"
-     },
-
-
-        {"id":"2",
-          "image":"https://images.unsplash.com/photo-1565629196891-2ddb37c9e9fc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
-         "nombre":"Hostels",
-         "caption":"807.105 hoteles"
-     },
-     {
-         "id":"3",
-         "image":"https://images.unsplash.com/photo-1530178338825-ceb89d377f11?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
-         "nombre":"Departamentos",
-         "caption":"807.105 hoteles"
-     },
+[
     {
-         "id":"4",
-         "image":"https://images.unsplash.com/photo-1545042745-e67d687dac2c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=871&q=80",
-         "nombre":"Bed and Breakfast",
-         "caption":"807.105 hoteles"
-     }
-      ]}
-
-
-
+       "categorias": {    "id":"1",
+              "image": "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
+            "nombre": "hoteles",
+            "caption":"807.105 hoteles"
+        },
+        
+        
+         "cat1" :  {"id":"2",
+             "image":"https://images.unsplash.com/photo-1565629196891-2ddb37c9e9fc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
+            "nombre":"hostels",
+            "caption":"807.105 hoteles"
+        },
+        "cat2":{
+            "id":"3",
+            "image":"https://images.unsplash.com/photo-1530178338825-ceb89d377f11?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
+            "nombre":"Departamentos",
+            "caption":"807.105 hoteles"
+        },
+        "cat3":{
+            "id":"4",
+            "image":"https://images.unsplash.com/photo-1618111415065-c20b4e1afd41?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80",
+            "nombre":"Bed and Breakfast",
+            "caption":"807.105 hoteles"
+        }
+    }
+        
+    
+]

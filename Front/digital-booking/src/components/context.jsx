@@ -1,7 +1,7 @@
-/*
 import React, { createContext } from "react";
 
-export const userLogs ={
+/*
+const userLogs ={
     logged: {
         display: "unset"
     },
@@ -9,9 +9,8 @@ export const userLogs ={
     noLogged: {
         display: "none"
     }
-}
+}*/
 
-const UserContext = createContext(userLogs.noLogged);
+const UserContext = createContext();
 
 export default UserContext
-*/
