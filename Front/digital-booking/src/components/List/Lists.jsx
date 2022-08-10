@@ -3,7 +3,7 @@ import Listar from "./List";
 
 
 function Cards(){
-    return( <div className="container d-flex justify-content-left bg-info">
+    return( <div className="container d-flex justify-content-left">
          <div className="row">
             <div className="col-md-3"></div>  
         </div>

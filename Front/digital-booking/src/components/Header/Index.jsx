@@ -1,6 +1,6 @@
 import React from "react"
 import header from "./header.css"
-import logo from "../../asserts/icons/logo 1.svg"
+import logo from "../Header/logo 1.ico"
 import Sidebar from "../SideBar/Sidebar.jsx"
 import { Link } from "react-router-dom"
 
