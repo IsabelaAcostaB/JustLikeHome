@@ -10,6 +10,7 @@ const Home = ()=>{
         <div className="main">
 
             <h1>Bienvenidos a la home</h1>
+            <ListarCat></ListarCat>
 
         </div>
     )
