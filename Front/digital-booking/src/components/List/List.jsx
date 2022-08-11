@@ -27,8 +27,8 @@ function Cards(){
     que se exporta a Lists.jsx. Ese archivo se exporta a Main. */ 
 function Listar(){
     return (
-        <div class= "d-flex flex-wrap ">
-        <div className="row mt-2 p-3">
+        <div class= "card-deck ">
+        <div className="cards-container">
         
             {Cards()}
     
