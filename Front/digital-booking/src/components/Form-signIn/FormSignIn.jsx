@@ -2,6 +2,7 @@ import formData from "../../db/formData"
 import React, { useState} from "react";
 import {Link} from "react-router-dom"
 import formSignIn from "./formSignIn.css"
+import Swal from 'sweetalert2'
 
 
 const FormSignIn = () =>{
@@ -25,7 +26,11 @@ const FormSignIn = () =>{
         const foundUser = users.find(user => user.email === data.email && user.password === data.password)
         
         if (foundUser){
-            alert("Ingreso exitoso")
+            Swal.fire(
+                'Login exitoso',
+                'Iniciando sesión...',
+                'success'
+            )
 
         }else{
             setValidData(false)

@@ -1,44 +1,93 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import formSignUp from "./formSignUp.css"
+import {Link} from "react-router-dom"
+import Swal from 'sweetalert2'
 
 const FormSignUp = () => {
-    const [errorName, setErrorName] = useState(false);
-    const [errorLastName, setErrorLastName] = useState(false);
-    const [errorEmail, setErrorEmail] = useState(false);
-    const [errorPassword, setErrorPassword] = useState(false);
-    const [errorRepPassword, setErrorRepPassword] = useState(false);
-    const getValues = target => ({
-        name: target.name.value,
-        lastName: target.lastName.value,
-        email: target.email.value,
-        password: target.password.value,
-        repPassword: target.repPassword.value
-    })
 
-    const handleSubmit = event => {
-        event.preventDefault();
-        const data = getValues(event.target);
-        localStorage.setItem('users', JSON.stringify([data]));
-        
-        /*
-        if (data.name ==="" ||data.name.length<3){
-            setErrorName(true)
-        }
-        if (data.lastName ==="" ||data.lastName.length<3){
-            setErrorLastName(true)
-        }
-        if (data.email ==="" || !data.email.includes("@")){
-            setErrorEmail(true)
-        }
-        if (data.password===""||data.password.length>=15||data.password.length<6){
-            setErrorPassword(true)
-        }
-        if (data.repPassword !== data.password){
-            setErrorRepPassword(true)
-        }
-        */
+    const initialValues = {
+        name: "",
+        lastName:"",
+        email:"",
+        password:"",
+        repPassword:""
+    }
+    
+   
+
+    const [formValues, setFormValues]=useState(initialValues)
+    const [formErrors, setFormErrors]=useState({});
+    const [isSubmit, setIsSubmit]= useState(false);
+
+    const handleChange =(event)=>{
+        const {name, value} = event.target
+        setFormValues({...formValues, [name]:value});
+
     }
 
+    const handleSubmit =(event)=>{
+        event.preventDefault();
+        setFormErrors(validInput(formValues))
+        setIsSubmit(true)
+        
+
+
+    }
+
+    useEffect(()=>{
+    
+        if(Object.keys(formErrors).length === 0 && isSubmit){
+            localStorage.setItem('users', JSON.stringify([formValues]));
+            Swal.fire(
+                'Registro exitoso',
+                'Por favor diríjase a iniciar sesión',
+                'success'
+            )
+        }
+    },[formErrors])
+
+
+    const validInput = (values)=>{
+        const errors ={}
+        const regex = /[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+/;
+
+        if(!values.name){
+            errors.name = "El nombre es obligatorio"
+        }else if(values.name.length<3){
+            errors.name = "El nombre tiene que tener más de 3 caracteres"
+        }
+        
+        if (!values.lastName){
+            errors.lastName = "El apellido es obligatorio"
+        } else if(values.lastName.length<3){
+            errors.name = "El apellido tiene que tener más de 3 caracteres"
+        }
+
+
+        if (!values.email){
+            errors.email = "El email es obligatorio"
+        }else if (!regex.test(values.email)){
+            errors.email = "El email tiene que incluir un arroba (@) y .com"
+        }
+
+        if (!values.password){
+            errors.password = "La contraseña es obligatoria"
+        }else if (values.password.length>=15 || values.password.length<6){
+            errors.password = "La contraseña tiene que tener entre 6 a 15 caracteres"
+        }
+     
+
+
+        if (!values.repPassword){
+            errors.repPassword = "La contraseña es obligatoria"
+        }else if(values.repPassword !== values.password){
+            errors.repPassword = "Las contraseñas tiene que coincidir"
+        }
+
+
+        return errors;
+
+    }
     return(
         <div className="main">
             <form  onSubmit={handleSubmit}>
@@ -48,36 +97,44 @@ const FormSignUp = () => {
                 <div className="form-labels">
 
                     <div className="name-label">
-                        <label htmlForm="name">Nombre: </label>
-                        <input type="text" id="name" name="name"
+                        <label htmlform="name">Nombre: </label>
+                        <input type="text" id="name" name="name" value={formValues.name}
+                        onChange={handleChange}
                         />
-                        <p className={errorName?"error":"hide"}>El nombre es obligatorio y tiene que tener más de 3 letras</p>
+                        <p className="error">{formErrors.name}</p>
                         
                     </div>
                     
                     
                     <div className="last-name-label">
-                        <label htmlForm="lastName">Apellido:</label>
-                        <input type="text" id="lastName"  name="lastName"
+                        <label htmlform="lastName">Apellido:</label>
+                        <input type="text" id="lastName"  name="lastName" value={formValues.lastName}
+                        onChange={handleChange}
                         />
-                        <p className={errorLastName?"error":"hide"}>El apellido es obligatorio y tiene que tener más de 3 letras</p>
+                        <p className="error">{formErrors.lastName}</p>
                     </div>
                     
                     
-                    <label className="email-label" htmlForm="email">Correo electrónico:</label>
-                    <input type="email" id="email" name="email" 
+                    <label className="email-label" htmlform="email">Correo electrónico:</label>
+                    <input type="email" id="email" name="email" value={formValues.email}
+                    onChange={handleChange}
                     />
-                    <p className={errorEmail?"error":"hide"}>El email es obligatorio y tiene que incluir un @</p>
+                    <p className="error">{formErrors.email}</p>
                     
-                    <label className="password-label" htmlForm="password">Contraseña:</label>
-                    <input ype="password" id="password" name="password"
-                    />
-                    <p className={errorPassword?"error":"hide"}>La contraseña es obligatoria y tiene que tener entre 6 a 15 caracteres</p>
                     
-                    <label className="password-rep-label" htmlForm="repPassword">Repetir contraseña:</label>
-                    <input ype="password" id="repPassword"name="repPassword"
+                    <label className="password-label" htmlform="password">Contraseña:</label>
+                    <input type="password" id="password" name="password" value={formValues.password}
+                    onChange={handleChange}
                     />
-                    <p className={errorRepPassword?"error":"hide"}>Las contraseñas tienen que coincidir</p>
+                    <p className="error">{formErrors.password}</p>
+                    
+                    
+                    <label className="password-rep-label" htmlform="repPassword">Repetir contraseña:</label>
+                    <input type="password" id="repPassword"name="repPassword" value={formValues.repPassword}
+                    onChange={handleChange}
+                    />
+                    <p className="error">{formErrors.repPassword}</p>
+                    
                     
                 </div>
 
@@ -85,7 +142,7 @@ const FormSignUp = () => {
                 <button type="submit" className="button-2">Crear Cuenta</button>
 
                 <div className="go-sign">
-                    <a href="sign-in.html">¿Ya tienes una cuenta? <span> Iniciar sesión</span></a>
+                    <Link to="/signIn">¿Ya tienes una cuenta? <span> Iniciar sesión</span></Link>
                 </div>
 
             </form>
