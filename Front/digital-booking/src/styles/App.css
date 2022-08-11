@@ -273,5 +273,10 @@ h1.category-title{
 
         
     }
+
+    .card{
+        margin-left: 5px;
+        margin-right: 5px;
+    }
     }
   
