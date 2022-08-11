@@ -36,6 +36,13 @@ function Sidebar(){
     
                 <div className="side-bar-options">
                     <ul className="options">
+
+                        <li>
+                            <Link to="/"> 
+                                <h3>Home</h3>
+                            </Link>
+                        </li>
+                        
                         <li className="sign-up">
                             
                             <Link to="/signUp">
@@ -48,8 +55,7 @@ function Sidebar(){
                             <Link to="/signIn" >
                                 <h3>Iniciar sesión</h3>
                             </Link>
-                        </li>
-                        
+                        </li>     
                     </ul>
 
                     <Link className="hide" to="/">¿Deseas <span>cerrar sesión?</span></Link>

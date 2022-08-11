@@ -12,7 +12,7 @@ const Home = ()=>{
             <h1 className="category-title">Bienvenido a Just like Home</h1>
             <h2 className="category-title">Selecciona un tipo de alojamiento</h2>
             <ListarCat></ListarCat>
-            <h2>Recomendaciones</h2>
+            <h2 className="recommendation-h2">Recomendados</h2>
             <List/>
 
         </div>

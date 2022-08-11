@@ -14,13 +14,13 @@
         },
         {
             "id": "3",
-            "image": "https://images.unsplash.com/photo-1530178338825-ceb89d377f11?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
+            "image": "https://images.unsplash.com/photo-1544143086-828f66ac3945?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
             "nombre": "Casa de Playa",
             "caption": "826 casas de playa"
         },
         {
             "id": "4",
-            "image": "https://images.unsplash.com/photo-1618111415065-c20b4e1afd41?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80",
+            "image": "https://images.unsplash.com/photo-1631630259742-c0f0b17c6c10?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
             "nombre": "Cabaña",
             "caption": "1.830 cabañas"
         }

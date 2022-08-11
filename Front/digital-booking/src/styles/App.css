@@ -65,8 +65,14 @@ h4, .button-6{
     cursor: pointer;
     font-size: 16px;
     font-weight: bold;
-    
     height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.button-2:hover{
+    background-color: #f58c6c;
+
 }
 
 
@@ -138,6 +144,12 @@ input:focus {
     text-align: end;
 }
 /*------------CARDS--------------*/
+.recommendation-h2{
+    text-align: center;
+    font-size: 40px;
+    margin-top: 5%;
+}
+
 .category-title{ 
     text-align: center;
 }
@@ -163,6 +175,8 @@ h1.category-title{
     width: 50vh;
     display: flex;
     flex-direction: column;
+    height: fit-content;
+    margin-bottom: 5%;
   }
 .card-img-top-custom {
     width: 90%;
@@ -175,7 +189,13 @@ h1.category-title{
   }
   
   .card-title {
-    text-align: right;
+    padding-top: 15px ;
+    text-align: left;
+  }
+  .card-title a{
+    padding-top:8px;
+    padding-left: 15px;
+    width: 60%;
   }
   .card-text{
     text-align: left;
