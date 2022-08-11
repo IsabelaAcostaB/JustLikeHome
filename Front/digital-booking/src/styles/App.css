@@ -138,11 +138,22 @@ input:focus {
     text-align: end;
 }
 /*------------CARDS--------------*/
+.category-title{ 
+    text-align: center;
+}
+
+h1.category-title{ 
+    font-size:2.5rem;
+    padding-top: 3%;
+    padding-bottom: 2%;
+}
+
 
 .cards-container{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    margin-top: 2%;
 }
 
 .card {
