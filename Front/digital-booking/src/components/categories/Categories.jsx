@@ -12,7 +12,7 @@ function Categorize(){
         <p className="card-title" key={item.id}>
            <h2> {item.nombre}</h2> 
           <p className="card-text">{item.caption}</p>
-            <a href="#!"class="btn btn-primary">Ver Listado</a>
+            <a href="#!"class="btn button-2">Ver Listado</a>
         </p>
 
         </div>)
