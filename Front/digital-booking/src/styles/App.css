@@ -177,6 +177,8 @@ h1.category-title{
     flex-direction: column;
     height: 60%;
     margin-bottom: 5%;
+    /* margin-left: 5px;
+    margin-right: 5px; */
   }
 .card-img-top-custom {
     width: 90%;
