@@ -13,7 +13,7 @@ const Footer = () => {
                 <div className="copyright">
 
                     <p> <span>&copy;</span> 2022</p>
-                    <p>Digital Booking</p>
+                    <p>Just Like Home</p>
 
                 </div>
 

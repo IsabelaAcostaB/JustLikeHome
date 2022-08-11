@@ -6,7 +6,8 @@ import Cards from "../List/Card";
 
 function Categorize(){
     return (listado.categories.map(item =>
-        (<div key={item.id} className="card card-shadow m-3 home-card">
+        (
+        <div key={item.id} className="card card-shadow m-3 home-card">
         <img src={item.image}  class="card-img-top" />
         <p className="card-title" key={item.id}>
            <h2> {item.nombre}</h2> 
@@ -25,11 +26,9 @@ function Categorize(){
 function ListarCat() {
     return (
         <div className="card-deck">
-        <div class="d-flex-row">
-
-            {Categorize()}
-
-        </div>
+            <div className="cards-container">
+                {Categorize()}
+            </div>
         </div>
 
     )}

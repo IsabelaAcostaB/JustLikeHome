@@ -1,6 +1,6 @@
 import React from "react";
 
-import ListarCat from "../../components/Categories/Categories";
+import ListarCat from "../../components/categories/Categories";
 
 import Cards from "../../components/List/Lists";
 
