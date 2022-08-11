@@ -143,11 +143,18 @@ input:focus {
     font-size: 10px;
     text-align: end;
 }
+
+header {
+    z-index: 99;
+    
+}
+
+
 /*------------CARDS--------------*/
 .recommendation-h2{
     text-align: center;
     font-size: 40px;
-    margin-top: 5%;
+    margin-top: 1%;
 }
 
 .category-title{ 
@@ -168,7 +175,7 @@ h1.category-title{
     margin-top: 2%;
 }
 
-.cards-container-category{
+.cards-container-category, .cards-container-recommended{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -245,19 +252,80 @@ h1.category-title{
   }
   
   .card {
-    padding: 3% 1.5%;
+    padding: 0;
     border: none;
     flex-grow: 1;
     border-radius: 15px;
     box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.25);
     background-color: #fff;
   }
+
+
+  .card-img-top {
+    object-fit: cover;
+    border-radius: 15px 15px 0px 0px;
+  }
+
+/*   Categorias de alojamientos */
+.cards-container-category {
+    width: 90%;
+}
+
+.cards-container-category > .card > .card-title {
+    height: 25%;
+    padding: 0;
+}
+
+.cards-container-category > .card > .card-title > h2{
+    padding-top: 4px;
+}
+
+.cards-container-category > .card > .card-title > .card-text{
+    position: relative;
+    top: -10px;
+    z-index: 2;
+    
+}
+
+
+ /*  Recomendaciones */
+  .cards-container-recommended {
+    display: flex;
+    flex-direction: column;
+}
+ .cards-container-recommended > .card > .card-title{
+    display: flex;
+    flex-direction: column;
+    width: 98%;
+}
+
+.cards-container-recommended > .card > .card-title > h2{
+    text-align: center;
+}
+.cards-container-recommended > .card > .card-title > a{
+    align-self: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.cards-container-recommended > .card > .card-title > .card-category{
+    text-align: center;
+}
+
+.cards-container-recommended > .card > .card-title > .card-location{
+    text-align: left;
+}
+
+
   @media (min-width: 768px) {
     .form-control {
       width: 500px;
       height: 50px;
     }
     
+    .cards-container-category {
+        width: 98%;
+    }
+
     .cards-container-category > .card  {
         height: 250px;
         padding: 0;
@@ -269,10 +337,6 @@ h1.category-title{
         border-radius: 15px 15px 0px 0px;
         object-fit: cover;
     }
-
-    /* .cards-container-category > .card > .card-title > h2{
-        margin: 0;
-    } */
 
     .cards-container-category > .card > .card-title {
         height: 25%;
@@ -286,9 +350,55 @@ h1.category-title{
     .cards-container-category > .card > .card-title > .card-text{
         position: relative;
         top: -10px;
+        z-index: 2;
+        
     }
-   /*  .card-text */
+   
+    .cards-container-recommended {
+        flex-direction: row;
+        width: 98%;
+        
+    }
+    .cards-container-recommended > .card {
+        display: flex;
+        flex-direction: row;
+        width: 40%;
+        height: 280px;
+        padding: 0;
+        justify-content: space-between;
+    }
 
+    .cards-container-recommended > .card > .container-img-cards {
+        width: 50%;
+        height: 100%;
+        
+    }
+
+    .cards-container-recommended > .card > .container-img-cards > .card-img-top {
+        object-fit: cover;
+        border-radius: 15px 0px 0px 15px;
+        height: 100%;
+        
+    }
+
+    .cards-container-recommended > .card > .card-title {
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        
+    }
+
+    .cards-container-recommended > .card > .card-title > a {
+        
+        align-self: center;
+        
+    }
+    
+
+    header {
+        z-index: 3;
+    }
 
     @media screen {
         

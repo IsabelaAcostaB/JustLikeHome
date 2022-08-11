@@ -37,7 +37,7 @@ function Cards(){
 function Listar(){
     return (
         <div class= "card-deck ">
-        <div className="cards-container">
+        <div className="cards-container-recommended">
         
             {Cards()}
     

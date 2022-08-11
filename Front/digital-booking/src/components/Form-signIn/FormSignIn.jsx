@@ -56,7 +56,7 @@ const FormSignIn = () =>{
 
                 <div className="go-sign">
                     <Link to="/signUp">
-                        <p>¿Aún no tiene cuenta?<span>Registrese</span></p>
+                        <p>¿Aún no tiene cuenta? <span>Registrese</span></p>
                     </Link>
                 </div>
 
