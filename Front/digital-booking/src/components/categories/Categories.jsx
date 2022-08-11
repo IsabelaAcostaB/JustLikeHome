@@ -12,7 +12,7 @@ function Categorize(){
         <p className="card-title" key={item.id}>
            <h2> {item.nombre}</h2> 
           <p className="card-text">{item.caption}</p>
-            <a href="#!"class="btn button-2">Ver Listado</a>
+    
         </p>
 
         </div>)
@@ -26,7 +26,7 @@ function Categorize(){
 function ListarCat() {
     return (
         <div className="card-deck">
-            <div className="cards-container">
+            <div className="cards-container-category">
                 {Categorize()}
             </div>
         </div>

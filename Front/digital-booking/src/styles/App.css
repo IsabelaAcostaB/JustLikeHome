@@ -168,6 +168,13 @@ h1.category-title{
     margin-top: 2%;
 }
 
+.cards-container-category{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-top: 2%;
+}
+
 .card {
     padding: 3% 1.5%;
     border: 5px solid black;
@@ -241,12 +248,46 @@ h1.category-title{
     padding: 3% 1.5%;
     border: none;
     flex-grow: 1;
+    border-radius: 15px;
+    box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.25);
+    background-color: #fff;
   }
   @media (min-width: 768px) {
     .form-control {
       width: 500px;
       height: 50px;
     }
+    
+    .cards-container-category > .card  {
+        height: 250px;
+        padding: 0;
+    }
+
+    .cards-container-category > .card > .card-img-top {
+        margin: 0;
+        height: 75%;
+        border-radius: 15px 15px 0px 0px;
+        object-fit: cover;
+    }
+
+    /* .cards-container-category > .card > .card-title > h2{
+        margin: 0;
+    } */
+
+    .cards-container-category > .card > .card-title {
+        height: 25%;
+        padding: 0;
+    }
+
+    .cards-container-category > .card > .card-title > h2{
+        padding-top: 4px;
+    }
+
+    .cards-container-category > .card > .card-title > .card-text{
+        position: relative;
+        top: -10px;
+    }
+   /*  .card-text */
 
 
     @media screen {
