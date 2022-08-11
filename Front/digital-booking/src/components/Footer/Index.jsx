@@ -1,10 +1,11 @@
 import React from "react";
 import footer from "./footer.css"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faFacebook } from '@fortawesome/free-brands-svg-icons'
-import { faLinkedinIn } from '@fortawesome/free-brands-svg-icons'
-import { faTwitter } from '@fortawesome/free-brands-svg-icons'
-import { faInstagram } from '@fortawesome/free-brands-svg-icons'
+import { faFacebook, faLinkedinIn, faTwitter, faInstagram } from '@fortawesome/free-brands-svg-icons'
+// import { faFacebook } from '@fortawesome/free-brands-svg-icons'
+// import { faLinkedinIn } from '@fortawesome/free-brands-svg-icons'
+// import { faTwitter } from '@fortawesome/free-brands-svg-icons'
+// import { faInstagram } from '@fortawesome/free-brands-svg-icons'
 
 const Footer = () => {
     return (

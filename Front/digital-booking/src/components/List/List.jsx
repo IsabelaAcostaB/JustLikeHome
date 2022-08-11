@@ -2,6 +2,9 @@ import React from "react";
 
 /* import listado from "../../../public/listado.json"; */
 import listado from "./listado.json";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {faLocationDot} from '@fortawesome/free-solid-svg-icons'
+
 import styles from "../../styles/App.css";
 import "bootstrap"
 
@@ -11,13 +14,19 @@ import "bootstrap"
 function Cards(){
     return (listado.listado.map(item =>
         (<div key={item.id} className="card card-shadow m-3 home-card">
-        <img src={item.img}  class="card-img-top" />
-        <p className="card-title" key={item.id}>
-           <h2> {item.title}</h2> 
-          <p className="card-text">{item.description}</p>
-            <a href="#!"class="btn btn-primary">Ver Listado</a>
-        </p>
-
+            <div className="container-img-cards">
+                <img src={item.img}  class="card-img-top"/>
+            </div>
+            <p className="card-title" key={item.id}>
+                <h2> {item.title}</h2> 
+                <p className="card-category">{item.category}</p>
+                <p className="card-location">
+                    <FontAwesomeIcon icon={faLocationDot} className="location-icon"/> 
+                    {item.location}
+                </p>
+                <p className="card-description">{item.description}</p>
+                <a href="#!"className="button-2">Ver Detalle</a>
+            </p>
         </div>)
     )
     ) 
