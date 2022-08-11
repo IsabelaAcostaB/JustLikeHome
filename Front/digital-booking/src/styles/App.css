@@ -293,6 +293,12 @@ h1.category-title{
     display: flex;
     flex-direction: column;
 }
+
+.cards-container-recommended > .card{
+    width: 90%;
+    padding: 0;
+    margin: 5%;
+}
  .cards-container-recommended > .card > .card-title{
     display: flex;
     flex-direction: column;
@@ -355,6 +361,7 @@ h1.category-title{
     }
    
     .cards-container-recommended {
+        display: flex;
         flex-direction: row;
         width: 98%;
         
@@ -362,16 +369,15 @@ h1.category-title{
     .cards-container-recommended > .card {
         display: flex;
         flex-direction: row;
-        width: 40%;
+        /* width: 40%; */
         height: 280px;
         padding: 0;
-        justify-content: space-between;
+        /* justify-content: space-between; */
     }
 
     .cards-container-recommended > .card > .container-img-cards {
         width: 50%;
         height: 100%;
-        
     }
 
     .cards-container-recommended > .card > .container-img-cards > .card-img-top {
@@ -392,22 +398,18 @@ h1.category-title{
     .cards-container-recommended > .card > .card-title > a {
         
         align-self: center;
+        text-align: center;
         
     }
     
-
-    header {
-        z-index: 3;
-    }
 
     @media screen {
         
     } .form-control{ 
         width: 94vw;
         height: 66vh;
-
-        
     }
+
     @media screen {
         
     } .form-control{ 
@@ -416,6 +418,7 @@ h1.category-title{
 
         
     }
+
     @media screen {
         
     } .form-control{ 
@@ -429,5 +432,39 @@ h1.category-title{
         margin-left: 5px;
         margin-right: 5px;
     }
+    }
+
+    @media (min-width: 1024px){
+        .cards-container-category > .card {
+            /* height: 250px; */
+            width: 22%;
+            padding: 0;
+        }
+
+
+
+        .cards-container-recommended {
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+            box-sizing: content-box ;
+            justify-content: space-around;
+        }
+
+        .cards-container-recommended > .card {
+            
+                display: flex;
+                flex-direction: row;
+                width: 40%;
+                /* height: 280px; */
+                padding: 0;
+                margin: 2%;
+            
+        }
+
+        .cards-container-recommended > .card > .card-title > .card-description {
+            padding-right: 2px;
+        }
+        
     }
   
