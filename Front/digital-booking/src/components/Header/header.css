@@ -37,6 +37,10 @@ header{
     align-items: center;
 }
 
+.user-name a{
+    margin-left: 20px;
+}
+
 .user-avatar{
     width: 40px;
     height: 40px;
@@ -51,7 +55,9 @@ header{
 
 .user-log-name{
     margin-left: 10px;
+    margin-right: 10px;
     color: var(--second-color);
+
 }
 
 .name{

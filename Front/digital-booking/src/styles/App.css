@@ -81,7 +81,7 @@ h4, .button-6{
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    margin-left: 25px;
+    margin-left: 15px;
     color: var(--first-color);
     background-color: #fff;
     border: 1px solid var(--first-color);

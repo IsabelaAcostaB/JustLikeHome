@@ -27,22 +27,24 @@ const Header = () => {
         navigate("/")
     }
     
-    /*
-    const firstLetter = (name, lastName) =>{
-        let completeName = name;
-        completeName.push(lastName)
+    
+    const firstLetter = () =>{
+
+        let completeName = `${userData.name} ${userData.lastName}`
         let inicials =[];
         completeName.split(" ").map((word) =>{
             inicials.push(word[0].toUpperCase())
         })
-      
+        
         let letters = inicials.join('')
+        
         return letters
+        
     }
 
 
-    {firstLetter(userData.name,userData.lastName)}
-    */
+    
+    
 
     
     return (
@@ -64,19 +66,18 @@ const Header = () => {
                 <div className="user-info">
                     <div className="user-name">
                         <div className="user-avatar">
-                            <p>AVL</p>
+                            <p>{firstLetter()}</p>
                         </div>
 
                         <div className="user-log-name">
                             <p>Hola,</p>
                             <p className="name">{userData.name}</p>
+                            
                         </div>
-                        
+                        <Link to="/" className="logOut"  onClick={logOut}><FontAwesomeIcon icon={faArrowRightFromBracket} /></Link> 
                     </div>
 
-                    
-                    <Link to="/" className="logOut"  onClick={logOut}><FontAwesomeIcon icon={faArrowRightFromBracket} /></Link>              
-                    
+
                 </div> 
                 
                 : 

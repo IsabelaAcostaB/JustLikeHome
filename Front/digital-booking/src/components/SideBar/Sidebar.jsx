@@ -23,22 +23,21 @@ function Sidebar(){
         navigate("/")
     }
 
-    /*
-    const firstLetter = (name, lastName) =>{
-        let completeName = name;
-        completeName.push(lastName)
+    
+    const firstLetter = () =>{
+
+        let completeName = `${userData.name} ${userData.lastName}`
         let inicials =[];
         completeName.split(" ").map((word) =>{
             inicials.push(word[0].toUpperCase())
         })
-      
+        
         let letters = inicials.join('')
+        
         return letters
+        
     }
-    
-    {firstLetter(userData.name,userData.lastName)}
 
-    */
 
 
     const [showSideBar, setShowSideBar] = useState(false);
@@ -54,7 +53,7 @@ function Sidebar(){
                         {userData.isLogged? 
                         <div className="user-info-bar">
                             <div className="user-avatar-bar">
-                                <h2>AVL</h2>
+                                <h2>{firstLetter()}</h2>
                             </div>
                             
                             <p>Hola,</p>
