@@ -44,16 +44,20 @@
 }
 
 .user-avatar-bar{
-    width: 37px;
-    height: 37px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
     background-color: #fff;
-    text-align: center;
     margin-bottom: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 
 }
 .user-avatar-bar h2{
     color: var(--third-color);
+    align-self: unset;
 }
 
 p{
@@ -69,19 +73,34 @@ p{
 
 
 .side-bar-options{
-    height: 72vh;
+    height: 60vh;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
     align-items: flex-end;
+    justify-content: flex-start;
+    padding-right: 20px;
+    
+
+}
+
+
+.side-bar-options a{
+    color: var(--second-color);
+    font-size: 12px;
+    padding: 10px;
+    margin-bottom: 50px;
+ 
+}
+
+.side-bar-options a span{
+    
+    color: var(--first-color);
 }
 
 
 .options{
     list-style: none;
-    margin-top: 40px;
-    padding: 0px 20px 10px 0px;
-    height: 300px;
+    padding: 20px 0px 10px 0px;
     display: flex;
     flex-direction: column;
     
@@ -99,18 +118,13 @@ p{
 }
 
 
-a{
+.sign-up-side-bar a, .signIn-side-bar a{
     color: var(--second-color);
     font-size: 12px;
     font-weight: 500;
     padding: 0px 20px 10px 0px;
     
 }
-
-a span{
-    color: var(--first-color);
-}
-
 
 
 
