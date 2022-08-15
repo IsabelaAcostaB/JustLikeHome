@@ -144,10 +144,16 @@ input:focus {
     text-align: end;
 }
 
+/* HEADER Y SEARCH BAR */
+
 header {
     z-index: 99;
     
 }
+
+/* .search-bar {
+    background-color: var(--third-color);
+} */
 
 
 /*------------CARDS--------------*/
