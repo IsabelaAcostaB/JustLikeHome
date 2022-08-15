@@ -36,7 +36,7 @@ return (
     <div className="searchbar-container">
     <h1> Busca ofertas en hoteles, casas y mucho más</h1>
 
-    <div className="search-bar">
+    <div className="search-bar" className="header_center">
         <SearchCities></SearchCities>
             {/* <SearchCities/> */}
             <div className="search-input">
@@ -49,6 +49,22 @@ return (
                 <SearchIcon></SearchIcon>
             </div> 
             </div>
+
+            {searchInput && 
+                <div>
+                    <DateRangePicker
+                        ranges={[selectionRange]}
+                        minDate = {new Date()}
+                        rangeColors={["#E48561"]}
+                        onChange={handleSelect}
+                    />
+                     <div className="flex">
+                        <button onClick={resetInput} className="flex-grow">Cancelar</button>
+                        <button className="flex-grow">Buscar</button>
+                    </div>
+                
+                </div>  
+                }
 
             </div> 
 )

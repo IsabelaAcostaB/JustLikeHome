@@ -8,31 +8,15 @@ import UserContext from "../context"
 import 'react-date-range/dist/styles.css'; 
 import 'react-date-range/dist/theme/default.css'; 
 import { DateRangePicker } from 'react-date-range';
-import SearchCities from "../SearchCities/SearchCities";
+
 
 
 
 
 
 function Header ()  {
-    const [searchInput, setSearchInput] = useState("");
-    const [startDate, setStartDate] = useState(new Date());
-    const [endDate, setEndDate] = useState(new Date());
+    
 
-    const selectionRange = {
-        startDate: startDate,
-        endDate: endDate,
-        key: 'selection'
-    }
-
-    const resetInput = () => {
-        setSearchInput("");
-    }
-
-    const handleSelect = (ranges) => {
-        setStartDate(ranges.selection.startDate);
-        setEndDate(ranges.selection.endDate);
-    }
 
     const user = useContext(UserContext)
     
@@ -50,15 +34,7 @@ function Header ()  {
             
             
                 
-            <div className="header__center">
-            <SearchCities/>
-                <input
-                    value={searchInput}
-                    onChange={(e) => setSearchInput(e.target.value)}
-                    type="text"placeholder="Inicia tu búsqueda"
-                />
-                <SearchIcon/>
-            </div>  
+           
 
                 
 
@@ -94,21 +70,7 @@ function Header ()  {
 
             </div>
 
-            {searchInput && 
-                <div>
-                    <DateRangePicker
-                        ranges={[selectionRange]}
-                        minDate = {new Date()}
-                        rangeColors={["#E48561"]}
-                        onChange={handleSelect}
-                    />
-                     <div className="flex">
-                        <button onClick={resetInput} className="flex-grow">Cancelar</button>
-                        <button className="flex-grow">Buscar</button>
-                    </div>
-                
-                </div>  
-                }
+           
            
             
         </header>
