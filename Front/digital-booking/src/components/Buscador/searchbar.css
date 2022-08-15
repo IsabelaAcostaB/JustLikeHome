@@ -7,9 +7,9 @@
 
 
 .searchbar-container {
-    background-color: var(--third-color);
+    background-color: var(--first-color);
     display: flex;
-    height: 55vw;
+    height: 20vh;
     flex-direction: column;
     align-items: center;
 }
@@ -20,21 +20,24 @@
     padding: 15px;
 }
 
+.search_cities{
+    width: 30%;
+    
+}
 
 .search-bar {
     width: 100%;
     display: flex;  
-    flex-direction: column;
+    flex-direction: row;;
     justify-content: space-around;
     align-items: center;
     height: 45%;
-
 }
 
 .search-input{
     display: flex;
-    
     align-items: center;
+    width: 40%;
 }
 
 .search-input > input{

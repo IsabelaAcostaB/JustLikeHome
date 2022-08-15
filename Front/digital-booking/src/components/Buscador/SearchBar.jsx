@@ -34,18 +34,17 @@ function SearchBar() {
 return (
 
     <div className="searchbar-container">
-    <h1> Busca ofertas en hoteles, casas y mucho más</h1>
+    <h1> Busca ofertas en casas, cabañas y mucho más</h1>
 
-    <div className="search-bar" className="header_center">
+    <div className="search-bar header_center">
         <SearchCities></SearchCities>
             {/* <SearchCities/> */}
             <div className="search-input">
                 <input
                     value={searchInput}
                     onChange={(e) => setSearchInput(e.target.value)}
-                    type="text"placeholder="Inicia tu búsqueda"
+                    type="text"placeholder="Selecciona tus fechas"
                 />
-                
                 <SearchIcon></SearchIcon>
             </div> 
             </div>

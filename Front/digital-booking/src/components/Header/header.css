@@ -23,6 +23,7 @@
 }
 
 .header__icon{
+    margin-top: 7%;
     height: 10vh;
     object-fit: contain;
     margin-left: 20px;
@@ -43,8 +44,6 @@
     padding: 10px;
     outline-width: 0;
 }
-
-
 
 .logotype{
     display: flex;
@@ -124,8 +123,7 @@
     }
     
     .logo img{
-        height: 11vh;
-
+        height: 10vh;
     }
     .menu{
         display: none;
