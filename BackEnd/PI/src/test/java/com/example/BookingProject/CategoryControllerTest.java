@@ -1,16 +1,17 @@
 package com.example.BookingProject;
 
 import com.example.BookingProject.bookingAPI.persistence.model.Category;
-import com.example.BookingProject.bookingAPI.service.CategoryServiceImpl;
+import com.example.BookingProject.bookingAPI.persistence.model.Product;
+import com.example.BookingProject.bookingAPI.service.impl.CategoryServiceImpl;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -19,18 +20,18 @@ import static org.junit.jupiter.api.Assertions.*;
 class CategoryControllerTest {
 
 	@Autowired
-	CategoryServiceImpl categoryServiceimpl;
+	CategoryServiceImpl categoryServiceImpl;
 
 	@Order(1)
 	@Test
-	void testSaveCategory() {
+	void testSaveCategory() throws Exception {
 		Category c = new Category(1l,"Casa", "Casa", "URL");
-		try {
-			categoryServiceimpl.saveCategory(c);
-		} catch (Exception e) {
-			throw new RuntimeException(e);
-		}
-		assertNotNull(categoryServiceimpl.getCategoryByTitle("Casa"));
+		Set<Product> productos = new HashSet<>();
+//		Category c = new Category(1l,productos, "Casa", "Casa", "URL");
+
+			categoryServiceImpl.saveCategory(c);
+
+		assertNotNull(categoryServiceImpl.getCategoryByTitle("Casa"));
 	}
 
 /*	@Test
@@ -45,45 +46,39 @@ class CategoryControllerTest {
 
 	@Order(2)
 	@Test
-	void testGetCategoryByTitle() {
+	void testGetCategoryByTitle() throws Exception {
 		Category c = new Category(2l, "Casa2", "", "");
-		try {
-			categoryServiceimpl.saveCategory(c);
-		} catch (Exception e) {
-			throw new RuntimeException(e);
-		}
-		assertTrue(categoryServiceimpl.getCategoryByTitle("Casa2") != null);
+		Set<Product> productos2 = new HashSet<>();
+//		Category c = new Category(2l,productos2, "Casa2", "Casa", "URL");
+		categoryServiceImpl.saveCategory(c);
+		assertTrue(categoryServiceImpl.getCategoryByTitle("Casa2") != null);
 	}
 
 	@Order(3)
 	@Test
 	void testGetAllCategories() {
-		List<Category> listOfCategories = categoryServiceimpl.getAllCategories();
+		List<Category> listOfCategories = categoryServiceImpl.getAllCategories();
 		Category c1= new Category();
 		Category c2 = new Category();
 		listOfCategories.add(c1);
 		listOfCategories.add(c2);
 
-		assertTrue(categoryServiceimpl.getAllCategories() != null);
+		assertTrue(categoryServiceImpl.getAllCategories() != null);
 	}
 
 	@Order(4)
 	@Test
 	void testUpdateCategory() {
-		Category cUpdated = categoryServiceimpl.getCategoryByTitle("Casa");
+		Category cUpdated = categoryServiceImpl.getCategoryByTitle("Casa");
 		cUpdated.setImageURL("URL");
-		categoryServiceimpl.updateCategory(cUpdated);
-		assertTrue(categoryServiceimpl.getCategoryByTitle("Casa").getImageURL() == "URL");
+		categoryServiceImpl.updateCategory(cUpdated);
+		assertTrue(categoryServiceImpl.getCategoryByTitle("Casa").getImageURL() == "URL");
 	}
 
 	@Order(5)
 	@Test
-	void testDeleteCategory() {
-		try {
-			categoryServiceimpl.deleteCategory(1l);
-		} catch (Exception e) {
-			throw new RuntimeException(e);
-		}
-		assertNull(categoryServiceimpl.getCategoryByTitle("Casa"));
+	void testDeleteCategory() throws Exception {
+		categoryServiceImpl.deleteCategory(1l);
+		assertNull(categoryServiceImpl.getCategoryByTitle("Casa"));
 	}
 }

@@ -1,9 +1,10 @@
-package com.example.BookingProject.bookingAPI.service;
+package com.example.BookingProject.bookingAPI.service.impl;
 
 import com.example.BookingProject.bookingAPI.exception.ResourceNotFoundException;
 import com.example.BookingProject.bookingAPI.persistence.model.Category;
 import com.example.BookingProject.bookingAPI.persistence.repository.CategoryRepository;
 
+import com.example.BookingProject.bookingAPI.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Service;
@@ -18,11 +19,7 @@ import java.util.Optional;
 public class CategoryServiceImpl implements CategoryService {
 
     @Autowired
-    private final CategoryRepository categoryRepository;
-
-    public CategoryServiceImpl(CategoryRepository categoryRepository) {
-        this.categoryRepository = categoryRepository;
-    }
+    CategoryRepository categoryRepository;
 
     @Override
     public Category saveCategory(Category category) throws Exception{
