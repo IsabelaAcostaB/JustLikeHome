@@ -34,7 +34,7 @@ function SearchBar() {
     <div className="searchbar-container">
       <h1> Busca ofertas en casas, cabañas y mucho más</h1>
 
-      <div className="search-bar header_center">
+      <div className="search-bar">
         <SearchCities></SearchCities>
         <div className="search-bar">
           <div className="search-input">
@@ -49,7 +49,7 @@ function SearchBar() {
         </div>
 
         {searchInput && (
-          <div>
+          <div className="calendar-container">
             <DateRangePicker
               ranges={[selectionRange]}
               minDate={new Date()}

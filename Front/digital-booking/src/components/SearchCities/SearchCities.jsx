@@ -13,7 +13,7 @@ function SearchCities() {
     <div>
       <div>
         <select name="city" onChange={(e) => handleCity(e)} className="search_cities">
-          <option value="">--Selecciona una ciudad--</option>
+          <option value="">Selecciona una ciudad</option>
           {cities.map((getCity, index) => (
             <option value={getCity.id} key={index}>
               {getCity.admin_name}
