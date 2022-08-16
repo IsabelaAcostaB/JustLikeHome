@@ -15,101 +15,77 @@ header{
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
     margin: 0px 20px;
-}
-
-
-<<<<<<< HEAD
-=======
-
-.user-info{
-    color: var(--first-color);
-    width: 150px;
     
 }
 
-.logo img{
+.header__icon{
     height: 10vh;
->>>>>>> ce9a6efe26245344e812136e57e648da2c15288d
-
-}
-
-.user-name{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-}
-
-.user-name a{
+    object-fit: contain;
     margin-left: 20px;
 }
 
-.user-avatar{
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background-color: var(--second-color);
-    color: #fff;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
 
-.user-log-name{
-    margin-left: 10px;
-    margin-right: 10px;
-    color: var(--second-color);
 
-}
-
-.name{
-    color: var(--first-color);
-}
-
-.logOut{
-    color: var(--third-color);
-    font-size: 30px;
-}
-/*
-.user-name{
-    width: 150px;
+.logotype{
     display: flex;
     flex-direction: row;
-    align-items: center;
-    color: var(--second-color);
-
-}
-
-.user-avatar{
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background-color: var(--second-color);
-    color: #fff;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.name {
-    margin-left: 10px;
-    color: var(--first-color);
 }
 
 
-.logOut {
+
+.phrase{
     color: var(--third-color);
+    margin-left: 15px;
+    margin-top: 25px;
 }
-*/
+
 
 .login-buttons{
     display: flex;
     flex-direction: row;
     
 }
- 
+
+
+    
+.user-info{
+    color: var(--first-color);
+    width: 300px;
+    height: 5vh;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between
+}
+
+
+.user-info a {
+    color: var(--third-color);
+}
+
+.user-name{
+    width: 150px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+}
+.user-avatar{
+    width: 37px;
+    height: 37px;
+    border-radius: 50%;
+    background-color: var(--second-color);
+    color: #fff;
+    text-align: center;
+}
+
+.name {
+    margin-left: 20px;
+}
 
 .menu{
     cursor: pointer;
@@ -118,7 +94,7 @@ header{
 
 }
 
-.user-info, .user-login{
+.phrase, .user-info, .user-login{
     display: none;
 }
 
@@ -148,9 +124,6 @@ header{
         display: unset; 
     }
     
-    .user-info{
-        display: unset;
-    }
     
 
     
@@ -160,5 +133,9 @@ header{
     .header-boxes{
         margin: 0px 40px;
     }
+    
+    .phrase{
+        display: unset;
+    }  
     
 }

@@ -1,91 +1,26 @@
-<<<<<<< HEAD
-import React, { useContext} from "react"
 
-import React, { useContext } from "react"
-import header from "./header.css"
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons'
-import logo from "../../asserts/3.png"
+import './header.css';
+import logo from "../../asserts/icons/LogoJLH2.png"
 import Sidebar from "../SideBar/Sidebar.jsx"
 import { Link } from "react-router-dom"
-import { UserContext}from "../UserContext.jsx"
-import {useNavigate} from "react-router-dom"
-import 'react-date-range/dist/styles.css'; 
-import 'react-date-range/dist/theme/default.css'; 
 import 'react-date-range/dist/styles.css'; 
 import 'react-date-range/dist/theme/default.css'; 
 
 function Header ()  {
-
-
-
-    const {userData, setUserData} = useContext(UserContext)
-
-    const navigate = useNavigate();
-
-
+      
     
-    const logOut = () =>{
-        const userDataOut = {
-            name: null,
-            lastName: null,
-            isLogged: false
-        }
-    
-        setUserData(userDataOut);
-        navigate("/")
-    }
-    
-    
-    const firstLetter = () =>{
-
-        let completeName = `${userData.name} ${userData.lastName}`
-        let inicials =[];
-        completeName.split(" ").map((word) =>{
-            inicials.push(word[0].toUpperCase())
-        })
-        
-        let letters = inicials.join('')
-        
-        return letters
-        
-    }
-
-    
-    return (
-        <header>
+    return (   
+        <header className="col-3">
             <div className="header-boxes">
                 <Link to="/" >
                     <div className="logotype">
                         <div className="logo">
-                            <img src={logo} alt="logo Just Like"/>
+                            <img className="header__icon" src={logo} alt="logo Just Like"/>
                         </div>
                     </div>
                 </Link>
-
-                
-
-                {userData.isLogged ? 
-                
-                <div className="user-info">
-                    <div className="user-name">
-                        <div className="user-avatar">
-                            <p>{firstLetter()}</p>
-                        </div>
-
-                        <div className="user-log-name">
-                            <p>Hola,</p>
-                            <p className="name">{userData.name}</p>
-                            
-                        </div>
-                        <Link to="/" className="logOut"  onClick={logOut}><FontAwesomeIcon icon={faArrowRightFromBracket} /></Link> 
-                    </div>
-
-
-                </div> 
-                
-                : 
-                
+            
+            
                 <div className="user-login">
                     <div className="login-buttons">
                         <div className="button-6 buttonSignUp" >
@@ -99,18 +34,25 @@ function Header ()  {
                     
                 </div>
                 
-                }
                 
-
-
-                <div className="menu">
-                    <Sidebar />
+                <div className="user-info">
+                    <div className="user-name">
+                        <div className="user-avatar">
+                            <p>NU</p>
+                        </div>
+                        <p className="name">Hola, </p>
+                    </div>
+                    <Link to="/">Cerrar sesión</Link>
                 </div>
 
                 
+                <div className="menu">
+                    <Sidebar />
+                </div>
+                
 
             </div>
-            
+
         </header>
     )
 }
