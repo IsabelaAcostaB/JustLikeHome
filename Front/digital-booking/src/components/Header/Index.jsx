@@ -1,27 +1,15 @@
-import React, { useContext, useState } from "react"
-import SearchIcon from '@mui/icons-material/Search';
+
 import './header.css';
 import logo from "../../asserts/icons/LogoJLH2.png"
 import Sidebar from "../SideBar/Sidebar.jsx"
 import { Link } from "react-router-dom"
-import UserContext from "../context"
 import 'react-date-range/dist/styles.css'; 
 import 'react-date-range/dist/theme/default.css'; 
-import { DateRangePicker } from 'react-date-range';
-
-
-
-
-
 
 function Header ()  {
-    
-
-
-    const user = useContext(UserContext)
-    
-    return (
       
+    
+    return (   
         <header className="col-3">
             <div className="header-boxes">
                 <Link to="/" >
@@ -33,11 +21,6 @@ function Header ()  {
                 </Link>
             
             
-                
-           
-
-                
-
                 <div className="user-login">
                     <div className="login-buttons">
                         <div className="button-6 buttonSignUp" >
@@ -70,9 +53,6 @@ function Header ()  {
 
             </div>
 
-           
-           
-            
         </header>
     )
 }
