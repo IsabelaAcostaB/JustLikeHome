@@ -25,7 +25,11 @@ class CategoryControllerTest {
 	@Test
 	void testSaveCategory() {
 		Category c = new Category(1l,"Casa", "Casa", "URL");
-		categoryServiceimpl.saveCategory(c);
+		try {
+			categoryServiceimpl.saveCategory(c);
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
 		assertNotNull(categoryServiceimpl.getCategoryByTitle("Casa"));
 	}
 
@@ -43,7 +47,11 @@ class CategoryControllerTest {
 	@Test
 	void testGetCategoryByTitle() {
 		Category c = new Category(2l, "Casa2", "", "");
-		categoryServiceimpl.saveCategory(c);
+		try {
+			categoryServiceimpl.saveCategory(c);
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
 		assertTrue(categoryServiceimpl.getCategoryByTitle("Casa2") != null);
 	}
 
@@ -71,7 +79,11 @@ class CategoryControllerTest {
 	@Order(5)
 	@Test
 	void testDeleteCategory() {
-		categoryServiceimpl.deleteCategory(1l);
+		try {
+			categoryServiceimpl.deleteCategory(1l);
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
 		assertNull(categoryServiceimpl.getCategoryByTitle("Casa"));
 	}
 }

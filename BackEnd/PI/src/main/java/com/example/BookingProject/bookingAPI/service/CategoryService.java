@@ -5,7 +5,7 @@ import com.example.BookingProject.bookingAPI.persistence.model.Category;
 import java.util.List;
 
 public interface CategoryService {
-    Category saveCategory(Category category);
+    Category saveCategory(Category category) throws Exception;
 
     List<Category> saveCategories(List<Category> categories);
 
@@ -13,7 +13,7 @@ public interface CategoryService {
 
     List<Category> getAllCategories();
 
-    String deleteCategory(Long id);
+    String deleteCategory(Long id) throws Exception;
 
     Category updateCategory(Category category);
 }

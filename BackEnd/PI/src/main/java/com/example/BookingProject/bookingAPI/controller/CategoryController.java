@@ -16,9 +16,12 @@ public class CategoryController {
     private CategoryService categoryService;
 
     @PostMapping
-    public ResponseEntity<?> addCategory(@RequestBody Category category) {
-        return new ResponseEntity<>(categoryService.saveCategory(category), HttpStatus.CREATED);
+    public ResponseEntity<Category> addCategory(@RequestBody Category category) throws Exception{
+
+            return new ResponseEntity<>(categoryService.saveCategory(category), HttpStatus.CREATED);
+
     }
+
 
     @PostMapping("/addMany")
     public ResponseEntity<?> addCategories(@RequestBody List<Category> categories) {
@@ -34,14 +37,18 @@ public class CategoryController {
         return new ResponseEntity<>(categoryService.getCategoryByTitle(title), HttpStatus.OK);
     }
 
-    @PutMapping
+    @PutMapping()
     public ResponseEntity<?> updateCategory(@RequestBody Category category) {
+
         return new ResponseEntity<>(categoryService.updateCategory(category), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
-    public String deleteCategory(@PathVariable Long id) {
-         return categoryService.deleteCategory(id);
+    public String deleteCategory(@PathVariable Long id) throws Exception{
+
+           return categoryService.deleteCategory(id);
+
 //         return new ResponseEntity(HttpStatus.OK);
     }
+
 }
