@@ -1,13 +1,17 @@
 import formData from "../../db/formData"
-import React, { useState} from "react";
+import React, { useState, useContext } from "react";
 import {Link} from "react-router-dom"
 import formSignIn from "./formSignIn.css"
-import Swal from 'sweetalert2'
-
+import { UserContext } from "../UserContext.jsx";
+import {useNavigate} from "react-router-dom"
 
 const FormSignIn = () =>{
 
+    const {setUserData} = useContext(UserContext)
+
     const [validData, setValidData] = useState(true);
+
+    const navigate = useNavigate();
 
     const getValues = (target) =>{
         return {
@@ -25,17 +29,24 @@ const FormSignIn = () =>{
 
         const foundUser = users.find(user => user.email === data.email && user.password === data.password)
         
+
         if (foundUser){
-            Swal.fire(
-                'Login exitoso',
-                'Iniciando sesión...',
-                'success'
-            )
+            const userDataLog = {
+                name: foundUser.name,
+                lastName: foundUser.lastName,
+                isLogged: true
+            }
+
+            setUserData(userDataLog);
+            navigate("/")
+
 
         }else{
             setValidData(false)
         }
     }
+
+
 
     return (
         <div className="main">

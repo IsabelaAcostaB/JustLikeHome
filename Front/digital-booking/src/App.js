@@ -7,15 +7,14 @@ import SignUp from "./pages/SignUp/SignUp";
 import Header from "./components/Header/Index";
 import Footer from "./components/Footer/Index";
 import HomeRegister from "./pages/EjRegistro/HomeRegister"
-import { Provider } from "react";
-import UserContext from "./components/context";
+import {UserProvider} from "./components/UserContext"
 
 function App() {
 
   return (
     <div className="App">
 
-      <UserContext.Provider>
+      <UserProvider>
       <BrowserRouter>
         <Header />
         <Routes>
@@ -28,7 +27,8 @@ function App() {
         
         <Footer />
       </BrowserRouter>
-      </UserContext.Provider>
+      </UserProvider>
+
     </div>
   )
 }
