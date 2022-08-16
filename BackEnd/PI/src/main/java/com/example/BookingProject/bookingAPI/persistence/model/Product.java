@@ -5,10 +5,13 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.loader.collection.OneToManyJoinWalker;
 
 import javax.persistence.*;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Data
 @AllArgsConstructor
@@ -19,15 +22,13 @@ import java.util.List;
 public class Product {
 
     @Id
-    @SequenceGenerator(name="product_sequence", sequenceName = "product_sequence", allocationSize=1)
-    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "product_sequence")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name="title")
     private String title;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "category_id")
     @JsonIgnore
     private Category category;
 
@@ -43,9 +44,9 @@ public class Product {
     @Column(name="description")
     private String description;
 
-//    @ManyToMany(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "amenities_id")
-//    private String amenities;
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JsonIgnore
+    private Set<Amenities> amenities = new HashSet<>();
 
     @Column(name="availability")
     private Boolean availability;

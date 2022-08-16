@@ -16,8 +16,7 @@ import java.util.Set;
 @Table(name = "Category_tbl")
 public class Category {
     @Id
-    @SequenceGenerator(name="category_sequence", sequenceName = "category_sequence", allocationSize=1)
-    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "category_sequence")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @OneToMany(fetch = FetchType.LAZY)

@@ -1,11 +1,14 @@
 package com.example.BookingProject.bookingAPI.persistence.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Data
 @AllArgsConstructor
@@ -16,10 +19,16 @@ import javax.persistence.*;
 public class Amenities {
 
     @Id
-    @SequenceGenerator(name="amenities_sequence", sequenceName = "amenities_sequence", allocationSize=1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "amenities_sequence")
+    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "amenities_sequence")
     private Long id;
 
     @Column(name="title")
     private String title;
+
+    @Column(name="icon")
+    private String icon;
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JsonIgnore
+    private Set<Product> products = new HashSet<>();
 }

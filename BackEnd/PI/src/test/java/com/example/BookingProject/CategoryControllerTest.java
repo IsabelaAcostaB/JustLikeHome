@@ -25,7 +25,8 @@ class CategoryControllerTest {
 	@Order(1)
 	@Test
 	void testSaveCategory() throws Exception {
-		Category c = new Category(1l,"Casa", "Casa", "URL");
+		Set<Product> products = new HashSet<>();
+		Category c = new Category(1l,products, "Casa", "Casa", "URL");
 		Set<Product> productos = new HashSet<>();
 //		Category c = new Category(1l,productos, "Casa", "Casa", "URL");
 
@@ -47,7 +48,8 @@ class CategoryControllerTest {
 	@Order(2)
 	@Test
 	void testGetCategoryByTitle() throws Exception {
-		Category c = new Category(2l, "Casa2", "", "");
+		Set<Product> products2 = new HashSet<>();
+		Category c = new Category(2l, products2,"Casa2", "", "");
 		Set<Product> productos2 = new HashSet<>();
 //		Category c = new Category(2l,productos2, "Casa2", "Casa", "URL");
 		categoryServiceImpl.saveCategory(c);
