@@ -1,4 +1,4 @@
-package com.example.BookingProject.bookingAPI.service;
+package com.example.BookingProject.bookingAPI.service.impl;
 
 import com.example.BookingProject.bookingAPI.persistence.model.Category;
 import com.example.BookingProject.bookingAPI.persistence.repository.CategoryRepository;
@@ -14,11 +14,7 @@ import java.util.List;
 public class CategoryServiceImpl implements CategoryService {
 
     @Autowired
-    private final CategoryRepository categoryRepository;
-
-    public CategoryServiceImpl(CategoryRepository categoryRepository) {
-        this.categoryRepository = categoryRepository;
-    }
+    CategoryRepository categoryRepository;
 
     @Override
     public Category saveCategory(Category category) {

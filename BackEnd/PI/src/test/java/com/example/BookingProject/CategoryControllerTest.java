@@ -1,7 +1,8 @@
 package com.example.BookingProject;
 
 import com.example.BookingProject.bookingAPI.persistence.model.Category;
-import com.example.BookingProject.bookingAPI.service.CategoryServiceImpl;
+import com.example.BookingProject.bookingAPI.persistence.model.Product;
+import com.example.BookingProject.bookingAPI.service.impl.CategoryServiceImpl;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
@@ -10,7 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -24,7 +27,8 @@ class CategoryControllerTest {
 	@Order(1)
 	@Test
 	void testSaveCategory() {
-		Category c = new Category(1l,"Casa", "Casa", "URL");
+		Set<Product> productos = new HashSet<>();
+		Category c = new Category(1l,productos, "Casa", "Casa", "URL");
 		categoryServiceimpl.saveCategory(c);
 		assertNotNull(categoryServiceimpl.getCategoryByTitle("Casa"));
 	}
@@ -42,7 +46,8 @@ class CategoryControllerTest {
 	@Order(2)
 	@Test
 	void testGetCategoryByTitle() {
-		Category c = new Category(2l, "Casa2", "", "");
+		Set<Product> productos2 = new HashSet<>();
+		Category c = new Category(2l,productos2, "Casa2", "Casa", "URL");
 		categoryServiceimpl.saveCategory(c);
 		assertTrue(categoryServiceimpl.getCategoryByTitle("Casa2") != null);
 	}

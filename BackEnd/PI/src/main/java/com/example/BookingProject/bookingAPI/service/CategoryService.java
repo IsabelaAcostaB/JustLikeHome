@@ -1,8 +1,10 @@
 package com.example.BookingProject.bookingAPI.service;
 
 import com.example.BookingProject.bookingAPI.persistence.model.Category;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
+
 
 public interface CategoryService {
     Category saveCategory(Category category);
