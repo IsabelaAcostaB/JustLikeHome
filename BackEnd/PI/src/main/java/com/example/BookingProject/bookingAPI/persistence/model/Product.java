@@ -27,7 +27,7 @@ public class Product {
     private String title;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JsonIgnore
+    @JoinColumn(name="category_id")
     private Category category;
 
     @Column(name="location")
