@@ -8,7 +8,9 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Data
 @AllArgsConstructor
@@ -20,7 +22,7 @@ public class Product {
 
     @Id
     @SequenceGenerator(name="product_sequence", sequenceName = "product_sequence", allocationSize=1)
-    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "product_sequence")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "product_sequence")
     private Long id;
 
     @Column(name="title")
@@ -34,8 +36,8 @@ public class Product {
     @Column(name="location")
     private String location;
 
-    @Column(name="images")
-    private String images;
+    @OneToMany(mappedBy = "product")
+    private Set<Image> images = new HashSet<>();
 
     @Column(name="description_title")
     private String description_title;
@@ -52,5 +54,14 @@ public class Product {
 
     @Column(name="policies")
     private String policies;
+
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(
+            name = "city_id",
+            referencedColumnName = "id"
+    )
+    private City city;
+
+
 
 }
