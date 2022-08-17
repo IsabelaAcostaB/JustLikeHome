@@ -21,10 +21,10 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "category_sequence")
     private Long id;
 
+
     @OneToMany(mappedBy = "category", cascade = CascadeType.MERGE)
     @JsonIgnore
     private Set<Product> products = new HashSet<>();
-
 
     @Column(name = "title", nullable = false, length = 100)
     private String title;

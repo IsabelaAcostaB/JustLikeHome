@@ -26,8 +26,10 @@ public class Product {
     @Column(name="title")
     private String title;
 
+
     @ManyToOne( cascade = CascadeType.MERGE)
     @JoinColumn(name = "category_id", referencedColumnName = "id", nullable = false)
+
     private Category category;
 
 
