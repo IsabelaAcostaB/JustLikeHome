@@ -4,7 +4,6 @@ import {Link} from "react-router-dom"
 import Swal from 'sweetalert2'
 
 const FormSignUp = () => {
-
     const initialValues = {
         name: "",
         lastName:"",
@@ -12,8 +11,6 @@ const FormSignUp = () => {
         password:"",
         repPassword:""
     }
-    
-   
 
     const [formValues, setFormValues]=useState(initialValues)
     const [formErrors, setFormErrors]=useState({});
@@ -22,29 +19,31 @@ const FormSignUp = () => {
     const handleChange =(event)=>{
         const {name, value} = event.target
         setFormValues({...formValues, [name]:value});
-
     }
 
     const handleSubmit =(event)=>{
         event.preventDefault();
         setFormErrors(validInput(formValues))
         setIsSubmit(true)
-        
-
-
     }
 
     useEffect(()=>{
-    
         if(Object.keys(formErrors).length === 0 && isSubmit){
-            localStorage.setItem('users', JSON.stringify([formValues]));
+            const usersString = localStorage.getItem('users');
+            if(usersString){
+                const users = JSON.parse(usersString);
+                localStorage.setItem('users', JSON.stringify([...users, formValues]));
+            } else {
+                localStorage.setItem('users', JSON.stringify([formValues]));
+            }
+            
             Swal.fire(
                 'Registro exitoso',
                 'Por favor diríjase a iniciar sesión',
                 'success'
             )
         }
-    },[formErrors])
+    },[formErrors]);
 
 
     const validInput = (values)=>{
@@ -56,13 +55,12 @@ const FormSignUp = () => {
         }else if(values.name.length<3){
             errors.name = "El nombre tiene que tener más de 3 caracteres"
         }
-        
+
         if (!values.lastName){
             errors.lastName = "El apellido es obligatorio"
         } else if(values.lastName.length<3){
             errors.name = "El apellido tiene que tener más de 3 caracteres"
         }
-
 
         if (!values.email){
             errors.email = "El email es obligatorio"
@@ -75,8 +73,6 @@ const FormSignUp = () => {
         }else if (values.password.length>=15 || values.password.length<6){
             errors.password = "La contraseña tiene que tener entre 6 a 15 caracteres"
         }
-     
-
 
         if (!values.repPassword){
             errors.repPassword = "La contraseña es obligatoria"
@@ -84,10 +80,9 @@ const FormSignUp = () => {
             errors.repPassword = "Las contraseñas tiene que coincidir"
         }
 
-
         return errors;
-
     }
+
     return(
         <div className="main">
             <form  onSubmit={handleSubmit}>
@@ -95,56 +90,34 @@ const FormSignUp = () => {
                     <h2>Crear cuenta</h2>
                 </div>
                 <div className="form-labels">
-
                     <div className="name-label">
                         <label htmlform="name">Nombre: </label>
-                        <input type="text" id="name" name="name" value={formValues.name}
-                        onChange={handleChange}
-                        />
+                        <input type="text" id="name" name="name" value={formValues.name} onChange={handleChange} />
                         <p className="error">{formErrors.name}</p>
-                        
                     </div>
-                    
-                    
+
                     <div className="last-name-label">
                         <label htmlform="lastName">Apellido:</label>
-                        <input type="text" id="lastName"  name="lastName" value={formValues.lastName}
-                        onChange={handleChange}
-                        />
+                        <input type="text" id="lastName"  name="lastName" value={formValues.lastName} onChange={handleChange}/>
                         <p className="error">{formErrors.lastName}</p>
                     </div>
-                    
-                    
+
                     <label className="email-label" htmlform="email">Correo electrónico:</label>
-                    <input type="email" id="email" name="email" value={formValues.email}
-                    onChange={handleChange}
-                    />
+                    <input type="email" id="email" name="email" value={formValues.email} onChange={handleChange} />
                     <p className="error">{formErrors.email}</p>
-                    
-                    
+
                     <label className="password-label" htmlform="password">Contraseña:</label>
-                    <input type="password" id="password" name="password" value={formValues.password}
-                    onChange={handleChange}
-                    />
+                    <input type="password" id="password" name="password" value={formValues.password} onChange={handleChange} />
                     <p className="error">{formErrors.password}</p>
-                    
-                    
+
                     <label className="password-rep-label" htmlform="repPassword">Repetir contraseña:</label>
-                    <input type="password" id="repPassword"name="repPassword" value={formValues.repPassword}
-                    onChange={handleChange}
-                    />
+                    <input type="password" id="repPassword"name="repPassword" value={formValues.repPassword} onChange={handleChange} />
                     <p className="error">{formErrors.repPassword}</p>
-                    
-                    
                 </div>
-
-
                 <button type="submit" className="button-2">Crear Cuenta</button>
-
                 <div className="go-sign">
                     <Link to="/signIn">¿Ya tienes una cuenta? <span> Iniciar sesión</span></Link>
                 </div>
-
             </form>
         </div>
     )

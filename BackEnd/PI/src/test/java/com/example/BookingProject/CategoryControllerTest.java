@@ -1,4 +1,4 @@
-/*package com.example.BookingProject;
+package com.example.BookingProject;
 
 import com.example.BookingProject.bookingAPI.persistence.model.Category;
 import com.example.BookingProject.bookingAPI.persistence.model.Product;
@@ -9,6 +9,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -25,31 +27,31 @@ class CategoryControllerTest {
 	@Order(1)
 	@Test
 	void testSaveCategory() throws Exception {
-		//Category c = new Category(1l,"Casa", "Casa", "URL");
-		Set<Product> productos = new HashSet<>();
-//		Category c = new Category(1l,productos, "Casa", "Casa", "URL");
 
+		Set<Product> products = new HashSet<>();
+		Category c = new Category(1l,products, "Casa", "Casa", "URL");
 			categoryServiceImpl.saveCategory(c);
 
 		assertNotNull(categoryServiceImpl.getCategoryByTitle("Casa"));
 	}
 
-*//*	@Test
+	@Test
 	void testSaveCategories() {
 		List<Category> categories = new ArrayList<>();
-		categories.add(new Category(2l,"","",""));
-		categories.add(new Category(3l,"","",""));
-		categoryServiceimpl.saveCategories(categories);
+		/*categories.add(new Category(2L, "", "", ""));
+		categories.add(new Category(3l,"","",""));*/
+		categoryServiceImpl.saveCategories(categories);
 
-		assertTrue(categoryServiceimpl.getAllCategories().size() > 0);
-	}*//*
+		assertTrue(categoryServiceImpl.getAllCategories().size() > 0);
+	}//*
 
 	@Order(2)
 	@Test
 	void testGetCategoryByTitle() throws Exception {
-		//Category c = new Category(2l, "Casa2", "", "");
-		Set<Product> productos2 = new HashSet<>();
-//		Category c = new Category(2l,productos2, "Casa2", "Casa", "URL");
+
+
+		Set<Product> products2 = new HashSet<>();
+		Category c = new Category(2l, products2,"Casa2", "", "");
 		categoryServiceImpl.saveCategory(c);
 		assertTrue(categoryServiceImpl.getCategoryByTitle("Casa2") != null);
 	}
@@ -81,4 +83,4 @@ class CategoryControllerTest {
 		categoryServiceImpl.deleteCategory(1l);
 		assertNull(categoryServiceImpl.getCategoryByTitle("Casa"));
 	}
-}*/
+}
