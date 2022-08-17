@@ -26,12 +26,11 @@ public class Product {
     @Column(name="title")
     private String title;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JsonIgnore
+    @ManyToOne( cascade = CascadeType.MERGE)
+    @JoinColumn(name = "category_id", referencedColumnName = "id", nullable = false)
     private Category category;
 
-    @Column(name="location")
-    private String location;
+
 
     @OneToMany(mappedBy = "product")
     private Set<Image> images = new HashSet<>();

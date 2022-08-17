@@ -13,6 +13,8 @@ public interface CategoryService {
 
     Category getCategoryByTitle(String title);
 
+    Category getCategoryById(Long id);
+
     List<Category> getAllCategories();
 
     String deleteCategory(Long id) throws Exception;
