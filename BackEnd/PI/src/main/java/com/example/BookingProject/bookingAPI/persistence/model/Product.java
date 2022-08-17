@@ -5,12 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.loader.collection.OneToManyJoinWalker;
-
 import javax.persistence.*;
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Data
@@ -53,8 +49,9 @@ public class Product {
     @Column(name="availability")
     private Boolean availability;
 
-    @Column(name="policies")
-    private String policies;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JsonIgnore
+    private Policy policies;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(

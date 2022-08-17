@@ -14,7 +14,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Builder
 @Entity
-@Table(name = "image_tbl")
+@Table(name = "image")
 public class Image {
     @Id
     @SequenceGenerator(name="image_sequence", sequenceName = "image_sequence", allocationSize=1)

@@ -13,7 +13,7 @@ import java.util.Set;
 @NoArgsConstructor
 @Builder
 @Entity
-@Table(name = "Category_tbl")
+@Table(name = "category")
 public class Category {
     @Id
 

@@ -68,17 +68,16 @@ header{
     color: var(--third-color);
     font-size: 30px;
 }
-/*
-.user-name{
+
+/* .user-name{
     width: 150px;
     display: flex;
     flex-direction: row;
     align-items: center;
     color: var(--second-color);
+} */
 
-}
-
-.user-avatar{
+.user-avatar p{
     width: 40px;
     height: 40px;
     border-radius: 50%;
@@ -90,24 +89,18 @@ header{
     align-items: center;
 }
 
-.name {
-    margin-left: 10px;
-    color: var(--first-color);
-}
 
 
 .logOut {
     color: var(--third-color);
 }
-*/
+
 
 .login-buttons{
     display: flex;
     flex-direction: row;
-    
 }
  
-
 .menu{
     cursor: pointer;
     font-size: 25px;

@@ -14,7 +14,7 @@ import java.util.Set;
 @Entity
 @Builder
 @ToString(exclude = "product")
-@Table(name = "city_tbl")
+@Table(name = "city")
 public class City {
     @Id
     @SequenceGenerator(name = "city_sequence", sequenceName = "city_sequence", allocationSize = 1)
