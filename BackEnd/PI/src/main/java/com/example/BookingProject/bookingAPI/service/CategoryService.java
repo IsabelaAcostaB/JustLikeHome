@@ -7,7 +7,7 @@ import java.util.List;
 
 
 public interface CategoryService {
-    Category saveCategory(Category category) throws Exception;
+    Category saveCategory(Category category);
 
     List<Category> saveCategories(List<Category> categories);
 
@@ -17,7 +17,7 @@ public interface CategoryService {
 
     List<Category> getAllCategories();
 
-    String deleteCategory(Long id) throws Exception;
+    String deleteCategory(Long id);
 
     Category updateCategory(Category category);
 }

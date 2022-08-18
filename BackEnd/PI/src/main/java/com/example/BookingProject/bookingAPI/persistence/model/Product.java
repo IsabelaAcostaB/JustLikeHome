@@ -45,7 +45,7 @@ public class Product {
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JsonIgnore
-    private Set<Amenities> amenities = new HashSet<>();
+    private Set<Amenity> amenities = new HashSet<>();
 
     @Column(name="availability")
     private Boolean availability;

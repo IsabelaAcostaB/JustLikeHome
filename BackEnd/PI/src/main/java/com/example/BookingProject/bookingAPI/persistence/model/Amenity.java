@@ -16,7 +16,7 @@ import java.util.Set;
 @Builder
 @Entity
 @Table(name = "amenities")
-public class Amenities {
+public class Amenity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "amenities_sequence")

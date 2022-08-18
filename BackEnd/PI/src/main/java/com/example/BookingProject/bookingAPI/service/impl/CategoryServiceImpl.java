@@ -22,8 +22,7 @@ public class CategoryServiceImpl implements CategoryService {
     CategoryRepository categoryRepository;
 
     @Override
-    public Category saveCategory(Category category) throws Exception{
-
+    public Category saveCategory(Category category){
             return categoryRepository.save(category);
     }
 
@@ -50,7 +49,7 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public String deleteCategory(Long id) throws Exception{
+    public String deleteCategory(Long id){
         if(categoryRepository.findById(id).isPresent()){
                 categoryRepository.deleteById(id);
                 return "Category with id:" + id + " has been successfully deleted";

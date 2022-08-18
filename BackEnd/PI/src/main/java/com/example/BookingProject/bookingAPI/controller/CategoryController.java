@@ -32,11 +32,12 @@ public class CategoryController {
         return new ResponseEntity<>(categoryService.getAllCategories(),HttpStatus.OK);
     }
 
-    @GetMapping("/{title}")
+    @GetMapping("/name/{title}")
     public ResponseEntity<?> findCategoryByTitle(@PathVariable String title) {
         return new ResponseEntity<>(categoryService.getCategoryByTitle(title), HttpStatus.OK);
     }
 
+    @GetMapping("/{id}")
     public ResponseEntity<?> findCategoryById(@PathVariable Long id) {
         return new ResponseEntity<>(categoryService.getCategoryById(id), HttpStatus.OK);
     }
@@ -48,11 +49,8 @@ public class CategoryController {
     }
 
     @DeleteMapping("/{id}")
-    public String deleteCategory(@PathVariable Long id) throws Exception{
-
+    public String deleteCategory(@PathVariable Long id){
            return categoryService.deleteCategory(id);
-
-//         return new ResponseEntity(HttpStatus.OK);
     }
 
 }
