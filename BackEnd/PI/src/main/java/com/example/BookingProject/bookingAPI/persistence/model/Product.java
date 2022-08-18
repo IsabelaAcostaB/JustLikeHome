@@ -57,7 +57,7 @@ public class Product {
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(
             name = "city_id",
-            referencedColumnName = "id"
+            referencedColumnName = "id", nullable = false
     )
     private City city;
 

@@ -1,11 +1,8 @@
 package com.example.BookingProject.bookingAPI.service.impl;
 
 import com.example.BookingProject.bookingAPI.exception.ResourceNotFoundException;
-import com.example.BookingProject.bookingAPI.persistence.model.Category;
 import com.example.BookingProject.bookingAPI.persistence.model.City;
-import com.example.BookingProject.bookingAPI.persistence.model.Product;
 import com.example.BookingProject.bookingAPI.persistence.repository.CityRepository;
-import com.example.BookingProject.bookingAPI.service.CategoryService;
 import com.example.BookingProject.bookingAPI.service.CityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,6 +22,10 @@ public class CityServiceImpl implements CityService {
         Long city_id = city.getId();
         String city_name = city.getName();
         return "City : "+ city_name+ " with id :" + city_id +" , was successfully created." ;
+    }
+    @Override
+    public List<City> saveAllCities(List<City> cities) {
+        return cityRepository.saveAll(cities);
     }
 
     @Override

@@ -9,6 +9,8 @@ public interface CityService {
 
     String saveCity(City city);
 
+    List<City> saveAllCities(List<City> cities);
+
     City findByName(String title);
 
     City getCityById(Long id);

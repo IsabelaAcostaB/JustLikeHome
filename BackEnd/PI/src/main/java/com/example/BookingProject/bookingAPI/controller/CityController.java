@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("api/city")
 public class CityController {
@@ -17,6 +19,11 @@ public class CityController {
     @PostMapping
     public String addCity(@RequestBody City city){
         return cityService.saveCity(city);
+    }
+
+    @PostMapping("/addMany")
+    public ResponseEntity<?> addCities(@RequestBody List<City> cities) {
+        return new ResponseEntity<>(cityService.saveAllCities(cities), HttpStatus.CREATED);
     }
 
     @GetMapping
