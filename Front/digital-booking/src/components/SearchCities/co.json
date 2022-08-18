@@ -130,5 +130,41 @@
     "capital": "admin", 
     "population": "581130", 
     "population_proper": "581130"
+  },
+  { 
+    "id": 12,
+    "city": "Cordoba", 
+    "lat": "4.6126", 
+    "lng": "-74.0705", 
+    "country": "Argentina", 
+    "iso2": "AR", 
+    "admin_name": "Córdoba", 
+    "capital": "primary", 
+    "population": "9464000", 
+    "population_proper": "7963000"
+  },
+  { 
+    "id": 13,
+    "city": "Chaco", 
+    "lat": "4.6126", 
+    "lng": "-74.0705", 
+    "country": "Argentina", 
+    "iso2": "AR", 
+    "admin_name": "Chaco", 
+    "capital": "primary", 
+    "population": "9464000", 
+    "population_proper": "7963000"
+  },
+  { 
+    "id": 14,
+    "city": "San Juan", 
+    "lat": "4.6126", 
+    "lng": "-74.0705", 
+    "country": "Argentina", 
+    "iso2": "AR", 
+    "admin_name": "San Juan", 
+    "capital": "primary", 
+    "population": "9464000", 
+    "population_proper": "7963000"
   }
 ]

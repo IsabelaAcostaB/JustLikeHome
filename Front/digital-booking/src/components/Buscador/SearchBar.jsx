@@ -8,7 +8,7 @@ import { DateRangePicker } from "react-date-range";
 import SearchCities from "../SearchCities/SearchCities";
 import "./searchbar.css";
 
-function SearchBar() {
+function SearchBar(props) {
   const [searchInput, setSearchInput] = useState("");
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
@@ -35,7 +35,7 @@ function SearchBar() {
       <h1> Busca ofertas en casas, cabañas y mucho más</h1>
 
       <div className="search-bar">
-        <SearchCities></SearchCities>
+        <SearchCities onChange={props.onChange}></SearchCities>
         <div className="search-bar">
           <div className="search-input">
             <input

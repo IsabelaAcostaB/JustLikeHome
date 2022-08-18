@@ -1,7 +1,9 @@
 import cities from "./co.json";
 import React, { useState } from "react";
 import { Container } from "react-bootstrap";
-function SearchCities() {
+
+
+function SearchCities(props) {
   const [cityId, setCityId] = useState("");
 
   const handleCity = (e) => {
@@ -12,7 +14,7 @@ function SearchCities() {
   return (
     <div>
       <div>
-        <select name="city" onChange={(e) => handleCity(e)} className="search_cities">
+        <select name="city" onChange={(e) => props.onChange(e.target.value)} className="search_cities">
           <option value="">Selecciona una ciudad</option>
           {cities.map((getCity, index) => (
             <option value={getCity.id} key={index}>
