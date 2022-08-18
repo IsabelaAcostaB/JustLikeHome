@@ -12,7 +12,7 @@ import "bootstrap"
 
 /* Acá se renderizan todas las cartas */
 function Cards(){
-    return (listado.listado.map(item =>
+    return (listado && listado > 0 && listado.map(item =>
         (<div key={item.id} className="card card-shadow m-3 home-card">
             <div className="container-img-cards">
                 <img src={item.img}  class="card-img-top"/>

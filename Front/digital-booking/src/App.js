@@ -6,10 +6,10 @@ import SignIn from "./pages/SignIn/SignIn";
 import SignUp from "./pages/SignUp/SignUp";
 import Header from "./components/Header/Index";
 import Footer from "./components/Footer/Index";
+import Listar from "./components/list/list";
 import HomeRegister from "./pages/EjRegistro/HomeRegister"
 import { Provider } from "react";
 import UserContext from "./components/context";
-
 function App() {
 
   return (
@@ -23,6 +23,7 @@ function App() {
           <Route path="/signUp" element={<SignUp />} />
           <Route path="/signIn" element={<SignIn />} />
           <Route path="/home2" element={<HomeRegister />}/>
+          <Route path="/listar" element={<Listar />}/> 
 
         </Routes>
         
@@ -31,6 +32,6 @@ function App() {
       </UserContext.Provider>
     </div>
   )
-}
+};
 
 export default App;
