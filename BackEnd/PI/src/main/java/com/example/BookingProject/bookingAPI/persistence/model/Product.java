@@ -25,14 +25,14 @@ public class Product {
     @Column(name="title")
     private String title;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "category_id", referencedColumnName = "id", nullable = false)
     private Category category;
 
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(
-            name = "prouct_id", referencedColumnName = "id"
+            name = "product_id", referencedColumnName = "id"
     )
     private Set<Image> images = new HashSet<>();
 
@@ -60,7 +60,7 @@ public class Product {
     )
     private Set<Policy> policies = new HashSet<>();
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(
             name = "city_id",
             referencedColumnName = "id", nullable = false
