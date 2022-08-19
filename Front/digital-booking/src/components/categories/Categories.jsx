@@ -1,11 +1,22 @@
 import React from "react";
 import listado from "./categorias.json";
 import Cards from "../List/Card";
+import axios from 'axios';
 
 
-
-function Categorize(){
-    return (listado.categories.map(item =>
+const Categorias= ()=>{
+    const [data, setData] = useState({ List: [] });  
+    useEffect(async () => { 
+        const result = await axios.get(
+          'http://localhost:8080/api/Categories',
+           );
+    
+        setData({Categories: result.data});
+      }, [] ); 
+     
+ return (
+    
+    data && data.Categories.map(item => (
         (
         <div key={item.id} className="card card-shadow m-3 home-card">
         <img src={item.image}  class="card-img-top" />
@@ -16,10 +27,11 @@ function Categorize(){
         </p>
 
         </div>)
+        
     )
     ) 
+ )
 }
-
 
 /* Acá llama a la funcion anterior y renderiza todo adentro del div, y esta termina siendo la funcion
     que se exporta a Lists.jsx. Ese archivo se exporta a Main. */

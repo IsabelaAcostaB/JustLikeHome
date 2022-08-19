@@ -17,18 +17,19 @@ const Home = ()=>{
     
         setData({List: result.data});
       }, [] ); 
+     
     return(
         <div className="main">
             <SearchBar></SearchBar>
             <h1 className="category-title">Bienvenido a Just like Home</h1>
             
             <h2 className="category-title">Selecciona un tipo de alojamiento</h2>
-            <ListarCat></ListarCat>
+           <ListarCat/>
             <h2 className="recommendation-h2">Recomendados</h2>
             <ul>
             
       {data && data.List.map(item => (
-        <li key={item.objectID}>
+        <li key={item.ID}>
           <a href={item.url}>{item.title}</a>
         </li>
       ))}
