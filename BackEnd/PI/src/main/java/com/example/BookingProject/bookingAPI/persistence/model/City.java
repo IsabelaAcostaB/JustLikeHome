@@ -29,7 +29,7 @@ public class City {
     private String country;
 
 
-    @OneToMany(mappedBy = "city")
-    private Set<Product> products = new HashSet<>();
+    /*@OneToMany(mappedBy = "city")
+    private Set<Product> products = new HashSet<>();*/
 
 }
