@@ -39,7 +39,7 @@ function ListarCat() {
     return (
         <div className="card-deck">
             <div className="cards-container-category">
-                {Categorize()}
+                {Categorias()}
             </div>
         </div>
 
