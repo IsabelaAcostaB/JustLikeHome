@@ -13,19 +13,17 @@ import java.util.Set;
 @NoArgsConstructor
 @Entity
 @Builder
-@ToString(exclude = "product")
+
 @Table(name = "city")
 public class City {
     @Id
-    @SequenceGenerator(name = "city_sequence", sequenceName = "city_sequence", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "city_sequence")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
 
     @Column(name = "name", nullable = false, length = 100)
     private String name;
 
-    @Column(name = "location")
-    private  String location;
 
     @Column(name = "country", nullable = false)
     private String country;

@@ -1,7 +1,7 @@
 package com.example.BookingProject.bookingAPI.persistence.model;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -17,8 +17,7 @@ import javax.persistence.*;
 @Table(name = "image")
 public class Image {
     @Id
-    @SequenceGenerator(name="image_sequence", sequenceName = "image_sequence", allocationSize=1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "image_sequence")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "title")
@@ -27,11 +26,4 @@ public class Image {
     @Column(name = "image_url")
     private String imageURL;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(
-            name = "product_id",
-            referencedColumnName = "id"
-    )
-    @JsonIgnore
-    private Product product;
 }

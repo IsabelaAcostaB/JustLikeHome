@@ -19,7 +19,7 @@ import java.util.Set;
 public class Amenity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "amenities_sequence")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name="title")
@@ -28,7 +28,7 @@ public class Amenity {
     @Column(name="icon")
     private String icon;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(mappedBy = "amenities")
     @JsonIgnore
     private Set<Product> products = new HashSet<>();
 }

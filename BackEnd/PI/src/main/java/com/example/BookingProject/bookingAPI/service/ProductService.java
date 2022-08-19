@@ -13,4 +13,8 @@ public interface ProductService {
     Product getById(Long id);
 
     List<Product> getAllProducts();
+
+    List<Product> findByCityName(String city);
+
+    List<Product> findByCategoryTitle(String category);
 }

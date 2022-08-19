@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Data
@@ -18,23 +19,21 @@ import java.util.Set;
 public class Product {
 
     @Id
-
-    @SequenceGenerator(name="product_sequence", sequenceName = "product_sequence", allocationSize=1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "product_sequence")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name="title")
     private String title;
 
-
-    @ManyToOne( cascade = CascadeType.MERGE)
+    @ManyToOne
     @JoinColumn(name = "category_id", referencedColumnName = "id", nullable = false)
-
     private Category category;
 
 
-
-    @OneToMany(mappedBy = "product")
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(
+            name = "prouct_id", referencedColumnName = "id"
+    )
     private Set<Image> images = new HashSet<>();
 
     @Column(name="description_title")
@@ -43,18 +42,25 @@ public class Product {
     @Column(name="description")
     private String description;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany
+    @JoinTable(
+            joinColumns = @JoinColumn(name = "product_id"),
+            inverseJoinColumns = @JoinColumn(name = "amenities_id")
+    )
     @JsonIgnore
     private Set<Amenity> amenities = new HashSet<>();
 
     @Column(name="availability")
     private Boolean availability;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JsonIgnore
-    private Policy policies;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(
+            name = "product_id", referencedColumnName = "id"
+    )
+    private Set<Policy> policies = new HashSet<>();
+
+    @ManyToOne
     @JoinColumn(
             name = "city_id",
             referencedColumnName = "id", nullable = false

@@ -65,7 +65,6 @@ public class CityServiceImpl implements CityService {
         if (categoryOptional.isPresent()) {
             City existingCity = categoryOptional.get();
             existingCity.setName(city.getName());
-            existingCity.setLocation(city.getLocation());
             existingCity.setCountry(city.getCountry());
             return cityRepository.save(existingCity);
         } else {

@@ -16,21 +16,20 @@ import java.util.Set;
 public class Policy {
 
     @Id
-    @SequenceGenerator(name="image_sequence", sequenceName = "image_sequence", allocationSize=1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "image_sequence")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column
+    @ElementCollection
     private ArrayList<String> rules = new ArrayList<>();
 
     @Column
+    @ElementCollection
     private ArrayList<String> health_safety = new ArrayList<>();
 
     @Column
     private String cancellation_policy;
 
-    @OneToMany(fetch = FetchType.LAZY)
-    @JsonIgnore
-    private Set<Product> products = new HashSet<>();
+
 
 }

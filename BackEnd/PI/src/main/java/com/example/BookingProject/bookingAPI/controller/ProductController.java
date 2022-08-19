@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("api")
 public class ProductController {
@@ -25,9 +27,19 @@ public class ProductController {
         return new ResponseEntity<>(productService.getAllProducts(),HttpStatus.OK);
     }
 
-    @GetMapping("/producto/{id}")
+    @GetMapping("/product/{id}")
     public Product getById(@PathVariable Long id){
         return productService.getById(id);
+    }
+
+    @GetMapping("product/{city}")
+    public List<Product> findCityByName (@PathVariable String city) {
+        return productService.findByCityName(city);
+    }
+
+    @GetMapping("product/{category}")
+    public List<Product> findProductByCategory (@PathVariable String category) {
+        return productService.findByCategoryTitle(category);
     }
 
 }
