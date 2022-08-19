@@ -18,66 +18,95 @@ header{
     margin: 0px 20px;
 }
 
-header img{
-    height: 10vh;
+
+
+.user-info{
+    color: var(--first-color);
+    width: 150px;
+    
 }
 
-.logotype{
+.logo img{
+    height: 10vh;
+
+}
+
+.user-name{
     display: flex;
     flex-direction: row;
+    align-items: center;
 }
 
+.user-name a{
+    margin-left: 20px;
+}
 
+.user-avatar{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: var(--second-color);
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 
-.phrase{
+.user-log-name{
+    margin-left: 10px;
+    margin-right: 10px;
+    color: var(--second-color);
+
+}
+
+.name{
+    color: var(--first-color);
+}
+
+.logOut{
     color: var(--third-color);
-    margin-left: 15px;
-    margin-top: 25px;
+    font-size: 30px;
+}
+/*
+.user-name{
+    width: 150px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    color: var(--second-color);
+
 }
 
+.user-avatar{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: var(--second-color);
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.name {
+    margin-left: 10px;
+    color: var(--first-color);
+}
+
+
+.logOut {
+    color: var(--third-color);
+}
+*/
 
 .login-buttons{
     display: flex;
     flex-direction: row;
     
 }
-
-
-    
-.user-info{
-    color: var(--first-color);
-    width: 300px;
-    height: 5vh;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between
-}
-
-
-.user-info a {
-    color: var(--third-color);
-}
-
-.user-name{
-    width: 150px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-
-}
-.user-avatar{
-    width: 37px;
-    height: 37px;
-    border-radius: 50%;
-    background-color: var(--second-color);
-    color: #fff;
-    text-align: center;
-}
-
-.name {
-    margin-left: 20px;
-}
+ 
 
 .menu{
     cursor: pointer;
@@ -86,7 +115,7 @@ header img{
 
 }
 
-.phrase, .user-info, .user-login{
+.user-info, .user-login{
     display: none;
 }
 
@@ -116,6 +145,9 @@ header img{
         display: unset; 
     }
     
+    .user-info{
+        display: unset;
+    }
     
 
     
@@ -125,9 +157,5 @@ header img{
     .header-boxes{
         margin: 0px 40px;
     }
-    
-    .phrase{
-        display: unset;
-    }  
     
 }

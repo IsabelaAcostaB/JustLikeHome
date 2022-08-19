@@ -1,5 +1,5 @@
-import React, { createContext } from "react";
-
+/* import React, { createContext } from "react";
+ */
 /*
 const userLogs ={
     logged: {
@@ -11,6 +11,6 @@ const userLogs ={
     }
 }*/
 
-const UserContext = createContext();
+/* const UserContext = createContext();
 
-export default UserContext
+export default UserContext */
