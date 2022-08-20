@@ -1,6 +1,8 @@
 package com.example.BookingProject.bookingAPI.persistence.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -28,6 +30,8 @@ public class Amenity {
     @Column(name="icon")
     private String icon;
 
+    @JsonManagedReference
+    @JsonIgnoreProperties({"handler","hibernateLazyInitializer"})
     @ManyToMany(mappedBy = "amenities")
     @JsonIgnore
     private Set<Product> products = new HashSet<>();

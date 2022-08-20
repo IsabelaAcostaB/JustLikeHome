@@ -1,6 +1,8 @@
 package com.example.BookingProject.bookingAPI.persistence.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 
 import javax.persistence.*;
@@ -19,9 +21,11 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-
+    @JsonBackReference
+    //@JsonManageReference
+    @JsonIgnoreProperties({"handler","hibarnateLazyInitializer"})
     @OneToMany(mappedBy = "category", cascade = CascadeType.REMOVE)
-    @JsonIgnore
+
     private Set<Product> products = new HashSet<>();
 
     @Column(name = "title", nullable = false, length = 100)
