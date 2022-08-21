@@ -1,6 +1,9 @@
 package com.example.BookingProject.bookingAPI.persistence.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -27,6 +30,8 @@ public class Product {
 
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "category_id", referencedColumnName = "id", nullable = false)
+    @JsonManagedReference
+    @JsonIgnoreProperties({"handler","hibernateLazyInitializer"})
     private Category category;
 
 
@@ -42,6 +47,8 @@ public class Product {
     @Column(name="description")
     private String description;
 
+    @JsonBackReference
+    @JsonIgnoreProperties({"handler","hibarnateLazyInitializer"})
     @ManyToMany
     @JoinTable(
             joinColumns = @JoinColumn(name = "product_id"),
@@ -53,13 +60,16 @@ public class Product {
     @Column(name="availability")
     private Boolean availability;
 
-
+    @JsonBackReference
+    @JsonIgnoreProperties({"handler","hibarnateLazyInitializer"})
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(
             name = "product_id", referencedColumnName = "id"
     )
     private Set<Policy> policies = new HashSet<>();
 
+    @JsonBackReference
+    @JsonIgnoreProperties({"handler","hibarnateLazyInitializer"})
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(
             name = "city_id",

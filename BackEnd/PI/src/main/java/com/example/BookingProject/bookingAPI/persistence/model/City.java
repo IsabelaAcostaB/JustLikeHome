@@ -1,6 +1,8 @@
 package com.example.BookingProject.bookingAPI.persistence.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
 import javax.persistence.*;
@@ -28,7 +30,8 @@ public class City {
     @Column(name = "country", nullable = false)
     private String country;
 
-
+    @JsonManagedReference
+    @JsonIgnoreProperties({"handler","hibernateLazyInitializer"})
     @OneToMany(mappedBy = "city")
     private Set<Product> products = new HashSet<>();
 
