@@ -20,7 +20,7 @@ public class Category {
     private Long id;
 
 
-    @OneToMany(mappedBy = "category", cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "category", cascade = CascadeType.MERGE)
     @JsonIgnore
     private Set<Product> products = new HashSet<>();
 
