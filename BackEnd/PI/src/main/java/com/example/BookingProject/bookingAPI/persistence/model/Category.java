@@ -21,9 +21,11 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    /*Hay q eliminar el campo de relacion para eliminar la categoria*/
     @OneToMany(mappedBy = "category", cascade = CascadeType.MERGE)
     @JsonIgnore
     private Set<Product> products = new HashSet<>();
+
 
     @Column(name = "title", nullable = false, length = 100)
     private String title;

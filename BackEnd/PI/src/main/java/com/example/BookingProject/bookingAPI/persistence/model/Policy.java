@@ -28,6 +28,11 @@ public class Policy {
     @Column
     private String cancellation_policy;
 
-
+    /*@JsonBackReference
+    @JsonIgnoreProperties({"handler", "hibernateLazyInitializer"})*/
+   /* esta es para la clase hija
+    @JsonManagedReference*/
+    //@JsonBackReference
+   /* @JsonIgnoreProperties(value = {"hibernateLazyInitializer", "handler"}, allowSetters = true)*/
 
 }
