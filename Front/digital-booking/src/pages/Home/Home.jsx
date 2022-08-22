@@ -6,6 +6,7 @@ import axios from 'axios';
 import List from "../../components/List/Lists";
 
 import SearchBar from "../../components/Buscador/SearchBar";
+import { useState, useEffect } from "react";
 
 
 const Home = ()=>{

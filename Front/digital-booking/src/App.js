@@ -6,7 +6,7 @@ import SignIn from "./pages/SignIn/SignIn";
 import SignUp from "./pages/SignUp/SignUp";
 import Header from "./components/Header/Index";
 import Footer from "./components/Footer/Index";
-import Listar from "./components/list/list";
+import Listar from "./components/List/List";
 import HomeRegister from "./pages/EjRegistro/HomeRegister"
 
 import { Provider } from "react";

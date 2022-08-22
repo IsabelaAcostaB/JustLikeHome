@@ -2,6 +2,7 @@ import React from "react";
 import listado from "./categorias.json";
 import Cards from "../List/Card";
 import axios from 'axios';
+import { useState, useEffect } from "react";
 
 
 const Categorias= ()=>{
