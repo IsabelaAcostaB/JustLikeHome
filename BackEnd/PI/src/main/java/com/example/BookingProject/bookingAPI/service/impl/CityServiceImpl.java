@@ -44,10 +44,8 @@ public class CityServiceImpl implements CityService {
 
     @Override
     public List<City> getAllCities() {
-        if(cityRepository.findAll().size()==0){
-            return null;
-        }
-        return cityRepository.findAll();
+        List<City> cities = cityRepository.findAll();
+        return cities;
     }
 
     @Override
@@ -65,6 +63,7 @@ public class CityServiceImpl implements CityService {
         if (categoryOptional.isPresent()) {
             City existingCity = categoryOptional.get();
             existingCity.setName(city.getName());
+            existingCity.setCode(city.getCode());
             existingCity.setCountry(city.getCountry());
             return cityRepository.save(existingCity);
         } else {

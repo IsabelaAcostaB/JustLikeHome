@@ -42,17 +42,15 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public List<Category> getAllCategories() {
-        if(categoryRepository.findAll().size()>0){
-            return categoryRepository.findAll();
-        }
-        return null;
+        List<Category> categories = categoryRepository.findAll();
+        return categories;
     }
 
     @Override
     public String deleteCategory(Long id){
         if(categoryRepository.findById(id).isPresent()){
                 categoryRepository.deleteById(id);
-                return "Category with id:" + id + " has been successfully deleted";
+                return "Category with id: " + id + " has been successfully deleted";
         } else
                 throw new ResourceNotFoundException("Category with id: " + id + " doesn't exist");
 
@@ -67,6 +65,7 @@ public class CategoryServiceImpl implements CategoryService {
             existingCategory.setTitle(category.getTitle());
             existingCategory.setDescription(category.getDescription());
             existingCategory.setImageURL(category.getImageURL());
+            existingCategory.setCode(category.getCode());
             return categoryRepository.save(existingCategory);
         } else {
             throw new ResourceNotFoundException("Record not found with id: " + category.getId());

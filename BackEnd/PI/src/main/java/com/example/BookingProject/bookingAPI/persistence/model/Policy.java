@@ -19,13 +19,13 @@ public class Policy {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column
+    @Column(name = "rules")
     private String rules;
 
-    @Column
+    @Column(name = "health_safety")
     private String health_safety;
 
-    @Column
+    @Column(name = "cancellation_policy")
     private String cancellation_policy;
 
 

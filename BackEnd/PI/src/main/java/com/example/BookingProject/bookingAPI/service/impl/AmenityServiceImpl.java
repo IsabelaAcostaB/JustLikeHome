@@ -36,10 +36,8 @@ public class AmenityServiceImpl implements AmenityService {
 
     @Override
     public List<Amenity> getAllAmenities() {
-        if(amenityRepository.findAll().size()==0){
-            return null;
-        }
-        return amenityRepository.findAll();
+        List<Amenity> amenities = amenityRepository.findAll();
+        return amenities;
     }
 
     @Override

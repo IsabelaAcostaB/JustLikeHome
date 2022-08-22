@@ -32,10 +32,8 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<Product> getAllProducts() {
-        if(productRepository.findAll().size()==0){
-            return null;
-        }
-        return productRepository.findAll();
+        List<Product> products = productRepository.findAll();
+        return products;
     }
     @Override
     public List<Product> findByCityName(String city) {

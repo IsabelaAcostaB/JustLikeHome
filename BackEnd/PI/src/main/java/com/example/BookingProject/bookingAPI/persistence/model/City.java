@@ -26,9 +26,11 @@ public class City {
     @Column(name = "name", nullable = false, length = 100)
     private String name;
 
-
     @Column(name = "country", nullable = false)
     private String country;
+
+    @Column(name = "city_code", nullable = false)
+    private String code;
 
 
 

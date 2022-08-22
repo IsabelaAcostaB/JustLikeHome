@@ -34,4 +34,7 @@ public class Category {
     @Column(name = "image_url", nullable = false)
     private String imageURL;
 
+    @Column(name = "category_code", nullable = false)
+    private String code;
+
 }
