@@ -30,9 +30,6 @@ public class City {
     @Column(name = "country", nullable = false)
     private String country;
 
-    @JsonManagedReference
-    @JsonIgnoreProperties({"handler","hibernateLazyInitializer"})
-    @OneToMany(mappedBy = "city")
-    private Set<Product> products = new HashSet<>();
+
 
 }

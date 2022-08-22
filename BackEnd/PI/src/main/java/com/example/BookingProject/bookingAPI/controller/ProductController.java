@@ -32,12 +32,12 @@ public class ProductController {
         return productService.getById(id);
     }
 
-    @GetMapping("product/{city}")
+    @GetMapping("productCity/{city}")
     public List<Product> findCityByName (@PathVariable String city) {
         return productService.findByCityName(city);
     }
 
-    @GetMapping("product/{category}")
+    @GetMapping("productCategory/{category}")
     public List<Product> findProductByCategory (@PathVariable String category) {
         return productService.findByCategoryTitle(category);
     }

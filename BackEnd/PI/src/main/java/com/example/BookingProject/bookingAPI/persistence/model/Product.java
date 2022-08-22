@@ -30,8 +30,6 @@ public class Product {
 
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "category_id", referencedColumnName = "id", nullable = false)
-    @JsonManagedReference
-    @JsonIgnoreProperties({"handler","hibernateLazyInitializer"})
     private Category category;
 
 
@@ -47,8 +45,7 @@ public class Product {
     @Column(name="description")
     private String description;
 
-    @JsonBackReference
-    @JsonIgnoreProperties({"handler","hibarnateLazyInitializer"})
+
     @ManyToMany
     @JoinTable(
             joinColumns = @JoinColumn(name = "product_id"),
@@ -60,16 +57,14 @@ public class Product {
     @Column(name="availability")
     private Boolean availability;
 
-    @JsonBackReference
-    @JsonIgnoreProperties({"handler","hibarnateLazyInitializer"})
+
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(
             name = "product_id", referencedColumnName = "id"
     )
     private Set<Policy> policies = new HashSet<>();
 
-    @JsonBackReference
-    @JsonIgnoreProperties({"handler","hibarnateLazyInitializer"})
+
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(
             name = "city_id",

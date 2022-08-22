@@ -19,13 +19,11 @@ public class Policy {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-   /* @Column
-    @ElementCollection
-    private ArrayList<String> rules = new ArrayList<>();
+    @Column
+    private String rules;
 
     @Column
-    @ElementCollection
-    private ArrayList<String> health_safety = new ArrayList<>();*/
+    private String health_safety;
 
     @Column
     private String cancellation_policy;

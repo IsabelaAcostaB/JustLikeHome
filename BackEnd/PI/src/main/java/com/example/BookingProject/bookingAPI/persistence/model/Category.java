@@ -23,7 +23,6 @@ public class Category {
 
     @OneToMany(mappedBy = "category", cascade = CascadeType.MERGE)
     @JsonIgnore
-
     private Set<Product> products = new HashSet<>();
 
     @Column(name = "title", nullable = false, length = 100)
