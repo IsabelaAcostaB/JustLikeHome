@@ -11,19 +11,20 @@ import "bootstrap"
 
 
 /* Acá se renderizan todas las cartas */
-function Cards(){
-    return (listado.listado.map(item =>
-        (<div key={item.id} className="card card-shadow m-3 home-card">
+function Cards({products}){
+    return (products.map(item =>
+        /* console.log(item) */
+        (<div /* key={item.id} */ className="card card-shadow m-3 home-card">
             <div className="container-img-cards">
                 <img src={item.img}  class="card-img-top"/>
             </div>
             <p className="card-title" key={item.id}>
                 <h2> {item.title}</h2> 
-                <p className="card-category">{item.category}</p>
-                <p className="card-location">
+                <p className="card-category">{item.category.title}</p>
+                <p className="card-location"></p>
                     <FontAwesomeIcon icon={faLocationDot} className="location-icon"/> 
-                    {item.location}
-                </p>
+                    {item.city.name}
+                
                 <p className="card-description">{item.description}</p>
                 <a href="#!"className="button-2">Ver Detalle</a>
             </p>
@@ -34,12 +35,13 @@ function Cards(){
 
 /* Acá llama a la funcion anterior y renderiza todo adentro del div, y esta termina siendo la funcion
     que se exporta a Lists.jsx. Ese archivo se exporta a Main. */ 
-function Listar(){
+function Listar({products}){
+    console.log(products)
     return (
         <div class= "card-deck ">
         <div className="cards-container-recommended">
-        
-            {Cards()}
+            
+            <Cards products={products}/>
     
         </div>
        </div>
