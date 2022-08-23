@@ -7,6 +7,8 @@ import { faShareSquare } from "@fortawesome/free-regular-svg-icons";
 import { faMap } from "@fortawesome/free-regular-svg-icons";
 import axios from "axios";
 import ProductHeader from "./ProductHeader";
+import products from "./products.json"
+import Amenities from "./Amenities";
 /* import Carousel from "react-multi-carousel"; */
 
 
@@ -67,20 +69,28 @@ function Product() {
           </div>
 
           <div className="gallery-container">
-            <img src={productInfo.images.main} alt="" />
-            <div className="mini-gallery">
+            {/* <img src={productInfo.images.main} alt="" />
+            
               <img src={productInfo.images.other1} alt="" />
               <img src={productInfo.images.other2} alt="" />
               <img src={productInfo.images.other3} alt="" />
-              <img src={productInfo.images.other4} alt="" />
-            </div>
+              <img src={productInfo.images.other4} alt="" /> */}
+              <img src={products.images.other4} alt="" id="mainImage"/>
+              <img src={products.images.other4} alt="" />
+              <img src={products.images.other4} alt="" />
+              <img src={products.images.other4} alt="" />
+              <img src={products.images.other4} alt="" />
+            
           </div>
           <div className="description">
             <h2>{productInfo.description_title}</h2>
             <p>{productInfo.description}</p>
           </div>
           <div className="amenities">
-
+            <h2>¿Qué ofrece este lugar?</h2>
+            <div className="characteristics">
+            <Amenities product={products}/>
+            </div>
           </div>
         </div>
       </div>
