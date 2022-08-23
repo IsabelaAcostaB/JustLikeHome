@@ -33,7 +33,7 @@ public class Product {
     private Category category;
 
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.MERGE)
     @JoinColumn(
             name = "product_id", referencedColumnName = "id"
     )
@@ -58,7 +58,7 @@ public class Product {
     private Boolean availability;
 
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.MERGE)
     @JoinColumn(
             name = "product_id", referencedColumnName = "id"
     )

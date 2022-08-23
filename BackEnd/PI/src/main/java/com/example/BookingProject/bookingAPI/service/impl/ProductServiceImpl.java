@@ -37,12 +37,12 @@ public class ProductServiceImpl implements ProductService {
     }
     @Override
     public List<Product> findByCityName(String city) {
-        List<Product> productList = productRepository.findByCity_Name(city);
+        List<Product> productList = productRepository.findByCity_Code(city);
         return productList;
     }
     @Override
     public List<Product> findByCategoryTitle(String category) {
-        List<Product> productList = productRepository.findByCategory_Title(category);
+        List<Product> productList = productRepository.findByCategory_Code(category);
         return productList;
     }
 
