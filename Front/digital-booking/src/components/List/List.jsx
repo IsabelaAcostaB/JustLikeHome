@@ -4,7 +4,7 @@ import React from "react";
 import listado from "./listado.json";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faLocationDot} from '@fortawesome/free-solid-svg-icons'
-
+import {Link} from 'react-router-dom';
 import styles from "../../styles/App.css";
 import "bootstrap"
 
@@ -26,7 +26,13 @@ function Cards({products}){
                     {item.city.name}
                 
                 <p className="card-description">{item.description}</p>
-                <a href="#!"className="button-2">Ver Detalle</a>
+                {/* <a href="#!"></a> */}
+                {/* <Link to= "/product/:`{item.id}`"  className="button-2">Ver Detalle</Link> */}
+
+                <Link className="button-2" to={`/product/${item.id}`}>Ver Detalle</Link>
+
+
+
             </p>
         </div>)
     )

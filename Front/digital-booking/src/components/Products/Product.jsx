@@ -8,25 +8,76 @@ import { faMap } from "@fortawesome/free-regular-svg-icons";
 import axios from "axios";
 import product from "./products.json";
 import ProductHeader from "./ProductHeader";
+import { render } from "@testing-library/react";
 /* import Carousel from "react-multi-carousel"; */
 
-function Product({productId}) {
+function Renderizar({productInfo}){
+  return(<div className="main">
+  <ProductHeader
+    category={productInfo.category.title}
+    title={productInfo.title}
+  />
+  <div className="product">
+    <div className="product-location-container">
+      <div className="product-location">
+        <p>
+          {productInfo.city.name}, {productInfo.city.name}
+        </p>
+        <p>
+          <FontAwesomeIcon icon={faMap} /> A 320m del centro
+        </p>
+      </div>
+      <div className="product-rating">
+        <div>
+          <p>Muy bueno</p>
+          <FontAwesomeIcon icon={faHeart} />
+          <FontAwesomeIcon icon={faHeart} />
+          <FontAwesomeIcon icon={faHeart} />
+          <FontAwesomeIcon icon={faHeart} />
+          <FontAwesomeIcon icon={faHeart} />
+        </div>
+        <p>8</p>
+      </div>
+    </div>
+    <div>
+      <FontAwesomeIcon icon={faHeart} />
+      <FontAwesomeIcon icon={faShareSquare} />
+    </div>
+    <div className="gallery-container">
+      <img src={productInfo.images.main} alt="" />
+      <div className="mini-gallery">
+        <img src={productInfo.images.other1} alt="" />
+        <img src={productInfo.images.other2} alt="" />
+        <img src={productInfo.images.other3} alt="" />
+        <img src={productInfo.images.other4} alt="" />
+      </div>
+    </div>
+    <div className="description">
+      <p>{productInfo.description}</p>
+    </div>
+  </div>
+</div>)
+}
+
+
+
+function Product(/* { productId } */) {
   /* const [productInfo, setProductInfo] = useState(product); */
   const [productInfo, setProductInfo] = useState();
 
   /* ------- CODIGO PARA EL FETCH DEL PRODUCTO ------- */
-  function Fetch(){
-    
-      let url = "http://18.216.199.175:8080/api/product/" + productId;
-      useEffect(() => {
-          axios.get(url)
-              .then(response => setProductInfo(response.data))
-              .catch(error => console.log(error))
-      }, [url])
-        }
+  function Fetch() {
+    let url = "http://18.216.199.175:8080/api/product/11" /* + productId */;
+    useEffect(() => {
+      axios.get(url)
+        .then((response) => setProductInfo(response.data))
+        /* .then((response) => console.log(response)) */
+        .catch((error) => console.log(error));
+    }, [url]);
+  }
 
-    Fetch();
-
+  Fetch();
+  /* console.log(productInfo) */
   /* function carouselGallery() {
     <Carousel
       showArrows={true}
@@ -61,53 +112,60 @@ function Product({productId}) {
     </Carousel>;
   } */
 
-  return (
+/*   render(Renderizar({productInfo})) */
+  return(
+    console.log(productInfo)
+    /* DE ACA PARA ABAJO SE COMENTA TODO Y FUNCIONA EL FETCH */
+   /*  ----------------------------------------------------- */
+    /* <Renderizar productInfo={productInfo}/> */
     
-    (
-      <div className="main">
-        <ProductHeader
-          category={productInfo.category.title}
-          title={productInfo.title}
-        />
-        <div className="product">
-          <div className="product-location-container">
-            <div className="product-location">
-              <p>{productInfo.city.name}, {productInfo.city.name}</p>
-              <p>
-                <FontAwesomeIcon icon={faMap} /> A 320m del centro
-              </p>
-            </div>
-            <div className="product-rating">
-              <div>
-                <p>Muy bueno</p>
-                <FontAwesomeIcon icon={faHeart} />
-                <FontAwesomeIcon icon={faHeart} />
-                <FontAwesomeIcon icon={faHeart} />
-                <FontAwesomeIcon icon={faHeart} />
-                <FontAwesomeIcon icon={faHeart} />
-              </div>
-              <p>8</p>
-            </div>
+    /* console.log(productInfo) */
+    ,
+    <div className="main">
+      <ProductHeader
+        category={productInfo.category.title}
+        title={productInfo.title}
+      />
+      <div className="product">
+        <div className="product-location-container">
+          <div className="product-location">
+            <p>
+              {productInfo.city.name}, {productInfo.city.name}
+            </p>
+            <p>
+              <FontAwesomeIcon icon={faMap} /> A 320m del centro
+            </p>
           </div>
-          <div>
-            <FontAwesomeIcon icon={faHeart} />
-            <FontAwesomeIcon icon={faShareSquare} />
-          </div>
-          <div className="gallery-container">
-            <img src={productInfo.images.main} alt="" />
-            <div className="mini-gallery">
-              <img src={productInfo.images.other1} alt="" />
-              <img src={productInfo.images.other2} alt="" />
-              <img src={productInfo.images.other3} alt="" />
-              <img src={productInfo.images.other4} alt="" />
+          <div className="product-rating">
+            <div>
+              <p>Muy bueno</p>
+              <FontAwesomeIcon icon={faHeart} />
+              <FontAwesomeIcon icon={faHeart} />
+              <FontAwesomeIcon icon={faHeart} />
+              <FontAwesomeIcon icon={faHeart} />
+              <FontAwesomeIcon icon={faHeart} />
             </div>
-          </div>
-          <div className="description">
-            <p>{productInfo.description}</p>
+            <p>8</p>
           </div>
         </div>
+        <div>
+          <FontAwesomeIcon icon={faHeart} />
+          <FontAwesomeIcon icon={faShareSquare} />
+        </div>
+        <div className="gallery-container">
+          <img src={productInfo.images.main} alt="" />
+          <div className="mini-gallery">
+            <img src={productInfo.images.other1} alt="" />
+            <img src={productInfo.images.other2} alt="" />
+            <img src={productInfo.images.other3} alt="" />
+            <img src={productInfo.images.other4} alt="" />
+          </div>
+        </div>
+        <div className="description">
+          <p>{productInfo.description}</p>
+        </div>
       </div>
-    )
+    </div>
   );
 }
 
