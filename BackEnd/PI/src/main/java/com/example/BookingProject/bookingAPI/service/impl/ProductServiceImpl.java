@@ -35,15 +35,33 @@ public class ProductServiceImpl implements ProductService {
         List<Product> products = productRepository.findAll();
         return products;
     }
+
+    /*@Override
+    public List<Product> findByCityId(Long id) {
+        return null;
+    }
+
     @Override
     public List<Product> findByCityName(String city) {
         List<Product> productList = productRepository.findByCity_Code(city);
         return productList;
+
     }
+
     @Override
+
     public List<Product> findByCategoryTitle(String category) {
         List<Product> productList = productRepository.findByCategory_Code(category);
         return productList;
+
     }
 
+    @Override
+    public List<Product> findByCategoryTitle(String category) {
+        return null;
+    }*/
+
+
 }
+
+
