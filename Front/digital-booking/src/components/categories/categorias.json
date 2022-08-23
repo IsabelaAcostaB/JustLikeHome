@@ -1,0 +1,28 @@
+{ 
+    "categories": [
+        {
+            "id": "1",
+            "image": "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
+            "nombre": "Casas",
+            "caption": "4.933 casas"
+        },
+        {
+            "id": "2",
+            "image": "https://images.unsplash.com/photo-1565629196891-2ddb37c9e9fc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
+            "nombre": "Apartamentos",
+            "caption": "2.348 apartamentos"
+        },
+        {
+            "id": "3",
+            "image": "https://images.unsplash.com/photo-1544143086-828f66ac3945?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+            "nombre": "Casas de Playa",
+            "caption": "826 casas de playa"
+        },
+        {
+            "id": "4",
+            "image": "https://images.unsplash.com/photo-1631630259742-c0f0b17c6c10?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+            "nombre": "Cabañas",
+            "caption": "1.830 cabañas"
+        }
+    ]
+}
