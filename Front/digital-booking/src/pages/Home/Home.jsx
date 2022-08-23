@@ -13,22 +13,15 @@ import Listar from "../../components/List/List";
 const Home = ()=>{
     const [productInfo, setProductInfo] = useState([]);  
 
-    let url = "http://13.58.154.135:8080/api/";
+    let url = "http://18.216.199.175:8080/api/";
     useEffect(() => {
         axios.get(url)
-            .then(response => setProductInfo(response.data/* .results */))
+            .then(response => setProductInfo(response.data))
             
             .catch(error => console.log(error))
     }, [url])
       
-    /* useEffect(async () => { 
-        const result = await axios.get(
-          'http://localhost:8080/api/',
-           );
-    
-        setData({List: result.data});
-      }, [] );  */
-     
+  
     return(
         <div className="main">
             <SearchBar></SearchBar>

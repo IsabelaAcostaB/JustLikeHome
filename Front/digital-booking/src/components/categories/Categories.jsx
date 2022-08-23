@@ -29,7 +29,7 @@ const Categorias= ()=>{
         }, []);  */
         
           
-          let url = "http://13.58.154.135:8080/api/category/";
+          let url = "http://18.216.199.175:8080/api/category/";
     useEffect(() => {
         axios.get(url)
             .then(response => setCategoryInfo(response.data/* .results */))
