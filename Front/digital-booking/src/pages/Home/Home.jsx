@@ -13,7 +13,7 @@ import Listar from "../../components/List/List";
 const Home = ()=>{
     const [productInfo, setProductInfo] = useState([]);  
 
-    let url = "http://18.216.199.175:8080/api/";
+    let url = "http://18.217.103.69:8080/api/";
     useEffect(() => {
         axios.get(url)
             .then(response => setProductInfo(response.data))

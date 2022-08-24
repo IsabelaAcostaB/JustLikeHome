@@ -12,7 +12,7 @@ function Cards({products}){
         /* console.log(item) */
         (<div /* key={item.id} */ className="card card-shadow m-3 home-card">
             <div className="container-img-cards">
-                <img src={item.img}  class="card-img-top"/>
+                <img src={item.images[4].imageURL}  class="card-img-top"/>
             </div>
             <p className="card-title" key={item.id}>
                 <h2> {item.title}</h2> 

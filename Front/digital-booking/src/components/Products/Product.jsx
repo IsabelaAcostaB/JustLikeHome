@@ -12,6 +12,20 @@ import Amenities from "./Amenities";
 /* import Carousel from "react-multi-carousel"; */
 
 
+function ImagesRender({product}){
+  const slicedArray = product.images.slice(0, 5)
+  /* slicedArray=product.images */
+  
+  return(slicedArray.map(item => (
+
+        <img src={item.imageURL}/>
+        
+)))
+}
+
+
+
+
 function Product() {
   const [productInfo, setProductInfo] = useState();
  
@@ -19,10 +33,11 @@ function Product() {
 
   /* ------- CODIGO PARA EL FETCH DEL PRODUCTO ------- */
   function Fetch() {
-    let url = "http://18.216.199.175:8080/api" + location;
+    let url = "http://18.217.103.69:8080/api" + location;
     useEffect(() => {
       axios.get(url)
         .then((response) => setProductInfo(response.data))
+        .then(console.log(productInfo))
         .catch((error) => console.log(error));
     }, [url]);
   }
@@ -75,11 +90,12 @@ function Product() {
               <img src={productInfo.images.other2} alt="" />
               <img src={productInfo.images.other3} alt="" />
               <img src={productInfo.images.other4} alt="" /> */}
-              <img src={products.images.other4} alt="" id="mainImage"/>
+              {/* <img src={products.images.other4} alt="" id="mainImage"/>
               <img src={products.images.other4} alt="" />
               <img src={products.images.other4} alt="" />
               <img src={products.images.other4} alt="" />
-              <img src={products.images.other4} alt="" />
+              <img src={products.images.other4} alt="" /> */}
+              <ImagesRender product={productInfo}/>
             
           </div>
           <div className="description">
