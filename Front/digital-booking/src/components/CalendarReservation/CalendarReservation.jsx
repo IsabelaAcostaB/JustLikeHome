@@ -4,8 +4,8 @@ import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css';
 import calendar from "./calendar.css"
 import defaultLocale from 'date-fns/locale/es';
-
 import { addDays } from 'date-fns';
+import useWindowDimensions from "../../hooks/useWindowDimensions.jsx"
 
 
 
@@ -20,7 +20,8 @@ const CalendarReservation =()=>{
   ]);
 
   const disabledDates=[1,2,3,4,5,6]
-  
+  const windowDimension = useWindowDimensions()
+
   /*
   function handleSelect(ranges){
     console.log(ranges);
@@ -50,7 +51,7 @@ const CalendarReservation =()=>{
         <h2>Fechas disponibles</h2>
         
         
-        {window.innerWidth < 768 ?
+        {windowDimension.width < 768 ?
         <DateRange className="calendar-mobile"
         
           editableDateInputs={true}
