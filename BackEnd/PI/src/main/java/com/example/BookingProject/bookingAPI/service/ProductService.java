@@ -17,18 +17,6 @@ public interface ProductService {
     List<Product> getAllProducts();
 
 
-   /* @Query("{CALL get_product_by_city_id(:id)}")
-    List<Product> findByCityId(@Param("id") Long id);
-
-    @Query("{CALL get_product_by_city_name(:city)}")
-    List<Product> findByCityName(@Param("city") String city);
-
-    @Query("{CALL get_product_by_category_id(:id)}")
-    List<Product> findByCategoryId(Long id);
-
-    @Query("{CALL get_product_by_category(:city)}")
-    List<Product> findByCategoryTitle(String category);*/
-
 
 
 }
