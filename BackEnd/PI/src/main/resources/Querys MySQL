@@ -122,6 +122,105 @@ CREATE PROCEDURE get_product_by_city_name(IN ciudad varchar(50))
  /*CREATE VIEW get_product_by_city_id AS
  		Select product.*, city.id, city.name
  		FROM product
- 		INNER JOIN city
+ 		INNER JOIN city-- ------------------------------STORED PROCEDURES ------------------------------------
+
+
+                       --   ---------------CATEGORY ---------------
+
+
+                        /*DELIMITER $$
+                        CREATE PROCEDURE get_product_by_category(IN categoria varchar(50))
+                        	BEGIN
+                        		SELECT product.*, category.title
+                        		FROM product
+                        		INNER JOIN category
+                        		ON product.category_id = category.id
+                        		WHERE category.title = categoria;
+                        	END$$
+
+                        CALL get_product_by_category("Apartamento");*/
+
+
+                        /*DELIMITER $$
+                        CREATE PROCEDURE get_product_by_category_id(IN id_category long)
+                        	BEGIN
+                         		SELECT product.*, category.title
+                        		FROM product
+                         		INNER JOIN category
+                         		ON product.category_id = category.id
+                         		WHERE category.id = id_category;
+                         	END$$
+
+                        CALL get_product_by_category_id(2);*/
+
+
+
+                       --   ---------------CITY ---------------
+
+                       /*DELIMITER $$
+                       CREATE PROCEDURE get_product_by_city_name(IN ciudad varchar(50))
+                       	BEGIN
+                       		Select product.*, city.name
+                       		FROM product
+                       		INNER JOIN city
+                       		ON product.city_id = city.id
+                       		WHERE city.name = ciudad;
+                       	END$$
+
+
+                        CALL get_product_by_city_name("Paris");*/
+
+
+                        /*DELIMITER $$
+                        CREATE PROCEDURE get_product_by_city_id(IN id_city int)
+                        	BEGIN
+                        		Select product.*, city.id, city.name
+                        		FROM product
+                        		INNER JOIN city
+                        		ON product.city_id = city.id
+                        		WHERE city.id = id_city;
+                        	END$$
+                         CALL get_product_by_city_id(1);*/
+
+
+                       -- -----------------------------VIEWS -------------------------------
+
+                       --   ---------------CATEGORY ---------------
+
+                        /*CREATE VIEW get_product_by_category AS
+                        		SELECT product.*, category.title
+                        		FROM product
+                        		INNER JOIN category
+                        		ON product.category_id = category.id
+                        		WHERE category.title = categoria;*/
+
+
+
+                        /*CREATE VIEW get_product_by_category_id AS
+                        		Select product.*, city.id, city.name
+                        		FROM product
+                        		INNER JOIN city
+                        		ON product.city_id = city.id
+                        		WHERE city.id = id_city;
+                        		*/
+
+
+                       --   ---------------CITY ---------------
+
+                        /*CREATE VIEW get_product_by_city_name AS
+                        		SELECT product.*, city.name
+                        		FROM product
+                        		INNER JOIN city
+                        		ON product.city_id = city.id
+                        		WHERE city.name = ciudad;*/
+
+
+
+                        /*CREATE VIEW get_product_by_city_id AS
+                        		Select product.*, city.id, city.name
+                        		FROM product
+                        		INNER JOIN city
+                        		ON product.city_id = city.id
+                        		WHERE city.id = 1;*/
  		ON product.city_id = city.id
  		WHERE city.id = 1;*/
