@@ -35,7 +35,7 @@ public class Product {
 
     @OneToMany(cascade = CascadeType.MERGE)
     @JoinColumn(
-            name = "product_id", referencedColumnName = "id"
+            name = "image_id", referencedColumnName = "id"
     )
     private Set<Image> images = new HashSet<>();
 
@@ -58,11 +58,7 @@ public class Product {
     private Boolean availability;
 
 
-   /* @OneToMany(cascade = CascadeType.MERGE)
-    @JoinColumn(
-            name = "product_id", referencedColumnName = "id"
-    )
-    private Set<Policy> policies = new HashSet<>();*/
+
    @ManyToOne(cascade = CascadeType.MERGE)
    @JoinColumn(
            name = "policy_id",
@@ -75,6 +71,7 @@ public class Product {
             name = "city_id",
             referencedColumnName = "id", nullable = false
     )
+
     private City city;
 
 

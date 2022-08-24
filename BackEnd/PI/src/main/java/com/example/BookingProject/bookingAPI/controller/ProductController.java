@@ -44,14 +44,14 @@ public class ProductController {
         return productRepository.findByCityName(city);
     }
 
-    @GetMapping("/productCity/id/{cityId}")
+    @GetMapping("/productCity/{id}")
     public List<Product> findCityByCityId (@PathVariable Long id) {
         return productRepository.findByCityId(id);
     }
 
     @GetMapping("/productCity/id/{cityCode}")
-    public List<Product> findProductByCityCode (@PathVariable String code) {
-        return productRepository.findByCityCode(code);
+    public List<Product> findProductByCityCode (@PathVariable String cityCode) {
+        return productRepository.findByCityCode(cityCode);
 
     }
      /*       Encontrar por categoria       */
@@ -62,13 +62,13 @@ public class ProductController {
     }
 
     @GetMapping("/productCategory/id/{categoryId}")
-    public List<Product> findProductByCategoryId (@PathVariable Long id) {
-        return productRepository.findByCategoryId(id);
+    public List<Product> findProductByCategoryId (@PathVariable Long categoryId) {
+        return productRepository.findByCategoryId(categoryId);
     }
 
     @GetMapping("/productCategory/code/{categoryCode}")
-    public List<Product> findProductByCategoryCode (@PathVariable String code) {
-        return productRepository.findByCategoryCode(code);
+    public List<Product> findProductByCategoryCode (@PathVariable String categoryCode) {
+        return productRepository.findByCategoryCode(categoryCode);
     }
 
 }
