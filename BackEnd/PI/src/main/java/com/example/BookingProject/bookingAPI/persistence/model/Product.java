@@ -58,12 +58,17 @@ public class Product {
     private Boolean availability;
 
 
-    @OneToMany(cascade = CascadeType.MERGE)
+   /* @OneToMany(cascade = CascadeType.MERGE)
     @JoinColumn(
             name = "product_id", referencedColumnName = "id"
     )
-    private Set<Policy> policies = new HashSet<>();
-
+    private Set<Policy> policies = new HashSet<>();*/
+   @ManyToOne(cascade = CascadeType.MERGE)
+   @JoinColumn(
+           name = "policy_id",
+           referencedColumnName = "id", nullable = false
+   )
+   private Policy policy;
 
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(

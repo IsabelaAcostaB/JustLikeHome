@@ -29,8 +29,8 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 
     // FIND BY CATEGORY TITLE, ID AND CODE
 
-    @Query(value = "{SELECT product.*, category.title FROM product INNER JOIN category ON product.category_id = category.id WHERE category.title = (:title);}")
-    List<Product> findByCategoryTitle(@Param("city") String category);
+    @Query(value = "{SELECT product.*, category.title FROM product INNER JOIN category ON product.category_id = category.id WHERE category.title = (:category)}", nativeQuery = true)
+    List<Product> findByCategoryTitle(@Param("category") String category);
 
     @Query(value = "{SELECT product.*, category.title FROM product INNER JOIN category ON product.category_id = category.id WHERE category.id = (:id);}", nativeQuery = true)
     List<Product> findByCategoryId(@Param("id") Long id);
