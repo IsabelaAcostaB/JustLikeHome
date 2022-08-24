@@ -1,14 +1,14 @@
 import React, { useContext, useState } from "react";
 import SearchIcon from "@mui/icons-material/Search";
 import { Link } from "react-router-dom";
-import UserContext from "../context";
+
 import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
 import { DateRangePicker } from "react-date-range";
 import SearchCities from "../SearchCities/SearchCities";
 import "./searchbar.css";
 
-function SearchBar(props) {
+function SearchBar() {
   const [searchInput, setSearchInput] = useState("");
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
@@ -28,14 +28,13 @@ function SearchBar(props) {
     setEndDate(ranges.selection.endDate);
   };
 
-  const user = useContext(UserContext);
 
   return (
     <div className="searchbar-container">
       <h1> Busca ofertas en casas, cabañas y mucho más</h1>
 
       <div className="search-bar">
-        <SearchCities onChange={props.onChange}></SearchCities>
+        <SearchCities></SearchCities>
         <div className="search-bar">
           <div className="search-input">
             <input
@@ -44,7 +43,7 @@ function SearchBar(props) {
               type="text"
               placeholder="Selecciona tus fechas"
             />
-            <SearchIcon></SearchIcon>
+            <SearchIcon ></SearchIcon>
           </div>
         </div>
 

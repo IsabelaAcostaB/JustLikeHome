@@ -2,7 +2,8 @@ import React from "react";
 import listado from "./categorias.json";
 import Cards from "../List/Card";
 import axios from 'axios';
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import { FilterContext } from "../FilterContext";
 
 
 const Categorias= ()=>{
@@ -14,7 +15,8 @@ const Categorias= ()=>{
     
         setData({Categories: result.data});
       }, [] );  */
-     
+
+      const {handlerFilterData} = useContext(FilterContext);
       const [categoryInfo, setCategoryInfo] = useState([]);
       function Fetch(){
         
@@ -29,13 +31,13 @@ const Categorias= ()=>{
         }, []);  */
         
           
-          let url = "http://18.216.199.175:8080/api/category/";
-    useEffect(() => {
+        let url = "http://18.216.199.175:8080/api/category/";
+        useEffect(() => {
         axios.get(url)
-            .then(response => setCategoryInfo(response.data/* .results */))
+          .then(response => setCategoryInfo(response.data/* .results */))
             
-            .catch(error => console.log(error))
-    }, [url])
+          .catch(error => console.log(error))
+        }, [url])
       }
         Fetch();
      
@@ -43,7 +45,7 @@ const Categorias= ()=>{
     
             categoryInfo.map(item => (
                 
-                <div key={item.id} className="card card-shadow m-3 home-card">
+                <div key={item.id} className="card card-shadow m-3 home-card" onClick={()=>handlerFilterData({category : item.title})}>
                     <img src={item.imageURL}  class="card-img-top" />
                     <p className="card-title" key={item.id}>
                     <h2> {item.title}</h2> 

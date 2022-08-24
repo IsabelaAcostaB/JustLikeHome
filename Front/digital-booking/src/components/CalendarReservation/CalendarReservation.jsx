@@ -20,6 +20,7 @@ const CalendarReservation =()=>{
   ]);
 
   const disabledDates=[1,2,3,4,5,6]
+  
   /*
   function handleSelect(ranges){
     console.log(ranges);
@@ -48,20 +49,18 @@ const CalendarReservation =()=>{
       <div className="calendarBlock">
         <h2>Fechas disponibles</h2>
         
-
+        
+        {window.innerWidth < 768 ?
         <DateRange className="calendar-mobile"
+        
           editableDateInputs={true}
           onChange={item => setState([item.selection])}
           moveRangeOnFirstSelection={false}
           ranges={state}
           locale= {defaultLocale}
-          disabledDates={disabledDates}
-
-          
-          
-          
         />
 
+        :
 
         <DateRange className="calendar-tablet"
           onChange={item => setState([item.selection])}
@@ -71,8 +70,15 @@ const CalendarReservation =()=>{
           ranges={state}
           direction="horizontal"
           locale= {defaultLocale}
+          disablePast
           
         />
+
+        }
+        
+
+
+        
         
 
       </div>
