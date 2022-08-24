@@ -6,77 +6,49 @@ import { faHeart } from "@fortawesome/free-regular-svg-icons";
 import { faShareSquare } from "@fortawesome/free-regular-svg-icons";
 import { faMap } from "@fortawesome/free-regular-svg-icons";
 import axios from "axios";
-import product from "./products.json";
 import ProductHeader from "./ProductHeader";
+import products from "./products.json"
+import Amenities from "./Amenities";
 /* import Carousel from "react-multi-carousel"; */
 
-function Product({productId}) {
-  /* const [productInfo, setProductInfo] = useState(product); */
+
+function Product() {
   const [productInfo, setProductInfo] = useState();
+ 
+  let location = window.location.pathname;
 
   /* ------- CODIGO PARA EL FETCH DEL PRODUCTO ------- */
-  function Fetch(){
+  function Fetch() {
+    let url = "http://18.216.199.175:8080/api" + location;
+    useEffect(() => {
+      axios.get(url)
+        .then((response) => setProductInfo(response.data))
+        .catch((error) => console.log(error));
+    }, [url]);
+  }
+
+  Fetch();
+
+  return(
     
-      let url = "http://18.216.199.175:8080/api/product/" + productId;
-      useEffect(() => {
-          axios.get(url)
-              .then(response => setProductInfo(response.data))
-              .catch(error => console.log(error))
-      }, [url])
-        }
-
-    Fetch();
-
-  /* function carouselGallery() {
-    <Carousel
-      showArrows={true}
-      onChange={onChange}
-      onClickItem={onClickItem}
-      onClickThumb={onClickThumb}
-    >
-      <div>
-        <img src="assets/1.jpeg" />
-        <p className="legend">Legend 1</p>
-      </div>
-      <div>
-        <img src="assets/2.jpeg" />
-        <p className="legend">Legend 2</p>
-      </div>
-      <div>
-        <img src="assets/3.jpeg" />
-        <p className="legend">Legend 3</p>
-      </div>
-      <div>
-        <img src="assets/4.jpeg" />
-        <p className="legend">Legend 4</p>
-      </div>
-      <div>
-        <img src="assets/5.jpeg" />
-        <p className="legend">Legend 5</p>
-      </div>
-      <div>
-        <img src="assets/6.jpeg" />
-        <p className="legend">Legend 6</p>
-      </div>
-    </Carousel>;
-  } */
-
-  return (
-    
-    (
-      <div className="main">
+    <div className="main">
+      {productInfo && <div className="main">
         <ProductHeader
           category={productInfo.category.title}
           title={productInfo.title}
         />
         <div className="product">
           <div className="product-location-container">
+
             <div className="product-location">
-              <p>{productInfo.city.name}, {productInfo.city.name}</p>
+              <p>
+                {productInfo.city.name}, {productInfo.city.country}
+              </p>
               <p>
                 <FontAwesomeIcon icon={faMap} /> A 320m del centro
               </p>
             </div>
+
             <div className="product-rating">
               <div>
                 <p>Muy bueno</p>
@@ -89,26 +61,43 @@ function Product({productId}) {
               <p>8</p>
             </div>
           </div>
-          <div>
+
+
+          <div className="socialIcons">
             <FontAwesomeIcon icon={faHeart} />
             <FontAwesomeIcon icon={faShareSquare} />
           </div>
+
           <div className="gallery-container">
-            <img src={productInfo.images.main} alt="" />
-            <div className="mini-gallery">
+            {/* <img src={productInfo.images.main} alt="" />
+            
               <img src={productInfo.images.other1} alt="" />
               <img src={productInfo.images.other2} alt="" />
               <img src={productInfo.images.other3} alt="" />
-              <img src={productInfo.images.other4} alt="" />
-            </div>
+              <img src={productInfo.images.other4} alt="" /> */}
+              <img src={products.images.other4} alt="" id="mainImage"/>
+              <img src={products.images.other4} alt="" />
+              <img src={products.images.other4} alt="" />
+              <img src={products.images.other4} alt="" />
+              <img src={products.images.other4} alt="" />
+            
           </div>
           <div className="description">
+            <h2>{productInfo.description_title}</h2>
             <p>{productInfo.description}</p>
+          </div>
+          <div className="amenities">
+            <h2>¿Qué ofrece este lugar?</h2>
+            <div className="characteristics">
+            <Amenities product={products}/>
+            </div>
           </div>
         </div>
       </div>
-    )
-  );
+    } 
+    </div>
+
+  )
 }
 
 export default Product;

@@ -1,17 +1,18 @@
 :root{
     --first-color:#e48561;
-    --second-color: #384D58;
+    --second-color: rgb(56, 77, 88);
     --third-color: #496270;
-    --fourth-color: #f3f0eb;
+    --fourth-color: rgb(243, 240, 235);
 }
 
 .product-location-container{
     display: flex;
     flex-direction: row;
-    background-color: beige;
+    background-color: rgb(237, 227, 208);
     width: 100%;
     justify-content: space-between;
     padding: 0 2.5rem 0 2.5rem;
+    /* box-shadow: 0 1px 5px rgb(175 172 172); */
 }
 
 .product-rating{
@@ -36,25 +37,40 @@
 }
 
 .gallery-container{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    display: grid;
+    justify-items: center;
     align-items: center;
     padding: 0 2.5rem 0 2.5rem;
     width: 100%;
-   /*  padding: ; */
+    grid-template-rows: 1fr   1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
 }
 
 .gallery-container > img{
-    width: 60%;
+    width: 21vw;
+    /* width: 60%; */
     /* height: auto; */
     border-radius: 5px;
     object-fit: cover;
+    /* height: 95%; */
+    /* height: 225px; */
+}
+
+#mainImage{
+    height: auto;
+    width: 45vw;
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 3;
 }
 
 .mini-gallery{
-    display: flex;
-    flex-direction: row;
+    grid-template-columns: 2fr 1fr 1fr;
+
+
+   /*  display: flex;
+    flex-direction: row; */
    /*  justify-content: space-between; */
     align-items: center;
     padding: 0.5rem;
@@ -68,4 +84,57 @@
     height: 150px;
     border-radius: 5px;
     /* padding: 0.5rem; */
+}
+
+.description{
+    padding: 2.5rem;
+}
+.description > h2{
+    color: var(--second-color);
+    font-size: x-large;
+}
+.description > p{
+    font-weight: 500;
+}
+
+.amenities{
+    padding: 2.5rem;
+}
+
+.amenities > .characteristics {
+    display: grid;
+    grid-template-columns: 1fr;
+
+}
+.amenities > .characteristics > div  {
+    display: flex;
+    align-items: center;
+    padding: 10px 0 10px 0;
+}
+.amenities > .characteristics > div > img {
+    height: 35px;
+    padding-right: 0.5rem;
+}
+
+
+
+@media screen and (min-width:768px){
+    .amenities > .characteristics {
+        display: grid;
+        grid-template-columns: 1fr 1fr ;
+    
+    }
+}
+
+
+
+
+@media screen and (min-width:1024px){
+
+    .amenities > .characteristics {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+    
+    }
+
 }

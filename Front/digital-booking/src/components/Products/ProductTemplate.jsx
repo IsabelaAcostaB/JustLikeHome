@@ -1,9 +1,9 @@
 import ProductHeader from "./ProductHeader";
 import Product from "./Product";
 
-function ProductTemplate({productId}){
+function ProductTemplate(){
     return ( 
-            <Product productId={productId}/>
+            <Product />
     )
 }
 
