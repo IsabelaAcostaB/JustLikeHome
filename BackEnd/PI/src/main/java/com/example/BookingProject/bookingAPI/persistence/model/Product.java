@@ -46,12 +46,11 @@ public class Product {
     private String description;
 
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.MERGE)
     @JoinTable(
             joinColumns = @JoinColumn(name = "product_id"),
             inverseJoinColumns = @JoinColumn(name = "amenities_id")
     )
-    @JsonIgnore
     private Set<Amenity> amenities = new HashSet<>();
 
     @Column(name="availability")
