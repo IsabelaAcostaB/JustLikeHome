@@ -9,11 +9,8 @@ import Footer from "./components/Footer/Index";
 import Listar from "./components/List/List";
 import HomeRegister from "./pages/EjRegistro/HomeRegister"
 import ProductPage from "./pages/Product/ProductTemplate";
-
-import { Provider } from "react";
-import UserContext from "./components/context";
-
 import {UserProvider} from "./components/UserContext"
+
 
 
 function App() {
@@ -43,3 +40,4 @@ function App() {
 };
 
 export default App;
+

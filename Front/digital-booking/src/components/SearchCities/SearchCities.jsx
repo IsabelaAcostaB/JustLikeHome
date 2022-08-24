@@ -1,22 +1,33 @@
-import cities from "./co.json";
-import React, { useState } from "react";
-import { Container } from "react-bootstrap";
-function SearchCities() {
-  const [cityId, setCityId] = useState("");
 
-  const handleCity = (e) => {
-    const getCityId = e.target.value;
-    setCityId(getCityId);
-  };
+import React, { useState, useContext, useEffect } from "react";
+import { Container } from "react-bootstrap";
+import { FilterContext } from "../FilterContext";
+import axios from "axios"
+
+
+function SearchCities() {
+  
+  const {handlerFilterData} = useContext(FilterContext);
+  
+
+  const [cities, setCities] = useState([])
+  let url = "http://18.216.199.175:8080/api/city";
+  useEffect(() => {
+    axios.get(url)
+    .then(response => setCities(response.data))
+    .catch(error => console.log(error))
+  }, [url])
+
+
 
   return (
     <div>
       <div>
-        <select name="city" onChange={(e) => handleCity(e)} className="search_cities">
+        <select name="city" onChange={(e)=>handlerFilterData({cityName : e.target.value})} className="search_cities">
           <option value="">Selecciona una ciudad</option>
-          {cities.map((getCity, index) => (
-            <option value={getCity.id} key={index}>
-              {getCity.admin_name}
+          {cities.map((city, index) => (
+            <option value={city.name} key={index}>
+              {city.name}
             </option>
           ))}
         </select>

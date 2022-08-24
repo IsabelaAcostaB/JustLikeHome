@@ -1,14 +1,14 @@
 import React from "react";
+import CalendarReservation from "../../components/CalendarReservation/CalendarReservation"
 
-const HomeRegister =(props)=>{
+const Product =(props)=>{
     return(
         <div className="main">
 
-            <h1>Bienvenido/a, {props.nombre}</h1>
-            <h2>Home con registro válido</h2>
+            <CalendarReservation />
         </div>
     )
 
 }
 
-export default HomeRegister
+export default Product

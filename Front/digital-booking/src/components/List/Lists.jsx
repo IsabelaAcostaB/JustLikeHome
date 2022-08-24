@@ -2,7 +2,10 @@ import React from "react";
 import Listar from "./List";
 
 
-function Cards(){
+function Cards({filter}){
+
+
+
     return( <div className="container d-flex justify-content-left">
          <div className="row">
             <div className="col-md-3"></div>  
@@ -16,7 +19,7 @@ function Cards(){
         <div className="row">
             <div className="col-md-3"></div>  
         </div> 
-        <Listar></Listar>
+        <Listar filter={filter}></Listar>
         </div>
     
 
