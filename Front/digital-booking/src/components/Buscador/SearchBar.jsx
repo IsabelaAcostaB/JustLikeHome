@@ -48,7 +48,9 @@ function SearchBar({searchCity}) {
             <SearchIcon 
             sx={{ fontSize: 40 }}
             style={{cursor: "pointer"}}
-            onClick={()=> searchCity}
+            
+            onClick={searchCity}
+
             ></SearchIcon>
           </div>
         </div>

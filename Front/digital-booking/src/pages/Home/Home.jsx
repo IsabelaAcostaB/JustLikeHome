@@ -26,9 +26,20 @@ const Home = ()=>{
   const [productsByCity, setProductsByCity]=useState([])
 
   const HandleSearchCity = ()=>{
+
+    let url = `http://18.217.103.69:8080/api/productCity/id/${(filterData.cityCode)}`;
+    useEffect(() => {
+      axios.get(url)
+      .then(response => setProductByCity(response.data))
+            
+      .catch(error => console.log(error))
+    }, [url])
+      
+
+    /*
     const getProductsByCity = async() => {
 
-        const url = `http://18.217.103.69:8080/api/city/name/${encodeURIComponent(filterData.cityName)}`;
+        const url = `http://18.217.103.69:8080/api/productCity/id/${(filterData.cityCode)}`;
         const response = await axios.get(url);
         setProductsByCity(response.data)
     }
@@ -37,6 +48,7 @@ const Home = ()=>{
         getProductsByCity()
     }, []);
 
+    */
   }
 
   /*----------------------------------------------------------------*/
@@ -72,7 +84,7 @@ const Home = ()=>{
         <h2 className="category-title">Selecciona un tipo de alojamiento</h2>
         <ListarCat/>
         <h2 className="recommendation-h2">Recomendados</h2>
-        <Listar products={productInfo} productCity={productsByCity} />
+        <Listar products={productInfo} productsCity={productsByCity} />
       </div>
     </FilterProvider>
   )

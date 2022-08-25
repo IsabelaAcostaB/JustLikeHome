@@ -8,17 +8,17 @@ import "bootstrap"
 import axios from "axios"
 
 
-/* Acá se renderizan todas las cartas */
-function Cards({products,productCity,productCategory}){
+//Acá se renderizan todas las cartas 
+function Cards({products,productsCity}){
 
     
-
-    const results = !productCity ? products : productCity
+    const {filterData} = useContext(FilterContext);
+  
+    const results = filterData.cityCode === null ? products : productsCity
     
-
     return (results.map(item =>
-        /* console.log(item) */
-        (<div /* key={item.id} */ className="card card-shadow m-3 home-card">
+       
+        (<div  className="card card-shadow m-3 home-card">
             <div className="container-img-cards">
                 <img src={item.img}  class="card-img-top"/>
             </div>
@@ -38,13 +38,13 @@ function Cards({products,productCity,productCategory}){
     ) 
 }
 
-function Listar({products, productCity, productCategory}){
+function Listar({products, productsCity}){
     console.log(products)
     return (
         <div class= "card-deck ">
         <div className="cards-container-recommended">
             
-            <Cards products={products} productCity={productCity} productCategory={productCategory}/>
+            <Cards products={products} productsCity={productsCity}/>
     
         </div>
        </div>
@@ -53,4 +53,3 @@ function Listar({products, productCity, productCategory}){
 
 
 export default Listar;
-
