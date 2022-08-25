@@ -99,7 +99,7 @@ p{
 }
 
 
-a{
+.options a{
     color: var(--second-color);
     font-size: 12px;
     font-weight: 500;

@@ -38,21 +38,21 @@ function Sidebar(){
                     <ul className="options">
 
                         <li>
-                            <Link to="/"> 
+                            <Link to="/" onClick={()=>setShowSideBar(false)}> 
                                 <h3>Home</h3>
                             </Link>
                         </li>
                         
                         <li className="sign-up">
                             
-                            <Link to="/signUp">
+                            <Link to="/signUp" onClick={()=>setShowSideBar(false)}>
                                 <h3>Crear cuenta</h3>
                             </Link>
                             
                             
                         </li>
                         <li className="sign-in">
-                            <Link to="/signIn" >
+                            <Link to="/signIn" onClick={()=>setShowSideBar(false)}>
                                 <h3>Iniciar sesión</h3>
                             </Link>
                         </li>     

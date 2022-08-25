@@ -88,7 +88,7 @@ const CalendarReservation =()=>{
       <div className="reservation-container">
       <div className="reservation">
         <h3>Agregá tus fechas de viaje para obtener precios exactos</h3>
-        <button className="button-2">Iniciar reserva</button>
+        <button className="button-c">Iniciar reserva</button>
       </div>
 
     </div>
