@@ -450,6 +450,8 @@ h1.category-title{
 
         footer {
             margin: 0;
+            /* position: relative;
+            top: 1px; */
         }
 
         .cards-container-category > .card {
