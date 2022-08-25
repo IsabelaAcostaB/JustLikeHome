@@ -10,6 +10,7 @@ import Listar from "./components/List/List";
 import HomeRegister from "./pages/EjRegistro/HomeRegister"
 import ProductPage from "./pages/Product/ProductTemplate";
 import {UserProvider} from "./components/UserContext";
+import {FilterProvider} from "./components/FilterContext";
 
 
 
@@ -19,6 +20,7 @@ function App() {
     <div className="App">
 
       <UserProvider>
+      <FilterProvider>
       <BrowserRouter>
         <Header />
         <Routes>
@@ -33,6 +35,7 @@ function App() {
         
         <Footer />
       </BrowserRouter>
+      </FilterProvider>
       </UserProvider>
 
     </div>

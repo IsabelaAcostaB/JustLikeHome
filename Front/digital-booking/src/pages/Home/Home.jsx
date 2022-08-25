@@ -64,7 +64,7 @@ const Home = ()=>{
 
 
   return(
-    <FilterProvider>
+    
       <div className="main">
         <SearchBar searchCity={HandleSearchCity}></SearchBar>
         <h1 className="category-title">Bienvenido a Just like Home</h1>
@@ -74,7 +74,7 @@ const Home = ()=>{
         <h2 className="recommendation-h2">Recomendados</h2>
         <Listar products={productInfo} productCity={productsByCity} />
       </div>
-    </FilterProvider>
+    
   )
 }
 
