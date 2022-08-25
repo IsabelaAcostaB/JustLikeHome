@@ -11,7 +11,7 @@ function SearchCities() {
   
 
   const [cities, setCities] = useState([])
-  let url = "http://18.216.199.175:8080/api/city";
+  let url = "http://18.217.103.69:8080/api/city";
   useEffect(() => {
     axios.get(url)
     .then(response => setCities(response.data))

@@ -5,10 +5,8 @@ function Amenities({product}){
     /* console.log("IAKDKLASDA"), */
     return(product.amenities.map(item => (
         <div key={item.id}>
-            {console.log("IAKDKLASDA")}
-            {console.log(item.title)}
             <img src={item.icon}/>
-            {<p>{item.title}</p>}
+            <p>{item.title}</p>
         </div>
     )))
 }

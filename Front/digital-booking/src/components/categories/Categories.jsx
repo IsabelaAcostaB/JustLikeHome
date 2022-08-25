@@ -7,41 +7,23 @@ import { FilterContext } from "../FilterContext";
 
 
 const Categorias= ()=>{
-   /*  const [data, setData] = useState({ List: [] });  
-    useEffect(async () => { 
-        const result = await axios.get(
-          'http://localhost:8080/api/Categories',
-           );
-    
-        setData({Categories: result.data});
-      }, [] );  */
-
+   
       const {handlerFilterData} = useContext(FilterContext);
       const [categoryInfo, setCategoryInfo] = useState([]);
+
       function Fetch(){
-        
-        /* useEffect(() => {
-          async function fetchData() {
-            const result = await  axios('http://13.58.154.135:8080/api/category/');
-            const resultado = result.data;
-            setProductInfo(result.data);
-            categories = resultado;
-          }
-          fetchData()
-        }, []);  */
-        
-          
 
           let url = "http://18.217.103.69:8080/api/category/";
-    useEffect(() => {
-
-        useEffect(() => {
-        axios.get(url)
-          .then(response => setCategoryInfo(response.data/* .results */))
             
-          .catch(error => console.log(error))
-        }, [url])
-      })}
+
+                useEffect(() => {
+                axios.get(url)
+                .then(response => setCategoryInfo(response.data/* .results */))
+                    
+                .catch(error => console.log(error))
+                }, [url])
+            }
+
         Fetch();
      
         return (

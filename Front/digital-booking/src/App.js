@@ -9,7 +9,7 @@ import Footer from "./components/Footer/Index";
 import Listar from "./components/List/List";
 import HomeRegister from "./pages/EjRegistro/HomeRegister"
 import ProductPage from "./pages/Product/ProductTemplate";
-import {UserProvider} from "./components/UserContext"
+import {UserProvider} from "./components/UserContext";
 
 
 

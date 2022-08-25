@@ -3,9 +3,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faLocationDot} from '@fortawesome/free-solid-svg-icons'
 import {Link} from 'react-router-dom';
 import styles from "../../styles/App.css";
-import {FilterContext} from "../FilterContext"
-import "bootstrap"
-import axios from "axios"
+import {FilterContext} from "../FilterContext";
+import "bootstrap";
+import axios from "axios";
 
 
 /* Acá se renderizan todas las cartas */
@@ -54,9 +54,10 @@ function Cards({products}){
             <p className="card-title" key={item.id}>
                 <h2> {item.title}</h2> 
                 <p className="card-category">{item.category.title}</p>
-                <p className="card-location"></p>
+                <p className="card-location">
                     <FontAwesomeIcon icon={faLocationDot} className="location-icon"/> 
                     {item.city.name}
+                    </p>
                 
                 <p className="card-description">{item.description}</p>
 
