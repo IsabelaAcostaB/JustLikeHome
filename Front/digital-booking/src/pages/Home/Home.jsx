@@ -30,8 +30,8 @@ const Home = ()=>{
     let url = `http://18.217.103.69:8080/api/productCity/id/${(filterData.cityCode)}`;
     useEffect(() => {
       axios.get(url)
-      .then(response => setProductByCity(response.data))
-            
+      .then(response => /* setProductsByCity(response.data) */console.log(response))
+      
       .catch(error => console.log(error))
     }, [url])
       

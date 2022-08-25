@@ -20,14 +20,15 @@ function Cards({products,productsCity}){
        
         (<div  className="card card-shadow m-3 home-card">
             <div className="container-img-cards">
-                <img src={item.img}  class="card-img-top"/>
+                <img src={item.images[4].imageURL}  class="card-img-top"/>
             </div>
             <p className="card-title" key={item.id}>
                 <h2> {item.title}</h2> 
                 <p className="card-category">{item.category.title}</p>
-                <p className="card-location"></p>
+                <p className="card-location">
                     <FontAwesomeIcon icon={faLocationDot} className="location-icon"/> 
                     {item.city.name}
+                    </p>
                 
                 <p className="card-description">{item.description}</p>
 
@@ -39,12 +40,12 @@ function Cards({products,productsCity}){
 }
 
 function Listar({products, productsCity}){
-    console.log(products)
     return (
         <div class= "card-deck ">
         <div className="cards-container-recommended">
             
             <Cards products={products} productsCity={productsCity}/>
+            
     
         </div>
        </div>
