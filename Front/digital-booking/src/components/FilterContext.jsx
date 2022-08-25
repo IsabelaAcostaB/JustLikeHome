@@ -10,12 +10,12 @@ export const FilterProvider =({children})=>{
       
     });
 
-    const handlerFilterData = newValues => {
+    const handleFilterData = newValues => {
         setFilterData({...filterData, ...newValues})
     }
 
     return (
-        <FilterContext.Provider value ={{filterData, handlerFilterData}}>
+        <FilterContext.Provider value ={{filterData, handleFilterData}}>
             {children}
         </FilterContext.Provider>
     )

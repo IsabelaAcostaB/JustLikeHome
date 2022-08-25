@@ -7,30 +7,52 @@ import { FilterContext } from "../FilterContext";
 
 
 const Categorias= ()=>{
-   
-      const {handlerFilterData} = useContext(FilterContext);
+
+
+   /*  const [data, setData] = useState({ List: [] });  
+    useEffect(async () => { 
+        const result = await axios.get(
+          'http://localhost:8080/api/Categories',
+           );
+    
+        setData({Categories: result.data});
+      }, [] );  */
+
+
+      //const {handleFilterData} = useContext(FilterContext);
+
+
+      
       const [categoryInfo, setCategoryInfo] = useState([]);
-
       function Fetch(){
-
-          let url = "http://18.217.103.69:8080/api/category/";
+        
+        /* useEffect(() => {
+          async function fetchData() {
+            const result = await  axios('http://13.58.154.135:8080/api/category/');
+            const resultado = result.data;
+            setProductInfo(result.data);
+            categories = resultado;
+          }
+          fetchData()
+        }, []);  */
+        
+          
+        let url = "http://18.216.199.175:8080/api/category/";
+        useEffect(() => {
+        axios.get(url)
+          .then(response => setCategoryInfo(response.data/* .results */))
             
-
-                useEffect(() => {
-                axios.get(url)
-                .then(response => setCategoryInfo(response.data/* .results */))
-                    
-                .catch(error => console.log(error))
-                }, [url])
-            }
-
+          .catch(error => console.log(error))
+        }, [url])
+      }
         Fetch();
      
+        //onChange={()=>{handleFilterData({category : item.title})}}
         return (
     
             categoryInfo.map(item => (
                 
-                <div key={item.id} className="card card-shadow m-3 home-card" onClick={()=>handlerFilterData({category : item.title})}>
+                <div key={item.id} className="card card-shadow m-3 home-card">
                     <img src={item.imageURL}  class="card-img-top" />
                     <p className="card-title" key={item.id}>
                     <h2> {item.title}</h2> 
@@ -53,6 +75,7 @@ function ListarCat() {
             </div>
         </div>
 
-    )}
+    )
+}
 
 export default ListarCat;
