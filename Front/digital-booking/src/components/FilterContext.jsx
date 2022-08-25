@@ -5,17 +5,14 @@ export const FilterContext = createContext();
 
 export const FilterProvider =({children})=>{
     const [filterData, setFilterData] = useState({
-        cityName: null,
-        category: null
+        cityCode: null,
+        //category: null
       
     });
 
-    const handleFilterData = newValues => {
-        setFilterData({...filterData, ...newValues})
-    }
 
     return (
-        <FilterContext.Provider value ={{filterData, handleFilterData}}>
+        <FilterContext.Provider value ={{filterData, setFilterData}}>
             {children}
         </FilterContext.Provider>
     )
