@@ -25,32 +25,19 @@ const Home = ()=>{
   const [productsByCity, setProductsByCity]=useState([])
 
   const HandleSearchCity = ()=>{
-    if (filterData.cityCode){
-      let url = `http://18.217.103.69:8080/api/productCity/id/${(filterData.cityCode)}`;
-      useEffect(() => {
-        axios.get(url)
-        .then(response => /* setProductsByCity(response.data) */console.log(response))
-      
-        .catch(error => console.log(error))
-      }, [url])
-    }
-
-    
-      
-
-    /*
-    const getProductsByCity = async() => {
-
-        const url = `http://18.217.103.69:8080/api/productCity/id/${(filterData.cityCode)}`;
-        const response = await axios.get(url);
-        setProductsByCity(response.data)
-    }
-
-    useEffect(() => {
+    useEffect(()=>{
+      if (filterData.cityCode){
+        const getProductsByCity = async ()=>{
+          let url = `http://18.217.103.69:8080/api/productCity/id/${(filterData.cityCode)}`;
+          const response = await axios.get(url);
+          setProductsByCity(response.data)
+        }
         getProductsByCity()
-    }, []);
+      }
 
-    */
+
+    }, [])
+
   }
 
   /*----------------------------------------------------------------*/
