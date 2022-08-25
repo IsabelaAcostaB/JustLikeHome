@@ -12,6 +12,7 @@ import Amenities from "./Amenities";
 import useWindowDimensions from './Window';
 import CarouselRender from "../Carousel/Carousel";
 import CarouselDesktopRender from "../Carousel/CarouselDesktop";
+import CalendarReservation from "../CalendarReservation/CalendarReservation";
 
 function ImagesRender({ product }) {
   const slicedArray = product.images.slice(0, 4);
@@ -174,6 +175,8 @@ function Product() {
                 <Amenities product={productInfo} />
               </div>
             </div>
+
+            <CalendarReservation/>
             <div className="policies">
               <h2>Qué tenés que saber</h2>
               <hr></hr>

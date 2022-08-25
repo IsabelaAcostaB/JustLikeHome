@@ -73,17 +73,6 @@ const Home = ()=>{
         <ListarCat/>
         <h2 className="recommendation-h2">Recomendados</h2>
         <Listar products={productInfo} productCity={productsByCity} />
-        <ul>
-            
-            {/*  {data && data.List.map(item => (
-            <li key={item.ID}>
-              <a href={item.url}>{item.title}</a>
-            </li>
-            ))} */}
-
-
-        </ul>
-
       </div>
     </FilterProvider>
   )
