@@ -3,7 +3,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faLocationDot} from '@fortawesome/free-solid-svg-icons'
 import {Link} from 'react-router-dom';
 import styles from "../../styles/App.css";
-import {FilterContext} from "../FilterContext"
 import "bootstrap"
 import axios from "axios"
 
@@ -12,9 +11,9 @@ import axios from "axios"
 function Cards({products,productsCity}){
 
     
-    const {filterData} = useContext(FilterContext);
+
   
-    const results = filterData.cityCode === null ? products : productsCity
+    const results =  !productsCity ? products : productsCity
     
     return (results.map(item =>
        

@@ -22,10 +22,10 @@ function SearchCities() {
   return (
     <div>
       <div>
-        <select name="city" onChange={(e)=>setFilterData({cityCode : e.target.value})} className="search_cities">
+        <select name="city" onChange={(e)=>setFilterData(e.target.value)} className="search_cities">
           <option value="">Selecciona una ciudad</option>
           {cities.map((city, index) => (
-            <option value={city.city_code} key={index}>
+            <option value={city.code} key={index}>
               {city.name}
             </option>
           ))}

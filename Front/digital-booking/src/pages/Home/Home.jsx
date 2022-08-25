@@ -20,20 +20,22 @@ const Home = ()=>{
   
     
   /*---------------  Es el fetch para traer productos por ciudades -------------*/
-    let filterData = {};
-    filterData = useContext(FilterContext);
-  /* const {filterData} = useContext(FilterContext) */
+ 
+  const {filterData} = useContext(FilterContext)
   const [productsByCity, setProductsByCity]=useState([])
 
   const HandleSearchCity = ()=>{
-
-    let url = `http://18.217.103.69:8080/api/productCity/id/${(filterData.cityCode)}`;
-    useEffect(() => {
-      axios.get(url)
-      .then(response => /* setProductsByCity(response.data) */console.log(response))
+    if (filterData.cityCode){
+      let url = `http://18.217.103.69:8080/api/productCity/id/${(filterData.cityCode)}`;
+      useEffect(() => {
+        axios.get(url)
+        .then(response => /* setProductsByCity(response.data) */console.log(response))
       
-      .catch(error => console.log(error))
-    }, [url])
+        .catch(error => console.log(error))
+      }, [url])
+    }
+
+    
       
 
     /*
