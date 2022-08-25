@@ -57,7 +57,7 @@
 .calendarBlock{
     display: flex;
     flex-direction: column;
-    padding: 2.5rem;
+    /* padding: 2.5rem; */
     /* justify-content: space-around;
     justify-content: space-evenly; */
 }
@@ -66,11 +66,18 @@
     display: flex;
     /* flex-direction: column; */
     align-items: center;
-    padding: 2.5rem;
+    /* padding: 2.5rem; */
 }
 
 .reservation {
     margin-top: 0;
+}
+
+.reservationBlock{
+    display: flex;
+    /* flex-direction: column; */
+    align-items: center;
+    background-color: white;
 }
 
 /*------------ RESPONSIVE --------*/
@@ -141,6 +148,7 @@
         display: flex;
         /* flex-direction: column; */
         align-items: center;
+        /* background-color: white; */
     }
 
     .reservation {

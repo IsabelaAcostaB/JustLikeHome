@@ -9,7 +9,7 @@ import axios from "axios"
 const Home = ()=>{
     const [productInfo, setProductInfo] = useState([]);  
 
-    let url = "http://18.216.199.175:8080/api/";
+    let url = "http://18.217.103.69:8080/api/";
     useEffect(() => {
       axios.get(url)
       .then(response => setProductInfo(response.data))
@@ -20,16 +20,16 @@ const Home = ()=>{
   
     
   /*---------------  Es el fetch para traer productos por ciudades -------------*/
-
-  const {filterData} = useContext(FilterContext)
+    let filterData = {};
+    filterData = useContext(FilterContext);
+  /* const {filterData} = useContext(FilterContext) */
   const [productsByCity, setProductsByCity]=useState([])
 
   const HandleSearchCity = ()=>{
     const getProductsByCity = async() => {
 
-        const url = `http://18.216.199.175:8080/api/city/name/${encodeURIComponent(filterData.cityName)}`;
+        const url = `http://18.217.103.69:8080/api/city/name/${encodeURIComponent(filterData.cityName)}`;
         const response = await axios.get(url);
-        //console.log(result.data);
         setProductsByCity(response.data)
     }
 
