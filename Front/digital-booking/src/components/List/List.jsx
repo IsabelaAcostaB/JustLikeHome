@@ -6,50 +6,35 @@ import styles from "../../styles/App.css";
 import "bootstrap"
 import axios from "axios"
 
-
 //Acá se renderizan todas las cartas 
-function Cards({products,productsCity}){
-
-    
-
-  
-    const results =  !productsCity ? products : productsCity
-    
-    return (results.map(item =>
-       
-        (<div  className="card card-shadow m-3 home-card">
-            <div className="container-img-cards">
-                <img src={item.images[4].imageURL}  class="card-img-top"/>
-            </div>
-            <p className="card-title" key={item.id}>
-                <h2> {item.title}</h2> 
-                <p className="card-category">{item.category.title}</p>
-                <p className="card-location">
-                    <FontAwesomeIcon icon={faLocationDot} className="location-icon"/> 
-                    {item.city.name}
-                    </p>
-                
-                <p className="card-description">{item.description}</p>
-
-                <Link className="button-2" to={`/product/${item.id}`}>Ver Detalle</Link>
-            </p>
-        </div>)
-    )
-    ) 
+function Cards({products}){
+  return products.map(item => (
+    <div  className="card card-shadow m-3 home-card">
+      <div className="container-img-cards">
+        <img src={item.images[4].imageURL}  class="card-img-top"/>
+      </div>
+      <p className="card-title" key={item.id}>
+        <h2> {item.title}</h2> 
+        <p className="card-category">{item.category.title}</p>
+        <p className="card-location">
+          <FontAwesomeIcon icon={faLocationDot} className="location-icon"/> 
+          {item.city.name}
+        </p>  
+        <p className="card-description">{item.description}</p>
+        <Link className="button-2" to={`/product/${item.id}`}>Ver Detalle</Link>
+      </p>
+    </div>)
+  )
 }
 
-function Listar({products, productsCity}){
-    return (
-        <div class= "card-deck ">
-        <div className="cards-container-recommended">
-            
-            <Cards products={products} productsCity={productsCity}/>
-            
-    
-        </div>
-       </div>
-    )
-    }
-
+function Listar({products}){
+  return (
+    <div class= "card-deck ">
+      <div className="cards-container-recommended">          
+        <Cards products={products}/>
+      </div>
+    </div>
+  )
+}
 
 export default Listar;

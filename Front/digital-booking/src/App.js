@@ -7,7 +7,7 @@ import SignUp from "./pages/SignUp/SignUp";
 import Header from "./components/Header/Index";
 import Footer from "./components/Footer/Index";
 import Listar from "./components/List/List";
-import HomeRegister from "./pages/EjRegistro/HomeRegister"
+// import HomeRegister from "./pages/EjRegistro/HomeRegister"
 import ProductPage from "./pages/Product/ProductTemplate";
 import {UserProvider} from "./components/UserContext";
 import {FilterProvider} from "./components/FilterContext";
@@ -27,7 +27,7 @@ function App() {
           <Route exact path="/" element={<Home />} />
           <Route path="/signUp" element={<SignUp />} />
           <Route path="/signIn" element={<SignIn />} />
-          <Route path="/home2" element={<HomeRegister />}/>
+          {/*<Route path="/home2" element={<HomeRegister />}/>*/}
           <Route path="/listar" element={<Listar />}/> 
           <Route path="/product/:id" element={<ProductPage />}/> 
 

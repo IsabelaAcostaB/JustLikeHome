@@ -1,18 +1,19 @@
-import React, {useState} from "react";
+import React, {useState, useContext} from "react";
 import SearchIcon from "@mui/icons-material/Search";
 import { Link } from "react-router-dom";
 import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
+import { FilterContext } from "../FilterContext";
 import { DateRangePicker } from "react-date-range";
 import SearchCities from "../SearchCities/SearchCities";
 import "./searchbar.css";
 
-
-function SearchBar({searchCity}) {
+function SearchBar() {
   const [searchInput, setSearchInput] = useState("");
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
-
+  const [search, setSearch] = useState({ cityCode: null });
+  const {setFilterData, handleFilterData} = useContext(FilterContext);
   const selectionRange = {
     startDate: startDate,
     endDate: endDate,
@@ -36,7 +37,7 @@ function SearchBar({searchCity}) {
       <h1> Busca ofertas en casas, cabañas y mucho más</h1>
 
       <div className="search-bar">
-        <SearchCities></SearchCities>
+        <SearchCities setSearch={setSearch} />
         <div className="search-bar">
           <div className="search-input">
             <input
@@ -49,7 +50,7 @@ function SearchBar({searchCity}) {
             sx={{ fontSize: 40 }}
             style={{cursor: "pointer"}}
             
-            onClick={searchCity}
+            onClick={() => handleFilterData(search)}
 
             ></SearchIcon>
           </div>

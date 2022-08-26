@@ -6,7 +6,7 @@ import logo from "../../asserts/3.png"
 import Sidebar from "../SideBar/Sidebar.jsx"
 import { Link } from "react-router-dom"
 import { UserContext}from "../UserContext.jsx"
-import {useNavigate} from "react-router-dom"
+import {useNavigate, useLocation} from "react-router-dom"
 
 const Header = () => {
 
@@ -14,7 +14,7 @@ const Header = () => {
 
     const navigate = useNavigate();
 
-
+    const location = useLocation();
     
     const logOut = () =>{
         const userDataOut = {
@@ -43,7 +43,6 @@ const Header = () => {
     }
 
 
-    
     
 
     
@@ -84,13 +83,20 @@ const Header = () => {
                 
                 <div className="user-login">
                     <div className="login-buttons">
-                        <div className="button-6 buttonSignUp" >
-                            <Link to="/signUp" >Crear Cuenta</Link>
-                        </div>
+                        {!(location.pathname ==="/signUp") && (
+                            <div className="button-6 buttonSignUp" >
+                                <Link to="/signUp" >Crear Cuenta</Link>
+                            </div>
+                        )}
+
+                        {!(location.pathname ==="/signIn") && (
+                           <div className="button-6 buttonSignIn">
+                                <Link to="/signIn" >Iniciar sesión</Link>
+                            </div>
+                        )}
+                        
             
-                        <div className="button-6 buttonSignIn">
-                            <Link to="/signIn" >Iniciar sesión</Link>
-                        </div>
+                        
                     </div>
                     
                 </div>

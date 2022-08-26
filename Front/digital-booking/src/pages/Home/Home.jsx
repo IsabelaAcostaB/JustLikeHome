@@ -7,42 +7,40 @@ import {FilterContext} from "../../components/FilterContext"
 import axios from "axios"
 
 const Home = ()=>{
-    const [productInfo, setProductInfo] = useState([]);  
+    const [products, setProducts] = useState([]);
 
-    let url = "http://18.217.103.69:8080/api/";
-    useEffect(() => {
-      axios.get(url)
-      .then(response => setProductInfo(response.data))
-            
-      .catch(error => console.log(error))
-    }, [url])
       
   
     
   /*---------------  Es el fetch para traer productos por ciudades -------------*/
  
   const {filterData} = useContext(FilterContext)
-  const [productsByCity, setProductsByCity]=useState([])
-
-  const HandleSearchCity = ()=>{
-    useEffect(()=>{
-      if (filterData.cityCode){
-        const getProductsByCity = async ()=>{
-          let url = `http://18.217.103.69:8080/api/productCity/id/${(filterData.cityCode)}`;
-          const response = await axios.get(url);
-          setProductsByCity(response.data)
-        }
-        getProductsByCity()
+  useEffect(()=>{
+    if (filterData.category){
+      const getProductsByCategory = async ()=>{
+        const url = `http://18.217.103.69:8080/api/productCategory/code/${filterData.category}`;
+        const result = await axios.get(url);
+        setProducts(result.data)
       }
-
-
-    }, [])
-
-  }
-
-  /*----------------------------------------------------------------*/
-
-
+      getProductsByCategory()
+    }
+    else if (filterData.cityCode){
+      const getProductsByCity = async ()=>{
+        const url = `http://18.217.103.69:8080/api/productCity/id/${filterData.cityCode}`;
+        const result = await axios.get(url);
+        setProducts(result.data)
+      }
+      getProductsByCity()
+    }
+    else{
+      const getAllProducts = async ()=>{
+        const url = "http://18.217.103.69:8080/api";
+        const result = await axios.get(url);
+        setProducts(result.data)
+      }
+      getAllProducts()
+    }
+  }, [filterData])
   /*----------------- FETCH PARA FILTRAR POR CATEGORIAS --------
   const [productByCategory, setProductByCategory]=useState([])
   useEffect(()=>{
@@ -57,26 +55,17 @@ const Home = ()=>{
       getProductsByCategory()
     }
   },[])
-
-
-  productCategory={productByCategory}
-  ------*/
-
-
-
+*/
   return(
-    
-      <div className="main">
-        <SearchBar searchCity={HandleSearchCity}></SearchBar>
-        <h1 className="category-title">Bienvenido a Just like Home</h1>
-            
-        <h2 className="category-title">Selecciona un tipo de alojamiento</h2>
-        <ListarCat/>
-        <h2 className="recommendation-h2">Recomendados</h2>
-        <Listar products={productInfo} productsCity={productsByCity} />
-      </div>
-    
+    <div className="main">
+      <SearchBar />
+      <h1 className="category-title">Bienvenido a Just like Home</h1>
+      <h2 className="category-title">Selecciona un tipo de alojamiento</h2>
+      <ListarCat/>
+      <h2 className="recommendation-h2">Recomendados</h2>
+      <Listar products={products} />
+    </div>
   )
 }
 
-export default Home
+export default Home;
