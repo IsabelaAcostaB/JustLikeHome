@@ -13,6 +13,7 @@ import useWindowDimensions from './Window';
 import CarouselRender from "../Carousel/Carousel";
 import CarouselDesktopRender from "../Carousel/CarouselDesktop";
 import CalendarReservation from "../CalendarReservation/CalendarReservation";
+import Url from "../../util/Url";
 
 function ImagesRender({ product }) {
   const slicedArray = product.images.slice(0, 4);
@@ -63,20 +64,6 @@ function PoliciesRender({ product }) {
   );
 }
 
-/* function CarouselDevice({width, product}){
-  
-  if(width >= 1024){
-    return (
-      <div className={isActive ? "carousel-container-show" : "carousel-container"}>
-      <CarouselRender product={product} interval='100000'/>
-      </div>
-    )
-  } else{
-    return(
-    <CarouselRender product={product} interval="3000"/>
-    )
-  }
-} */
 
 function Product() {
   const [productInfo, setProductInfo] = useState();
@@ -89,17 +76,19 @@ function Product() {
 
   /* ------- CODIGO PARA EL FETCH DEL PRODUCTO ------- */
   function Fetch() {
-    let url = "http://18.217.103.69:8080/api" + location;
+    let url = Url()+ "/api" + location;
     useEffect(() => {
       axios
         .get(url)
         .then((response) => setProductInfo(response.data))
-        .then(console.log(productInfo))
         .catch((error) => console.log(error));
     }, [url]);
   }
 
   Fetch();
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
   function CarouselDevice({width, product}){
   
     if(width >= 1024){

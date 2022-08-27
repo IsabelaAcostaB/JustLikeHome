@@ -114,7 +114,7 @@ const FormSignUp = () => {
                     <input type="password" id="repPassword"name="repPassword" value={formValues.repPassword} onChange={handleChange} />
                     <p className="error">{formErrors.repPassword}</p>
                 </div>
-                <button type="submit" className="button-2">Crear Cuenta</button>
+                <button type="submit" className="button-signup">Crear Cuenta</button>
                 <div className="go-sign">
                     <Link to="/signIn">¿Ya tienes una cuenta? <span> Iniciar sesión</span></Link>
                 </div>

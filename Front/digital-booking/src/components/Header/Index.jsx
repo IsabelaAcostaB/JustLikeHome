@@ -53,7 +53,7 @@ const Header = () => {
                 <Link to="/" >
                     <div className="logotype">
                         <div className="logo">
-                            <img src="https://justlikehome-images.s3.us-east-2.amazonaws.com/util/logo+header+png.png" alt="logo Just Like"/>
+                            <img src="https://justlikehome-images.s3.us-east-2.amazonaws.com/util/logo+fondo+blanco+header.png" alt="logo Just Like"/>
                         </div>
                     </div>
                 </Link>
