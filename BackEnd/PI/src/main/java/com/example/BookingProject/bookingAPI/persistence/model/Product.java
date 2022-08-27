@@ -35,14 +35,14 @@ public class Product {
 
     @OneToMany(cascade = CascadeType.MERGE)
     @JoinColumn(
-            name = "image_id", referencedColumnName = "id"
+            name = "product_id", referencedColumnName = "id"
     )
     private Set<Image> images = new HashSet<>();
 
     @Column(name="description_title")
     private String description_title;
 
-    @Column(name="description")
+    @Column(name="description", length = 1500)
     private String description;
 
 
