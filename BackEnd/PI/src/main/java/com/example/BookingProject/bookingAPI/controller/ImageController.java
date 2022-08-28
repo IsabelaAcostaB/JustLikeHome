@@ -13,10 +13,10 @@ import java.util.List;
 @RestController
 @RequestMapping("api/image")
 public class ImageController {
+
     @Autowired
     private ImageService imageService;
-    @Autowired
-    private ImageRepository imageRepository;
+
 
     @PostMapping
     public ResponseEntity<Image> addImage(@RequestBody Image image) {
