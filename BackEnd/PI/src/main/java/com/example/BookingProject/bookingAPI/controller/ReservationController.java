@@ -9,6 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("api/reservation")
 public class ReservationController {
@@ -23,23 +25,28 @@ public class ReservationController {
     }
 
     @PostMapping("/addMany")
-    public ResponseEntity<Reservation> addManyReservations(@RequestBody Reservation reservation){
-        return new ResponseEntity<>(reservationService.createReservation(reservation), HttpStatus.CREATED);
+    public ResponseEntity<?> addManyReservations(@RequestBody List<Reservation> reservations){
+        return new ResponseEntity<>(reservationService.createManyReservations(reservations), HttpStatus.CREATED);
     }
 
-    @GetMapping
+    @GetMapping()
     public ResponseEntity<?> findAllReservations(){
         return new ResponseEntity<>(reservationService.getAllReservations(), HttpStatus.OK);
     }
 
-    @GetMapping("/id")
-    public ResponseEntity<?> findReservations(){
-        return new ResponseEntity<>(reservationService.getAllReservations(), HttpStatus.OK);
+
+    @GetMapping("/{id}")
+    public ResponseEntity<?> findReservationById(@PathVariable Long id){
+        return new ResponseEntity<>(reservationService.getReservationById(id), HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{id}")
+    public String deleteReservations(@PathVariable Long id){
+        return reservationService.deleteReservation(id);
     }
 
     @PutMapping()
     public ResponseEntity<?> updateReservation(@RequestBody Reservation reservation) {
-
         return new ResponseEntity<>(reservationService.updateReservation(reservation), HttpStatus.OK);
     }
 

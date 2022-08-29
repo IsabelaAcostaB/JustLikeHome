@@ -21,13 +21,13 @@ public class Reservation {
     private Long id;
 
     @Column(name="checkInHour")
-    String checkIn_hour;
+    private String checkIn_hour;
 
     @Column(name="checkIn")
-    LocalDate checkIn;
+    private String checkIn;
 
     @Column(name="checkOut")
-    LocalDate checkOut;
+    private String checkOut;
 
 //    @ManyToOne(cascade = CascadeType.MERGE)
 //    @JoinColumn(

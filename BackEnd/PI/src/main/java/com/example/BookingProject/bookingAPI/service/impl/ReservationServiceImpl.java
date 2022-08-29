@@ -1,15 +1,16 @@
 package com.example.BookingProject.bookingAPI.service.impl;
 
 import com.example.BookingProject.bookingAPI.exception.ResourceNotFoundException;
-import com.example.BookingProject.bookingAPI.persistence.model.Image;
 import com.example.BookingProject.bookingAPI.persistence.model.Reservation;
 import com.example.BookingProject.bookingAPI.persistence.repository.ReservationRepository;
 import com.example.BookingProject.bookingAPI.service.ReservationService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class ReservationServiceImpl implements ReservationService {
 
     @Autowired
