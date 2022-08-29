@@ -1,7 +1,7 @@
-import React, { useContext, useState } from "react";
+import React, {useState } from "react";
 import SearchIcon from "@mui/icons-material/Search";
-import { Link } from "react-router-dom";
-import UserContext from "../context";
+
+
 import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
 import { DateRangePicker } from "react-date-range";
@@ -28,7 +28,7 @@ function SearchBar() {
     setEndDate(ranges.selection.endDate);
   };
 
-  const user = useContext(UserContext);
+  
 
   return (
     <div className="searchbar-container">
