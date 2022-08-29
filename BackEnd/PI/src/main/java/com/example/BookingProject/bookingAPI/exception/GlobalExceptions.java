@@ -9,15 +9,20 @@ import org.springframework.web.context.request.WebRequest;
 
 
 @ControllerAdvice
-public class GlobalExceptionHandler {
+public class GlobalExceptions {
 
 
-    private static final Logger logger = Logger.getLogger(GlobalExceptionHandler.class);
+    private static final Logger logger = Logger.getLogger(GlobalExceptions.class);
 
-    @ExceptionHandler(Exception.class)
+    @ExceptionHandler({ResourceNotFoundException.class})
     public ResponseEntity<?> allError(Exception ex, WebRequest req)
     {
         logger.error(ex.getMessage());
         return new ResponseEntity("ExceptionHandler Error " + ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    @ExceptionHandler({BadRequestException.class})
+    public ResponseEntity<String> procesarErrorBadRequest(BadRequestException ex) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage()/*+ " capturado desde la clase... "+this.getClass().getName()+" de manera global"*/);
     }
 }
