@@ -71,4 +71,11 @@ public class ProductController {
         return productRepository.findByCategoryCode(categoryCode);
     }
 
+
+    /*         Encontrar por rango de fechas y ciudad       */
+
+    @GetMapping("/product/{city}/{checkIn)/{checkOut)")
+    public List<Product> findByRangeOfDatesAndCity (@PathVariable String city, @PathVariable String checkIn, @PathVariable String checkOut) {
+        return productRepository.findByRangeOfDatesAndCity(checkIn, checkOut, city);
+    }
 }
