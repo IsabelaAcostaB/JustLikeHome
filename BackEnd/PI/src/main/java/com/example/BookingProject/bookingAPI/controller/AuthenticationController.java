@@ -20,7 +20,7 @@ public class AuthenticationController {
     @Autowired
     private UserService userService;
 
-    @PostMapping("/signUp")
+    @PostMapping("sign-up")
     public ResponseEntity<?> signUp(@RequestBody User user) {
         if(userService.findByUserEmail(user.getEmail()).isPresent()) {
             return new ResponseEntity<>(HttpStatus.CONFLICT);
@@ -28,7 +28,7 @@ public class AuthenticationController {
         return  new ResponseEntity<>(userService.saveUser(user), HttpStatus.CREATED);
     }
 
-    @PostMapping("/signIn")
+    @PostMapping("sign-in")
     public ResponseEntity<?> signIn(@RequestBody User user) {
         return  new ResponseEntity<>(authenticationService.signInAndReturnJWT(user), HttpStatus.OK);
     }

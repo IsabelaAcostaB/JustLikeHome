@@ -39,10 +39,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.cors(); //cors origin resource sha
         http.csrf().disable(); //cors side request forgery
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+
         http.authorizeRequests()
                 .antMatchers("/api/authentication/**").permitAll()
-                .antMatchers(HttpMethod.GET,"/api/product").permitAll()
-                .antMatchers("api/product/**").hasRole(Role.ADMIN.name())
+                //.antMatchers(HttpMethod.GET,"/api/product/**").permitAll()
+//                .antMatchers(HttpMethod.GET,"/api/category/**").permitAll()
+//                .antMatchers(HttpMethod.GET,"/api/image/**").permitAll()
+//                .antMatchers(HttpMethod.GET,"/api/city/**").permitAll()
+//                .antMatchers(HttpMethod.GET,"/api/policy/**").permitAll()
+//                .antMatchers(HttpMethod.GET,"/api/reservation").permitAll()
+               // .antMatchers("api/**").hasRole(Role.ADMIN.name())
                 .anyRequest().authenticated();
         http.addFilterBefore(jwtAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
     }

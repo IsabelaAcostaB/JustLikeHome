@@ -6,12 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Component;
 
-@SpringBootApplication(scanBasePackages = {
-		"com.example.BookingProject.bookingAPI.service",
-		"com.example.BookingProject.bookingAPI.service.impl",
-		"com.example.BookingProject.bookingAPI.security",
-		"com.example.BookingProject.bookingAPI.persistence.repository",
-})
+@SpringBootApplication
 
 
 public class BookingProjectApplication {
