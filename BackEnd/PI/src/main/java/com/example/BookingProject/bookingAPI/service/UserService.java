@@ -5,6 +5,7 @@ import com.example.BookingProject.bookingAPI.persistence.model.User;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 @Service
 public interface UserService {
@@ -20,4 +21,6 @@ public interface UserService {
     String deleteUser(Long id);
 
     User getUserById(Long id);
+
+    List<User> getAllUsers();
 }

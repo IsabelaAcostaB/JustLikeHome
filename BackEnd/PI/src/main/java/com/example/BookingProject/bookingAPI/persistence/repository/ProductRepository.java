@@ -41,7 +41,7 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     // FIND BY RANGE OF DATES AND CITY
 
     @Query(value = "SELECT distinct a.id, a.check_in, a.check_out, a.city FROM (select pro.id, check_in,check_out,\n" +
-            "\tcity.name as city city_code from PI_GRUPO6.product as pro Join PI_GRUPO6.city as city on pro.city_id = city.id\n" +
+            "\t city.name as city city_code from PI_GRUPO6.product as pro Join PI_GRUPO6.city as city on pro.city_id = city.id\n" +
             "\t Join PI_GRUPO6.reservation as reser on pro.reservation_id = reser.id\n" +
             "\t) as a where a.check_in between (:checkInD) and (:checkOutD)  and a.check_out between (:checkInD) and (:checkOutD)  and a.city_code = (:cityCode);", nativeQuery = true)
     List<Product> findByRangeOfDatesAndCity(@Param("checkInD") Date checkInD, @Param("checkOutD") Date checkOut, @Param("cityCode")String cityCode);
