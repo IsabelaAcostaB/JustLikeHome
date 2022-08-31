@@ -1,11 +1,21 @@
 package com.example.BookingProject.bookingAPI.persistence.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 @Entity
 @Table(name = "users")
 public class User {
@@ -30,6 +40,14 @@ public class User {
 
     @Column(name = "create_time", nullable = false)
     private LocalDateTime createTime;
+
+    @OneToMany(cascade = CascadeType.MERGE)
+    @JoinColumn(
+            name = "user_id", referencedColumnName = "id"
+    )
+    private Set<Reservation> reservations = new HashSet<>();
+
+
 
     @Enumerated(EnumType.STRING)
     @Column(name = "role", nullable = false)

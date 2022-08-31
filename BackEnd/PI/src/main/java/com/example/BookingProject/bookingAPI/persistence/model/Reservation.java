@@ -29,6 +29,9 @@ public class Reservation {
     @Column(name="checkOut")
     private String checkOut;
 
+
+
+
 //    @ManyToOne(cascade = CascadeType.MERGE)
 //    @JoinColumn(
 //            name = "product_id",
