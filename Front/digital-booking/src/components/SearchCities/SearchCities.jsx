@@ -1,8 +1,8 @@
 import cities from "./co.json";
 import React, { useState } from "react";
-import { Container } from "react-bootstrap";
+
 function SearchCities() {
-  const [cityId, setCityId] = useState("");
+  const [setCityId] = useState("");
 
   const handleCity = (e) => {
     const getCityId = e.target.value;

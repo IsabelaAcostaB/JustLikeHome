@@ -21,13 +21,10 @@ public class ProductServiceImpl implements ProductService {
         return productRepository.save(product);
     }
 
+
     @Override
-    public Product getById(Long id) {
-        if(productRepository.existsById(id)){
-            Product product = productRepository.findById(id).get();
-            return product;
-        }
-        return null;
+    public Product getProductById(Long id) {
+        return productRepository.findById(id).get();
     }
 
     @Override

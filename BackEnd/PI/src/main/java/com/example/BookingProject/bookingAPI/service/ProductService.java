@@ -12,7 +12,7 @@ public interface ProductService {
 
     Product saveProduct(Product product);
 
-    Product getById(Long id);
+    Product getProductById(Long id);
 
     List<Product> getAllProducts();
 

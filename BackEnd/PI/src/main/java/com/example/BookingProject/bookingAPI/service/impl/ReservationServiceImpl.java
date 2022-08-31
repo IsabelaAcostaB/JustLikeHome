@@ -28,16 +28,14 @@ public class ReservationServiceImpl implements ReservationService {
 
     @Override
     public Reservation getReservationById(Long id) {
-        if(reservationRepository.existsById(id)){
-            Reservation reservation = reservationRepository.findById(id).get();
-            return reservation;
-        }
-        return null;
+
+        return reservationRepository.findById(id).get();
     }
 
     @Override
     public List<Reservation> getAllReservations() {
-        return reservationRepository.findAll();
+        List<Reservation> reservations = reservationRepository.findAll();
+        return reservations;
     }
 
     @Override
