@@ -1,13 +1,18 @@
 package com.example.BookingProject.bookingAPI.controller;
 
 import com.example.BookingProject.bookingAPI.persistence.model.Product;
+import com.example.BookingProject.bookingAPI.persistence.model.Reservation;
 import com.example.BookingProject.bookingAPI.persistence.repository.ProductRepository;
 import com.example.BookingProject.bookingAPI.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -74,8 +79,16 @@ public class ProductController {
 
     /*         Encontrar por rango de fechas y ciudad       */
 
-    @GetMapping("/product/{city}/{checkIn)/{checkOut)")
-    public List<Product> findByRangeOfDatesAndCity (@PathVariable String city, @PathVariable String checkIn, @PathVariable String checkOut) {
-        return productRepository.findByRangeOfDatesAndCity(checkIn, checkOut, city);
+    @GetMapping("/product/{cityCode}/{checkIn}/{checkOut}")
+    public List<Product> findByRangeOfDatesAndCity (
+            @PathVariable("cityCode") String cityCode,
+            @PathVariable("checkIn")String checkIn,
+            @PathVariable("checkOut") String checkOut) throws ParseException
+           {
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        Date checkInD = formatter.parse(checkIn);
+        Date checkOutD = formatter.parse(checkOut);
+
+        return productRepository.findByRangeOfDatesAndCity(checkInD, checkOutD, cityCode);
     }
 }

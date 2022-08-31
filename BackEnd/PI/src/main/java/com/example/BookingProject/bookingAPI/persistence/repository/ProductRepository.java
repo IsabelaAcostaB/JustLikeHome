@@ -4,12 +4,11 @@ import com.example.BookingProject.bookingAPI.persistence.model.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.jpa.repository.query.Procedure;
 import org.springframework.data.repository.query.Param;
 
 import org.springframework.stereotype.Repository;
 
-import javax.persistence.SqlResultSetMapping;
+import java.util.Date;
 import java.util.List;
 
 @Repository
@@ -41,18 +40,11 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 
     // FIND BY RANGE OF DATES AND CITY
 
-    @Query(value = "SELECT distinct a.id, a.check_in, a.check_out, a.city\n" +
-            "FROM (\n" +
-            "\tselect \n" +
-            "\tpro.id,\n" +
-            "\tCAST( reser.check_in  AS DATE) as check_in,   \n" +
-            "\tCAST( reser.check_out  AS DATE) as check_out,\n" +
-            "\tcity.name as city \n" +
-            "\tfrom PI_GRUPO6.product as pro\n" +
-            "\t Join PI_GRUPO6.city as city on pro.city_id = city.id\n" +
+    @Query(value = "SELECT distinct a.id, a.check_in, a.check_out, a.city FROM (select pro.id, check_in,check_out,\n" +
+            "\tcity.name as city city_code from PI_GRUPO6.product as pro Join PI_GRUPO6.city as city on pro.city_id = city.id\n" +
             "\t Join PI_GRUPO6.reservation as reser on pro.reservation_id = reser.id\n" +
-            "     ) as a where a.check_in between (:checkIn) and (:checkOut)  and a.check_out between (:checkIn) and (:checkOut)  and a.city = (:city);", nativeQuery = true)
-    List<Product> findByRangeOfDatesAndCity(@Param("checkIn")String checkIn, @Param("checkOut") String checkOut, @Param("city")String city);
+            "\t) as a where a.check_in between (:checkInD) and (:checkOutD)  and a.check_out between (:checkInD) and (:checkOutD)  and a.city_code = (:cityCode);", nativeQuery = true)
+    List<Product> findByRangeOfDatesAndCity(@Param("checkInD") Date checkInD, @Param("checkOutD") Date checkOut, @Param("cityCode")String cityCode);
 
 
 }
