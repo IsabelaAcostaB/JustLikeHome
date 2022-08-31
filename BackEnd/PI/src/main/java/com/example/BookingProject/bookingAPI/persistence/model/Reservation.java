@@ -1,18 +1,17 @@
 package com.example.BookingProject.bookingAPI.persistence.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 
-@Data
+
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @Entity
+@ToString(exclude = "user")
 @Table(name = "reservation")
 public class Reservation {
 
@@ -29,6 +28,12 @@ public class Reservation {
     @Column(name="checkOut")
     private String checkOut;
 
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(
+            name = "user_id",
+            referencedColumnName = "id"
+    )
+    private User user;
 
 
 

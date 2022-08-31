@@ -53,6 +53,12 @@ public class UserServiceImpl implements UserService {
             throw new ResourceNotFoundException("User with id: " + id + " doesn't exist");
 
     }
+    @Override
+    public User getUserById(Long id) {
+        return userRepository.findById(id).get();
+    }
+
+
 
 
 }

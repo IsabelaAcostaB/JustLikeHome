@@ -32,8 +32,8 @@ public class ProductController {
     }
 
     @GetMapping("/product/{id}")
-    public Product getById(@PathVariable Long id){
-        return productService.getById(id);
+    public Product getProductById(@PathVariable Long id){
+        return productService.getProductById(id);
     }
 
 
@@ -74,8 +74,8 @@ public class ProductController {
 
     /*         Encontrar por rango de fechas y ciudad       */
 
-    @GetMapping("/product/{city}/{checkIn)/{checkOut)")
+   /* @GetMapping("/product/{city}/{checkIn)/{checkOut)")
     public List<Product> findByRangeOfDatesAndCity (@PathVariable String city, @PathVariable String checkIn, @PathVariable String checkOut) {
         return productRepository.findByRangeOfDatesAndCity(checkIn, checkOut, city);
-    }
+    }*/
 }

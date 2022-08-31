@@ -18,4 +18,6 @@ public interface UserService {
 
     @Transactional
     String deleteUser(Long id);
+
+    User getUserById(Long id);
 }
