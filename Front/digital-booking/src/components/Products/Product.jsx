@@ -89,8 +89,9 @@ function Product() {
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [])
+
+  /* ----- Tipo de carousel renderizado segun device width ----- */
   function CarouselDevice({width, product}){
-  
     if(width >= 1024){
       return (
         <div className={isActive ? "carousel-container-show" : "carousel-container"}>

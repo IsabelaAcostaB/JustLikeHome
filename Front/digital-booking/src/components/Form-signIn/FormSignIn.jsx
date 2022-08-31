@@ -49,7 +49,7 @@ const FormSignIn = () =>{
 
 
     return (
-        <div className="main">
+        <div className="main-signIn">
             <form onSubmit={handleSubmit}>
                 <div className="form-header">
                     <h2>Iniciar sesión</h2>
