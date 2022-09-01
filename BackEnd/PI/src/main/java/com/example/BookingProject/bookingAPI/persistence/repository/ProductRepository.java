@@ -52,33 +52,29 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
             "where  a.check_in not between (:checkInD) and (:checkOutD)  and a.check_out not between (:checkInD) and (:checkOutD) and a.city_code = (:cityCode);", nativeQuery = true)
     List<Product> findByRangeOfDatesAndCity(@Param("checkInD") Date checkInD, @Param("checkOutD") Date checkOut, @Param("cityCode")String cityCode);
 */
-    @Query(value = "SELECT distinct a.id, a.check_in, a.check_out, a.name\n" +
+    @Query(value = "SELECT a.availability, a.description, a.description_title, a.title, a.category_id, a.city_id, a.policy_id, reservation_id, a.check_in, a.check_out, a.city_code \n" +
             "FROM (\n" +
             "\tselect \n" +
-            "\tproduct.id, check_in, check_out, city.name , city_code \n" +
+            "\tproduct.availability, product.description, product.description_title, product.title, product.category_id, product.city_id, product.policy_id, reservation_id, check_in, check_out, city_code \n" +
             "\tfrom product\n" +
             "\t Join city  on product.city_id = city.id\n" +
             "\t Join reservation on product.reservation_id = reservation.id\n" +
-            "     ) as a  \n" +
-            "where  a.check_in not between (:checkInD) and (:checkOutD)  and a.check_out not between (:checkInD) and (:checkOutD) and a.city_code = (:cityCode);", nativeQuery = true)
+            "     ) as a \n" +
+            "\t where  a.check_in not between (:checkInD) and (:checkOutD)  and a.check_out not between (:checkInD) and (:checkOutD) and a.city_code = (:cityCode)", nativeQuery = true)
     List<Product> findByRangeOfDatesAndCity(@Param("checkInD") Date checkInD, @Param("checkOutD") Date checkOut, @Param("cityCode")String cityCode);
 
 
 
     // FIND BY RANGE OF DATES
 
-    @Query(value = "SELECT distinct a.id, a.check_in, a.check_out, a.city\n" +
-            "FROM (\n" +
-            "\tselect \n" +
-            "\tpro.id,\n" +
-            "\tCAST( reser.check_in  AS DATE) as check_in,   \n" +
-            "\tCAST( reser.check_out  AS DATE) as check_out,\n" +
-            "\tcity.name as city, city_code \n" +
-            "\tfrom PI_GRUPO6.product as pro\n" +
-            "\t Join PI_GRUPO6.city as city on pro.city_id = city.id\n" +
-            "\t Join PI_GRUPO6.reservation as reser on pro.reservation_id = reser.id\n" +
-            "     ) as a  \n" +
-            "where  a.check_in not between ('checkInD') and ('checkOutD')  and a.check_out not between ('checkInD') and ('checkOutD');", nativeQuery = true)
+   @Query(value = "SELECT distinct a.availability, a.description, a.description_title, a.title, a.category_id, a.city_id, a.policy_id, reservation_id \n" +
+            "FROM (SELECT \n" +
+            "\tproduct.availability, product.description, product.description_title, product.title, product.category_id, product.city_id, product.policy_id, reservation_id, reservation.check_in, reservation.check_out, city.city_code \n" +
+            "\tFROM product\n" +
+            "\t JOIN city  ON product.city_id = city.id\n" +
+            "\t JOIN reservation ON product.reservation_id = reservation.id\n" +
+            "     ) as a \n" +
+            "\tWHERE  a.check_in NOT BETWEEN :checkInD and :checkOutD  AND a.check_out NOT BETWEEN :checkInD AND :checkOutD", nativeQuery = true)
     List<Product> findByRangeOfDates(@Param("checkInD") Date checkInD, @Param("checkOutD") Date checkOut);
 
 }
