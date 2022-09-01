@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import { DateRange } from 'react-date-range';
+import { Calendar } from 'react-date-range';
 import 'react-date-range/dist/styles.css'; 
 import 'react-date-range/dist/theme/default.css';
 import calendar from "./calendar.css"
@@ -54,27 +54,24 @@ const CalendarReservation =({id})=>{
         
         
         {windowDimension.width < 768 ?
-        <DateRange className="calendar-mobile"
-        
-          editableDateInputs={true}
-          onChange={item => setState([item.selection])}
-          moveRangeOnFirstSelection={false}
-          ranges={state}
-          locale= {defaultLocale}
-        />
+          <Calendar 
+            direction="horizontal"
+            showPreview = {false}
+            locale= {defaultLocale}
+            minDate={addDays(new Date(), 0)}
+            months={1} 
+
+          />
 
         :
 
-        <DateRange className="calendar-tablet"
-          onChange={item => setState([item.selection])}
-          showSelectionPreview={true}
-          moveRangeOnFirstSelection={false}
-          months={2}
-          ranges={state}
-          direction="horizontal"
-          locale= {defaultLocale}
-          disablePast
-          
+        <Calendar 
+            direction="horizontal"
+            showPreview = {false}
+            locale= {defaultLocale}
+            minDate={addDays(new Date(), 0)}
+            months={2} 
+
         />
 
         }

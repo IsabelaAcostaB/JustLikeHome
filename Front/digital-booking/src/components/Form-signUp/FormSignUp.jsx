@@ -1,9 +1,14 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, useContext} from "react";
 import formSignUp from "./formSignUp.css"
 import {Link} from "react-router-dom"
 import Swal from 'sweetalert2'
+import {useNavigate} from "react-router-dom"
+import { UserContext } from "../UserContext.jsx";
+import axios from "axios"
 
 const FormSignUp = () => {
+    const {setUserData} = useContext(UserContext)
+
     const initialValues = {
         name: "",
         lastName:"",
@@ -15,6 +20,10 @@ const FormSignUp = () => {
     const [formValues, setFormValues]=useState(initialValues)
     const [formErrors, setFormErrors]=useState({});
     const [isSubmit, setIsSubmit]= useState(false);
+
+    const[statusError, setStatusError]=useState(false)
+
+    const navigate = useNavigate();
 
     const handleChange =(event)=>{
         const {name, value} = event.target
@@ -29,19 +38,45 @@ const FormSignUp = () => {
 
     useEffect(()=>{
         if(Object.keys(formErrors).length === 0 && isSubmit){
-            const usersString = localStorage.getItem('users');
-            if(usersString){
-                const users = JSON.parse(usersString);
-                localStorage.setItem('users', JSON.stringify([...users, formValues]));
-            } else {
-                localStorage.setItem('users', JSON.stringify([formValues]));
-            }
+
             
-            Swal.fire(
-                'Registro exitoso',
-                'Por favor diríjase a iniciar sesión',
-                'success'
-            )
+                const userData ={
+                    name: formValues.name,
+                    lastName: formValues.lastName,
+                    email: formValues.email,
+                    password: formValues.password
+                }
+
+                
+                const postUserData = async ()=>{
+                    try{
+
+                        const url = "http://18.217.103.69:8080/api/authentication/sign-up";
+                        const response = await axios.post(url, userData);
+                
+
+                        if (response.status === 201){
+                            const userDataLog = {
+                            name: userData.name,
+                            lastName: userData.lastName,
+                            isLogged: true
+                            }
+    
+                            setUserData(userDataLog);
+                            navigate("/")
+                        }
+                    }catch(error){
+                        console.log(error)
+                        setStatusError(true)
+                    }
+                    
+                        
+
+                        
+     
+                }
+                postUserData()
+
         }
     },[formErrors]);
 
@@ -114,7 +149,11 @@ const FormSignUp = () => {
                     <input type="password" id="repPassword"name="repPassword" value={formValues.repPassword} onChange={handleChange} />
                     <p className="error">{formErrors.repPassword}</p>
                 </div>
+                
+                <p className="error">{statusError ? "Lamentablemente no ha podido registrarse. Por favor, intente más tarde" : " "}</p>
+                
                 <button type="submit" className="button-signup">Crear Cuenta</button>
+                
                 <div className="go-sign">
                     <Link to="/signIn">¿Ya tienes una cuenta? <span> Iniciar sesión</span></Link>
                 </div>

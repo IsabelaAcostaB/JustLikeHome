@@ -5,9 +5,15 @@ import {Link} from 'react-router-dom';
 import styles from "../../styles/App.css";
 import "bootstrap"
 import axios from "axios"
+import Loader from "react-js-loader"
 
 //Acá se renderizan todas las cartas 
 function Cards({products}){
+   /*
+  if (loading){
+    return <Loader type="spinner-circle" bgColor={"#384d58"} title={"Buscando"} color={'#e48561'} size={50} />
+  }
+  */
   return products.map(item => (
     <div  className="card card-shadow m-3 home-card">
       <div className="container-img-cards">

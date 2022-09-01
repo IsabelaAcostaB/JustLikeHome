@@ -1,35 +1,64 @@
 import formData from "../../db/formData"
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect  } from "react";
 import {Link} from "react-router-dom"
 import formSignIn from "./formSignIn.css"
 import { UserContext } from "../UserContext.jsx";
 import {useNavigate} from "react-router-dom"
+import axios from "axios"
 
 const FormSignIn = () =>{
 
-    const {setUserData} = useContext(UserContext)
+    const {userData, setUserData} = useContext(UserContext)
 
     const [validData, setValidData] = useState(true);
 
     const navigate = useNavigate();
 
-    const getValues = (target) =>{
-        return {
-            email: target.email.value,
-            password: target.password.value,
+
+    useEffect(()=>{
+
+        
+        
+        const postData = async ()=>{
+            const url = "http://18.217.103.69:8080/api/authentication/sign-in";
+            const result = await axios.post(url, userData);
+
+            console.log(result);
+
+            /*
+            if(result.status === 200){
+
+               
+                const userDataLog = {
+                    name: userData.name,
+                    lastName: userData.lastName,
+                    isLogged: true
+                }
+                setUserData(userDataLog);
+               
+                navigate("/")
+                
+            }
+            */
+     
         }
-    }
+        postData()
+
+
+
+    },[])
 
     const handleSubmit = event =>{
         event.preventDefault();
 
-        const data = getValues(event.target);
+        //const data = getValues(event.target);
 
-        const users = JSON.parse(localStorage.getItem('users'));
+        //const users = JSON.parse(localStorage.getItem('users'));
 
-        const foundUser = users.find(user => user.email === data.email && user.password === data.password)
+        //const foundUser = users.find(user => user.email === data.email && user.password === data.password)
         
 
+        /*
         if (foundUser){
             const userDataLog = {
                 name: foundUser.name,
@@ -44,9 +73,10 @@ const FormSignIn = () =>{
         }else{
             setValidData(false)
         }
+        */
+
+        
     }
-
-
 
     return (
         <div className="main-signIn">
