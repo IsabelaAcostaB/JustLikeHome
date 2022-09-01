@@ -6,11 +6,13 @@ import calendar from "./calendar.css"
 import defaultLocale from 'date-fns/locale/es';
 import { addDays } from 'date-fns';
 import useWindowDimensions from "../../hooks/useWindowDimensions.jsx"
+import {Link} from 'react-router-dom';
 
 
 
-const CalendarReservation =()=>{
-
+const CalendarReservation =({id})=>{
+  let location = window.location.pathname;
+  
   const [state, setState] = useState([
     {
       startDate: new Date(),
@@ -76,19 +78,14 @@ const CalendarReservation =()=>{
         />
 
         }
-        
-
-
-        
-        
 
       </div>
-            
-
       <div className="reservation-container">
       <div className="reservation">
         <h3>Agregá tus fechas de viaje para obtener precios exactos</h3>
-        <button className="button-c">Iniciar reserva</button>
+        {/* <button className="button-c">Iniciar reserva</button> */}
+        <Link className="button-c" to={`/reservation/${id}`}>Iniciar reserva</Link>
+        
       </div>
 
     </div>

@@ -11,19 +11,14 @@ import { FilterContext } from "../FilterContext";
 import Url from "../../util/Url";
 
 
-function Fetch() {
-    let url = Url()+ "/api/product" + location;
-    useEffect(() => {
-      axios
-        .get(url)
-        .then((response) => setProductInfo(response.data))
-        .catch((error) => console.log(error));
-    }, [url]);
-  }
 
 
 
 const Reservation = () => {
+  let locationReservation = window.location.pathname;
+  let locationAPI = locationReservation.split("/");
+  let location = locationAPI[2];
+
     const [state, setState] = useState([
         {
           startDate: new Date(),
@@ -36,17 +31,24 @@ const Reservation = () => {
       const windowDimension = useWindowDimensions()
       const {setFilterData, handleFilterData} = useContext(FilterContext);
 
-  const [reservationInfo, setReservationInfo] = useState([]);
+  const [reservationInfo, setReservationInfo] = useState();
 
   function Fetch() {
-    let url = Url()+ "/api/product" + location;
+    let url = Url()+ "/api/product/product/" + location;
     useEffect(() => {
       axios
         .get(url)
-        .then((response) => setProductInfo(response.data))
+        .then((response) => setReservationInfo(response.data))
+        .then((response) => console.log(response.data))
         .catch((error) => console.log(error));
     }, [url]);
   }
+
+
+  Fetch()
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
 
     return (
         <div>
@@ -109,18 +111,19 @@ const Reservation = () => {
          </div>
         </div>
         
+      
         
-    {productInfo.get(item => (
-        <div className="card">
-    <div className="card-title">Detalle de Reserva</div>
-    <img src={item.imageURL}  class="card-img-top" />
-      <p className="card-title" key={item.id}>
-        <h2> {item.title}</h2> 
-        <p className="card-text">{item.description}</p>
-      </p>
-      </div>
-        ))
-        }
+        {reservationInfo && (
+          <div className="card">
+        <div className="card-title">Detalle de Reserva</div>
+        <img src={reservationInfo.images[1].imageURL}  class="card-img-top" /> 
+          <p className="card-title" key={reservationInfo.id}>
+            <h2> {reservationInfo.title}</h2> 
+            <p className="card-text">{reservationInfo.description}</p>
+          </p>
+          </div>
+        )}
+
 <div className="card">
     <div className="card-title">Cosas que tenés que saber</div>
 

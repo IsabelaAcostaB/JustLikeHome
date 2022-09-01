@@ -34,7 +34,7 @@ const Home = ()=>{
     }
     else{
       const getAllProducts = async ()=>{
-        const url = "http://18.217.103.69:8080/api";
+        const url = "http://18.217.103.69:8080/api/product";
         const result = await axios.get(url);
         setProducts(result.data)
       }

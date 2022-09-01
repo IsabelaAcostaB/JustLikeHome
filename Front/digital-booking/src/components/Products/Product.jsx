@@ -76,7 +76,7 @@ function Product() {
 
   /* ------- CODIGO PARA EL FETCH DEL PRODUCTO ------- */
   function Fetch() {
-    let url = Url()+ "/api" + location;
+    let url = Url()+ "/api/product" + location;
     useEffect(() => {
       axios
         .get(url)
@@ -166,7 +166,7 @@ function Product() {
               </div>
             </div>
 
-            <CalendarReservation/>
+            <CalendarReservation id={productInfo.id}/>
             <div className="policies">
               <h2>Qué tenés que saber</h2>
               <hr></hr>
