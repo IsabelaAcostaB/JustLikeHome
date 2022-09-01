@@ -78,24 +78,29 @@ public class ProductController {
 
     /*         Encontrar por rango de fechas        */
 
-    @GetMapping("/{checkIn}/{checkOut}")
-    public List<Product> findByRangeOfDates (
+/*    @GetMapping("/{checkIn}/{checkOut}")
+    public *//*List<Product>*//* void findByRangeOfDates (
             @PathVariable("checkIn")String checkIn,
             @PathVariable("checkOut") String checkOut) throws ParseException
     {
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         Date checkInD = formatter.parse(checkIn);
         Date checkOutD = formatter.parse(checkOut);
-
-        return productRepository.findByRangeOfDates(checkInD, checkOutD);
-    }
+        System.out.println("hasta aquí");
+        try {
+            productRepository.findByRangeOfDates(checkInD, checkOutD);
+            System.out.println("entró");
+        } catch (Exception e){
+            System.out.println("Ups");;
+        }
+    }*/
 
 
 
     /*         Encontrar por rango de fechas y ciudad       */
 
     @GetMapping("/{cityCode}/{checkIn}/{checkOut}")
-    public List<Product> findByRangeOfDatesAndCity (
+    public void findByRangeOfDatesAndCity (
             @PathVariable("cityCode") String cityCode,
             @PathVariable("checkIn")String checkIn,
             @PathVariable("checkOut") String checkOut) throws ParseException
@@ -103,7 +108,11 @@ public class ProductController {
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         Date checkInD = formatter.parse(checkIn);
         Date checkOutD = formatter.parse(checkOut);
+        try {
+            productRepository.findByRangeOfDatesAndCity(checkInD, checkOutD, cityCode);
+        } catch (Exception e){
+            System.out.println(e);
+        }
 
-        return productRepository.findByRangeOfDatesAndCity(checkInD, checkOutD, cityCode);
     }
 }
