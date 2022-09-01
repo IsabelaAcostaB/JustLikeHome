@@ -4,9 +4,6 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 
 
 @AllArgsConstructor
@@ -39,9 +36,6 @@ public class User {
     @Column(name = "create_time", nullable = false)
     private LocalDateTime createTime;
 
-
-
-
     @Enumerated(EnumType.STRING)
     @Column(name = "role", nullable = false)
     private Role role;
@@ -49,6 +43,6 @@ public class User {
     @Transient //no persistence, it won't be o the db
     private String token;
 
-
+    //reserevation list
 
 }

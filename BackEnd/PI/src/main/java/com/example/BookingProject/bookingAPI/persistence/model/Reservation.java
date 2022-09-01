@@ -11,7 +11,8 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Builder
 @Entity
-@ToString(exclude = "user")
+@ToString(exclude = {"user", "product"})
+
 @Table(name = "reservation")
 public class Reservation {
 
@@ -37,10 +38,10 @@ public class Reservation {
 
 
 
-//    @ManyToOne(cascade = CascadeType.MERGE)
-//    @JoinColumn(
-//            name = "product_id",
-//            referencedColumnName = "id", nullable = false
-//    )
-//    private Product product;
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(
+            name = "product_id",
+            referencedColumnName = "id", nullable = false
+    )
+    private Product product;
 }
