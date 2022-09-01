@@ -76,11 +76,25 @@ public class ProductController {
         return productRepository.findByCategoryCode(categoryCode);
     }
 
+    /*         Encontrar por rango de fechas        */
+
+    @GetMapping("/{checkIn}/{checkOut}")
+    public List<Product> findByRangeOfDates (
+            @PathVariable("checkIn")String checkIn,
+            @PathVariable("checkOut") String checkOut) throws ParseException
+    {
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        Date checkInD = formatter.parse(checkIn);
+        Date checkOutD = formatter.parse(checkOut);
+
+        return productRepository.findByRangeOfDates(checkInD, checkOutD);
+    }
+
+
 
     /*         Encontrar por rango de fechas y ciudad       */
 
-
-    @GetMapping("/product/{cityCode}/{checkIn}/{checkOut}")
+    @GetMapping("/{cityCode}/{checkIn}/{checkOut}")
     public List<Product> findByRangeOfDatesAndCity (
             @PathVariable("cityCode") String cityCode,
             @PathVariable("checkIn")String checkIn,
