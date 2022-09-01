@@ -11,7 +11,7 @@ import Listar from "./components/List/List";
 import ProductPage from "./pages/Product/ProductTemplate";
 import {UserProvider} from "./components/UserContext";
 import {FilterProvider} from "./components/FilterContext";
-
+import Reservation from "./components/Reservation/Reservation"
 
 
 function App() {
@@ -27,7 +27,7 @@ function App() {
           <Route exact path="/" element={<Home />} />
           <Route path="/signUp" element={<SignUp />} />
           <Route path="/signIn" element={<SignIn />} />
-          {/*<Route path="/home2" element={<HomeRegister />}/>*/}
+          <Route path="/home2" element={<Reservation />}/>
           <Route path="/listar" element={<Listar />}/> 
           <Route path="/product/:id" element={<ProductPage />}/> 
 
