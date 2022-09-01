@@ -1,6 +1,11 @@
 @import url("../../styles/App.css");
 
 
+.main-signIn{
+    
+    height: 93vh;
+    background-color: var(--fourth-color);
+}
 
 h2 {
     color: var(--first-color);
@@ -83,4 +88,6 @@ input{
         width: 15vw;
         margin-top: 25px;
     }
+
+    
 }

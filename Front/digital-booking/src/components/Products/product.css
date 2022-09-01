@@ -251,26 +251,44 @@
     
     }
 
+    .carousel-container-show{
+        background-color: var(--third-color);
+        background-color: rgb(56, 77, 88,0.8);
+        /* background-color: rgb(208, 208, 202,0.9); */
+        height: 100vh;
+        width: 100vw;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 999999;
+        padding: 0 15vw;
+        
+    }
     .carousel{
         /* height: 400px; */
-        padding: 0 2.5rem;
-        width: 48rem;
-        height: 30rem;
+        /* padding: 0 2.5rem; */
+        /* width: 48rem; */
+        width: 70vw;
+        height: 35rem;
         vertical-align: center;
-        /* display: none; */
     }
     .container-fluid{
-       /*  height: 400px;
-        padding: 2.5rem; */
+        position: fixed;
+        padding: 10vh 0;
+        width: 80vw;
+
     }
     .col-12{
         height: 400px;
     }
+
+
     .d-block.w-100{
-        height: 30rem;
+        height: 35rem;
         width: 48rem;
         object-fit: cover;
     }
+
 
     .policies-container{
         display: grid;
@@ -285,21 +303,13 @@
     .carousel-container{
         display: none;
     }
-    /* .carousel-container-show{
-        position: relative;
-        bottom: 520px;
-        left: 300px;
-    } */
+    
     .carousel-close{
-        /* color: var(--fourth-color); */
-        /* color: var(--secondary-color); */
         color: var(--fourth-color);
-        /* color: white; */
-        position: relative;
+        position: fixed;
         z-index: 99999999999999;
-        /* top: 20px; */
-        left: 740px;
-        top: 45px;
+        left: 82vw;
+        top: 12vh;
         height: 30px;
         filter: drop-shadow(0px 2px 3px rgb(0 0 0 / 0.5));
     }
