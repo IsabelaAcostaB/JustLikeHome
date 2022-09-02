@@ -9,7 +9,7 @@ import SearchCities from "../SearchCities/SearchCities";
 import "./searchbar.css";
 import {format} from 'date-fns'
 import defaultLocale from 'date-fns/locale/es'
-import Loader from "react-js-loader"
+/* import Loader from "react-js-loader" */
 import useWindowDimensions from "../../hooks/useWindowDimensions.jsx"
 
 function SearchBar() {
