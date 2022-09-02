@@ -15,7 +15,7 @@ variables:
 cache:
   paths:
   - .m2/repository
-  - target
+  - ./BackEnd/PI/target
 
 test_back:
  image: maven:3.8.6-openjdk-18
@@ -51,14 +51,18 @@ build_back:
     image: maven:3.8.6-openjdk-18
     script:
         - cd ./BackEnd/PI
-        - mkdir target
-        - echo "Building app..."
-        - mvn compile
+        - echo "Maven compile started"
+        - "mvn compile"
         - echo "Finished building the app."
-    artifacts:
-        expire_in: 1 week
-        paths:
-            - target/consoleapp.jar
+
+package_job:
+ stage: package
+ script:
+ - "mvn package"
+ artifacts:
+  paths:
+  - ./BackEnd/PI/target/consoleapp.jar
+
 
 deploy_back:
  stage: deploy_back
