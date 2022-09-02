@@ -1,6 +1,7 @@
 stages:
- - build_front
- - deploy_front
+ - build
+ - test
+ - deploy
 
 variables:
   AWS_ACCESS_KEY_ID: "$AWS_ACCESS_KEY_ID"
@@ -11,9 +12,9 @@ cache:
   paths:
     - node_modules/
 
-build_front:
+build:
   image: node:16.16.0
-  stage: build_front
+  stage: build
   before_script:
     - cd ./Front/digital-booking
   script: 
@@ -24,9 +25,9 @@ build_front:
    paths:
      - /builds/ctd/proyecto-integrador-0822/1021-ft/grupo-06/Front/digital-booking/build/*
 
-deploy_front: 
+deploy: 
   image: python:latest
-  stage: deploy_front
+  stage: deploy
   before_script:
     - cd ./Front/digital-booking
   script:
