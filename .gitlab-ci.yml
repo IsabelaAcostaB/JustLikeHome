@@ -12,10 +12,10 @@ variables:
   S3_BUCKET_NAME: $S3_BUCKET_NAME
   MAVEN_OPTS: -Dmaven.repo.local=.m2/repository
 
-cache:
-  paths:
-  - .m2/repository
-  - target
+#cache:
+#  paths:
+#  - .m2/repository
+#  - ./BackEnd/PI/target
 
 test_back:
  image: maven:3.8.6-openjdk-18
@@ -26,25 +26,44 @@ test_back:
  - echo "Maven test started"
  - "mvn clean test"
 
+#build_back:
+# image: maven:3.8.6-openjdk-18
+# stage: build_back
+# before_script:
+# - cd ./BackEnd/PI
+# script:
+# - echo "Maven compile started"
+# - "mvn compile"
+
+#package_back:
+# image: maven:3.8.6-openjdk-18
+# stage: package_back
+# before_script:
+# - cd ./BackEnd/PI
+# script:
+# - "mvn package"
+# artifacts:
+#  paths:
+#  - ./BackEnd/PI/target/consoleapp.jar
+
 build_back:
- image: maven:3.8.6-openjdk-18
- stage: build_back
- before_script:
- - cd ./BackEnd/PI
- script:
- - echo "Maven compile started"
- - "mvn compile"
+    stage: build_back
+    image: maven:3.8.6-openjdk-18
+    script:
+        - cd ./BackEnd/PI
+        - echo "Maven compile started"
+        - "mvn compile"
+        - echo "Finished building the app."
 
 package_back:
- image: maven:3.8.6-openjdk-18
  stage: package_back
- before_script:
- - cd ./BackEnd/PI
+ image: maven:3.8.6-openjdk-18
  script:
- - "mvn package"
+   - cd ./BackEnd/PI
+   - "mvn package"
  artifacts:
   paths:
-  - ./BackEnd/PI/target/consoleapp.jar
+  - /builds/ctd/proyecto-integrador-0822/1021-ft/grupo-06/BackEnd/PI/target/*
 
 
 deploy_back:
@@ -62,6 +81,6 @@ deploy_back:
  script:
  #- ssh ubuntu@$DEPLOY_SERVER_IP "sudo apt install openjdk-8-jdk -y"
  - ssh ubuntu@$DEPLOY_SERVER_IP "sudo systemctl stop consoleapp.service"
- - scp ./target/consoleapp.jar ubuntu@$DEPLOY_SERVER_IP:~/console-app/
+ - scp /builds/ctd/proyecto-integrador-0822/1021-ft/grupo-06/BackEnd/PI/target/consoleapp.jar ubuntu@$DEPLOY_SERVER_IP:~/console-app/
  - ssh ubuntu@$DEPLOY_SERVER_IP "sudo systemctl start consoleapp.service"
 
