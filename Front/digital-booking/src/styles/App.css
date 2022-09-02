@@ -13,6 +13,13 @@
   box-sizing: border-box;
 }
 
+.App{
+  background-color: var(--first-color);
+}
+#root{
+  background-color: var(--first-color);
+}
+
 body {
   font-family: "Poppins", sans-serif;
 }
