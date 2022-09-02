@@ -65,7 +65,6 @@ package_back:
   paths:
   - /builds/ctd/proyecto-integrador-0822/1021-ft/grupo-06/BackEnd/PI/target/*
 
-
 deploy_back:
  stage: deploy_back
  image: alpine:3.11
