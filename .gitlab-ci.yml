@@ -62,6 +62,6 @@ deploy_back:
  script:
  #- ssh ubuntu@$DEPLOY_SERVER_IP "sudo apt install openjdk-8-jdk -y"
  - ssh ubuntu@$DEPLOY_SERVER_IP "sudo systemctl stop consoleapp.service"
- - scp ./target/consoleapp.jar ubuntu@$DEPLOY_SERVER_IP:~/console-app/
+ - scp ./BackEnd/PI/target/consoleapp.jar ubuntu@$DEPLOY_SERVER_IP:~/console-app/
  - ssh ubuntu@$DEPLOY_SERVER_IP "sudo systemctl start consoleapp.service"
 
