@@ -26,26 +26,38 @@ test_back:
  - echo "Maven test started"
  - "mvn clean test"
 
+#build_back:
+# image: maven:3.8.6-openjdk-18
+# stage: build_back
+# before_script:
+# - cd ./BackEnd/PI
+# script:
+# - echo "Maven compile started"
+# - "mvn compile"
+
+#package_back:
+# image: maven:3.8.6-openjdk-18
+# stage: package_back
+# before_script:
+# - cd ./BackEnd/PI
+# script:
+# - "mvn package"
+# artifacts:
+#  paths:
+#  - ./BackEnd/PI/target/consoleapp.jar
+
 build_back:
- image: maven:3.8.6-openjdk-18
- stage: build_back
- before_script:
- - cd ./BackEnd/PI
- script:
- - echo "Maven compile started"
- - "mvn compile"
-
-package_back:
- image: maven:3.8.6-openjdk-18
- stage: package_back
- before_script:
- - cd ./BackEnd/PI
- script:
- - "mvn package"
- artifacts:
-  paths:
-  - ./BackEnd/PI/target/consoleapp.jar
-
+    stage: build_back
+    image: maven:3.8.6-openjdk-18
+    script:
+        - cd ./BackEnd/PI
+        - echo "Building app..."
+        - mvn clean install
+        - echo "Finished building the app."
+    artifacts:
+        expire_in: 1 week
+        paths:
+            - target/consoleapp.jar
 
 deploy_back:
  stage: deploy_back
