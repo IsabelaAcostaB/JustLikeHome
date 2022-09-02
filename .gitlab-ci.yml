@@ -55,8 +55,8 @@ build_back:
         - "mvn compile"
         - echo "Finished building the app."
 
-package_job:
- stage: package
+package_back:
+ stage: package_back
  script:
  - "mvn package"
  artifacts:
