@@ -59,7 +59,8 @@ package_back:
  stage: package_back
  image: maven:3.8.6-openjdk-18
  script:
- - "mvn package"
+   - cd ./BackEnd/PI
+   - "mvn package"
  artifacts:
   paths:
   - ./BackEnd/PI/target/consoleapp.jar
