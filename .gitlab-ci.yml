@@ -6,26 +6,12 @@ stages:
  - build_front
  - deploy_front
 
-#build_job:
-# stage: build
-# script:
-# - echo "Maven compile started"
-# - "mvn compile"
-
-#test_job:
-# stage: test
-# script:
-# - echo "Maven test started"
-# - "mvn clean test"
-
 
 variables:
   AWS_ACCESS_KEY_ID: "$AWS_ACCESS_KEY_ID"
   AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY
   S3_BUCKET_NAME: $S3_BUCKET_NAME
   MAVEN_OPTS: -Dmaven.repo.local=.m2/repository
-
-
 
 #cache:
 #  paths:
@@ -59,7 +45,8 @@ package_back:
  - "mvn package"
  artifacts:
   paths:
-  - ./BackEnd/PI/target/BookingProject.jar
+  - ./BackEnd/PI/target/consoleapp.jar
+
 
 deploy_back:
  stage: deploy_back
@@ -75,22 +62,9 @@ deploy_back:
  - ssh-keyscan -H $DEPLOY_SERVER_IP >> ~/.ssh/known_hosts
  script:
  #- ssh ubuntu@$DEPLOY_SERVER_IP "sudo apt install openjdk-8-jdk -y"
- - ssh ubuntu@$DEPLOY_SERVER_IP "sudo systemctl stop Booking.service"
+ - ssh ubuntu@$DEPLOY_SERVER_IP "sudo systemctl stop consoleapp.service"
  - scp ./target/consoleapp.jar ubuntu@$DEPLOY_SERVER_IP:~/console-app/
  - ssh ubuntu@$DEPLOY_SERVER_IP "sudo systemctl start consoleapp.service"
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 # ------------- FRONT ------------- # 
