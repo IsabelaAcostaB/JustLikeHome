@@ -12,10 +12,10 @@ variables:
   S3_BUCKET_NAME: $S3_BUCKET_NAME
   MAVEN_OPTS: -Dmaven.repo.local=.m2/repository
 
-cache:
-  paths:
-  - .m2/repository
-  - ./BackEnd/PI/target
+#cache:
+#  paths:
+#  - .m2/repository
+#  - ./BackEnd/PI/target
 
 test_back:
  image: maven:3.8.6-openjdk-18
@@ -63,7 +63,7 @@ package_back:
    - "mvn package"
  artifacts:
   paths:
-  - ./BackEnd/PI/target/consoleapp.jar
+  - ./target/consoleapp.jar
 
 
 deploy_back:
