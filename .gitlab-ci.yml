@@ -32,7 +32,7 @@ build:
     - cd ./Front/digital-booking
   script: 
     - npm install --force
-    - npm run build
+    - CI=false npm run build
     - pwd && ls -la
 #    - rm -rf public
 #    - mv build public
