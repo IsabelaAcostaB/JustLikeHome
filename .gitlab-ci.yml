@@ -1,7 +1,10 @@
 stages:
- - build
- - test
- - deploy
+ - test_back
+ - build_back
+ - package_back
+ - deploy_back
+ - build_front
+ - deploy_front
 
 #build_job:
 # stage: build
@@ -20,12 +23,73 @@ variables:
   AWS_ACCESS_KEY_ID: "$AWS_ACCESS_KEY_ID"
   AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY
   S3_BUCKET_NAME: $S3_BUCKET_NAME
+  MAVEN_OPTS: -Dmaven.repo.local=.m2/repository
+
+
+
+cache:
+  paths:
+  - .m2/repository
+  - target
+
+test:
+ stage: test_back
+ script:
+ - echo "Maven test started"
+ - "mvn clean test"
+
+build:
+ stage: build_back
+ script:
+ - echo "Maven compile started"
+ - "mvn compile"
+
+package:
+ stage: package_back
+ script:
+ - "mvn package"
+ artifacts:
+  paths:
+  - ./BackEnd/PI/target/BookingProject.jar
+
+deploy:
+ stage: deploy_back
+ image: alpine:3.11
+ before_script:
+ - apk update && apk add openssh-client bash
+ - mkdir -p ~/.ssh
+ - eval $(ssh-agent -s)
+ - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add - > /dev/null
+ - touch ~/.ssh/config
+ - echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
+ - ssh-keyscan -H $DEPLOY_SERVER_IP >> ~/.ssh/known_hosts
+ script:
+ #- ssh ubuntu@$DEPLOY_SERVER_IP "sudo apt install openjdk-8-jdk -y"
+ - ssh ubuntu@$DEPLOY_SERVER_IP "sudo systemctl stop Booking.service"
+ - scp ./target/consoleapp.jar ubuntu@$DEPLOY_SERVER_IP:~/console-app/
+ - ssh ubuntu@$DEPLOY_SERVER_IP "sudo systemctl start consoleapp.service"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# ------------- FRONT ------------- # 
 
 cache:
   paths:
     - node_modules/
 
-build:
+build_front:
   image: node:16.16.0
   stage: build
   before_script:
@@ -34,13 +98,11 @@ build:
     - npm install --force
     - CI=false npm run build
     - pwd && ls -la
-#    - rm -rf public
-#    - mv build public
   artifacts:
    paths:
      - /builds/ctd/proyecto-integrador-0822/1021-ft/grupo-06/Front/digital-booking/build/*
 
-deploy: 
+deploy_front: 
   image: python:latest
   stage: deploy
   before_script:
