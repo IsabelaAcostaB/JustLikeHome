@@ -33,18 +33,21 @@ variables:
 #  - target
 
 test_back:
+ image: maven:3.8.6-openjdk-18
  stage: test_back
  script:
  - echo "Maven test started"
  - "mvn clean test"
 
 build_back:
+ image: maven:3.8.6-openjdk-18
  stage: build_back
  script:
  - echo "Maven compile started"
  - "mvn compile"
 
 package_back:
+ image: maven:3.8.6-openjdk-18
  stage: package_back
  script:
  - "mvn package"
