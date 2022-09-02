@@ -31,7 +31,7 @@ build:
   before_script:
     - cd ./Front/digital-booking
   script: 
-    - npm install
+    - npm install --force
     - npm run build
     - pwd && ls -la
 #    - rm -rf public
