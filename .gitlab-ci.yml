@@ -36,7 +36,7 @@ test_back:
  image: maven:3.8.6-openjdk-18
  stage: test_back
  before_script:
- - cd ./Backend/PI
+ - cd ./BackEnd/PI
  script:
  - echo "Maven test started"
  - "mvn clean test"
@@ -45,7 +45,7 @@ build_back:
  image: maven:3.8.6-openjdk-18
  stage: build_back
  before_script:
- - cd ./Backend/PI
+ - cd ./BackEnd/PI
  script:
  - echo "Maven compile started"
  - "mvn compile"
@@ -54,7 +54,7 @@ package_back:
  image: maven:3.8.6-openjdk-18
  stage: package_back
  before_script:
- - cd ./Backend/PI
+ - cd ./BackEnd/PI
  script:
  - "mvn package"
  artifacts:
@@ -65,7 +65,7 @@ deploy_back:
  stage: deploy_back
  image: alpine:3.11
  before_script:
- - cd ./Backend/PI
+ - cd ./BackEnd/PI
  - apk update && apk add openssh-client bash
  - mkdir -p ~/.ssh
  - eval $(ssh-agent -s)
