@@ -27,24 +27,24 @@ variables:
 
 
 
-cache:
-  paths:
-  - .m2/repository
-  - target
+#cache:
+#  paths:
+#  - .m2/repository
+#  - target
 
-test:
+test_back:
  stage: test_back
  script:
  - echo "Maven test started"
  - "mvn clean test"
 
-build:
+build_back:
  stage: build_back
  script:
  - echo "Maven compile started"
  - "mvn compile"
 
-package:
+package_back:
  stage: package_back
  script:
  - "mvn package"
@@ -52,7 +52,7 @@ package:
   paths:
   - ./BackEnd/PI/target/BookingProject.jar
 
-deploy:
+deploy_back:
  stage: deploy_back
  image: alpine:3.11
  before_script:
@@ -89,9 +89,9 @@ cache:
   paths:
     - node_modules/
 
-build_front:
+build:
   image: node:16.16.0
-  stage: build
+  stage: build_front
   before_script:
     - cd ./Front/digital-booking
   script: 
@@ -102,9 +102,9 @@ build_front:
    paths:
      - /builds/ctd/proyecto-integrador-0822/1021-ft/grupo-06/Front/digital-booking/build/*
 
-deploy_front: 
+deploy: 
   image: python:latest
-  stage: deploy
+  stage: deploy_front
   before_script:
     - cd ./Front/digital-booking
   script:
