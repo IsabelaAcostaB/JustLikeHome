@@ -63,7 +63,7 @@ package_back:
    - "mvn package"
  artifacts:
   paths:
-  - ./target/consoleapp.jar
+  - ./target
 
 
 deploy_back:
