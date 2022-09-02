@@ -1,0 +1,16 @@
+stages:
+ - build
+ - test
+
+build_job:
+ stage: build
+ script:
+ - echo "Maven compile started"
+ - "mvn compile"
+
+test_job:
+ stage: test
+ script:
+ - echo "Maven test started"
+ - "mvn clean test"
+
