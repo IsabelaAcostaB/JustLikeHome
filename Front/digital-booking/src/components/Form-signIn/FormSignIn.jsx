@@ -14,68 +14,50 @@ const FormSignIn = () =>{
 
     const navigate = useNavigate();
 
-
-    useEffect(()=>{
-
-        
-        
-        const postData = async ()=>{
-            const url = "http://18.217.103.69:8080/api/authentication/sign-in";
-            const result = await axios.post(url, userData);
-
-            console.log(result);
-
-            /*
-            if(result.status === 200){
-
-               
-                const userDataLog = {
-                    name: userData.name,
-                    lastName: userData.lastName,
-                    isLogged: true
-                }
-                setUserData(userDataLog);
-               
-                navigate("/")
-                
-            }
-            */
-     
+    const getValues = (target) =>{
+        return {
+            email: target.email.value,
+            password: target.password.value,
         }
-        postData()
+    }
 
-
-
-    },[])
-
-    const handleSubmit = event =>{
+    const handleSubmit = async (event) =>{
         event.preventDefault();
 
-        //const data = getValues(event.target);
+        const userDataForm = getValues(event.target);
 
-        //const users = JSON.parse(localStorage.getItem('users'));
-
-        //const foundUser = users.find(user => user.email === data.email && user.password === data.password)
+        const url = "http://18.217.103.69:8080/api/authentication/sign-in";
+        const result = await axios.post(url, userDataForm);
         
+        /* 
+        {
+            headers:{
+                'Authorization': `Bearer ${localStorage.getItem('jwt')}`
+            }
+        }
 
-        /*
-        if (foundUser){
+        */
+
+
+        if (result.request.status === 200){
             const userDataLog = {
-                name: foundUser.name,
-                lastName: foundUser.lastName,
-                isLogged: true
+                name: result.data.name,
+                lastName: result.data.lastName,
+                isLogged: true,
+                token:result.data.token
+            }
+
+            if (result.data.token){
+                localStorage.setItem('jwt', result.data.token)
             }
 
             setUserData(userDataLog);
             navigate("/")
-
-
+            
         }else{
             setValidData(false)
         }
-        */
-
-        
+       
     }
 
     return (

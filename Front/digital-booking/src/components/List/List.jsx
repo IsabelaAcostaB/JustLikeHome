@@ -1,10 +1,10 @@
-import React, { useContext, useState, useEffect } from "react";
+import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import styles from "../../styles/App.css";
 import "bootstrap";
-import axios from "axios";
+
 /* import Loader from "react-js-loader"; */
 
 //Acá se renderizan todas las cartas

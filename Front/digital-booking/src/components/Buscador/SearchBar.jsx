@@ -58,6 +58,10 @@ function SearchBar() {
               </button>
               <button className="button-2">Buscar</button>
   </div>
+
+
+  onChange={(e) => setSearchInput(e.target.value)}
+  value={searchInput}
   */
 
  
@@ -70,8 +74,6 @@ function SearchBar() {
         <div className="search-bar">
           <div className="search-input">
             <input
-              value={searchInput}
-              onChange={(e) => setSearchInput(e.target.value)}
               onClick={showCalendar}
               placeholder="Selecciona tus fechas"
             />
@@ -79,7 +81,7 @@ function SearchBar() {
           </div>
         </div>
 
-        {searchInput && (
+        {dropCalendar && (
           <div className="calendar-container">
             {windowDimension.width < 768 ?
             <DateRangePicker
