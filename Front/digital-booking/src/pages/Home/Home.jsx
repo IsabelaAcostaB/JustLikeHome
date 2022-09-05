@@ -5,6 +5,7 @@ import Listar from "../../components/List/List";
 import {FilterContext} from "../../components/FilterContext"
 import axios from "axios"
 import PaginationNumbers from "../../components/Pagination/Pagination";
+import Url from "../../util/Url";
 
 const Home = ()=>{
     const [products, setProducts] = useState([]);
@@ -19,7 +20,7 @@ const Home = ()=>{
   useEffect(()=>{
     if (filterData.category){
       const getProductsByCategory = async ()=>{
-        const url = `http://18.217.103.69:8080/api/productCategory/code/${filterData.category}`;
+        const url = Url()+ `/api/productCategory/code/${filterData.category}`;
         const result = await axios.get(url);
         setProducts(result.data)
       }
@@ -27,7 +28,7 @@ const Home = ()=>{
     }
     else if (filterData.cityCode){
       const getProductsByCity = async ()=>{
-        const url = `http://18.217.103.69:8080/api/productCity/id/${filterData.cityCode}`;
+        const url = Url()+ `/api/productCity/id/${filterData.cityCode}`;
         const result = await axios.get(url);
         setProducts(result.data)
       }
@@ -35,7 +36,7 @@ const Home = ()=>{
     }
     else{
       const getAllProducts = async ()=>{
-        const url = "http://18.217.103.69:8080/api/product";
+        const url = Url()+ "/api/product";
         const result = await axios.get(url);
         setProducts(result.data)
       }

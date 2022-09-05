@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import axios from 'axios';
 import { FilterContext } from "../FilterContext";
+import Url from "../../util/Url";
 
 
 const Categorias= () => {
@@ -9,7 +10,7 @@ const Categorias= () => {
   const [categoryInfo, setCategoryInfo] = useState([]);
 
   useEffect(() => {
-    let url = "http://18.217.103.69:8080/api/category";
+    let url = Url() + "/api/category";
     axios.get(url)
       .then(response => setCategoryInfo(response.data))
       .catch(error => console.log(error))

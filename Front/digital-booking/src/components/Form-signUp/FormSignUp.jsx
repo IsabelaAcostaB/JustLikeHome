@@ -4,7 +4,8 @@ import {Link} from "react-router-dom"
 import Swal from 'sweetalert2'
 import {useNavigate} from "react-router-dom"
 import { UserContext } from "../UserContext.jsx";
-import axios from "axios"
+import axios from "axios";
+import Url from "../../util/Url";
 
 const FormSignUp = () => {
     const {setUserData} = useContext(UserContext)
@@ -51,7 +52,7 @@ const FormSignUp = () => {
                 const postUserData = async ()=>{
                     try{
 
-                        const url = "http://18.217.103.69:8080/api/authentication/sign-up";
+                        const url = Url() + "/api/authentication/sign-up";
                         const response = await axios.post(url, userData);
                 
 

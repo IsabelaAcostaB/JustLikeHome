@@ -107,7 +107,8 @@ const Reservation = () => {
         </div>
       )}
 
-      <PoliciesRender product={reservationInfo} />
+        {/* {reservationInfo != null ?<PoliciesRender product={reservationInfo} /> : Fetch() } */}
+      
     </div>
   );
 };
