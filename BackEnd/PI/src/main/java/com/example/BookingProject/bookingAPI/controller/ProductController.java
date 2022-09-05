@@ -86,9 +86,7 @@ public class ProductController {
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         Date checkInD = formatter.parse(checkIn);
         Date checkOutD = formatter.parse(checkOut);
-        System.out.println("hasta aquí");
         try {
-            System.out.println("entró");
             return productRepository.findByRangeOfDates(checkInD, checkOutD);
         } catch (Exception e){
             System.out.println(e);

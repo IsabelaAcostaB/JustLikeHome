@@ -23,6 +23,9 @@ public class Image {
     @Column(name = "title")
     private String title;
 
+    @Column(name = "main_img")
+    private String main_img;
+
     @Column(name = "image_url")
     private String imageURL;
 

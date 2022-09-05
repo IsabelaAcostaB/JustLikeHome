@@ -54,6 +54,7 @@ public class ImageServiceImpl implements ImageService {
         if (imageOptional.isPresent()) {
             Image existingImage = imageOptional.get();
             existingImage.setId(image.getId());
+            existingImage.setMain_img(image.getMain_img());
             existingImage.setImageURL(image.getImageURL());
             existingImage.setTitle(image.getTitle());
             return imageRepository.save(existingImage);
