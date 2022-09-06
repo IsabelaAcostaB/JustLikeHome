@@ -21,7 +21,7 @@ const CalendarReservation =({id})=>{
     }
   ]);
 
-  const disabledDates=[1,2,3,4,5,6]
+
   const windowDimension = useWindowDimensions()
 
   /*

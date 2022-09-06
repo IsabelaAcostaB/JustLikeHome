@@ -12,7 +12,18 @@ const Home = ()=>{
 
     //const [loading, setLoading] = useState(false);
       
-  
+    //ACA LO DE PAGINACION
+    const [productsPerPage, setProductsPerPage] = useState(7)
+    const [currentPage, setCurrentPage ] = useState(null);
+
+
+    const indexFirstProduct = (currentPage-1)*productsPerPage
+    const indexLastProduct = indexFirstProduct+(productsPerPage-1)
+    const currentProducts = products.slice(indexFirstProduct, indexLastProduct)
+
+    const pages = Math.ceil(products.length/productsPerPage);
+
+
     
   /*---------------  Es el fetch para traer productos por ciudades -------------*/
  
@@ -55,8 +66,8 @@ useEffect(() => {
       <h2 className="category-title">Selecciona un tipo de alojamiento</h2>
       <ListarCat/>
       <h2 className="recommendation-h2">Recomendados</h2>
-      <Listar products={products} />
-      <PaginationNumbers products={products} />
+      <Listar products={currentProducts} />
+      <PaginationNumbers pages ={pages} setCurrentPage={setCurrentPage} />
     </div>
   )
 }

@@ -60,7 +60,8 @@ const FormSignUp = () => {
                             const userDataLog = {
                             name: userData.name,
                             lastName: userData.lastName,
-                            isLogged: true
+                            isLogged: true,
+                            token: null
                             }
     
                             setUserData(userDataLog);
@@ -70,10 +71,7 @@ const FormSignUp = () => {
                         console.log(error)
                         setStatusError(true)
                     }
-                    
-                        
-
-                        
+     
      
                 }
                 postUserData()

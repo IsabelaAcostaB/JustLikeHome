@@ -1,13 +1,49 @@
-import React, { useState} from "react";
+import React, { useState, useContext} from "react";
 import sideBar from "./sideBar.css"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faX, faBars } from '@fortawesome/free-solid-svg-icons'
 import { faFacebook, faLinkedinIn, faTwitter, faInstagram } from '@fortawesome/free-brands-svg-icons'
 import {Link} from "react-router-dom"
+import { UserContext} from "../UserContext.jsx"
+import {useNavigate, useLocation} from "react-router-dom"
 
 
 function Sidebar(){
     const [showSideBar, setShowSideBar] = useState(false);
+    const {userData, setUserData} = useContext(UserContext)
+
+    const navigate = useNavigate();
+
+    const location = useLocation();
+    
+    const logOut = () =>{
+        const userDataOut = {
+            name: null,
+            lastName: null,
+            isLogged: false,
+            token: null
+        }
+    
+        setUserData(userDataOut);
+        localStorage.removeItem('jwt');
+        navigate("/")
+    }
+    
+    
+    const firstLetter = () =>{
+
+        let completeName = `${userData.name} ${userData.lastName}`
+        let inicials =[];
+        completeName.split(" ").map((word) =>{
+            inicials.push(word[0].toUpperCase())
+        })
+        
+        let letters = inicials.join('')
+        
+        return letters
+        
+    }
+
     if (showSideBar) {
         return (
        
@@ -17,16 +53,20 @@ function Sidebar(){
                         
                         <FontAwesomeIcon icon={faX} onClick={()=>setShowSideBar(false)}/>
                         
-                        <h2>Menú</h2>
-
-                        <div className="user-info-bar hide">
+                        {userData.isLogged ?
+                        <div className="user-info-bar">
                             <div className="user-avatar-bar">
-                                <h2>NU</h2>
+                                <h2>{firstLetter()}</h2>
                             </div>
-                            
+                        
                             <p>Hola,</p>
-                            <p className="name-bar"></p>
+                            <p className="name-bar">{userData.name}</p>
                         </div>
+                        
+                        : 
+                    
+                        <h2>Menú</h2>
+                        }
                         
 
                     </div>
@@ -35,6 +75,11 @@ function Sidebar(){
             
     
                 <div className="side-bar-options">
+                {userData.isLogged?
+                    <Link to="/" className="options" onClick={logOut}><h3>¿Deseas <span>cerrar sesión?</span></h3></Link>
+                
+                    :
+                    
                     <ul className="options">
 
                         <li>
@@ -57,10 +102,10 @@ function Sidebar(){
                             </Link>
                         </li>     
                     </ul>
-
-                    <Link className="hide" to="/">¿Deseas <span>cerrar sesión?</span></Link>
-
                     
+                    }
+
+                  
 
                     
                 </div>
