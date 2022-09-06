@@ -17,7 +17,7 @@ function CarouselRender({product, interval}){
               <div className="col-12">
                 <Carousel>
                   {
-                      product.images.map(item => <Carousel.Item interval={interval} >
+                      product.images.map(item => <Carousel.Item interval={interval} key={item.id}>
                           <img
                             className="d-block w-100"
                             src={item.imageURL}

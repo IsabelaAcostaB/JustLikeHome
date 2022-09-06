@@ -20,10 +20,12 @@ const Header = () => {
         const userDataOut = {
             name: null,
             lastName: null,
-            isLogged: false
+            isLogged: false,
+            token: null
         }
     
         setUserData(userDataOut);
+        localStorage.removeItem('jwt');
         navigate("/")
     }
     

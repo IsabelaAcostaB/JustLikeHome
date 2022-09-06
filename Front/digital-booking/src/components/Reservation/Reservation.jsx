@@ -1,19 +1,23 @@
+import ConfirmationReservation from "./ConfirmationReservation";
+import { Link } from "react-router-dom";
 import { DateRange } from 'react-date-range';
 import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css';
+
 import calendar from "../CalendarReservation/calendar.css";
-import defaultLocale from 'date-fns/locale/es';
-import { addDays } from 'date-fns';
-import useWindowDimensions from "../../hooks/useWindowDimensions.jsx"
+import defaultLocale from "date-fns/locale/es";
+import { addDays } from "date-fns";
+import useWindowDimensions from "../../hooks/useWindowDimensions.jsx";
 import React, { useState, useEffect, useContext } from "react";
-import axios from 'axios';
+import axios from "axios";
 import { FilterContext } from "../FilterContext";
 import Url from "../../util/Url";
+
 import { PoliciesRender } from '../Products/Product';
 import bootsrap from "bootstrap";
 { /*import { Dropdown, DropdownItem, DropdownMenu, DropdownToggle } from "reactstrap";*/}
-import ConfirmationReservation from "./ConfirmationReservation";
-import { Link } from "react-router-dom";
+
+
 
 
 
@@ -29,12 +33,14 @@ const Reservation = () => {
     {
       startDate: new Date(),
       endDate: null,
+
       key: 'selection'
     }
   ]);
 
   const disabledDates = [1, 2, 3, 4, 5, 6]
   const windowDimension = useWindowDimensions()
+
   const { setFilterData, handleFilterData } = useContext(FilterContext);
 
   const [reservationInfo, setReservationInfo] = useState();
@@ -49,13 +55,15 @@ const Reservation = () => {
         .catch((error) => console.log(error));
     }, [url]);
   }
+
   const [Dropdown, setDropdown] = useState(false)
   const abrirCerrarDropdown = () => (
     setDropdown(!Dropdown)
   )
 
-  Fetch()
+
   useEffect(() => {
+
     window.scrollTo(0, 0)
   }, [])
 
@@ -64,10 +72,13 @@ const Reservation = () => {
 
       <div className="card">
         <div className='card-title'>Completá tus datos</div>
+
         <form>
           <div className="form-labels">
             <label htmlFor="nombre">Nombre:</label>
             <input type="text" name="text" id="name" />
+
+
 
 
 
@@ -76,6 +87,7 @@ const Reservation = () => {
 
             <label htmlFor="city">Ciudad:</label>
             <input type="select" name="city" id="city" />
+
 
           </div>
         </form>

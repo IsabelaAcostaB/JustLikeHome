@@ -1,7 +1,8 @@
 import React, { useState, useContext, useEffect } from "react";
 import { Container } from "react-bootstrap";
 
-import axios from "axios"
+import axios from "axios";
+import Url from "../../util/Url";
 
 
 function SearchCities({setSearch}) {
@@ -9,7 +10,7 @@ function SearchCities({setSearch}) {
   const [cities, setCities] = useState([]);
 
   useEffect(() => {
-    let url = "http://18.217.103.69:8080/api/city";
+    let url = Url() + "/api/city";
     axios.get(url)
     .then(response => setCities(response.data))
     .catch(error => console.log(error))

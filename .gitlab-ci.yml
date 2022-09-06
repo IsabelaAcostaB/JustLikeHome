@@ -1,0 +1,38 @@
+stages:
+ - build
+ - test
+ - deploy
+
+variables:
+  AWS_ACCESS_KEY_ID: "$AWS_ACCESS_KEY_ID"
+  AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY
+  S3_BUCKET_NAME: $S3_BUCKET_NAME
+
+cache:
+  paths:
+    - node_modules/
+
+build:
+  image: node:16.16.0
+  stage: build
+  before_script:
+    - cd ./Front/digital-booking
+  script: 
+    - npm install --force
+    - CI=false npm run build
+    - pwd && ls -la
+  artifacts:
+   paths:
+     - /builds/ctd/proyecto-integrador-0822/1021-ft/grupo-06/Front/digital-booking/build/*
+
+deploy: 
+  image: python:latest
+  stage: deploy
+  before_script:
+    - cd ./Front/digital-booking
+  script:
+    - pwd && ls -la
+    - pip install awscli
+    - aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
+    - aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
+    - aws s3 sync /builds/ctd/proyecto-integrador-0822/1021-ft/grupo-06/Front/digital-booking/build s3://$S3_BUCKET_NAME

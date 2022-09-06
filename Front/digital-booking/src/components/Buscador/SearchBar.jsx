@@ -7,6 +7,10 @@ import { FilterContext } from "../FilterContext";
 import { DateRangePicker } from "react-date-range";
 import SearchCities from "../SearchCities/SearchCities";
 import "./searchbar.css";
+import {format} from 'date-fns'
+import defaultLocale from 'date-fns/locale/es'
+/* import Loader from "react-js-loader" */
+import useWindowDimensions from "../../hooks/useWindowDimensions.jsx"
 
 function SearchBar() {
   const [searchInput, setSearchInput] = useState("");
@@ -14,6 +18,9 @@ function SearchBar() {
   const [endDate, setEndDate] = useState(new Date());
   const [search, setSearch] = useState({ cityCode: null });
   const {setFilterData, handleFilterData} = useContext(FilterContext);
+  
+  const windowDimension = useWindowDimensions()
+  
   const selectionRange = {
     startDate: startDate,
     endDate: endDate,
@@ -29,7 +36,33 @@ function SearchBar() {
     setEndDate(ranges.selection.endDate);
   };
 
+  const [dropCalendar, setDropCalendar] = useState(false)
+  const showCalendar =()=>{
+    setDropCalendar(true)
+  }
 
+  /*
+  <SearchIcon 
+            sx={{ fontSize: 40 }}
+            style={{cursor: "pointer"}}
+            
+            onClick={() => handleFilterData(search)}
+
+  ></SearchIcon>
+
+
+
+  <div className="flex">
+              <button className="button-2" onClick={resetInput}>
+                Cancelar
+              </button>
+              <button className="button-2">Buscar</button>
+  </div>
+
+
+  onChange={(e) => setSearchInput(e.target.value)}
+  value={searchInput}
+  */
 
  
   return (
@@ -41,37 +74,51 @@ function SearchBar() {
         <div className="search-bar">
           <div className="search-input">
             <input
-              value={searchInput}
-              onChange={(e) => setSearchInput(e.target.value)}
-              type="text"
+              onClick={showCalendar}
               placeholder="Selecciona tus fechas"
             />
-            <SearchIcon 
-            sx={{ fontSize: 40 }}
-            style={{cursor: "pointer"}}
             
-            onClick={() => handleFilterData(search)}
-
-            ></SearchIcon>
           </div>
         </div>
 
-        {searchInput && (
+        {dropCalendar && (
           <div className="calendar-container">
+            {windowDimension.width < 768 ?
             <DateRangePicker
               ranges={[selectionRange]}
               minDate={new Date()}
               rangeColors={["#E48561"]}
               onChange={handleSelect}
+              locale= {defaultLocale}
+              direction="horizontal"
+              months={1} 
+              showDateDisplay={false}
             />
-            <div className="flex">
-              <button className="button-2" onClick={resetInput}>
-                Cancelar
-              </button>
-              <button className="button-2">Buscar</button>
+            :
+            <DateRangePicker
+              ranges={[selectionRange]}
+              minDate={new Date()}
+              rangeColors={["#E48561"]}
+              onChange={handleSelect}
+              locale= {defaultLocale}
+              direction="horizontal"
+              months={2} 
+              showDateDisplay={false}
+            />
+            }
+
+            <div>
+              <button className="button-search">Aplicar</button>
             </div>
+            
           </div>
         )}
+
+        <div className="button-search" onClick={() => handleFilterData(search)}>
+          Buscar
+        </div>
+
+
       </div>
     </div>
   );

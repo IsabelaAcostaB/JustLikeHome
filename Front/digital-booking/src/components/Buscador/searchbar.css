@@ -59,20 +59,22 @@
   width: 90vw;
 }
 
-.button-2 {
+.button-search {
   background-color: var(--first-color);
   border: none;
   border-radius: 5px;
   color: #fff;
   cursor: pointer;
-  font-size: 10px;
+  /* font-size: 12px; */
   font-weight: bold;
   height: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 20px;
 }
-.button-2:hover {
+
+.button-search:hover {
   background-color: #f58c6c;
 }
 

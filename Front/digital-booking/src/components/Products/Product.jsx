@@ -9,22 +9,25 @@ import { faCircleXmark } from "@fortawesome/free-regular-svg-icons";
 import axios from "axios";
 import ProductHeader from "./ProductHeader";
 import Amenities from "./Amenities";
-import useWindowDimensions from './Window';
+import useWindowDimensions from "../../hooks/useWindowDimensions";
 import CarouselRender from "../Carousel/Carousel";
-import CarouselDesktopRender from "../Carousel/CarouselDesktop";
 import CalendarReservation from "../CalendarReservation/CalendarReservation";
 import Url from "../../util/Url";
+{/*import PoliciesRender from "./Policies";*/}
 
 function ImagesRender({ product }) {
   const slicedArray = product.images.slice(0, 4);
   /* slicedArray=product.images */
 
+
   return slicedArray.map((item,index) => (
     <div key={index}>
+
       <img src={item.imageURL} />
     </div>
   ));
 }
+
 
 export function  PoliciesRender({ product }) {
   let rules = product.policy.rules;
@@ -66,9 +69,11 @@ export function  PoliciesRender({ product }) {
 }
 
 
+
+
 function Product() {
   const [productInfo, setProductInfo] = useState();
-  const {width, height} = useWindowDimensions();
+  const { width} = useWindowDimensions();
   let location = window.location.pathname;
   const [isActive, setActive] = useState(false);
   const handleToggle = () => {
@@ -77,8 +82,10 @@ function Product() {
 
   /* ------- CODIGO PARA EL FETCH DEL PRODUCTO ------- */
   function Fetch() {
-    let url = Url()+ "/api/product" + location;
-    console.log(url)
+
+    let url = Url()+ "/api/product/product" + location;
+ 
+
     useEffect(() => {
       axios
         .get(url)
@@ -89,22 +96,28 @@ function Product() {
 
   Fetch();
   useEffect(() => {
-    window.scrollTo(0, 0)
-  }, [])
+    window.scrollTo(0, 0);
+  }, []);
 
   /* ----- Tipo de carousel renderizado segun device width ----- */
-  function CarouselDevice({width, product}){
-    if(width >= 1024){
+  function CarouselDevice({ width, product }) {
+    if (width >= 1024) {
       return (
-        <div className={isActive ? "carousel-container-show" : "carousel-container"}>
-          <FontAwesomeIcon icon={faCircleXmark} className="carousel-close" onClick={handleToggle}/>
-        <CarouselRender product={product} interval='100000'/>
+        <div
+          className={
+            isActive ? "carousel-container-show" : "carousel-container"
+          }
+        >
+          <FontAwesomeIcon
+            icon={faCircleXmark}
+            className="carousel-close"
+            onClick={handleToggle}
+          />
+          <CarouselRender product={product} interval="100000" />
         </div>
-      )
-    } else{
-      return(
-      <CarouselRender product={product} interval="3000"/>
-      )
+      );
+    } else {
+      return <CarouselRender product={product} interval="3000" />;
     }
   }
 
@@ -150,12 +163,13 @@ function Product() {
                 <img src={productInfo.images[4].imageURL} />
               </div>
               <ImagesRender product={productInfo} />
-              
             </div>
-            <p className="gallery-p" onClick={handleToggle}>Ver más</p>
-            
+            <p className="gallery-p" onClick={handleToggle}>
+              Ver más
+            </p>
+
             {/* <FontAwesomeIcon icon={faCircleXmark} className="carousel-close" onClick={handleToggle}/> */}
-            <CarouselDevice width={width} product={productInfo}/> 
+            <CarouselDevice width={width} product={productInfo} />
             <div className="description">
               <h2>{productInfo.description_title}</h2>
               <p>{productInfo.description}</p>
@@ -168,15 +182,9 @@ function Product() {
               </div>
             </div>
 
-            <CalendarReservation id={productInfo.id}/>
-            <div className="policies">
-              <h2>Qué tenés que saber</h2>
-              <hr></hr>
-              <PoliciesRender product={productInfo} />
+            <CalendarReservation id={productInfo.id} />
 
-              <div></div>
-              <div></div>
-            </div>
+            <PoliciesRender product={productInfo} />
           </div>
         </div>
       )}
