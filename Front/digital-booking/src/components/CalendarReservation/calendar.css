@@ -5,13 +5,15 @@
     --fourth-color: #f3f0eb;
 }
 
-/*  rdrDayPassive */
+
 .reservationBlock{
 
     display: flex;
     flex-direction: column;
     background-color: #d0d0ca;
     border-radius: 5px;
+    width: 95%;
+        margin-left: 2.5%;
 }
 
 .calendar-mobile .calendar-tablet{
@@ -43,8 +45,15 @@
     background: #E48561;
 }
 
-.reservation{
+/* .reservation{
     margin-top: 50px;
+} */
+.reservation{
+    width: 30vw;
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+    align-self: center;
 }
 
 .reservation h3{
@@ -72,8 +81,8 @@
     background-color:  var(--fourth-color);
 }
 .rdrMonthAndYearWrapper{
-    /* border-radius: 5px; */
-    /* background-color:  #d0d0ca; */
+    border-radius: 5px;
+
     background-color:  var(--fourth-color);
 }
 
@@ -82,8 +91,10 @@
 }
 
 .calendarBlock{
+    width: 100%;
     display: flex;
     flex-direction: column;
+    
     /* padding: 2.5rem; */
     /* justify-content: space-around;
     justify-content: space-evenly; */
@@ -94,25 +105,22 @@
     /* flex-direction: column; */
     align-items: center;
     /* padding: 2.5rem; */
-    background-color: white;
+    /* background-color: white; */
     padding: 2.5rem;
 }
 
-.reservation-container {
-    margin-top: 0;
-    /* padding: 2.5rem; */
-    /* background-color: #d0d0ca; */
-}
-.reservation {
-    margin-top: 0;
-    /* padding: 2.5rem; */
+
+.reservation {    
+    width: 80vw;
+    margin-top: 10px;
+    margin-left: 0;
+    margin-right: 0;
+    border-radius: 5px; 
+
+ 
+    padding: 2.5rem;
     background-color: var(--fourth-color);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 0;
-    /* width: 100%; */
-    margin-top: 20px;
+    box-shadow: 0px 3px 5px rgb(109, 109, 109);
 }
 
 .reservation > .button-2{
@@ -122,6 +130,14 @@
 
 .rdrNextPrevButton, .rdrNextButton{
     background-color: #d0d0ca;
+}
+
+.rdrMonth {
+    width: 50%;
+}
+
+.rdrCalendarWrapper{
+    border-radius: 5px;
 }
 
 /*------------ RESPONSIVE --------*/
@@ -176,34 +192,34 @@
         margin-left: 20px;
         align-self: center;
     }
-
+    
     .reservation button{
         width: 30vw;
     }
 
-    .calendarBlock{
-        /* display: flex;
-        flex-direction: column; */
-        /* padding: 2.5rem; */
-        /* justify-content: space-around;
-        justify-content: space-evenly; */
-    }
+    
     .reservationBlock{
         display: flex;
-        /* flex-direction: column; */
+        
         align-items: center;
-        /* background-color: white; */
+        
         justify-content: space-between;
-        width: 100%;
+        
+        width: 95%;
+        margin-left: 2.5%;
     }
 
     .reservation {
-        margin-top: 0;
+        
         width: 26vw;
         margin-left: 0;
         margin-right: 0;
-        border-radius: 5px;
-        
+        border-radius: 5px; 
+
+        margin-top: 0;
+        padding: 2.5rem;
+        background-color: var(--fourth-color);
+        box-shadow: 0px 3px 5px rgb(109, 109, 109);
     }
 
     .calendar-tablet {
@@ -215,12 +231,7 @@
         padding: 2.5rem;
         /* background-color: #d0d0ca; */
     }
-    .reservation {
-        margin-top: 0;
-        padding: 2.5rem;
-        background-color: var(--fourth-color);
-        box-shadow: 0px 3px 5px rgb(109, 109, 109);
-    }
+    
     .reservation > .button-2{
         width: 25vw;
     }

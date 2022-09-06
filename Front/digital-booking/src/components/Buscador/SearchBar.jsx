@@ -38,7 +38,7 @@ function SearchBar() {
 
   const [dropCalendar, setDropCalendar] = useState(false)
   const showCalendar =()=>{
-    setDropCalendar(true)
+    dropCalendar ? setDropCalendar(false) :setDropCalendar(true)
   }
 
   /*
@@ -73,15 +73,16 @@ function SearchBar() {
         <SearchCities setSearch={setSearch} />
         <div className="search-bar">
           <div className="search-input">
-            <input
+            <button
               onClick={showCalendar}
-              placeholder="Selecciona tus fechas"
-            />
+              /* placeholder="Selecciona tus fechas" */
+              placeholder="Check in - Check out"
+            >Check in - Check out</button>
             
           </div>
         </div>
 
-        {dropCalendar && (
+        {/* {dropCalendar && (
           <div className="calendar-container">
             {windowDimension.width < 768 ?
             <DateRangePicker
@@ -93,6 +94,47 @@ function SearchBar() {
               direction="horizontal"
               months={1} 
               showDateDisplay={false}
+              
+            />
+            :
+            <DateRangePicker
+              ranges={[selectionRange]}
+              minDate={new Date()}
+              rangeColors={["#E48561"]}
+              onChange={handleSelect}
+              locale= {defaultLocale}
+              direction="horizontal"
+              months={2} 
+              showDateDisplay={false}
+            />
+            }
+
+            <div>
+              <button className="button-search">Aplicar</button>
+            </div>
+            
+          </div>
+        )} */}
+
+        <div className="button-search" onClick={() => handleFilterData(search)}>
+          Buscar
+        </div>
+
+
+      </div>
+      {dropCalendar && (
+          <div className="calendar-container">
+            {windowDimension.width < 768 ?
+            <DateRangePicker
+              ranges={[selectionRange]}
+              minDate={new Date()}
+              rangeColors={["#E48561"]}
+              onChange={handleSelect}
+              locale= {defaultLocale}
+              direction="horizontal"
+              months={1} 
+              showDateDisplay={false}
+              
             />
             :
             <DateRangePicker
@@ -113,13 +155,6 @@ function SearchBar() {
             
           </div>
         )}
-
-        <div className="button-search" onClick={() => handleFilterData(search)}>
-          Buscar
-        </div>
-
-
-      </div>
     </div>
   );
 }

@@ -20,7 +20,8 @@ function SearchCities({setSearch}) {
     <div>
       <div>
         <select name="city" onChange={(e)=>setSearch({cityCode: e.target.value, category: null})} className="search_cities">
-          <option value="">Selecciona una ciudad</option>
+          {/* <option value="">Selecciona una ciudad</option> */}
+          <option value="">¿A dónde vamos?</option>
           {cities.map((city, index) => (
             <option value={city.code} key={index}>
               {city.name}

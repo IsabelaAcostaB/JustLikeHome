@@ -9,7 +9,7 @@ import "bootstrap";
 
 function CarouselRender({product, interval}){
     return (
-        <div className="carousel">
+        <div className="carousel-container">
           <div className="container-fluid">
             <div className="row">
             </div>

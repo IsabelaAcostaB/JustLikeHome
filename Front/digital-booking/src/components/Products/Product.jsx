@@ -28,7 +28,7 @@ function ImagesRender({ product }) {
 
 function Product() {
   const [productInfo, setProductInfo] = useState();
-  const { width} = useWindowDimensions();
+  const { width } = useWindowDimensions();
   let location = window.location.pathname;
   const [isActive, setActive] = useState(false);
   const handleToggle = () => {
@@ -57,7 +57,7 @@ function Product() {
       return (
         <div
           className={
-            isActive ? "carousel-container-show" : "carousel-container"
+            isActive ? "carousel-container-show" : "carousel-container-pc"
           }
         >
           <FontAwesomeIcon

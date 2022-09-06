@@ -8,14 +8,21 @@
 .product-location-container{
     display: flex;
     flex-direction: row;
-    background-color: rgb(237, 227, 208);
+    /* background-color: rgb(237, 227, 208); */
+    background-color: #e8e5e0;
     width: 100%;
     justify-content: space-between;
-    padding: 0 2.5rem 0 2.5rem;
+    /* padding: 0 2.5rem 0 2.5rem; */
+    /* padding: 0 0.5rem 0 0.5rem; */
+    padding-right: 2vw;
+    padding-left: 2vw;
     /* box-shadow: 0 1px 5px rgb(175 172 172); */
 }
-
+.product-location{
+    padding: 0 0.5rem;
+}
 .product-rating{
+    padding: 0 0.5rem;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -24,10 +31,11 @@
 
 .product-rating > p{
     background-color: var(--third-color);
+    background-color: rgb(73, 98, 112,0.9);
     color: var(--fourth-color);
-    padding: 10px;
+    padding: 8px;
     border-radius: 5px;
-    box-shadow: 0 5px 5px rgb(175 172 172);
+    /* box-shadow: 0 5px 5px rgb(175 172 172); */
     margin-left: 15px;
 }
 
@@ -80,29 +88,27 @@
     height: auto; */
     border-radius: 5px;
     object-fit: cover;
-    width: 22vw;
-    height: 31.5vh;
+    /* width: 22vw; */
+    width: 100%;
+    /* height: 31.5vh; */
+    height: 100%;
     
 }
 
 #mainImage{
     border-radius: 5px;
     /* width: 41.25rem; */ 
-    width: 42vw; 
+    width: 50%; 
     /* height: 30.625rem; */
-    height: 63.5vh;
-    grid-column-start: 1;
+    /* height: 63.5vh; */
+    height: 100%;
+    /* grid-column-start: 1;
     grid-column-end: 3;
     grid-row-start: 1;
-    grid-row-end: 3;
+    grid-row-end: 3; */
 }
 #mainImage > img{
     border-radius: 5px;
-    /* width: 660px; */ 
-    width: 45vw; 
-    /* width: 46.2vw; */ 
-    height: 65vh;
-    padding: 0.1rem;
  }
 
 .mini-gallery{
@@ -126,8 +132,42 @@
     /* padding: 0.5rem; */
 }
 
+.carousel-container{
+    width: 100%;
+    padding: 1.5rem;
+    padding-bottom: 0;
+    position: relative;
+}
+
+/* .carousel-container{
+    width: 100%;
+    padding: 0;
+    
+    position: relative;
+} */
+ 
+
+ /* pc */
+/* .carousel{
+    width: 100%;
+    padding: 0;
+    position: relative;
+} */
+
+.d-block.w-100{
+    height: 80vh;
+    /* width: 80vw; */
+    object-fit: cover;
+   /*  padding: 1.5rem; */
+}
+
+.carousel-caption{
+    text-shadow: 0px 0.5px 3px grey;
+    display: none;
+}
+
 .description{
-    padding: 2.5rem;
+    padding: 1.5rem;
 }
 .description > h2{
     color: var(--second-color);
@@ -138,7 +178,7 @@
 }
 
 .amenities{
-    padding: 2.5rem;
+    padding: 1.5rem;
 }
 
 .amenities > h2 {
@@ -203,7 +243,11 @@
 
 @media screen and (min-width:1024px){
     .gallery-container{
-       display: grid;
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+        align-content: space-between;
+        justify-content: space-between;
     }
 
     .amenities > .characteristics {
@@ -233,6 +277,7 @@
         height: 35rem;
         vertical-align: center;
     }
+
     .container-fluid{
         position: fixed;
         padding: 10vh 0;
@@ -245,9 +290,14 @@
 
 
     .d-block.w-100{
-        height: 35rem;
+        height: 80vh;
         width: 48rem;
         object-fit: cover;
+    }
+   
+
+    .carousel-container{
+        padding: 0;
     }
 
 
@@ -257,22 +307,44 @@
         display: block;
     }
 
-    .carousel-container{
+   /*  .carousel-container{
         display: none;
-    }
+    } */
+    /* .carousel-container{
+        width: 100%;
+        padding: 0;
+        
+        position: relative;
+    } */
     
     .carousel-close{
         color: var(--fourth-color);
         position: fixed;
         z-index: 99999999999999;
-        left: 82vw;
-        top: 12vh;
+        right: 1.5vh;
+        top: 1.5vh;
         height: 30px;
         filter: drop-shadow(0px 2px 3px rgb(0 0 0 / 0.5));
     }
     .carousel-close:hover{
         cursor: pointer;
         color: var(--first-color);
+    }
+
+    .carousel-control-prev{
+       /*  position: fixed ;
+        margin-left: 1px; */
+    }
+    .carousel-control-next {
+        
+    }
+
+    .amenities{
+        padding: 2.5rem;
+    }
+
+    .description{
+        padding: 2.5rem;
     }
 }
 
