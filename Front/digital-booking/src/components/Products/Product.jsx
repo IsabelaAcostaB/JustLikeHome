@@ -13,18 +13,63 @@ import useWindowDimensions from "../../hooks/useWindowDimensions";
 import CarouselRender from "../Carousel/Carousel";
 import CalendarReservation from "../CalendarReservation/CalendarReservation";
 import Url from "../../util/Url";
-import PoliciesRender from "./Policies";
+{/*import PoliciesRender from "./Policies";*/}
 
 function ImagesRender({ product }) {
   const slicedArray = product.images.slice(0, 4);
   /* slicedArray=product.images */
 
-  return slicedArray.map((item) => (
-    <div key={item.id}>
+
+  return slicedArray.map((item,index) => (
+    <div key={index}>
+
       <img src={item.imageURL} />
     </div>
   ));
 }
+
+
+export function  PoliciesRender({ product }) {
+  let rules = product.policy.rules;
+  let arrayRules = rules.split(",");
+  let health_safety = product.policy.health_safety;
+  let arrayHealth = health_safety.split(",");
+  let cancellation_policy = product.policy.cancellation_policy;
+  let arrayCancellation = cancellation_policy.split(",");
+  
+  return (
+    <div className="policies-container">
+      {console.log(arrayRules)}
+      <div className="rules-container">
+        <h3>Normas de la casa</h3>
+        <ul type="none">
+          {arrayRules.map((item) => (
+            <li>{item}</li>
+          ))}
+        </ul>
+      </div>
+      <div className="healthSafety-container">
+        <h3>Salud y seguridad</h3>
+        <ul type="none">
+        {arrayHealth.map((item) => (
+            <li>{item}</li>
+          ))}
+        </ul>
+      </div>
+      <div className="cancellation-container">
+        <h3>Política de cancelación</h3>
+        <ul type="none">
+        {arrayCancellation.map((item) => (
+            <li>{item}</li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  );
+}
+
+
+
 
 function Product() {
   const [productInfo, setProductInfo] = useState();
@@ -37,7 +82,10 @@ function Product() {
 
   /* ------- CODIGO PARA EL FETCH DEL PRODUCTO ------- */
   function Fetch() {
-    let url = Url() + "/api/product" + location;
+
+    let url = Url()+ "/api/product/product" + location;
+ 
+
     useEffect(() => {
       axios
         .get(url)
@@ -145,3 +193,4 @@ function Product() {
 }
 
 export default Product;
+
