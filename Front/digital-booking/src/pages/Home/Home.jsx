@@ -4,7 +4,7 @@ import SearchBar from "../../components/Buscador/SearchBar";
 import Listar from "../../components/List/List";
 import {FilterProvider} from "../../components/FilterContext"
 import {FilterContext} from "../../components/FilterContext"
-import axios from "axios"
+import axios from "axios";
 
 const Home = ()=>{
     const [products, setProducts] = useState([]);

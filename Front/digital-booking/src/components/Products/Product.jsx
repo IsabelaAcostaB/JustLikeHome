@@ -19,14 +19,14 @@ function ImagesRender({ product }) {
   const slicedArray = product.images.slice(0, 4);
   /* slicedArray=product.images */
 
-  return slicedArray.map((item) => (
-    <div>
+  return slicedArray.map((item,index) => (
+    <div key={index}>
       <img src={item.imageURL} />
     </div>
   ));
 }
 
-function PoliciesRender({ product }) {
+export function  PoliciesRender({ product }) {
   let rules = product.policy.rules;
   let arrayRules = rules.split(",");
   let health_safety = product.policy.health_safety;
@@ -36,6 +36,7 @@ function PoliciesRender({ product }) {
   
   return (
     <div className="policies-container">
+      {console.log(arrayRules)}
       <div className="rules-container">
         <h3>Normas de la casa</h3>
         <ul type="none">
@@ -77,6 +78,7 @@ function Product() {
   /* ------- CODIGO PARA EL FETCH DEL PRODUCTO ------- */
   function Fetch() {
     let url = Url()+ "/api/product" + location;
+    console.log(url)
     useEffect(() => {
       axios
         .get(url)
@@ -183,3 +185,4 @@ function Product() {
 }
 
 export default Product;
+
