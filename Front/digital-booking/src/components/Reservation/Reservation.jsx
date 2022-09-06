@@ -11,7 +11,7 @@ import { FilterContext } from "../FilterContext";
 import Url from "../../util/Url";
 import { PoliciesRender } from '../Products/Product';
 import bootsrap from "bootstrap";
-import { Dropdown, DropdownItem, DropdownMenu, DropdownToggle } from "reactstrap";
+{ /*import { Dropdown, DropdownItem, DropdownMenu, DropdownToggle } from "reactstrap";*/}
 import ConfirmationReservation from "./ConfirmationReservation";
 import { Link } from "react-router-dom";
 
