@@ -71,50 +71,15 @@ function SearchBar() {
 
       <div className="search-bar">
         <SearchCities setSearch={setSearch} />
-        <div className="search-bar">
+        <div className="search-bar-dates">
           <div className="search-input">
             <button
               onClick={showCalendar}
               /* placeholder="Selecciona tus fechas" */
-              placeholder="Check in - Check out"
-            >Check in - Check out</button>
+              placeholder="Check in - Check out">Check in - Check out</button>
             
           </div>
         </div>
-
-        {/* {dropCalendar && (
-          <div className="calendar-container">
-            {windowDimension.width < 768 ?
-            <DateRangePicker
-              ranges={[selectionRange]}
-              minDate={new Date()}
-              rangeColors={["#E48561"]}
-              onChange={handleSelect}
-              locale= {defaultLocale}
-              direction="horizontal"
-              months={1} 
-              showDateDisplay={false}
-              
-            />
-            :
-            <DateRangePicker
-              ranges={[selectionRange]}
-              minDate={new Date()}
-              rangeColors={["#E48561"]}
-              onChange={handleSelect}
-              locale= {defaultLocale}
-              direction="horizontal"
-              months={2} 
-              showDateDisplay={false}
-            />
-            }
-
-            <div>
-              <button className="button-search">Aplicar</button>
-            </div>
-            
-          </div>
-        )} */}
 
         <div className="button-search" onClick={() => handleFilterData(search)}>
           Buscar

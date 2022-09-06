@@ -13,67 +13,64 @@ import useWindowDimensions from "../../hooks/useWindowDimensions";
 import CarouselRender from "../Carousel/Carousel";
 import CalendarReservation from "../CalendarReservation/CalendarReservation";
 import Url from "../../util/Url";
-{/*import PoliciesRender from "./Policies";*/}
+import PoliciesRender from "./Policies";
 
 function ImagesRender({ product }) {
   const slicedArray = product.images.slice(0, 4);
   /* slicedArray=product.images */
 
-
-  return slicedArray.map((item,index) => (
-    <div key={index}>
-
+  return slicedArray.map((item) => (
+    <div key={item.id}>
       <img src={item.imageURL} />
     </div>
   ));
 }
 
-
-export function  PoliciesRender({ product }) {
+export function PoliciesRender2({ product }) {
   let rules = product.policy.rules;
   let arrayRules = rules.split(",");
   let health_safety = product.policy.health_safety;
   let arrayHealth = health_safety.split(",");
   let cancellation_policy = product.policy.cancellation_policy;
   let arrayCancellation = cancellation_policy.split(",");
-  
+
   return (
-    <div className="policies-container">
-      {console.log(arrayRules)}
-      <div className="rules-container">
-        <h3>Normas de la casa</h3>
-        <ul type="none">
-          {arrayRules.map((item) => (
-            <li>{item}</li>
-          ))}
-        </ul>
-      </div>
-      <div className="healthSafety-container">
-        <h3>Salud y seguridad</h3>
-        <ul type="none">
-        {arrayHealth.map((item) => (
-            <li>{item}</li>
-          ))}
-        </ul>
-      </div>
-      <div className="cancellation-container">
-        <h3>Política de cancelación</h3>
-        <ul type="none">
-        {arrayCancellation.map((item) => (
-            <li>{item}</li>
-          ))}
-        </ul>
+    <div className="policies">
+      <h2>Qué tenés que saber</h2>
+      <hr></hr>
+      <div className="policies-container">
+        <div className="rules-container">
+          <h3>Normas de la casa</h3>
+          <ul type="none">
+            {arrayRules.map((item) => (
+              <li>{item}</li>
+            ))}
+          </ul>
+        </div>
+        <div className="healthSafety-container">
+          <h3>Salud y seguridad</h3>
+          <ul type="none">
+            {arrayHealth.map((item) => (
+              <li>{item}</li>
+            ))}
+          </ul>
+        </div>
+        <div className="cancellation-container">
+          <h3>Política de cancelación</h3>
+          <ul type="none">
+            {arrayCancellation.map((item) => (
+              <li>{item}</li>
+            ))}
+          </ul>
+        </div>
       </div>
     </div>
   );
 }
 
-
-
-
 function Product() {
   const [productInfo, setProductInfo] = useState();
-  const { width } = useWindowDimensions();
+  const { width} = useWindowDimensions();
   let location = window.location.pathname;
   const [isActive, setActive] = useState(false);
   const handleToggle = () => {
@@ -82,10 +79,7 @@ function Product() {
 
   /* ------- CODIGO PARA EL FETCH DEL PRODUCTO ------- */
   function Fetch() {
-
-    let url = Url()+ "/api/product/product" + location;
- 
-
+    let url = Url() + "/api/product" + location;
     useEffect(() => {
       axios
         .get(url)
@@ -105,7 +99,7 @@ function Product() {
       return (
         <div
           className={
-            isActive ? "carousel-container-show" : "carousel-container-pc"
+            isActive ? "carousel-container-show" : "carousel-container"
           }
         >
           <FontAwesomeIcon
@@ -185,6 +179,7 @@ function Product() {
             <CalendarReservation id={productInfo.id} />
 
             <PoliciesRender product={productInfo} />
+
           </div>
         </div>
       )}
@@ -193,4 +188,3 @@ function Product() {
 }
 
 export default Product;
-

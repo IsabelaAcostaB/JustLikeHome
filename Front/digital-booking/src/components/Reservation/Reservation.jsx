@@ -13,7 +13,7 @@ import axios from "axios";
 import { FilterContext } from "../FilterContext";
 import Url from "../../util/Url";
 
-import { PoliciesRender } from '../Products/Product';
+import { PoliciesRender2 } from '../Products/Product';
 import bootsrap from "bootstrap";
 { /*import { Dropdown, DropdownItem, DropdownMenu, DropdownToggle } from "reactstrap";*/}
 
@@ -55,7 +55,7 @@ const Reservation = () => {
         .catch((error) => console.log(error));
     }, [url]);
   }
-
+  Fetch()
   const [Dropdown, setDropdown] = useState(false)
   const abrirCerrarDropdown = () => (
     setDropdown(!Dropdown)
@@ -183,7 +183,7 @@ const Reservation = () => {
       </div>
       <div className="card">
         <div className="card-title">Cosas que tenés que saber</div>
-        {reservationInfo && <PoliciesRender product={reservationInfo} />}
+        {reservationInfo && <PoliciesRender2 product={reservationInfo} />}
 
       </div>
     </div>
