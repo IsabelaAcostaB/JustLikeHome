@@ -334,6 +334,9 @@ h1.category-title {
   .cards-container-category {
     width: 98%;
   }
+  .cards-container-category:hover {
+    cursor: pointer;
+  }
 
   .cards-container-category > .card {
     height: 250px;

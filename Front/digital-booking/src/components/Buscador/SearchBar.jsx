@@ -112,15 +112,7 @@ function SearchBar() {
             <FontAwesomeIcon icon={faCalendarDays} />
             <span>{inputPlaceholder}</span>
           </div>
-        </div>
-
-        <div className="button-search" onClick={() => handleFilterData(search)}>
-          Buscar
-        </div>
-
-
-      </div>
-      {dropCalendar && (
+          {dropCalendar && (
           <div className="calendar-container">
             {windowDimension.width < 768 ?
             <DateRangePicker
@@ -147,12 +139,21 @@ function SearchBar() {
             />
             }
 
-            <div>
+            <div className="button-search-container">
               <button className="button-search"  onClick={applyDates}>Aplicar</button>
             </div>
             
           </div>
         )}
+        </div>
+
+        <div className="button-search" onClick={() => handleFilterData(search)}>
+          Buscar
+        </div>
+
+
+      </div>
+      
     </div>
   );
 }
