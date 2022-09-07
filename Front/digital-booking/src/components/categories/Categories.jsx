@@ -5,7 +5,7 @@ import Url from "../../util/Url";
 
 
 const Categorias= () => {
-  const {setFilterData, handleFilterData} = useContext(FilterContext);
+  const {handleFilterData} = useContext(FilterContext);
 
   const [categoryInfo, setCategoryInfo] = useState([]);
 
@@ -19,7 +19,8 @@ const Categorias= () => {
 
 
   return categoryInfo.map(item => (
-    <div key={item.id} className="card card-shadow m-3 home-card" onClick={() => handleFilterData({category: item.code, cityCode: null})}>
+    <div key={item.id} className="card card-shadow m-3 home-card" onClick={() => handleFilterData({category: item.code, cityCode: null, rangeOfDates:{checkIn:null,
+      checkOut: null}})}>
       <img src={item.imageURL}  class="card-img-top" />
       <p className="card-title" key={item.id}>
         <h2> {item.title}</h2> 

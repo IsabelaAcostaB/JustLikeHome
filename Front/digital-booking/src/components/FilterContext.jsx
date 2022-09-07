@@ -6,7 +6,11 @@ export const FilterContext = createContext();
 export const FilterProvider =({children})=>{
     const [filterData, setFilterData] = useState({
         cityCode: null,
-        category: null
+        category: null,
+        rangeOfDates: {
+            checkIn:null,
+            checkOut: null
+        }
       
     });
     const handleFilterData = newValues => {

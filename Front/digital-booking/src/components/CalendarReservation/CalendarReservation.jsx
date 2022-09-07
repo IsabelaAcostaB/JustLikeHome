@@ -4,7 +4,6 @@ import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css';
 import calendar from "./calendar.css"
 import defaultLocale from 'date-fns/locale/es';
-import { addDays } from 'date-fns';
 import useWindowDimensions from "../../hooks/useWindowDimensions.jsx"
 import {Link} from 'react-router-dom';
 
@@ -58,7 +57,7 @@ const CalendarReservation =({id})=>{
             direction="horizontal"
             showPreview = {false}
             locale= {defaultLocale}
-            minDate={addDays(new Date(), 0)}
+            minDate={new Date()}
             months={1} 
 
           />
@@ -69,7 +68,7 @@ const CalendarReservation =({id})=>{
             direction="horizontal"
             showPreview = {false}
             locale= {defaultLocale}
-            minDate={addDays(new Date(), 0)}
+            minDate={new Date()}
             months={2} 
 
         />
