@@ -16,12 +16,12 @@
 .reservation-form{
     padding: 0;
 }
-.form-labels > div{
+.form-labels-reservation > div{
     display: flex;
     flex-direction: column;
 }
 
-.reservation-form > .form-labels > div> input{
+.reservation-form > .form-labels-reservation > div> input{
     /* color: #d0d0ca; */
     /* color: var(--third-color); */
     background-color: #e3e3db;
@@ -101,7 +101,8 @@
         padding: 1.5rem;
     }
      */
-     .form-labels{
+     .form-labels-reservation{
+        display: flex;
         flex-direction: row;
         flex-wrap: wrap;
      }

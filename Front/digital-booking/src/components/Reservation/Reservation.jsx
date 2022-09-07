@@ -73,7 +73,7 @@ const Reservation = () => {
         
 
         <form className="reservation-form">
-          <div className="form-labels">
+          <div className="form-labels-reservation">
             <div>
             <label htmlFor="nombre">Nombre:</label>
             <input type="text" name="text" id="name" />
