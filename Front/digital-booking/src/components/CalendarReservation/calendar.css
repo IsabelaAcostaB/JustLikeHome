@@ -76,18 +76,21 @@
 }
 
 .rdrMonth{
-    border-radius: 0 0 5px 5px;
-    /* background-color:  #d0d0ca; */
     background-color:  var(--fourth-color);
+    /* width: 20vw; */
+    width: 100%;
 }
 .rdrMonthAndYearWrapper{
-    border-radius: 5px;
+    border-radius: 0 5px 0 0;
 
     background-color:  var(--fourth-color);
 }
-
+.rdrDay{
+    /* background-color: #d0d0ca; */
+   /*  border-radius: 35px; */
+}
 .rdrCalendarWrapper.rdrDateRangeWrapper{
-    border-radius: 5px;
+    /* border-radius: 5px; */
 }
 
 .calendarBlock{
@@ -132,12 +135,9 @@
     background-color: #d0d0ca;
 }
 
-.rdrMonth {
-    width: 50%;
-}
 
 .rdrCalendarWrapper{
-    border-radius: 5px;
+   /*  border-radius: 5px; */
 }
 
 /*------------ RESPONSIVE --------*/
@@ -234,5 +234,23 @@
     
     .reservation > .button-2{
         width: 25vw;
+    }
+
+    .rdrDefinedRangesWrapper{
+        width: 160px;
+    }
+
+    .rdrInputRanges {
+        padding: 5px 0;
+    }
+
+    .rdrMonth{
+        background-color:  var(--fourth-color);
+        width: 20vw;
+    }
+    .rdrMonthAndYearWrapper{
+        border-radius: 0 5px 0 0;
+    
+        background-color:  var(--fourth-color);
     }
 }
