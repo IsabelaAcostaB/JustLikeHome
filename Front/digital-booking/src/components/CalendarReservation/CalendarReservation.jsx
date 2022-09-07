@@ -20,6 +20,17 @@ const CalendarReservation =({id})=>{
     }
   ]);
 
+  const disabledDates = [
+
+    //2 y 3 de diciembre
+    new Date(2022, 11, 3),
+    new Date(2022, 11, 2),
+    new Date(2022, 8, 10),
+    new Date(2022, 8, 20),
+
+
+  ]
+
 
   const windowDimension = useWindowDimensions()
 
@@ -59,6 +70,7 @@ const CalendarReservation =({id})=>{
             locale= {defaultLocale}
             minDate={new Date()}
             months={1} 
+            disabledDates={disabledDates}
 
           />
 
@@ -70,6 +82,7 @@ const CalendarReservation =({id})=>{
             locale= {defaultLocale}
             minDate={new Date()}
             months={2} 
+            disabledDates={disabledDates}
 
         />
 

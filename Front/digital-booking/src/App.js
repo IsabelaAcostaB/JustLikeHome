@@ -7,11 +7,11 @@ import SignUp from "./pages/SignUp/SignUp";
 import Header from "./components/Header/Index";
 import Footer from "./components/Footer/Index";
 import Listar from "./components/List/List";
-// import HomeRegister from "./pages/EjRegistro/HomeRegister"
 import ProductPage from "./pages/Product/ProductTemplate";
 import {UserProvider} from "./components/UserContext";
 import {FilterProvider} from "./components/FilterContext";
 import Reservation from "./components/Reservation/Reservation"
+import PrivateRoute from "./components/RequireAuth";
 
 
 function App() {
@@ -27,9 +27,12 @@ function App() {
           <Route exact path="/" element={<Home />} />
           <Route path="/signUp" element={<SignUp />} />
           <Route path="/signIn" element={<SignIn />} />
-          <Route path="/reservation/:id" element={<Reservation />}/>
           <Route path="/listar" element={<Listar />}/> 
           <Route path="/product/:id" element={<ProductPage />}/> 
+
+          <Route element={<PrivateRoute />}>
+          <Route path="/reservation/:id" element={<Reservation />}/>
+          </Route>
 
         </Routes>
         
