@@ -14,12 +14,12 @@ const Home = ()=>{
     //const [loading, setLoading] = useState(false);
       
     //ACA LO DE PAGINACION
-    const [productsPerPage, setProductsPerPage] = useState(7)
-    const [currentPage, setCurrentPage ] = useState(null);
+    const [productsPerPage, setProductsPerPage] = useState(6)
+    const [currentPage, setCurrentPage ] = useState(1);
 
 
     const indexFirstProduct = (currentPage-1)*productsPerPage
-    const indexLastProduct = indexFirstProduct+(productsPerPage-1)
+    const indexLastProduct = indexFirstProduct+(productsPerPage)
     const currentProducts = products.slice(indexFirstProduct, indexLastProduct)
 
     const pages = Math.ceil(products.length/productsPerPage);
@@ -34,11 +34,16 @@ const Home = ()=>{
     if(filterData.rangeOfDates.checkIn && filterData.rangeOfDates.checkOut && filterData.cityCode){
       console.log('por city code y rango fecha')
       const getProductsByCityAndDates = async ()=>{
-         const url = Url() + `api/product/productCity/id/${filterData.cityCode}/${filterData.rangeOfDates.checkIn}/${filterData.rangeOfDates.checkOut}`;
-         const result = await axios.get(url);
+        //let  checkIn = filterData.rangeOfDates.checkIn.replaceAll("/", "-");
+        //let  checkOut = filterData.rangeOfDates.checkOut.replaceAll("/", "-");
+
+        const url = Url() + `/api/product/${filterData.cityCode}/${filterData.rangeOfDates.checkIn}/${filterData.rangeOfDates.checkOut}`;
+/*          const url = `http://18.217.103.69:8080/api/product/${filterData.cityCode}/${filterData.rangeOfDates.checkIn}/${filterData.rangeOfDates.checkOut}`;
+ */        const result = await axios.get(url);
         setProducts(result.data)
       }
       getProductsByCityAndDates()
+
 
     }
     else if(filterData.rangeOfDates.checkIn && filterData.rangeOfDates.checkOut){
@@ -100,6 +105,7 @@ useEffect(() => {
       <ListarCat/>
       <h2 className="recommendation-h2">Recomendados</h2>
       <Listar products={currentProducts} />
+
       <PaginationNumbers pages ={pages} setCurrentPage={setCurrentPage} />
     </div>
   )

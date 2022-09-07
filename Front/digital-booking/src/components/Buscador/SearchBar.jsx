@@ -78,7 +78,7 @@ function SearchBar() {
   function sendedDateFomatter(date){
     const d = moment(date).locale('es');
     return(
-      d.format('YYYY/MM/DD')
+      d.format('YYYY-MM-DD')
     )
 
   }
@@ -92,7 +92,6 @@ function SearchBar() {
         checkIn:sendedDateFomatter(startDate),
         checkOut: sendedDateFomatter(endDate)
       }
-      
     });
 
     setInputPlaceholder(newDateFormatter(startDate)+ " - " +newDateFormatter(endDate));
@@ -124,7 +123,7 @@ function SearchBar() {
               direction="horizontal"
               months={1} 
               showDateDisplay={false}
-              
+  
             />
             :
             <DateRangePicker
@@ -142,7 +141,6 @@ function SearchBar() {
             <div className="button-search-container">
               <button className="button-search"  onClick={applyDates}>Aplicar</button>
             </div>
-            
           </div>
         )}
         </div>

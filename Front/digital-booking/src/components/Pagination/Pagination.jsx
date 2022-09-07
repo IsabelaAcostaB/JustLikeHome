@@ -9,14 +9,16 @@ const PaginationNumbers =({pages,setCurrentPage})=>{
     const showCurrentProducts =(event, page)=>{
         event.preventDefault();
         setCurrentPage(page);
+        
+
     }
-   
 
     return(
         
         <Stack spacing={2}>
             <Pagination count={pages} color="warning" size='large'
             onChange={showCurrentProducts}
+
             />
         </Stack>
     )
