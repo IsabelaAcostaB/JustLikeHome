@@ -122,6 +122,7 @@ function Product() {
           <ProductHeader
             category={productInfo.category.title}
             title={productInfo.title}
+            path="/"
           />
           <div className="product">
             <div className="product-location-container">

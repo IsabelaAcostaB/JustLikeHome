@@ -51,7 +51,7 @@ function Cards({ products }) {
         <p className="card-category">{item.category.title}</p>
         <p className="card-location">
           <FontAwesomeIcon icon={faLocationDot} className="location-icon" />
-          {item.city.name}
+          {item.city.name}, {item.city.country}
         </p>
         {/* <p className="card-description">{item.description}</p>  */}
         <AmenitiesIcons product={item} />

@@ -1,0 +1,110 @@
+:root{
+    --first-color:#e48561;
+    --second-color: rgb(56, 77, 88);
+    --third-color: #496270;
+    --fourth-color: rgb(243, 240, 235);
+}
+
+.reservation-container{
+    /* margin: 1.5rem; */
+    padding: 0;
+    height: 65vh;
+    width: 90vw;
+    margin: 0 5vw 5vw 5vw;
+}
+
+.reservation-form{
+    padding: 0;
+}
+.form-labels > div{
+    display: flex;
+    flex-direction: column;
+}
+
+.reservation-form > .form-labels > div> input{
+    /* color: #d0d0ca; */
+    /* color: var(--third-color); */
+    background-color: #e3e3db;
+    box-shadow: none;
+    padding: 20px;
+    font-family: "Poppins", sans-serif;
+}
+
+
+
+
+.reservation-container-product{
+    height: auto;
+}
+
+.rdrDateDisplayWrapper{
+    display: none;
+}
+
+.reservation-data-h2, .reservation-dates-h2, .reservation-title-h2, .reservation-times-h2{
+    color: var(--second-color);
+    /* margin-left: 5vw;
+    margin-bottom: 0; */
+    /* padding: ; */
+    padding: 5vw 5vw 0 5vw;
+}
+
+.reservationBlock{
+    margin-top: 0;
+}
+
+.rdrMonthAndYearWrapper{
+    border-radius: 5px;
+}
+
+.reservation-product-info{
+    width: 90vw;
+    margin: 0 5vw 5vw 5vw;
+}
+.reservation-product-info > .button-c{
+    /* width: 90vw;
+    margin: 0 5vw 5vw 5vw; */
+    width: 70%;
+    margin: 10% 15% 6% 15%;
+}
+.reservation-product-info > .button-c:hover{
+    background-color: #496270;
+}
+
+.reservation-times-info{
+    width: 90vw;
+    margin: 0 5vw 5vw 5vw;
+}
+
+.reservation-times-info > p {
+    padding-left: 15px;
+    padding-top: 7px;
+    font-weight: 200;
+    line-height: 25px;
+}
+
+
+@media (min-width: 1024px) {
+    .reservation-container{
+        width: 70%;
+        padding: 0  0 0 2.5rem;
+        margin-left: 2.5rem;
+        margin-top: 2.5rem;
+        height: 34vh;
+    }
+    /* .reservation-form{
+        display: flex;
+        flex-direction: row;
+    } */
+
+    /* .reservation-form > input{
+        padding: 1.5rem;
+    }
+     */
+     .form-labels{
+        flex-direction: row;
+        flex-wrap: wrap;
+     }
+
+
+}

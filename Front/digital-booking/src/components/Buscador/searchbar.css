@@ -37,6 +37,7 @@
   align-items: center;
   display: flex;
   border: none;
+  font-family: "Poppins", sans-serif;
 }
 
 .search_cities:focus {

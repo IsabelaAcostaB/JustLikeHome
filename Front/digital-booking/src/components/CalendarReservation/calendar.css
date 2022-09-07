@@ -10,8 +10,10 @@
   flex-direction: column;
   background-color: #d0d0ca;
   border-radius: 5px;
-  width: 95%;
-  margin-left: 2.5%;
+  width: 90vw;
+/*   margin-left: 2.5%;
+  margin-left: 2.5%; */
+  margin: 5vw;
 }
 
 .calendar-mobile .calendar-tablet {
@@ -237,7 +239,7 @@
   }
 
   .calendarBlock {
-    width: 50%;
+    /* width: 50%; */
     border-radius: 5px;
 /*     display: flex;
     flex-direction: column; */

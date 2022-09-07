@@ -35,8 +35,7 @@ const Home = ()=>{
       console.log('por city code y rango fecha')
       const getProductsByCityAndDates = async ()=>{
          const url = Url() + `api/product/productCity/id/${filterData.cityCode}/${filterData.rangeOfDates.checkIn}/${filterData.rangeOfDates.checkOut}`;
-/*          const url = `http://18.217.103.69:8080/api/product/${filterData.cityCode}/${filterData.rangeOfDates.checkIn}/${filterData.rangeOfDates.checkOut}`;
- */        const result = await axios.get(url);
+         const result = await axios.get(url);
         setProducts(result.data)
       }
       getProductsByCityAndDates()

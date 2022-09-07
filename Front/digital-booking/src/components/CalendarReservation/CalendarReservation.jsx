@@ -76,7 +76,7 @@ const CalendarReservation =({id})=>{
         }
 
       </div>
-      <div className="reservation-container">
+      <div className="reservation-container reservation-container-product">
       <div className="reservation">
         <h3>Agregá tus fechas de viaje para obtener precios exactos</h3>
         {/* <button className="button-c">Iniciar reserva</button> */}

@@ -324,7 +324,7 @@
     .carousel-close{
         color: var(--fourth-color);
         position: fixed;
-        z-index: 99999999999999;
+        z-index: 97;
         right: 1.5vh;
         top: 1.5vh;
         height: 30px;
