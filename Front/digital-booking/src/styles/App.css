@@ -473,4 +473,20 @@ h1.category-title {
     padding: 1rem;
     width: 33vw;
   }
+  .card-amenities{
+    /* height: 20px; */
+    padding-left: 12px;
+    display: flex;
+    padding-top: 3px;
+    /* justify-content: space-evenly; */
+  }
+
+  .card-amenities > img{
+    /* color: #384d58; */
+    /* color: var(--first-color); */
+    opacity: 0.8;
+    color: #384d58;
+    height: 20px;
+    padding-right: 1rem;
+  }
 }

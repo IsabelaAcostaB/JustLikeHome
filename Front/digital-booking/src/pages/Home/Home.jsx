@@ -44,9 +44,16 @@ const Home = ()=>{
     }
     else if(filterData.rangeOfDates.checkIn && filterData.rangeOfDates.checkOut){
       console.log('por rango fechas')
+      
       const getProductsByDates = async ()=>{
-        const url = Url() + `api/product/${filterData.rangeOfDates.checkIn}/${filterData.rangeOfDates.checkOut}`;
+        let  checkIn = filterData.rangeOfDates.checkIn.replaceAll("/", "-");
+        let  checkOut = filterData.rangeOfDates.checkOut.replaceAll("/", "-");
+        
+        
+        const url = Url() + `/api/product/${checkIn}/${checkOut}`;
+        console.log(url)
         const result = await axios.get(url);
+       
         setProducts(result.data)
       }
       getProductsByDates()
