@@ -49,8 +49,8 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
            "\tFROM reservation\n" +
            "\tINNER JOIN product ON reservation.product_id = product.id\n" +
            "\tINNER JOIN city ON product.city_id = city.id\n" +
-           "     ) AS a  \n" +
-           "WHERE  a.check_in NOT BETWEEN (:checkInD) AND (:checkOutD)  AND a.check_out NOT BETWEEN (:checkInD) AND (:checkOutD) AND a.city_code = (:cityCode);", nativeQuery = true)
+           " \t    ) AS a  \n" +
+           " \t WHERE  a.check_in NOT BETWEEN (:checkInD) AND (:checkOutD)  AND a.check_out NOT BETWEEN (:checkInD) AND (:checkOutD) AND a.city_code = (:cityCode) GROUP BY a.id;", nativeQuery = true)
     List<Product> findByRangeOfDatesAndCity(@Param("checkInD") Date checkInD, @Param("checkOutD") Date checkOut, @Param("cityCode")String cityCode);
 
 
@@ -66,8 +66,8 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
            "\tFROM reservation\n" +
            "\tINNER JOIN product ON reservation.product_id = product.id\n" +
            "\tINNER JOIN city ON product.city_id = city.id\n" +
-           "     ) AS a  \n" +
-           "WHERE  a.check_in NOT BETWEEN (:checkInD) AND (:checkOutD)  AND a.check_out NOT BETWEEN (:checkInD) AND (:checkOutD);", nativeQuery = true)
+           "\t     ) AS a  \n" +
+           "\t WHERE  a.check_in NOT BETWEEN (:checkInD) AND (:checkOutD)  AND a.check_out NOT BETWEEN (:checkInD) AND (:checkOutD) GROUP BY a.id;", nativeQuery = true)
     List<Product> findByRangeOfDates(@Param("checkInD") Date checkInD, @Param("checkOutD") Date checkOut);
 
 }
