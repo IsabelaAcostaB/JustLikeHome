@@ -17,6 +17,7 @@ import "./reservation.css"
 import ProductHeader from "../Products/ProductHeader";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
+import { ImagesRender } from "../List/List";
 {
   /*import { Dropdown, DropdownItem, DropdownMenu, DropdownToggle } from "reactstrap";*/
 }
@@ -172,10 +173,8 @@ const Reservation = () => {
 
       {reservationInfo && (
         <div className="card reservation-product-info">
-          <img
-            src={reservationInfo.images[1].imageURL}
-            className="card-img-top"
-          />
+          
+          <ImagesRender item={reservationInfo}/>
           <div className="card-title" key={reservationInfo.id}>
             <h2> {reservationInfo.title}</h2>
             <p className="card-location">

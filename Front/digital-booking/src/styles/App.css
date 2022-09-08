@@ -234,7 +234,7 @@ h1.category-title {
 
 .card-title p {
   padding-left: 15px;
-  padding-top: 7px;
+  padding-top: 4px;
   font-weight: 200;
   line-height: 25px;
 }
@@ -323,6 +323,23 @@ h1.category-title {
 
 .cards-container-recommended > .card > .card-title > .card-location {
   text-align: left;
+}
+
+.card-amenities{
+  /* height: 20px; */
+  padding-left: 12px;
+  display: flex;
+  padding-top: 3px;
+  /* justify-content: space-evenly; */
+}
+
+.card-amenities > img{
+  /* color: #384d58; */
+  /* color: var(--first-color); */
+  opacity: 0.8;
+  color: #384d58;
+  height: 20px;
+  padding-right: 1rem;
 }
 
 @media (min-width: 768px) {
@@ -473,20 +490,7 @@ h1.category-title {
     padding: 1rem;
     width: 33vw;
   }
-  .card-amenities{
-    /* height: 20px; */
-    padding-left: 12px;
-    display: flex;
-    padding-top: 3px;
-    /* justify-content: space-evenly; */
-  }
 
-  .card-amenities > img{
-    /* color: #384d58; */
-    /* color: var(--first-color); */
-    opacity: 0.8;
-    color: #384d58;
-    height: 20px;
-    padding-right: 1rem;
-  }
 }
+
+

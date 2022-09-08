@@ -230,7 +230,14 @@
     width: 50%;
 }
 
-
+.product > .description > p {
+    margin-top: 2vh;
+    font-weight: 400;
+    /* letter-spacing: 1px; */
+    line-height: 30px;
+    font-size: 16px;
+    opacity: 0.95;
+}
 
 
 @media screen and (min-width:768px){
@@ -352,3 +359,8 @@
     }
 }
 
+.product > .product-location-container > div > p , 
+.product > .product-location-container > div > div > p {
+    font-size: 0.9rem;
+    font-weight: 500;
+}

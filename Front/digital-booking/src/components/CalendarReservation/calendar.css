@@ -114,7 +114,7 @@
   margin-right: 0;
   border-radius: 5px;
 
-  padding: 2.5rem;
+  padding: 1.5rem;
   background-color: var(--fourth-color);
   box-shadow: 0px 3px 5px rgb(109, 109, 109);
 }
@@ -129,9 +129,15 @@
 }
 
 .rdrCalendarWrapper {
-  /*  border-radius: 5px; */
+   border-radius: 5px;
 }
+.rdrMonth{
+  border-radius: 5px;
+}
+.button-c{
 
+  margin-top: 20px;
+}
 /*------------ RESPONSIVE --------*/
 @media screen and (min-width: 768px) {
   .rdrCalendarWrapper {
@@ -156,10 +162,19 @@
 
   .reservation button {
     width: 50vw;
+
+  }
+
+  .button-c{
+    width: 50%;
+    margin-top: 0;
   }
 }
 
 @media screen and (min-width: 1024px) {
+  .button-c{
+    width: 100%;
+  }
   .calendar-tablet {
     width: 66vw;
   }
@@ -234,9 +249,7 @@
   .rdrMonth {
     width: 100%;
   }
-  .rdrMonthAndYearWrapper {
-    border-radius: 0 5px 0 0;
-  }
+  
 
   .calendarBlock {
     /* width: 50%; */

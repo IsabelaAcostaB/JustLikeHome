@@ -19,10 +19,10 @@ function AmenitiesIcons({ product }) {
   );
 }
 
-function ImagesRender({item}){
+export function ImagesRender({item}){
   let mainImage;
   for (let i = 0; i < item.images.length; i++) {
-    if (item.images[i].main_img){
+    if (item.images[i].main_img ==1){
       mainImage = item.images[i].imageURL
     }
     

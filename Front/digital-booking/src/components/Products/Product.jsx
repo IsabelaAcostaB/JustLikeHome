@@ -68,6 +68,20 @@ export function PoliciesRender2({ product }) {
   );
 }
 
+function ImagesMain({item}){
+  let mainImage;
+  for (let i = 0; i < item.images.length; i++) {
+    if (item.images[i].main_img ==1){
+      mainImage = item.images[i].imageURL
+    }
+    
+  }
+
+  return (
+    <img src={mainImage} />
+  )
+}
+
 function Product() {
   const [productInfo, setProductInfo] = useState();
   const { width} = useWindowDimensions();
@@ -155,7 +169,8 @@ function Product() {
 
             <div className="gallery-container">
               <div id="mainImage">
-                <img src={productInfo.images[4].imageURL} />
+                <ImagesMain item={productInfo}/>
+
               </div>
               <ImagesRender product={productInfo} />
             </div>
