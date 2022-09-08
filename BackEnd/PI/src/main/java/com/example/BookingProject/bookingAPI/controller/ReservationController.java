@@ -1,10 +1,12 @@
 package com.example.BookingProject.bookingAPI.controller;
 
 import com.example.BookingProject.bookingAPI.persistence.model.Image;
+import com.example.BookingProject.bookingAPI.persistence.model.Product;
 import com.example.BookingProject.bookingAPI.persistence.model.Reservation;
 import com.example.BookingProject.bookingAPI.persistence.repository.ReservationRepository;
 import com.example.BookingProject.bookingAPI.service.ReservationService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,6 +19,9 @@ public class ReservationController {
 
     @Autowired
     ReservationService reservationService;
+
+    @Autowired
+    ReservationRepository reservationRepository;
 
 
     @PostMapping
@@ -50,6 +55,9 @@ public class ReservationController {
         return new ResponseEntity<>(reservationService.updateReservation(reservation), HttpStatus.OK);
     }
 
-
+    @GetMapping("/findProduct/{id}")
+    public ResponseEntity<?> getReservationsByProductId(@PathVariable Long id){
+        return new ResponseEntity<>(reservationRepository.getReservationsByProductId(id), HttpStatus.OK);
+    }
 
 }
