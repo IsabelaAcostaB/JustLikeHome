@@ -12,6 +12,7 @@ import {UserProvider} from "./components/UserContext";
 import {FilterProvider} from "./components/FilterContext";
 import Reservation from "./components/Reservation/Reservation"
 import PrivateRoute from "./components/RequireAuth";
+import ConfirmationReservation from "./components/Reservation/ConfirmationReservation";
 
 
 function App() {
@@ -30,8 +31,10 @@ function App() {
           <Route path="/listar" element={<Listar />}/> 
           <Route path="/product/:id" element={<ProductPage />}/> 
 
+
           <Route element={<PrivateRoute />}>
           <Route path="/reservation/:id" element={<Reservation />}/>
+          <Route path="/ConfirmationReservation/" element={<ConfirmationReservation />}/> 
           </Route>
 
         </Routes>
