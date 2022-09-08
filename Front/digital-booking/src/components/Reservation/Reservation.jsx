@@ -18,9 +18,6 @@ import ProductHeader from "../Products/ProductHeader";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
 import { ImagesRender } from "../List/List";
-import id from "date-fns/esm/locale/id/index.js";
-import moment from 'moment';
-
 {
   /*import { Dropdown, DropdownItem, DropdownMenu, DropdownToggle } from "reactstrap";*/
 }
@@ -38,27 +35,6 @@ const Reservation = () => {
       key: "selection",
     },
   ]);
-  const startDate = state[0].startDate
-  const endDate = state[0].endDate
-
-  
-
-
-  /*const year = startDate.getFullYear()
-  const month = startDate.getMonth()
-  const day = startDate.getDate()
-
-  const yearE = endDate.getFullYear()
-  const monthE = endDate.getMonth()
-  const dayE = endDate.getDate() */
-
-
-  function sendedDateFomatter(date){
-    const d = moment(date);
-    return(
-      d.format('YYYY-MM-DD')
-    )
-  }
 
   const disabledDates = [1, 2, 3, 4, 5, 6];
   const windowDimension = useWindowDimensions();
@@ -82,24 +58,7 @@ const Reservation = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-  const data = {productId:reservationInfo.id,checkIn:sendedDateFomatter(startDate),checkOut:sendedDateFomatter(endDate),userId:""} ;
-  const token = localStorage.getItem("jwt")
-  const postProductReservationDays = async ()=>{
-    try{
-      const url = Url()+ "/reservation"+ location;
-      const result = await axios.post(url,data,{
-      headers: {
-        'Authorization': `Bearer ${token}`
-      }
-      });
-    } catch(e){
-      console.log(e.message)
-    }
-    
-  }
-  postProductReservationDays()
-  
-}, []);
+  }, []);
 
   return (
   
@@ -172,7 +131,7 @@ const Reservation = () => {
       </div>
       <h2 className="card-title reservation-times-h2">Tu horario de llegada </h2>
       <div className="card reservation-times-info">
-        <p>Revisa tu horario de check-in en las Normas de la casa de tu hospedaje </p>
+        <p>Tu habitación va a estar lista para el check-in entre las tantan y las tantan</p>
         
         {/*  <Dropdown isOpen={Dropdown} toggle={abrirCerrarDropdown}>
           <DropdownToggle caret>

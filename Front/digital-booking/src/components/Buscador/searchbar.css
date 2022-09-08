@@ -214,6 +214,15 @@
   align-items: center;
 }
 
+@media (min-width: 768px) {
+  .calendar-container {
+
+    top: 38vh;
+
+  }
+}
+
+
 @media (min-width: 1024px) {
   .rdrDateRangePickerWrapper {
     display: inline-flex;
@@ -252,7 +261,9 @@
     border-radius: 5px;
     z-index: 98;
     box-shadow: 0 2px 5px darkgrey;
+    top: 48vh
   }
+
   .calendar-container > .flex {
     display: flex;
     flex-direction: row;

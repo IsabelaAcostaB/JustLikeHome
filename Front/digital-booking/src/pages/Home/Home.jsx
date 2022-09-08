@@ -30,7 +30,6 @@ const Home = ()=>{
  
   const {filterData} = useContext(FilterContext)
   useEffect(()=>{
-    console.log(filterData)
     if(filterData.rangeOfDates.checkIn && filterData.rangeOfDates.checkOut && filterData.cityCode){
       console.log('por city code y rango fecha')
       const getProductsByCityAndDates = async ()=>{

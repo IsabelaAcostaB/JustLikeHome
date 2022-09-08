@@ -5,6 +5,24 @@
     --fourth-color: rgb(243, 240, 235);
 }
 
+.confirmation-icon{
+    color: var(--second-color);
+    height: 20vh;
+}
+.reservation-card{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 50vh;
+    margin: 1.5rem;
+
+}
+.main-reservation{
+    display: flex;
+    /* height: 400px */
+   /*  max-height: 93vh; */
+}
+
 .reservation-container{
     /* margin: 1.5rem; */
     padding: 0;

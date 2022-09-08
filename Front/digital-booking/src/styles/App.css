@@ -152,7 +152,7 @@ input:focus {
 /* HEADER Y SEARCH BAR */
 
 header {
-  z-index: 99;
+  z-index: 9999;
 }
 
 /* .search-bar {

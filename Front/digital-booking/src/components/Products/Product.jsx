@@ -16,10 +16,15 @@ import Url from "../../util/Url";
 import PoliciesRender from "./Policies";
 
 function ImagesRender({ product }) {
-  const slicedArray = product.images.slice(0, 4);
-  /* slicedArray=product.images */
+  let arrayImages = [];
+  for (let i = 0; i <= 4; i++) {
+    if (product.images[i].main_img == 0){
+      arrayImages.push(product.images[i])
+    }
+    
+  }
 
-  return slicedArray.map((item) => (
+  return arrayImages.map((item) => (
     <div key={item.id}>
       <img src={item.imageURL} />
     </div>
@@ -81,6 +86,9 @@ function ImagesMain({item}){
     <img src={mainImage} />
   )
 }
+
+
+
 
 function Product() {
   const [productInfo, setProductInfo] = useState();
