@@ -131,7 +131,7 @@ const Reservation = () => {
       </div>
       <h2 className="card-title reservation-times-h2">Tu horario de llegada </h2>
       <div className="card reservation-times-info">
-        <p>Tu habitación va a estar lista para el check-in entre las tantan y las tantan</p>
+        <p>Tu habitación va a estar lista para el check-in entre las x y las x</p>
         
         {/*  <Dropdown isOpen={Dropdown} toggle={abrirCerrarDropdown}>
           <DropdownToggle caret>
