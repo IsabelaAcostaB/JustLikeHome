@@ -5,7 +5,6 @@ import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
 import calendar from "../CalendarReservation/calendar.css";
 import defaultLocale from "date-fns/locale/es";
-import { addDays } from "date-fns";
 import useWindowDimensions from "../../hooks/useWindowDimensions.jsx";
 import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
@@ -18,6 +17,8 @@ import ProductHeader from "../Products/ProductHeader";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
 import { ImagesRender } from "../List/List";
+import moment from 'moment';
+import {ReservationContext} from "../ReservationContext"
 {
   /*import { Dropdown, DropdownItem, DropdownMenu, DropdownToggle } from "reactstrap";*/
 }
@@ -27,19 +28,72 @@ const Reservation = () => {
   let locationAPI = locationReservation.split("/");
   let location = locationAPI[2];
 
+  // RANGO DE FECHAS DEL CALENDARIO
   const [state, setState] = useState([
     {
       startDate: new Date(),
-      endDate: null,
+      endDate: new Date(),
 
       key: "selection",
     },
   ]);
 
-  const disabledDates = [1, 2, 3, 4, 5, 6];
-  const windowDimension = useWindowDimensions();
+  const startDate = state[0].startDate
+  const endDate = state[0].endDate
 
-  const { setFilterData, handleFilterData } = useContext(FilterContext);
+  const year = startDate.getFullYear()
+  const month = startDate.getMonth()
+  const day = startDate.getDate()
+
+  const yearE = endDate.getFullYear()
+  const monthE = endDate.getMonth()
+  const dayE = endDate.getDate()
+
+
+  function sendedDateFomatter(date){
+    const d = moment(date);
+    return(
+      d.format('YYYY-MM-DD')
+    )
+  }
+
+  // DESHABILITA LAS FECHAS RESERVADAS EN EL CALENDARIO
+
+  const {reservationsDates}= useContext(ReservationContext)
+
+  const getRange = (startDate, endDate, type = 'days') => {
+    let fromDate = moment(startDate)
+    let toDate = moment(endDate)
+    let diff = toDate.diff(fromDate, type)
+    let range = [];
+    for (let i = 0; i <= diff; i++) {
+      range.push(moment(startDate).add(i, type)._d)
+    }
+    return range
+  }
+
+
+  const disabledDates = []
+  
+  let allDays = [] 
+  reservationsDates.map( rd=>{
+    allDays = [...allDays, ...getRange(rd.checkIn, rd.checkOut)]
+  })
+ 
+  const days = allDays
+  
+  days.map((d)=>{
+    const year = d.getFullYear()
+    const month = d.getMonth()
+    const day = d.getDate()
+
+    disabledDates.push(
+      new Date(year, month, day)
+    )
+  })
+
+
+  const windowDimension = useWindowDimensions();
 
   const [reservationInfo, setReservationInfo] = useState();
 
@@ -110,6 +164,8 @@ const Reservation = () => {
                 moveRangeOnFirstSelection={false}
                 ranges={state}
                 locale={defaultLocale}
+                minDate={new Date()}
+                disabledDates={disabledDates}
               />
             </div>
           ) : (
@@ -123,7 +179,8 @@ const Reservation = () => {
                 ranges={state}
                 direction="horizontal"
                 locale={defaultLocale}
-                disablePast
+                minDate={new Date()}
+                disabledDates={disabledDates}
               />
             </div>
           )}
@@ -181,6 +238,10 @@ const Reservation = () => {
           <FontAwesomeIcon icon={faLocationDot} className="location-icon" />
           {reservationInfo.city.name}, {reservationInfo.city.country}
         </p>
+          </div>
+          <div className="dates">
+            <h3>Check In: {day}/{month}/{year}</h3>
+            <h3>Check Out: {dayE}/{monthE}/{yearE}</h3>
           </div>
           <Link className="button-c" to={`/ConfirmationReservation/`}>
             Confirmar reserva

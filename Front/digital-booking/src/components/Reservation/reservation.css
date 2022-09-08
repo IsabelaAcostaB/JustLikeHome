@@ -72,10 +72,11 @@
     margin-top: 0;
 }
 
+/*
 .rdrMonthAndYearWrapper{
-    /* border-radius: 5px; */
+     border-radius: 5px; 
 }
-
+*/
 .reservation-product-info{
     width: 90vw;
     margin: 0 5vw 5vw 5vw;
@@ -86,6 +87,17 @@
     width: 70%;
     margin: 10% 15% 6% 15%;
 }
+
+.dates{
+    margin-top: 10px;
+    margin-left: 20px;
+    color: var(--second-color);
+} 
+
+.dates h3{
+    margin-top: 10px;
+}
+
 .reservation-product-info > .button-c:hover{
     background-color: #496270;
 }

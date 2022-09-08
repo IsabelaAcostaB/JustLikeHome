@@ -9,7 +9,7 @@ import {Link} from 'react-router-dom';
 
 
 
-const CalendarReservation =({id})=>{
+const CalendarReservation =({id, disabledD})=>{
   let location = window.location.pathname;
   
   const [state, setState] = useState([
@@ -20,41 +20,12 @@ const CalendarReservation =({id})=>{
     }
   ]);
 
-  const disabledDates = [
+//disabledDates={disabledDates}
 
-    //2 y 3 de diciembre
-    new Date(2022, 11, 3),
-    new Date(2022, 11, 2),
-    new Date(2022, 8, 10),
-    new Date(2022, 8, 20),
-
-
-  ]
 
 
   const windowDimension = useWindowDimensions()
 
-  /*
-  function handleSelect(ranges){
-    console.log(ranges);
-    // {
-    //   selection: {
-    //     startDate: [native Date Object],
-    //     endDate: [native Date Object],
-    //   }
-    // }
-  }
-
-
-  const selectionRange = {
-    startDate: new Date(),
-    endDate: new Date(),
-    key: 'selection',
-  }
-
-          
-
-  */
 
   return (
     <div className="reservationBlock">
@@ -70,7 +41,7 @@ const CalendarReservation =({id})=>{
             locale= {defaultLocale}
             minDate={new Date()}
             months={1} 
-            disabledDates={disabledDates}
+            disabledDates={disabledD}
 
           />
 
@@ -82,7 +53,7 @@ const CalendarReservation =({id})=>{
             locale= {defaultLocale}
             minDate={new Date()}
             months={2} 
-            disabledDates={disabledDates}
+            disabledDates={disabledD}
 
         />
 

@@ -13,7 +13,7 @@ import {FilterProvider} from "./components/FilterContext";
 import Reservation from "./components/Reservation/Reservation"
 import PrivateRoute from "./components/RequireAuth";
 import ConfirmationReservation from "./components/Reservation/ConfirmationReservation";
-
+import {ReservationProvider} from "./components/ReservationContext"
 
 function App() {
 
@@ -22,6 +22,7 @@ function App() {
 
       <UserProvider>
       <FilterProvider>
+      <ReservationProvider>
       <BrowserRouter>
         <Header />
         <Routes>
@@ -41,6 +42,7 @@ function App() {
         
         <Footer />
       </BrowserRouter>
+      </ReservationProvider>
       </FilterProvider>
       </UserProvider>
 
