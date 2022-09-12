@@ -60,4 +60,9 @@ public class ReservationController {
         return new ResponseEntity<>(reservationRepository.getReservationsByProductId(id), HttpStatus.OK);
     }
 
+    @GetMapping("/userReservation/{id}")
+    public ResponseEntity<?> getReservationsByUserId(@PathVariable Long id){
+        return new ResponseEntity<>(reservationRepository.getReservationsByUserId(id), HttpStatus.OK);
+    }
+
 }

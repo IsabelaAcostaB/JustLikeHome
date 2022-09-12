@@ -15,4 +15,9 @@ public interface ReservationRepository extends JpaRepository<Reservation, Long> 
     @Query(value = " SELECT reservation.* FROM reservation WHERE reservation.product_id =(:id)", nativeQuery = true)
     List<Reservation> getReservationsByProductId(@Param("id") Long id);
 
+    @Query(value = " SELECT product.* , reservation.* \n" +
+            "FROM product \n" +
+            "JOIN reservation ON product.reservation_id = reservation.id \n" +
+            "WHERE reservation.user_id = (:id);", nativeQuery = true)
+    List<Reservation> getReservationsByUserId(@Param("id") Long id);
 }
