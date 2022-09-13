@@ -5,7 +5,7 @@ import {Link} from "react-router-dom"
 
 const ConfirmationReservation =() =>{
     return(
-<div className="card">
+<div className="card-position-center">
     <img src="./confirmacion.png" className="card-img-top"/>
     <div className="card-title">¡Muchas Gracias!</div>
     <div className="card-body">Su reserva se ha realizado con éxito</div>
