@@ -1,5 +1,5 @@
 import React from "react";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./product.css";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
@@ -14,12 +14,19 @@ import CarouselRender from "../Carousel/Carousel";
 import CalendarReservation from "../CalendarReservation/CalendarReservation";
 import Url from "../../util/Url";
 import PoliciesRender from "./Policies";
+import {ReservationContext} from "../ReservationContext"
+import moment from 'moment';
 
 function ImagesRender({ product }) {
-  const slicedArray = product.images.slice(0, 4);
-  /* slicedArray=product.images */
+  let arrayImages = [];
+  for (let i = 0; i <= 4; i++) {
+    if (product.images[i].main_img == 0){
+      arrayImages.push(product.images[i])
+    }
+    
+  }
 
-  return slicedArray.map((item) => (
+  return arrayImages.map((item) => (
     <div key={item.id}>
       <img src={item.imageURL} />
     </div>
@@ -82,6 +89,9 @@ function ImagesMain({item}){
   )
 }
 
+
+
+
 function Product() {
   const [productInfo, setProductInfo] = useState();
   const { width} = useWindowDimensions();
@@ -106,6 +116,71 @@ function Product() {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  // GET PARA TRAER RESERVACIONES DEL PRODUCTO Y USARLO EN EL CALENDARIO
+
+  let locationPath = location.split("/");
+  let locationId = locationPath[2];
+
+
+  
+  const {reservationsDates, setReservationsDates}= useContext(ReservationContext)
+  const token = localStorage.getItem("jwt")
+
+
+  useEffect(()=>{
+    const getProductReservationDays = async ()=>{
+      try{
+        const url = Url()+ "/reservation/findProduct/"+locationId;
+        const result = await axios.get(url,{
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+        });
+
+      setReservationsDates(result.data)
+      } catch(e){
+        console.log(e.message)
+      }
+    }
+    getProductReservationDays()
+  },[locationId])
+
+  // DESHABILITA LAS FECHAS RESERVADAS EN EL CALENDARIO
+  const getRange = (startDate, endDate, type = 'days') => {
+    let fromDate = moment(startDate)
+    let toDate = moment(endDate)
+    let diff = toDate.diff(fromDate, type)
+    let range = [];
+    for (let i = 0; i <= diff; i++) {
+      range.push(moment(startDate).add(i, type)._d)
+    }
+    return range
+  }
+
+
+  const disabledDates = []
+  
+  let allDays = [] 
+  reservationsDates.map( rd=>{
+    allDays = [...allDays, ...getRange(rd.checkIn, rd.checkOut)]
+  })
+ 
+  const days = allDays
+  
+  days.map((d)=>{
+    const year = d.getFullYear()
+    const month = d.getMonth()
+    const day = d.getDate()
+
+    disabledDates.push(
+      new Date(year, month, day)
+    )
+  })
+
+
+
+
 
   /* ----- Tipo de carousel renderizado segun device width ----- */
   function CarouselDevice({ width, product }) {
@@ -192,7 +267,7 @@ function Product() {
               </div>
             </div>
 
-            <CalendarReservation id={productInfo.id} />
+            <CalendarReservation id={productInfo.id} disabledD={disabledDates}/>
 
             <PoliciesRender product={productInfo} />
 

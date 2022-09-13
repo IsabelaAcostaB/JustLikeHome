@@ -5,12 +5,31 @@
     --fourth-color: rgb(243, 240, 235);
 }
 
+.confirmation-icon{
+    color: var(--second-color);
+    height: 20vh;
+}
+.reservation-card{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 50vh;
+    margin: 1.5rem;
+
+}
+.main-reservation{
+    display: flex;
+    /* height: 400px */
+   /*  max-height: 93vh; */
+}
+
 .reservation-container{
     /* margin: 1.5rem; */
     padding: 0;
     height: 65vh;
     width: 90vw;
     margin: 2vh 0 0 0 ;
+    margin: 5vw;
 }
 
 .reservation-form{
@@ -53,10 +72,11 @@
     margin-top: 0;
 }
 
+/*
 .rdrMonthAndYearWrapper{
-    /* border-radius: 5px; */
+     border-radius: 5px; 
 }
-
+*/
 .reservation-product-info{
     width: 90vw;
     margin: 0 5vw 5vw 5vw;
@@ -67,6 +87,17 @@
     width: 70%;
     margin: 10% 15% 6% 15%;
 }
+
+.dates{
+    margin-top: 10px;
+    margin-left: 20px;
+    color: var(--second-color);
+} 
+
+.dates h3{
+    margin-top: 10px;
+}
+
 .reservation-product-info > .button-c:hover{
     background-color: #496270;
 }

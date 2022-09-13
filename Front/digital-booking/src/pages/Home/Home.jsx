@@ -30,9 +30,8 @@ const Home = ()=>{
  
   const {filterData} = useContext(FilterContext)
   useEffect(()=>{
-    console.log(filterData)
     if(filterData.rangeOfDates.checkIn && filterData.rangeOfDates.checkOut && filterData.cityCode){
-      console.log('por city code y rango fecha')
+      //console.log('por city code y rango fecha')
       const getProductsByCityAndDates = async ()=>{
         //let  checkIn = filterData.rangeOfDates.checkIn.replaceAll("/", "-");
         //let  checkOut = filterData.rangeOfDates.checkOut.replaceAll("/", "-");
@@ -47,7 +46,7 @@ const Home = ()=>{
 
     }
     else if(filterData.rangeOfDates.checkIn && filterData.rangeOfDates.checkOut){
-      console.log('por rango fechas')
+      //console.log('por rango fechas')
       
       const getProductsByDates = async ()=>{
         let  checkIn = filterData.rangeOfDates.checkIn.replaceAll("/", "-");
@@ -65,7 +64,7 @@ const Home = ()=>{
     }
 
     else if (filterData.category){
-      console.log('por categoria')
+      //console.log('por categoria')
       const getProductsByCategory = async ()=>{
         const url = Url()+ `/api/product/productCategory/code/${filterData.category}`;
         const result = await axios.get(url);
@@ -74,7 +73,7 @@ const Home = ()=>{
       getProductsByCategory()
     }
     else if (filterData.cityCode){
-      console.log('por city code')
+      //console.log('por city code')
       const getProductsByCity = async ()=>{
         const url = Url()+ `/api/product/productCity/id/${filterData.cityCode}`;
         const result = await axios.get(url);
@@ -84,7 +83,7 @@ const Home = ()=>{
     }
     else{
       const getAllProducts = async ()=>{
-        console.log('por default')
+        //console.log('por default')
         const url = Url()+ "/api/product";
         const result = await axios.get(url);
         setProducts(result.data)
