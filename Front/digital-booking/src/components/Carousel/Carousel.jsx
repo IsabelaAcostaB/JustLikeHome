@@ -3,9 +3,6 @@ import { Carousel } from "react-bootstrap";
 import "./carousel.css";
 import "bootstrap";
 
-/* const carousel = new bootstrap.Carousel(myCarouselElement, {
-  interval: 3000
-}) */
 
 function CarouselRender({product, interval}){
     return (

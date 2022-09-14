@@ -1,6 +1,7 @@
-import React, { createContext, useState } from "react";
-//import jwt from 'jwt-decode'
-
+import React, { createContext, useState, useEffect } from "react";
+import jwt_decode from "jwt-decode";
+import axios from "axios";
+import Url from "../util/Url";
 
 
 export const UserContext = createContext();
@@ -14,31 +15,7 @@ export const UserProvider =({children})=>{
         token: null
     });
 
-
-    //const decode = jwt.decode(userData.token)
-    //const userById = JSON.parse(decode.userId)
-
-    /*
-    useEffect(()=>{
-        const getUser = async ()=>{
-            try{
-
-                const url = `http://18.217.103.69:8080/api/user/${userById}`;
-                const response = await axios.get(url);
-                
-        
-
-               
-            }catch(error){
-                console.log(error)
-    
-            }
-
-        }
-        getUser()
-    },[])
-
-    */
+  
 
     return (
         <UserContext.Provider value ={{userData,setUserData}}>
