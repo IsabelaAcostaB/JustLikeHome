@@ -20,12 +20,12 @@ import { ImagesRender } from "../List/List";
 import moment from "moment";
 import { ReservationContext } from "../ReservationContext";
 import { faCircleXmark } from "@fortawesome/free-regular-svg-icons";
-import {
+/* import {
   Dropdown,
   DropdownItem as option,
   DropdownMenu,
   DropdownToggle,
-} from "reactstrap";
+} from "reactstrap"; */
 import { useNavigate } from "react-router-dom";
 
 import { UserContext } from "../UserContext.jsx";
@@ -115,29 +115,8 @@ const Reservation = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-
-  {/*const data = {productId:reservationInfo.id,checkIn:sendedDateFomatter(startDate),checkOut:sendedDateFomatter(endDate),userId:""} ;
-  const token = localStorage.getItem("jwt")
-  const postProductReservationDays = async ()=>{
-    try{
-      const url = Url()+ "/reservation"+ location;
-      const result = await axios.post(url,data,{
-      headers: {
-        'Authorization': `Bearer ${token}`
-      
-      });
-    } catch(e){
-      console.log(e.message)
-    }
-    
-  }
-  postProductReservationDays()
-  }*/}
-}, []);
-=======
   }, []);
 
-<<<<<<< HEAD
   /* --------------- POST ------------------- */
 
   let checkInhour = "10:00";
@@ -193,11 +172,14 @@ const Reservation = () => {
       return (
         
         <div className="reservation-error">
-           <FontAwesomeIcon
+          {
+          console.log(reservationError)}
+          {console.log(isActive)}
+            <FontAwesomeIcon
             icon={faCircleXmark}
             className="carousel-close"
-            onClick={handleToggle()}
-          /> 
+            onClick={handleToggle}
+          />  
           <h2>Lamentablemente la reserva no ha podido realizarse</h2>
           <p>Por favor, intente más tarde</p>
           <button className="button-c button-error">Aceptar</button>
@@ -205,8 +187,6 @@ const Reservation = () => {
       );
     }
   }
-=======
->>>>>>> 2d338863969e8393c6a076244c15a293a4ed41c3
 
   return (
     <div className="main">
