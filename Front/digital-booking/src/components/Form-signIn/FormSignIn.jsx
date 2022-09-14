@@ -29,16 +29,6 @@ const FormSignIn = () =>{
         const url = "http://18.217.103.69:8080/api/authentication/sign-in";
         const result = await axios.post(url, userDataForm);
         
-        /* 
-        {
-            headers:{
-                'Authorization': `Bearer ${localStorage.getItem('jwt')}`
-            }
-        }
-
-        */
-
-
         if (result.request.status === 200){
             const userDataLog = {
                 name: result.data.name,
