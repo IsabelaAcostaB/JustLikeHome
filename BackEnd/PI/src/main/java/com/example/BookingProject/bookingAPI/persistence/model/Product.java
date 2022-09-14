@@ -73,11 +73,5 @@ public class Product {
 
     private City city;
 
-//    @OneToMany(cascade = CascadeType.MERGE)
-//    @JoinColumn(
-//            name = "reservation_id",
-//            referencedColumnName = "id"
-//    )
-//    private Set<Reservation> reservations = new HashSet<>();
 
 }

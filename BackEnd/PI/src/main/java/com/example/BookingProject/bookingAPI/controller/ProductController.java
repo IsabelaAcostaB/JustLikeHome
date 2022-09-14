@@ -16,7 +16,7 @@ import java.util.Date;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/product")
+@RequestMapping("api")
 public class ProductController {
 
     @Autowired
@@ -59,6 +59,11 @@ public class ProductController {
         return productRepository.findByCityCode(cityCode);
 
     }
+    @PutMapping
+    public ResponseEntity<?> update(@RequestBody Product product) {
+        return new ResponseEntity<>(productService.updateProduct(product),HttpStatus.OK);
+    }
+
      /*       Encontrar por categoria       */
 
     @GetMapping("/productCategory/name/{category}")
