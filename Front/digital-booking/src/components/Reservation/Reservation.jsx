@@ -115,8 +115,29 @@ const Reservation = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
+
+  {/*const data = {productId:reservationInfo.id,checkIn:sendedDateFomatter(startDate),checkOut:sendedDateFomatter(endDate),userId:""} ;
+  const token = localStorage.getItem("jwt")
+  const postProductReservationDays = async ()=>{
+    try{
+      const url = Url()+ "/reservation"+ location;
+      const result = await axios.post(url,data,{
+      headers: {
+        'Authorization': `Bearer ${token}`
+      
+      });
+    } catch(e){
+      console.log(e.message)
+    }
+    
+  }
+  postProductReservationDays()
+  }*/}
+}, []);
+=======
   }, []);
 
+<<<<<<< HEAD
   /* --------------- POST ------------------- */
 
   let checkInhour = "10:00";
@@ -184,6 +205,8 @@ const Reservation = () => {
       );
     }
   }
+=======
+>>>>>>> 2d338863969e8393c6a076244c15a293a4ed41c3
 
   return (
     <div className="main">

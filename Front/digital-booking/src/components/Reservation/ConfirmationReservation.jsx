@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheckCircle } from "@fortawesome/free-regular-svg-icons";
 
+
+
 const ConfirmationReservation = () => {
   return (
     <div className="main main-reservation">
@@ -13,6 +15,7 @@ const ConfirmationReservation = () => {
           icon={faCheckCircle}
             className="confirmation-icon"
         />
+
 
         <div className="card-title">¡Muchas Gracias!</div>
         <div className="card-body">Su reserva se ha realizado con éxito</div>
