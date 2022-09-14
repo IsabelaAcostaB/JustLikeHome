@@ -16,7 +16,7 @@ import java.util.Date;
 import java.util.List;
 
 @RestController
-@RequestMapping("api")
+@RequestMapping("api/product")
 public class ProductController {
 
     @Autowired
@@ -36,7 +36,7 @@ public class ProductController {
         return new ResponseEntity<>(productService.getAllProducts(),HttpStatus.OK);
     }
 
-    @GetMapping("/product/{id}")
+    @GetMapping("/{id}")
     public Product getProductById(@PathVariable Long id){
         return productService.getProductById(id);
     }
