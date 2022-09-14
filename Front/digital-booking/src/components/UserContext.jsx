@@ -8,8 +8,8 @@ export const UserContext = createContext();
 
 
 export const UserProvider =({children})=>{
-    let token = localStorage.getItem("jwt");
-    let decode = jwt_decode(token);
+    /* let token = localStorage.getItem("jwt");
+    let decode = jwt_decode(token); */
 
     const [userData, setUserData] = useState({
         name: null,
@@ -18,7 +18,7 @@ export const UserProvider =({children})=>{
         token: null
     });
 
-    const [response, setResponse] = useState(null)
+    /* const [response, setResponse] = useState(null) */
 
 
    /*  function GetUser(){

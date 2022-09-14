@@ -101,7 +101,7 @@ const Reservation = () => {
   const [reservationInfo, setReservationInfo] = useState();
 
   function Fetch() {
-    let url = Url() + "/api/product/product/" + location;
+    let url = Url() + "/api/product/" + location;
     useEffect(() => {
       axios
         .get(url)
@@ -142,7 +142,7 @@ const Reservation = () => {
   const postProductReservationDays = async () => {
     CreateReservationData();
     try {
-      const url = Url() + "/reservation";
+      const url = Url() + "api/reservation";
       const result = await axios.post(url, data, {
         headers: {
           Authorization: `Bearer ${token}`,

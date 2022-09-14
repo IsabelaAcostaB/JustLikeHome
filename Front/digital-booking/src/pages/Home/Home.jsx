@@ -83,7 +83,6 @@ const Home = () => {
       getProductsByCity();
     } else {
       const getAllProducts = async () => {
-        //console.log('por default')
         const url = Url() + "/api/product";
         const result = await axios.get(url);
         setProducts(result.data);

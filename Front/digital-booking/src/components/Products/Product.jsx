@@ -25,7 +25,7 @@ function ImagesRender({ product }) {
     }
     
   }
-
+  arrayImages =arrayImages.slice(0,4)
   return arrayImages.map((item) => (
     <div key={item.id}>
       <img src={item.imageURL} />
@@ -103,7 +103,7 @@ function Product() {
 
   /* ------- CODIGO PARA EL FETCH DEL PRODUCTO ------- */
   function Fetch() {
-    let url = Url() + "/api/product" + location;
+    let url = Url() + "/api" + location;
     useEffect(() => {
       axios
         .get(url)
