@@ -15,11 +15,11 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @PutMapping("change/{role}")
-    public ResponseEntity<?> changeRole(@AuthenticationPrincipal UserPrinciple userPrinciple, @PathVariable Role role) {
-        userService.changeRole(role, userPrinciple.getUsername());
-        return ResponseEntity.ok(true);
-    }
+//    @PutMapping("change/{role}")
+//    public ResponseEntity<?> changeRole(@AuthenticationPrincipal UserPrinciple userPrinciple, @PathVariable Role role) {
+//        userService.changeRole(role, userPrinciple.getUsername());
+//        return ResponseEntity.ok(true);
+//    }
 
     @GetMapping("/{id}")
     public ResponseEntity<?> findUserById(@PathVariable Long id) {
