@@ -8,6 +8,11 @@ import PaginationNumbers from "../../components/Pagination/Pagination";
 import Url from "../../util/Url";
 import jwtDecode from "jwt-decode";
 import jwt_decode from "jwt-decode";
+import "./homefiltered.css"
+
+
+
+
 
 const Home = () => {
   const [products, setProducts] = useState([]);
@@ -97,8 +102,29 @@ const Home = () => {
 
 
 
-  return (
-    <div className="main">
+  function RenderFilter(){
+    if(filterData.cityCode != null || filterData.rangeOfDates.checkIn != null || filterData.rangeOfDates.checkOut != null || filterData.category != null){
+      return(
+        <div className="main main-filtered">
+      <SearchBar />
+      <div className="category-products-container">
+      <h1 className="category-title">Bienvenido a Just like Home</h1>
+      <div className="filter-categories-container">
+      <h2 className="category-title">Selecciona un tipo de alojamiento</h2>
+      <ListarCat />
+      </div>
+      <div className="filtered-products-container">
+      <h2 className="recommendation-h2">Recomendados</h2>
+      <Listar products={currentProducts} />
+
+      <PaginationNumbers pages={pages} setCurrentPage={setCurrentPage} />
+      </div>
+      </div>
+    </div>
+      )
+    } else {
+      return(
+        <div className="main">
       <SearchBar />
       <h1 className="category-title">Bienvenido a Just like Home</h1>
       <h2 className="category-title">Selecciona un tipo de alojamiento</h2>
@@ -108,6 +134,14 @@ const Home = () => {
 
       <PaginationNumbers pages={pages} setCurrentPage={setCurrentPage} />
     </div>
+      )
+    }
+    
+  }
+
+  return (
+    
+    <RenderFilter/>
   );
 };
 

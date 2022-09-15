@@ -22,10 +22,10 @@ const Categorias= () => {
     <div key={item.id} className="card card-shadow m-3 home-card" onClick={() => handleFilterData({category: item.code, cityCode: null, rangeOfDates:{checkIn:null,
       checkOut: null}})}>
       <img src={item.imageURL}  class="card-img-top" />
-      <p className="card-title" key={item.id}>
+      <div className="card-title" key={item.id}>
         <h2> {item.title}</h2> 
         <p className="card-text">{item.description}</p>
-      </p>
+      </div>
     </div>
   ))  
 }

@@ -46,7 +46,7 @@ function Cards({ products }) {
         <img src={item.images[4].imageURL} class="card-img-top" /> */}
         <ImagesRender item={item}/>
       </div>
-      <p className="card-title" key={item.id}>
+      <div className="card-title" key={item.id}>
         <h2> {item.title}</h2>
         <p className="card-category">{item.category.title}</p>
         <p className="card-location">
@@ -59,14 +59,14 @@ function Cards({ products }) {
         <Link className="button-2" to={`/product/${item.id}`}>
           Ver Detalles
         </Link>
-      </p>
+      </div>
     </div>
   ));
 }
 
 function Listar({ products }) {
   return (
-    <div class="card-deck ">
+    <div class="card-deck cards-recommended">
       <div className="cards-container-recommended">
         <Cards products={products} />
       </div>
