@@ -29,11 +29,4 @@ public class Policy {
     @JoinColumn(name = "policy_id")
     private List<Product> products;*/
 
-    /*@JsonBackReference
-    @JsonIgnoreProperties({"handler", "hibernateLazyInitializer"})*/
-   /* esta es para la clase hija
-    @JsonManagedReference*/
-    //@JsonBackReference
-   /* @JsonIgnoreProperties(value = {"hibernateLazyInitializer", "handler"}, allowSetters = true)*/
-
 }

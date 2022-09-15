@@ -1,13 +1,11 @@
 package com.example.BookingProject.bookingAPI.persistence.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 
 import javax.persistence.*;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Data
@@ -21,7 +19,7 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    /*Hay q eliminar el campo de relacion para eliminar la categoria*/
+    /*Hay que eliminar el campo de relación para eliminar la categoria*/
     @OneToMany(mappedBy = "category", cascade = CascadeType.MERGE)
     @JsonIgnore
     private Set<Product> products = new HashSet<>();

@@ -1,5 +1,4 @@
 package com.example.BookingProject.bookingAPI.controller;
-import com.example.BookingProject.bookingAPI.persistence.model.Category;
 import com.example.BookingProject.bookingAPI.persistence.model.City;
 import com.example.BookingProject.bookingAPI.service.CityService;
 import org.springframework.beans.factory.annotation.Autowired;
