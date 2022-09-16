@@ -3,6 +3,7 @@ import ListarCat from "../../components/categories/Categories";
 import SearchBar from "../../components/Buscador/SearchBar";
 import Listar from "../../components/List/List";
 import { FilterContext } from "../../components/FilterContext";
+import { UserContext}from "../../components/UserContext";
 import axios from "axios";
 import PaginationNumbers from "../../components/Pagination/Pagination";
 import Url from "../../util/Url";
@@ -26,58 +27,7 @@ const Home = () => {
 
   const { filterData } = useContext(FilterContext);
   useEffect(() => {
-    if (
-      filterData.rangeOfDates.checkIn &&
-      filterData.rangeOfDates.checkOut &&
-      filterData.cityCode
-    ) {
-      const getProductsByCityAndDates = async () => {
-        const url =
-          Url() +
-          `/api/product/${filterData.cityCode}/${filterData.rangeOfDates.checkIn}/${filterData.rangeOfDates.checkOut}`;
-        const result = await axios.get(url);
-        setProducts(result.data);
-      };
-      getProductsByCityAndDates();
-    } else if (
-      filterData.rangeOfDates.checkIn &&
-      filterData.rangeOfDates.checkOut
-    ) {
-      const getProductsByDates = async () => {
-        let checkIn = filterData.rangeOfDates.checkIn.replaceAll("/", "-");
-        let checkOut = filterData.rangeOfDates.checkOut.replaceAll("/", "-");
-
-        const url = Url() + `/api/product/${checkIn}/${checkOut}`;
-        console.log(url);
-        const result = await axios.get(url);
-
-        setProducts(result.data);
-      };
-      getProductsByDates();
-    } else if (filterData.cityCode && filterData.category) {
-      /*          ACAAAAAAAAAAAAAAAAAAA               */
-      console.log("ciudad y categoria")
-
-      const getProductsByCityAndCategory = async () => {
-        const url =
-          Url() + `/api/product/productCity/id/${filterData.cityCode}`;
-        const result = await axios.get(url);
-        let results = result.data;
-        console.log(results)
-        let resultsFiltered = [];
-
-        results.forEach(element => {
-          if(element.category.code === filterData.category){
-            resultsFiltered.push(element)
-          }
-          /* element.city.code == filterData.cityCode ? resultsFiltered.push(element) : null */
-        });
-
-        
-        setProducts(resultsFiltered);
-      };
-      getProductsByCityAndCategory();
-    }else if (filterData.category) {
+    if (filterData.category) {
       //console.log('por categoria')
       const getProductsByCategory = async () => {
         const url =
@@ -86,14 +36,6 @@ const Home = () => {
         setProducts(result.data);
       };
       getProductsByCategory();
-    } else if (filterData.cityCode) {
-      const getProductsByCity = async () => {
-        const url =
-          Url() + `/api/product/productCity/id/${filterData.cityCode}`;
-        const result = await axios.get(url);
-        setProducts(result.data);
-      };
-      getProductsByCity();
     } else {
       const getAllProducts = async () => {
         const url = Url() + "/api/product";
@@ -107,6 +49,54 @@ const Home = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+
+
+  
+  /* if (result.request.status === 200){
+      const userDataLog = {
+          name: result.data.name,
+          lastName: result.data.lastName,
+          isLogged: true,
+          token:result.data.token
+      }
+
+      if (result.data.token){
+          localStorage.setItem('jwt', result.data.token)
+      }
+
+      setUserData(userDataLog);
+      navigate("/")
+      
+  }else{
+      setValidData(false)
+  }} */
+ 
+  const {userData, setUserData} = useContext(UserContext)
+
+  function logUser(){
+    let token = localStorage.getItem("jwt");
+    
+    let decode; 
+
+    if(token !== null){
+      decode = jwt_decode(token);
+      const getUser = async () => {
+        let url = Url() + "/api/user/" + decode.userId;
+        const result = await axios.get(url);
+        let newUser = result.data;
+        setUserData({
+          name: newUser.name,
+          lastName: newUser.lastName,
+          isLogged: true,
+          token: token
+      });
+      };
+      getUser();
+    }
+  }
+
+  logUser()
 
   /* console.log(filterData) */
   return (
