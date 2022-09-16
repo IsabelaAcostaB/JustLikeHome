@@ -54,7 +54,30 @@ const Home = () => {
         setProducts(result.data);
       };
       getProductsByDates();
-    } else if (filterData.category) {
+    } else if (filterData.cityCode && filterData.category) {
+      /*          ACAAAAAAAAAAAAAAAAAAA               */
+      console.log("ciudad y categoria")
+
+      const getProductsByCityAndCategory = async () => {
+        const url =
+          Url() + `/api/product/productCity/id/${filterData.cityCode}`;
+        const result = await axios.get(url);
+        let results = result.data;
+        console.log(results)
+        let resultsFiltered = [];
+
+        results.forEach(element => {
+          if(element.category.code === filterData.category){
+            resultsFiltered.push(element)
+          }
+          /* element.city.code == filterData.cityCode ? resultsFiltered.push(element) : null */
+        });
+
+        
+        setProducts(resultsFiltered);
+      };
+      getProductsByCityAndCategory();
+    }else if (filterData.category) {
       //console.log('por categoria')
       const getProductsByCategory = async () => {
         const url =
@@ -85,6 +108,7 @@ const Home = () => {
     window.scrollTo(0, 0);
   }, []);
 
+  /* console.log(filterData) */
   return (
     <div className="main">
       <SearchBar />

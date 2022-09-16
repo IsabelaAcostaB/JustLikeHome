@@ -15,14 +15,19 @@ const SearchTemplate = () => {
   const [categories, setCategories] = useState([]);
   const [cities, setCities] = useState([]);
   const { handleFilterData } = useContext(FilterContext);
-  const [search, setSearch] = useState({
+  /* const [search, setSearch] = useState({
     cityCode: null,
     category: null,
     rangeOfDates: {
       checkIn: null,
       checkOut: null,
     },
-  });
+  }); */
+
+
+
+
+  
 
   useEffect(() => {
     let url = Url() + "/api/city";
@@ -70,6 +75,28 @@ const SearchTemplate = () => {
         setProducts(result.data);
       };
       getProductsByDates();
+    } else if (filterData.cityCode && filterData.category) {
+      /*          ACAAAAAAAAAAAAAAAAAAA               */
+      console.log("ciudad y categoria");
+
+      const getProductsByCityAndCategory = async () => {
+        const url =
+          Url() + `/api/product/productCity/id/${filterData.cityCode}`;
+        const result = await axios.get(url);
+        let results = result.data;
+        console.log(results);
+        let resultsFiltered = [];
+
+        results.forEach((element) => {
+          if (element.category.code === filterData.category) {
+            resultsFiltered.push(element);
+          }
+          /* element.city.code == filterData.cityCode ? resultsFiltered.push(element) : null */
+        });
+
+        setProducts(resultsFiltered);
+      };
+      getProductsByCityAndCategory();
     } else if (filterData.category) {
       //console.log('por categoria')
       const getProductsByCategory = async () => {
@@ -97,45 +124,56 @@ const SearchTemplate = () => {
     }
   }, [filterData]);
 
-
-  const [parametros, setParametros] = useState({
-    cityCode: null,
-    category: null,
-    rangeOfDates: {
-      checkIn: null,
-      checkOut: null,
-    },
-  });
-
-
-
-  let newCities = [];
-
-  const handleCities = ({ code }) => {
-    newCities.push(code);
-    console.log(newCities);
+  function RenderFilters() {
+    if (filterData.cityCode !== null && filterData.category !== null) {
+      return (
+        <ul type="none" className="filters-applied">
+          <li>
+            {filterData.cityCode}
+            <FontAwesomeIcon
+              icon={faCircleXmark}
+              className="no-filter"
+              onClick={() => handleFilterData({ cityCode: null })}
+            />
+          </li>
+          <li>
+            {filterData.category}
+            <FontAwesomeIcon
+              icon={faCircleXmark}
+              className="no-filter"
+              onClick={() => handleFilterData({ category: null })}
+            />
+          </li>
+        </ul>
+      );
+    } else if (filterData.cityCode !== null) {
+      return (
+        <ul type="none" className="filters-applied">
+          <li>
+            {filterData.cityCode}
+            <FontAwesomeIcon
+              icon={faCircleXmark}
+              className="no-filter"
+              onClick={() => handleFilterData({ cityCode: null })}
+            />
+          </li>
+        </ul>
+      );
+    } else if (filterData.category !== null) {
+      return (
+        <ul type="none" className="filters-applied">
+          <li>
+            {filterData.category}
+            <FontAwesomeIcon
+              icon={faCircleXmark}
+              className="no-filter"
+              onClick={() => handleFilterData({ category: null })}
+            />
+          </li>
+        </ul>
+      );
+    }
     console.log(filterData);
-    /* setCities(code) */
-  };
-
-  /* function RenderCities({cities}){
-      return(
-        <ul type="none">
-                        {cities.map((item) => (
-                            <li key={item.cityCode} onClick={(handleCities(item.cityCode))}>{item.name}</li>
-                        ))
-                        }
-                        </ul>
-      )
-    } */
-  const RenderCities = ({ item }) => {
-    let code = item.code;
-
-    return (
-      <li key={item.code} onClick={console.log(code)}>
-        {item.name}
-      </li>
-    );
   }
 
   return (
@@ -143,10 +181,15 @@ const SearchTemplate = () => {
       <div className="filter-header">
         <h2>Resultados de tu búsqueda:</h2>
         <ul type="none" className="filters-applied">
-          <li>
+          {/* <li>
             {filterData.cityCode}
-            <FontAwesomeIcon icon={faCircleXmark} className="no-filter" />
+            <FontAwesomeIcon icon={faCircleXmark} className="no-filter" onClick={() => handleFilterData({cityCode: null})}/>
           </li>
+          <li>
+            {filterData.category}
+            <FontAwesomeIcon icon={faCircleXmark} className="no-filter" onClick={() => handleFilterData({category: null})}/>
+          </li> */}
+          <RenderFilters />
         </ul>
       </div>
       <div className="filters">
@@ -156,8 +199,8 @@ const SearchTemplate = () => {
             <ul type="none">
               {categories.map((item) => (
                 <li
-                  key={item.cityCode}
-                  onClick={(e) => setParametros(item.cityCode)}
+                  key={item.code}
+                  onClick={() => handleFilterData({ category: item.code })}
                 >
                   {item.title}
                 </li>
@@ -166,11 +209,14 @@ const SearchTemplate = () => {
           </div>
           <div className="cities">
             <h3>Ciudades</h3>
-             <ul type="none">
+            <ul type="none">
               {cities.map((item) => (
-                
-                <li key={item.cityCode} onClick={e => (handleCities(item))}>{item.name}</li>
-
+                <li
+                  key={item.code}
+                  onClick={() => handleFilterData({ cityCode: item.code })}
+                >
+                  {item.name}
+                </li>
               ))}
             </ul>
           </div>

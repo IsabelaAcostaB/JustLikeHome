@@ -39,6 +39,7 @@
     background-color: rgb(73, 98, 112, 0.1);
     padding: 3px 10px;
     border-radius: 15px;
+    margin-left: 10px;
 }
 .filters-applied > li:hover{
 

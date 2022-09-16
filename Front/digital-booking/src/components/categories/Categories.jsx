@@ -19,8 +19,7 @@ const Categorias= () => {
 
 
   return categoryInfo.map(item => (
-    <div key={item.id} className="card card-shadow m-3 home-card" onClick={() => handleFilterData({category: item.code, cityCode: null, rangeOfDates:{checkIn:null,
-      checkOut: null}})}>
+    <div key={item.id} className="card card-shadow m-3 home-card" onClick={() => handleFilterData({category: item.code})}>
       <img src={item.imageURL}  class="card-img-top" />
       <div className="card-title" key={item.id}>
         <h2> {item.title}</h2> 

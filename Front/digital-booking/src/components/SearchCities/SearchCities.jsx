@@ -19,6 +19,7 @@ function SearchCities({setSearch}) {
   return (
     <div>
       <div>
+        {/* <select name="city" onChange={(e)=>setSearch({cityCode: e.target.value})} className="search_cities"> */}
         <select name="city" onChange={(e)=>setSearch({cityCode: e.target.value})} className="search_cities">
           {/* <option value="">Selecciona una ciudad</option> */}
           <option value="">¿A dónde vamos?</option>

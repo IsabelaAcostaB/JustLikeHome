@@ -25,6 +25,11 @@ function SearchBar() {
       checkOut: null
     } 
   });
+  /* 
+  const [search, setSearch] = useState(filterData); */
+  const { filterData } = useContext(FilterContext);
+  /* setSearch(FilterContext) */
+  /* setSearch(filterData) */
 
   const {handleFilterData} = useContext(FilterContext);
   
