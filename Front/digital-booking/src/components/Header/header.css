@@ -40,6 +40,12 @@ header{
 .user-name a{
     margin-left: 20px;
 }
+.user-name a:hover{
+    cursor: pointer;
+}
+.user-name a > svg:hover{
+    cursor: pointer;
+}
 
 .user-avatar{
     width: 40px;

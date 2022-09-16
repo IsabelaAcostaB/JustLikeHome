@@ -25,7 +25,7 @@ function ImagesRender({ product }) {
     }
     
   }
-  arrayImages =arrayImages.slice(0,4)
+  arrayImages = arrayImages.slice(0,4)
   return arrayImages.map((item) => (
     <div key={item.id}>
       <img src={item.imageURL} />
@@ -131,7 +131,7 @@ function Product() {
   useEffect(()=>{
     const getProductReservationDays = async ()=>{
       try{
-        const url = Url()+ "/reservation/findProduct/"+locationId;
+        const url = Url()+ "/api/reservation/findProduct/"+locationId;
         const result = await axios.get(url,{
         headers: {
           'Authorization': `Bearer ${token}`

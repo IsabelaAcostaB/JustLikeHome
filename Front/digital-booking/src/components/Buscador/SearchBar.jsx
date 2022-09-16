@@ -133,7 +133,7 @@ function SearchBar() {
       <div className="search-bar">
         <SearchCities setSearch={newSearch => setSearch({...search, ...newSearch})} />
         <div className="search-bar-dates">
-          <div className="search-input" onClick={showCalendar}>
+          <div className="search-input" onClick={showCalendar} >
             <FontAwesomeIcon icon={faCalendarDays} />
             <span>{inputPlaceholder}</span>
           </div>

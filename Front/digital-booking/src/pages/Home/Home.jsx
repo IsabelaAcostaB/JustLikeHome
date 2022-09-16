@@ -27,16 +27,6 @@ const Home = () => {
 
   const { filterData } = useContext(FilterContext);
   useEffect(() => {
-    if (filterData.category) {
-      //console.log('por categoria')
-      const getProductsByCategory = async () => {
-        const url =
-          Url() + `/api/product/productCategory/code/${filterData.category}`;
-        const result = await axios.get(url);
-        setProducts(result.data);
-      };
-      getProductsByCategory();
-    } else {
       const getAllProducts = async () => {
         const url = Url() + "/api/product";
         const result = await axios.get(url);
@@ -44,33 +34,11 @@ const Home = () => {
       };
       getAllProducts();
     }
-  }, [filterData]);
+  , [filterData]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-
-
-
-  
-  /* if (result.request.status === 200){
-      const userDataLog = {
-          name: result.data.name,
-          lastName: result.data.lastName,
-          isLogged: true,
-          token:result.data.token
-      }
-
-      if (result.data.token){
-          localStorage.setItem('jwt', result.data.token)
-      }
-
-      setUserData(userDataLog);
-      navigate("/")
-      
-  }else{
-      setValidData(false)
-  }} */
  
   const {userData, setUserData} = useContext(UserContext)
 
