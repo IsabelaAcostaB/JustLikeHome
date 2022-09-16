@@ -23,6 +23,20 @@ body::-webkit-scrollbar-thumb {
   border: 3px solid var(--fourth-color);  
 }
 
+select::-webkit-scrollbar {
+  width: 12px;
+}
+
+select::-webkit-scrollbar-track {
+  background: var(--fourth-color);       
+}
+
+select::-webkit-scrollbar-thumb {
+  background-color: var(--third-color);    
+  border-radius: 15px; 
+  border: 3px solid var(--fourth-color);  
+}
+
 /* ------------------------------- */
 
 * {
@@ -316,16 +330,16 @@ h1.category-title {
   width: 90%;
 }
 
-.cards-container-category > .card > .card-title {
+.cards-container-category > .card > a > .card-title {
   height: 25%;
   padding: 0;
 }
 
-.cards-container-category > .card > .card-title > h2 {
+.cards-container-category > .card > a > .card-title > h2 {
   padding-top: 4px;
 }
 
-.cards-container-category > .card > .card-title > .card-text {
+.cards-container-category > .card > a > .card-title > .card-text {
   position: relative;
   top: -10px;
   z-index: 2;
@@ -381,6 +395,10 @@ h1.category-title {
   padding-right: 1rem;
 }
 
+.cards-container-category > .card > a > .card-title > .card-text {
+  color: black;
+}
+
 @media (min-width: 768px) {
   .form-control {
     width: 500px;
@@ -390,32 +408,38 @@ h1.category-title {
   .cards-container-category {
     width: 98%;
   }
-  .cards-container-category:hover {
+  /* .cards-container-category:hover {
     cursor: pointer;
-  }
+  } */
+  
 
   .cards-container-category > .card {
     height: 250px;
     padding: 0;
   }
+  .cards-container-category > .card > a {
+    height: 250px;
+    padding: 0;
+  }
 
-  .cards-container-category > .card > .card-img-top {
+  .cards-container-category > .card > a > .card-img-top {
     margin: 0;
     height: 75%;
     border-radius: 15px 15px 0px 0px;
     object-fit: cover;
   }
 
-  .cards-container-category > .card > .card-title {
+  .cards-container-category > .card > a > .card-title {
     height: 25%;
     padding: 0;
   }
 
-  .cards-container-category > .card > .card-title > h2 {
+  .cards-container-category > .card > a > .card-title > h2 {
     padding-top: 4px;
   }
 
-  .cards-container-category > .card > .card-title > .card-text {
+  .cards-container-category > .card > a > .card-title > .card-text {
+    color: black;
     position: relative;
     top: -10px;
     z-index: 2;
@@ -501,6 +525,13 @@ h1.category-title {
     /* height: 250px; */
     width: 22%;
     padding: 0;
+  }
+  
+  .cards-container-category > .card:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+    transition: 0.4s;
+    /* transform-origin: bottom; */
   }
 
   .cards-container-recommended {

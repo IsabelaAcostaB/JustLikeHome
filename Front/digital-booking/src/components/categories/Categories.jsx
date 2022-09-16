@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import axios from 'axios';
 import { FilterContext } from "../FilterContext";
 import Url from "../../util/Url";
+import { Link } from "react-router-dom";
 
 
 const Categorias= () => {
@@ -16,16 +17,28 @@ const Categorias= () => {
       .catch(error => console.log(error))
   }, []);
 
-
-
-  return categoryInfo.map(item => (
-    <div key={item.id} className="card card-shadow m-3 home-card" onClick={() => handleFilterData({category: item.code})}>
+{/* <Link to="/filtrado">
+<div key={item.id} className="card card-shadow m-3 home-card" onClick={() => handleFilterData({category: item.code})}>
       <img src={item.imageURL}  class="card-img-top" />
       <div className="card-title" key={item.id}>
         <h2> {item.title}</h2> 
         <p className="card-text">{item.description}</p>
       </div>
     </div>
+      </Link> */}
+
+  return categoryInfo.map(item => (
+    
+<div key={item.id} className="card card-shadow m-3 home-card" onClick={() => handleFilterData({category: item.code})}>
+<Link to="/filtrado">
+      <img src={item.imageURL}  class="card-img-top" />
+      <div className="card-title" key={item.id}>
+        <h2> {item.title}</h2> 
+        <p className="card-text">{item.description}</p>
+      </div>
+      </Link>
+    </div>
+      
   ))  
 }
 

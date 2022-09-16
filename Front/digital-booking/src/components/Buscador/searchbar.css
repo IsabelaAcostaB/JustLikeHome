@@ -38,6 +38,10 @@
   display: flex;
   border: none;
   font-family: "Poppins", sans-serif;
+  
+}
+.search-bar > div > div > .search_cities:hover{
+  cursor: pointer;
 }
 
 .search_cities:focus {
@@ -70,9 +74,16 @@
   margin: 0;
   box-shadow: 0 2px 3px rgb(175 172 172);
   padding-left: 12px;
+  
 }
+.search-input:hover{
+  cursor: pointer;
+}
+
+
 .search-input span {
   margin-left: 5px;
+  cursor: pointer;
 }
 
 .search-input:focus {
@@ -81,6 +92,7 @@
 }
 .search-input > svg {
   height: 12px;
+  cursor: pointer;
 }
 
 /* .search-input > input {
@@ -113,6 +125,7 @@
 
 .button-search:hover {
   background-color: #f58c6c;
+  cursor: pointer;
 }
 .search-input {
   width: 80vw;
@@ -242,6 +255,8 @@
     padding-top: 0;
     width: 60vw;
   }
+
+
 
   .searchbar-container > h1 {
     color: var(--fourth-color);
