@@ -1,4 +1,4 @@
-import React, { useContext } from "react"
+import React, { useContext, useState } from "react"
 import header from "./header.css"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons'
@@ -7,10 +7,13 @@ import Sidebar from "../SideBar/Sidebar.jsx"
 import { Link } from "react-router-dom"
 import { UserContext}from "../UserContext.jsx"
 import {useNavigate, useLocation} from "react-router-dom"
+import { FilterContext } from "../../components/FilterContext";
 
 const Header = () => {
 
     const {userData, setUserData} = useContext(UserContext)
+
+    const { handleFilterData } = useContext(FilterContext);
 
     const navigate = useNavigate();
 
@@ -52,7 +55,12 @@ const Header = () => {
       
         <header>
             <div className="header-boxes">
-                <Link to="/" >
+                <Link to="/" onClick={(e) => handleFilterData({ cityCode: null,
+        category:null,
+        rangeOfDates: {
+          checkIn:null,
+          checkOut: null
+        }  })}>
                     <div className="logotype">
                         <div className="logo">
                             <img src="https://justlikehome-images.s3.us-east-2.amazonaws.com/util/logo+fondo+blanco+header.png" alt="logo Just Like"/>

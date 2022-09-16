@@ -7,6 +7,7 @@ import "./searchtemplate.css";
 import { faCropSimple } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleXmark } from "@fortawesome/free-regular-svg-icons";
+import moment from 'moment/min/moment-with-locales';
 import CitiesSearch from "./CitiesSearch";
 import { set } from "date-fns";
 
@@ -23,11 +24,6 @@ const SearchTemplate = () => {
       checkOut: null,
     },
   }); */
-
-
-
-
-  
 
   useEffect(() => {
     let url = Url() + "/api/city";
@@ -50,6 +46,29 @@ const SearchTemplate = () => {
     if (
       filterData.rangeOfDates.checkIn &&
       filterData.rangeOfDates.checkOut &&
+      filterData.cityCode &&
+      filterData.category
+    ) {
+      const getProductsByCityAndDatesAndCategory = async () => {
+        const url =
+          Url() +
+          `/api/product/${filterData.cityCode}/${filterData.rangeOfDates.checkIn}/${filterData.rangeOfDates.checkOut}`;
+        const result = await axios.get(url);
+        let results = result.data;
+        let resultsFiltered = [];
+        setProducts(result.data);
+        results.forEach((element) => {
+          if (element.category.code === filterData.category) {
+            resultsFiltered.push(element);
+          }
+        });
+        setProducts(resultsFiltered);
+      };
+      
+      getProductsByCityAndDatesAndCategory();
+    } else if (
+      filterData.rangeOfDates.checkIn &&
+      filterData.rangeOfDates.checkOut &&
       filterData.cityCode
     ) {
       const getProductsByCityAndDates = async () => {
@@ -60,7 +79,48 @@ const SearchTemplate = () => {
         setProducts(result.data);
       };
       getProductsByCityAndDates();
-    } else if (
+    }else if (
+      filterData.rangeOfDates.checkIn &&
+      filterData.rangeOfDates.checkOut &&
+      filterData.category
+    ) {
+      const getProductsByDatesAndCategory = async () => {
+        let checkIn = filterData.rangeOfDates.checkIn.replaceAll("/", "-");
+        let checkOut = filterData.rangeOfDates.checkOut.replaceAll("/", "-");
+
+        const url = Url() + `/api/product/${checkIn}/${checkOut}`;
+        const result = await axios.get(url);
+        let results = result.data;
+        let resultsFiltered = [];
+        setProducts(result.data);
+        results.forEach((element) => {
+          if (element.category.code === filterData.category) {
+            resultsFiltered.push(element);
+          }
+        });
+        setProducts(resultsFiltered);
+      };
+      getProductsByDatesAndCategory();
+    } else if (filterData.cityCode && filterData.category) {
+      const getProductsByCityAndCategory = async () => {
+        const url =
+          Url() + `/api/product/productCity/id/${filterData.cityCode}`;
+        const result = await axios.get(url);
+        let results = result.data;
+        console.log(results);
+        let resultsFiltered = [];
+
+        results.forEach((element) => {
+          if (element.category.code === filterData.category) {
+            resultsFiltered.push(element);
+          }
+          /* element.city.code == filterData.cityCode ? resultsFiltered.push(element) : null */
+        });
+
+        setProducts(resultsFiltered);
+      };
+      getProductsByCityAndCategory();
+    }else if (
       filterData.rangeOfDates.checkIn &&
       filterData.rangeOfDates.checkOut
     ) {
@@ -69,16 +129,12 @@ const SearchTemplate = () => {
         let checkOut = filterData.rangeOfDates.checkOut.replaceAll("/", "-");
 
         const url = Url() + `/api/product/${checkIn}/${checkOut}`;
-        console.log(url);
         const result = await axios.get(url);
 
         setProducts(result.data);
       };
       getProductsByDates();
     } else if (filterData.cityCode && filterData.category) {
-      /*          ACAAAAAAAAAAAAAAAAAAA               */
-      console.log("ciudad y categoria");
-
       const getProductsByCityAndCategory = async () => {
         const url =
           Url() + `/api/product/productCity/id/${filterData.cityCode}`;
@@ -125,57 +181,178 @@ const SearchTemplate = () => {
   }, [filterData]);
 
   function RenderFilters() {
-    if (filterData.cityCode !== null && filterData.category !== null) {
-      return (
-        <ul type="none" className="filters-applied">
-          <li>
-            {filterData.cityCode}
-            <FontAwesomeIcon
-              icon={faCircleXmark}
-              className="no-filter"
-              onClick={() => handleFilterData({ cityCode: null })}
-            />
-          </li>
-          <li>
-            {filterData.category}
-            <FontAwesomeIcon
-              icon={faCircleXmark}
-              className="no-filter"
-              onClick={() => handleFilterData({ category: null })}
-            />
-          </li>
-        </ul>
-      );
-    } else if (filterData.cityCode !== null) {
-      return (
-        <ul type="none" className="filters-applied">
-          <li>
-            {filterData.cityCode}
-            <FontAwesomeIcon
-              icon={faCircleXmark}
-              className="no-filter"
-              onClick={() => handleFilterData({ cityCode: null })}
-            />
-          </li>
-        </ul>
-      );
-    } else if (filterData.category !== null) {
-      return (
-        <ul type="none" className="filters-applied">
-          <li>
-            {filterData.category}
-            <FontAwesomeIcon
-              icon={faCircleXmark}
-              className="no-filter"
-              onClick={() => handleFilterData({ category: null })}
-            />
-          </li>
-        </ul>
-      );
-    }
-    console.log(filterData);
-  }
+    let checkIn  = filterData.rangeOfDates.checkIn;
+    let checkOut = filterData.rangeOfDates.checkOut;
 
+    function newDateFormatter(date){
+      const dateDayFirst = moment(date).locale('es');
+  
+      return(
+        dateDayFirst.format('DD/MM/YYYY')
+      )
+    }
+
+    function changeDates(){
+      if(filterData.rangeOfDates.checkIn !== null && filterData.rangeOfDates.checkOut !== null){ 
+        checkIn = filterData.rangeOfDates.checkIn.replaceAll("-", "/")
+        checkOut = filterData.rangeOfDates.checkOut.replaceAll("-", "/")
+        checkIn = newDateFormatter(checkIn)
+        checkOut = newDateFormatter(checkOut)
+      }
+    }
+    changeDates()
+
+
+    if (filterData.cityCode !== null && filterData.category !== null && filterData.rangeOfDates.checkIn !== null && filterData.rangeOfDates.checkOut !== null ) {
+      return (
+        <ul type="none" className="filters-applied">
+          <li>
+            {filterData.cityCode}
+            <FontAwesomeIcon
+              icon={faCircleXmark}
+              className="no-filter"
+              onClick={() => handleFilterData({ cityCode: null })}
+            />
+          </li>
+          <li>
+            {filterData.category}
+            <FontAwesomeIcon
+              icon={faCircleXmark}
+              className="no-filter"
+              onClick={() => handleFilterData({ category: null })}
+            />
+          </li>
+          <li>
+            {checkIn} -
+            {checkOut}
+            <FontAwesomeIcon
+              icon={faCircleXmark}
+              className="no-filter"
+              onClick={() => handleFilterData({ rangeOfDates: {
+                checkIn:null,
+                checkOut: null
+              }})}
+            />
+          </li>
+        </ul>
+      );
+    } else if (filterData.cityCode !== null && filterData.rangeOfDates.checkIn !== null && filterData.rangeOfDates.checkOut !== null) {
+      return (
+        <ul type="none" className="filters-applied">
+          <li>
+            {filterData.cityCode}
+            <FontAwesomeIcon
+              icon={faCircleXmark}
+              className="no-filter"
+              onClick={() => handleFilterData({ cityCode: null })}
+            />
+          </li>
+          <li>
+            {checkIn} -
+            {checkOut}
+            <FontAwesomeIcon
+              icon={faCircleXmark}
+              className="no-filter"
+              onClick={() => handleFilterData({ rangeOfDates: {
+                checkIn:null,
+                checkOut: null
+              }})}
+            />
+          </li>
+          </ul>
+      );
+    }else if (filterData.category !== null && filterData.rangeOfDates.checkIn !== null && filterData.rangeOfDates.checkOut !== null) {
+      return (
+        <ul type="none" className="filters-applied">
+          <li>
+            {filterData.category}
+            <FontAwesomeIcon
+              icon={faCircleXmark}
+              className="no-filter"
+              onClick={() => handleFilterData({ category: null })}
+            />
+          </li>
+          <li>
+            {checkIn} -
+            {checkOut}
+            <FontAwesomeIcon
+              icon={faCircleXmark}
+              className="no-filter"
+              onClick={() => handleFilterData({ rangeOfDates: {
+                checkIn:null,
+                checkOut: null
+              }})}
+            />
+          </li>
+          </ul>
+      );
+    }else if (filterData.cityCode !== null && filterData.category !== null) {
+      return (
+        <ul type="none" className="filters-applied">
+          <li>
+            {filterData.cityCode}
+            <FontAwesomeIcon
+              icon={faCircleXmark}
+              className="no-filter"
+              onClick={() => handleFilterData({ cityCode: null })}
+            />
+          </li>
+          <li>
+            {filterData.category}
+            <FontAwesomeIcon
+              icon={faCircleXmark}
+              className="no-filter"
+              onClick={() => handleFilterData({ category: null })}
+            />
+          </li>
+          </ul>
+      );
+    }else if (filterData.cityCode !== null) {
+      return (
+        <ul type="none" className="filters-applied">
+          <li>
+            {filterData.cityCode}
+            <FontAwesomeIcon
+              icon={faCircleXmark}
+              className="no-filter"
+              onClick={() => handleFilterData({ cityCode: null })}
+            />
+          </li>
+        </ul>
+      );
+    }else if (filterData.category !== null) {
+      return (
+        <ul type="none" className="filters-applied">
+          <li>
+            {filterData.category}
+            <FontAwesomeIcon
+              icon={faCircleXmark}
+              className="no-filter"
+              onClick={() => handleFilterData({ category: null })}
+            />
+          </li>
+        </ul>
+      );
+    }else if (filterData.rangeOfDates.checkIn !== null && filterData.rangeOfDates.checkOut !== null){
+      return (<ul type="none" className="filters-applied">
+      <li>
+            {checkIn} -
+            {checkOut}
+            <FontAwesomeIcon
+              icon={faCircleXmark}
+              className="no-filter"
+              onClick={() => handleFilterData({ rangeOfDates: {
+                checkIn:null,
+                checkOut: null
+              }})}
+            />
+          </li>
+    </ul>)
+    }
+    
+  }
+  console.log(filterData);
+/*   console.log(filterData.rangeOfDates); */
   return (
     <div className="page">
       <div className="filter-header">
