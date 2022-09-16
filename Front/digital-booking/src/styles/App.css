@@ -7,6 +7,23 @@
   --fourth-color: #f3f0eb;
 }
 
+/* ------------ Scrollbar ----------- */
+body::-webkit-scrollbar {
+  width: 12px;
+}
+
+body::-webkit-scrollbar-track {
+  background: var(--fourth-color);       
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: var(--second-color);    
+  border-radius: 15px; 
+  border: 3px solid var(--fourth-color);  
+}
+
+/* ------------------------------- */
+
 * {
   padding: 0;
   margin: 0;

@@ -10,10 +10,13 @@ import useWindowDimensions from "../../hooks/useWindowDimensions.jsx"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faLocationDot, faCalendarDays} from '@fortawesome/free-solid-svg-icons'
 import moment from 'moment/min/moment-with-locales';
+import { Link } from "react-router-dom";
+
 
 function SearchBar() {
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
+  
 
   const [search, setSearch] = useState({ 
     cityCode: null,
@@ -99,7 +102,25 @@ function SearchBar() {
 
   }
 
- 
+
+  function RedirectSearch(){
+    if(search.cityCode != null || search.rangeOfDates.checkIn != null || search.rangeOfDates.checkOut != null || search.category != null){
+      return(
+        <Link to="/filtrado">
+          <div className="button-search" onClick={() => handleFilterData(search)}>
+          Buscar
+        </div>
+      </Link>
+      )
+    } else {
+      return(
+        <div className="button-search" onClick={() => handleFilterData(search)}>
+          Buscar
+        </div>
+      )
+    }
+    
+  }
   return (
     <div className="searchbar-container">
       <h1> Busca ofertas en casas, cabañas y mucho más</h1>
@@ -145,9 +166,7 @@ function SearchBar() {
         )}
         </div>
 
-        <div className="button-search" onClick={() => handleFilterData(search)}>
-          Buscar
-        </div>
+        <RedirectSearch/>
 
 
       </div>

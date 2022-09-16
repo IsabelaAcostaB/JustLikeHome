@@ -64,7 +64,7 @@ const CalendarReservation =({id, disabledD})=>{
       <div className="reservation">
         <h3>Agregá tus fechas de viaje para obtener precios exactos</h3>
         {/* <button className="button-c">Iniciar reserva</button> */}
-        <Link className="button-c" to={`/reservation/${id}`}>Iniciar reserva</Link>
+        <Link className="button-c" to={`/product/reservation/${id}`}>Iniciar reserva</Link>
         
       </div>
 

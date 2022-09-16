@@ -8,18 +8,11 @@ import PaginationNumbers from "../../components/Pagination/Pagination";
 import Url from "../../util/Url";
 import jwtDecode from "jwt-decode";
 import jwt_decode from "jwt-decode";
-import "./homefiltered.css"
-
-
-
-
+import "./homefiltered.css";
 
 const Home = () => {
   const [products, setProducts] = useState([]);
 
-  //const [loading, setLoading] = useState(false);
-
-  //ACA LO DE PAGINACION
   const [productsPerPage, setProductsPerPage] = useState(6);
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -38,16 +31,11 @@ const Home = () => {
       filterData.rangeOfDates.checkOut &&
       filterData.cityCode
     ) {
-      //console.log('por city code y rango fecha')
       const getProductsByCityAndDates = async () => {
-        //let  checkIn = filterData.rangeOfDates.checkIn.replaceAll("/", "-");
-        //let  checkOut = filterData.rangeOfDates.checkOut.replaceAll("/", "-");
-
         const url =
           Url() +
           `/api/product/${filterData.cityCode}/${filterData.rangeOfDates.checkIn}/${filterData.rangeOfDates.checkOut}`;
-        /*          const url = `http://18.217.103.69:8080/api/product/${filterData.cityCode}/${filterData.rangeOfDates.checkIn}/${filterData.rangeOfDates.checkOut}`;
-         */ const result = await axios.get(url);
+        const result = await axios.get(url);
         setProducts(result.data);
       };
       getProductsByCityAndDates();
@@ -55,8 +43,6 @@ const Home = () => {
       filterData.rangeOfDates.checkIn &&
       filterData.rangeOfDates.checkOut
     ) {
-      //console.log('por rango fechas')
-
       const getProductsByDates = async () => {
         let checkIn = filterData.rangeOfDates.checkIn.replaceAll("/", "-");
         let checkOut = filterData.rangeOfDates.checkOut.replaceAll("/", "-");
@@ -78,7 +64,6 @@ const Home = () => {
       };
       getProductsByCategory();
     } else if (filterData.cityCode) {
-      //console.log('por city code')
       const getProductsByCity = async () => {
         const url =
           Url() + `/api/product/productCity/id/${filterData.cityCode}`;
@@ -100,48 +85,17 @@ const Home = () => {
     window.scrollTo(0, 0);
   }, []);
 
-
-
-  function RenderFilter(){
-    if(filterData.cityCode != null || filterData.rangeOfDates.checkIn != null || filterData.rangeOfDates.checkOut != null || filterData.category != null){
-      return(
-        <div className="main main-filtered">
-      <SearchBar />
-      <div className="category-products-container">
-      <h1 className="category-title">Bienvenido a Just like Home</h1>
-      <div className="filter-categories-container">
-      <h2 className="category-title">Selecciona un tipo de alojamiento</h2>
-      <ListarCat />
-      </div>
-      <div className="filtered-products-container">
-      <h2 className="recommendation-h2">Recomendados</h2>
-      <Listar products={currentProducts} />
-
-      <PaginationNumbers pages={pages} setCurrentPage={setCurrentPage} />
-      </div>
-      </div>
-    </div>
-      )
-    } else {
-      return(
-        <div className="main">
-      <SearchBar />
-      <h1 className="category-title">Bienvenido a Just like Home</h1>
-      <h2 className="category-title">Selecciona un tipo de alojamiento</h2>
-      <ListarCat />
-      <h2 className="recommendation-h2">Recomendados</h2>
-      <Listar products={currentProducts} />
-
-      <PaginationNumbers pages={pages} setCurrentPage={setCurrentPage} />
-    </div>
-      )
-    }
-    
-  }
-
   return (
-    
-    <RenderFilter/>
+    <div className="main">
+      <SearchBar />
+      <h1 className="category-title">Bienvenido a Just like Home</h1>
+      <h2 className="category-title">Selecciona un tipo de alojamiento</h2>
+      <ListarCat />
+      <h2 className="recommendation-h2">Recomendados</h2>
+      <Listar products={currentProducts} />
+
+      <PaginationNumbers pages={pages} setCurrentPage={setCurrentPage} />
+    </div>
   );
 };
 

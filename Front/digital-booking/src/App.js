@@ -14,6 +14,8 @@ import Reservation from "./components/Reservation/Reservation"
 import PrivateRoute from "./components/RequireAuth";
 import ConfirmationReservation from "./components/Reservation/ConfirmationReservation";
 import {ReservationProvider} from "./components/ReservationContext"
+import SearchTemplate from "./components/SearchPage/SearchTemplate"
+import Search from "./pages/Search/Search"
 
 function App() {
 
@@ -31,10 +33,11 @@ function App() {
           <Route path="/signIn" element={<SignIn />} />
           <Route path="/listar" element={<Listar />}/> 
           <Route path="/product/:id" element={<ProductPage />}/> 
+          <Route path="/filtrado" element={<Search />}/> 
 
 
           <Route element={<PrivateRoute />}>
-          <Route path="/reservation/:id" element={<Reservation />}/>
+          <Route path="/product/reservation/:id" element={<Reservation />}/>
           <Route path="/ConfirmationReservation/" element={<ConfirmationReservation />}/> 
           </Route>
 
