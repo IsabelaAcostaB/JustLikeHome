@@ -33,7 +33,7 @@ import { UserContext } from "../UserContext.jsx";
 const Reservation = () => {
   let locationReservation = window.location.pathname;
   let locationAPI = locationReservation.split("/");
-  let location = locationAPI[2];
+  let location = locationAPI[3];
   const { userData, setUserData } = useContext(UserContext);
   const [reservationError, setReservationError] = useState(false);
   const [isActive, setActive] = useState(false);
@@ -110,6 +110,7 @@ const Reservation = () => {
     }, [url]);
   }
   Fetch();
+
   const [Dropdown, setDropdown] = useState(false);
   const abrirCerrarDropdown = () => setDropdown(!Dropdown);
 
@@ -187,7 +188,7 @@ const Reservation = () => {
       );
     }
   }
-
+console.log(reservationInfo)
   return (
     <div className="main">
       {reservationInfo && (
