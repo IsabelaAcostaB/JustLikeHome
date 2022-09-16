@@ -1,0 +1,80 @@
+@import url("../../styles/App.css");
+
+.title-h1{
+    color: var(--first-color);
+}
+.product-form{
+    border: none;
+    flex-grow: 1;
+    border-radius: 15px;
+    box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.25);
+    background-color: #fff;
+    width: 90vw;
+    padding-top: 10vh
+}
+
+.form-p{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 90vw;
+}
+
+.select-input{
+    width: 72vw;
+    height: 40px;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 5px 5px rgb(175 172 172);
+    color: var(--second-color);
+    font-size: 12px;
+
+    margin-bottom: 10px;
+
+}
+
+.info-form{
+    display: flex;
+    flex-direction: column;
+}
+
+#description{
+    height: 150px;
+}
+
+.input-image{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.input-image svg{
+    color: var(--second-color);
+    font-size: 30px;
+    margin-left: 20px;
+}
+
+.imageName-card{
+    color: var(--second-color);
+    font-size: 5px;
+    font-weight:lighter;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 70vw;
+    height: 30px;
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 0 5px 5px rgb(175, 172, 172);
+    /*border: 1px solid var(--second-color);*/
+    margin: 5px 0px;
+    padding: 0px 15px;
+
+}
+
+.imageName-card svg{
+    font-size: 15px;
+
+}

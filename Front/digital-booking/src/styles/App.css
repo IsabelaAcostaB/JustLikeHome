@@ -5,6 +5,7 @@
   --second-color: #384d58;
   --third-color: #496270;
   --fourth-color: #f3f0eb;
+  --fifth-color:#e79d82;
 }
 
 /* ------------ Scrollbar ----------- */
@@ -101,7 +102,12 @@ h4,
   align-items: center;
 }
 .button-2:hover {
-  background-color: #f58c6c;
+  background-color: var(--fifth-color);
+}
+
+.button-2:disabled{
+  background-color: gray;
+  cursor: unset;
 }
 
 .button-6 {
@@ -123,6 +129,22 @@ h4,
   color: var(--first-color);
   padding: 10px 25px;
 }
+
+.button-6:hover {
+  background-color: var(--fifth-color);
+  border: none;
+}
+
+.button-6:active{
+  background-color: var(--first-color);
+  border: none;
+}
+
+.button-6 a:hover {
+  color: #fff;
+}
+
+
 
 /*------------ FORM--------------*/
 form {

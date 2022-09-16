@@ -1,5 +1,3 @@
-import ConfirmationReservation from "./ConfirmationReservation";
-import { Link } from "react-router-dom";
 import { DateRange } from "react-date-range";
 import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
@@ -151,7 +149,7 @@ const Reservation = () => {
       });
 
       if (result.request.status === 201) {
-        navigate("/ConfirmationReservation");
+        navigate("/ConfirmationMessage");
       } else {
         setReservationError(true);
         setActive(true);
