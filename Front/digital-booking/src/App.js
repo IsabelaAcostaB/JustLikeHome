@@ -12,11 +12,15 @@ import {UserProvider} from "./components/UserContext";
 import {FilterProvider} from "./components/FilterContext";
 import Reservation from "./components/Reservation/Reservation"
 import PrivateRoute from "./components/RequireAuth";
-import ConfirmationReservation from "./components/Reservation/ConfirmationReservation";
+import ConfirmationMessage from "./components/Reservation/ConfirmationMessage";
 import {ReservationProvider} from "./components/ReservationContext"
 import SearchTemplate from "./components/SearchPage/SearchTemplate"
 import Search from "./pages/Search/Search"
 import CreateProducts from "./components/CreateProducts/CreateProducts";
+
+//import AdminRoute from "./components/AdminAuth"
+
+
 function App() {
 
   return (
@@ -36,9 +40,21 @@ function App() {
           <Route path="/filtrado" element={<Search />}/> 
 
 
+          
+            <Route path="/administration" element={<CreateProducts />}/> 
+            <Route path="/ConfirmationProduct" element={<ConfirmationMessage message={"Su propiedad fue creada con éxito"}/>}/>
+          
+          
+          
+          {/* 
+          <Route element={<AdminRoute />}>
+          </Route>
+          */}
+          
+
           <Route element={<PrivateRoute />}>
           <Route path="/product/reservation/:id" element={<Reservation />}/>
-          <Route path="/ConfirmationReservation/" element={<ConfirmationReservation />}/> 
+          <Route path="/ConfirmationMessage" element={<ConfirmationMessage message={"Su reservación se ha realizado con éxito"}/>}/> 
           </Route>
           <Route path="/administration" element={<CreateProducts />}/>
 

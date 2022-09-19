@@ -7,7 +7,7 @@ import { faCheckCircle } from "@fortawesome/free-regular-svg-icons";
 
 
 
-const ConfirmationReservation = () => {
+const ConfirmationMessage = ({message}) => {
   return (
     <div className="main main-reservation">
       <div className="card reservation-card">
@@ -18,7 +18,7 @@ const ConfirmationReservation = () => {
 
 
         <div className="card-title">¡Muchas Gracias!</div>
-        <div className="card-body">Su reserva se ha realizado con éxito</div>
+        <div className="card-body">{message}</div>
         <Link className="button-c" to={"/"}>
           OK
         </Link>
@@ -27,4 +27,4 @@ const ConfirmationReservation = () => {
   );
 };
 
-export default ConfirmationReservation;
+export default ConfirmationMessage;

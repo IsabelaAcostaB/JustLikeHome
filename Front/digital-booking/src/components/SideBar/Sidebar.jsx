@@ -76,8 +76,13 @@ function Sidebar(){
     
                 <div className="side-bar-options">
                 {userData.isLogged?
-                    <Link to="/" className="options" onClick={logOut}><h3>¿Deseas <span>cerrar sesión?</span></h3></Link>
-                
+                    <div>
+                        <div className="administration-bar">
+                            <Link to="/administration"><h3>Administracion</h3></Link>
+                        </div>
+                        <Link to="/" className="options" onClick={logOut}><h3>¿Deseas <span>cerrar sesión?</span></h3></Link>
+                    </div>
+
                     :
                     
                     <ul className="options">

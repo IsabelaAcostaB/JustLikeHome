@@ -1,0 +1,154 @@
+@import url("../../styles/App.css");
+
+.title-h1{
+    color: var(--first-color);
+}
+.product-form{
+    border: none;
+    flex-grow: 1;
+    border-radius: 15px;
+    box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.25);
+    background-color: #fff;
+    width: 90vw;
+    height: 150vh;
+    margin-top: 10vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.select-input{
+    width: 72vw;
+    height: 40px;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 5px 5px rgb(175 172 172);
+    color: var(--second-color);
+    font-size: 12px;
+
+    margin-bottom: 10px;
+
+}
+
+.info-form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+
+.description-form{
+    height: 150px;
+    width: 72vw;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 5px 5px rgb(175 172 172);
+    color: var(--second-color);
+    font-size: 12px;
+    margin-bottom: 10px;
+    resize: none;
+    font-family: "Poppins", sans-serif;
+    padding: 10px 0px 10px 10px;
+}
+
+.description-form:focus {
+    outline: none;
+    border: 1px solid var(--first-color);
+}
+
+.description-form::-webkit-scrollbar{
+    width: 12px;
+}
+
+.description-form::-webkit-scrollbar-track {
+    background: #fff;       
+}
+
+.description-form::-webkit-scrollbar-thumb {
+    background-color: var(--second-color);    
+    border-radius: 15px; 
+    border: 3px solid #fff;  
+}
+
+.input-image{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.input-image svg{
+    color: var(--second-color);
+    font-size: 30px;
+    margin-left: 10px;
+}
+
+.imageName-card{
+    color: var(--second-color);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 70vw;
+    height: 30px;
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 0 5px 5px rgb(175, 172, 172);
+    /*border: 1px solid var(--second-color);*/
+    margin: 5px 0px;
+    padding: 0px 15px;
+
+}
+
+.imageName-card svg, .name-card svg{
+    font-size: 15px;
+    cursor: pointer;    
+}
+
+
+
+
+
+
+.name-card{
+    width: 55vw;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-left: 10px;
+}
+
+.star{
+    color: rgb(175, 173, 173);
+}
+
+.star:hover{
+    color: var(--fifth-color);
+    cursor: pointer;
+}
+
+/*------INPUT RADIO ---------*/
+
+.imageName-card label{
+    width: 50vw;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-left: 10px;
+}
+
+.imageName-card svg{
+    font-size: 15px;
+    cursor: pointer;
+    margin-left: 5px;
+}
+.radio-input{
+    width: 15px;
+    height: 15px;
+    box-shadow: none;
+    cursor: pointer;
+    
+}
+

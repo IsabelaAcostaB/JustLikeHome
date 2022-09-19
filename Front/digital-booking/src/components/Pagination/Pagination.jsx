@@ -1,10 +1,27 @@
 import React from "react";
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 
 
 const PaginationNumbers =({pages,setCurrentPage})=>{
+
+    const theme = createTheme({
+        status: {
+          danger: '#e53e3e',
+        },
+        palette: {
+          primary: {
+            main: '#e48561',
+            darker: '#e48561',
+          },
+          neutral: {
+            main: '#384d58',
+            contrastText: '#fff',
+          },
+        },
+      });
 
     const showCurrentProducts =(event, page)=>{
         event.preventDefault();
@@ -14,13 +31,14 @@ const PaginationNumbers =({pages,setCurrentPage})=>{
     }
 
     return(
-        
+        <ThemeProvider theme={theme}>
         <Stack spacing={2}>
-            <Pagination count={pages} color="warning" size='large'
+            <Pagination count={pages} color="primary" size='large'
             onChange={showCurrentProducts}
 
             />
         </Stack>
+        </ThemeProvider>
     )
 
 }

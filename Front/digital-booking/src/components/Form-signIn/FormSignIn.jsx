@@ -34,8 +34,11 @@ const FormSignIn = () =>{
                 name: result.data.name,
                 lastName: result.data.lastName,
                 isLogged: true,
-                token:result.data.token
+                token:result.data.token,
+                role: result.data.role
             }
+
+            console.log(result.data);
 
             if (result.data.token){
                 localStorage.setItem('jwt', result.data.token)

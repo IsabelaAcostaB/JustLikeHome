@@ -23,13 +23,20 @@ header{
 .user-info{
     color: var(--first-color);
     /* width: 150px; */
-    
+   
 }
+
 
 .logo img{
     height: 8vh;
 
 }
+
+
+.administration a{
+    color: var(--second-color);
+}
+
 
 .user-name{
     display: flex;
@@ -39,6 +46,12 @@ header{
 
 .user-name a{
     margin-left: 20px;
+}
+.user-name a:hover{
+    cursor: pointer;
+}
+.user-name a > svg:hover{
+    cursor: pointer;
 }
 
 .user-avatar{
@@ -147,8 +160,18 @@ header{
     
     .user-info{
         display: unset;
+        display: flex;
+        flex-direction: row;
+
     }
     
+    .administration {
+        margin-right: 20px;
+        align-self: center;
+        cursor: pointer;
+    }
+
+
 
     
 }
