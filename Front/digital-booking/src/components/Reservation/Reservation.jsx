@@ -109,6 +109,35 @@ const Reservation = () => {
   }
   Fetch();
 
+
+
+  function GetCheckInHour({product}) {
+    let rules = product.policy.rules;
+    let arrayRules = rules.split(",");
+    arrayRules = arrayRules[2]
+    arrayRules = arrayRules.slice(10)
+    arrayRules = arrayRules.split("-");
+
+    if(arrayRules.length == 2){
+      
+      return (
+        <p>
+          Tu habitación va a estar lista para el check-in entre las {arrayRules[0]} y las {arrayRules[1]}
+        </p>
+      )
+    } else {
+      return (
+        <p>
+      Tu habitación va a estar lista para el check-in durante todo el día.
+    </p>
+      )
+      
+    }
+  }
+
+
+
+
   const [Dropdown, setDropdown] = useState(false);
   const abrirCerrarDropdown = () => setDropdown(!Dropdown);
 
@@ -118,7 +147,7 @@ const Reservation = () => {
 
   /* --------------- POST ------------------- */
 
-  /* let checkInhour = "10:00"; */
+
   const [checkInHour, setCheckInHour] = useState(null)
   let token = localStorage.getItem("jwt"); 
   let decode= jwt_decode(token); 
@@ -174,9 +203,7 @@ const Reservation = () => {
       return (
         
         <div className="reservation-error">
-          {
-          console.log(reservationError)}
-          {console.log(isActive)}
+
             <FontAwesomeIcon
             icon={faCircleXmark}
             className="carousel-close"
@@ -190,8 +217,6 @@ const Reservation = () => {
     }
   }
 
-console.log(data)
-console.log(checkIn_hour)
   return (
     <div className="main">
       {reservationInfo && (
@@ -273,6 +298,7 @@ console.log(checkIn_hour)
         Tu horario de llegada{" "}
       </h2>
       <div className="card reservation-times-info">
+        {reservationInfo && (<GetCheckInHour product={reservationInfo}/>)}
         <div>
           <select
             name="check-in-hour"
@@ -306,9 +332,7 @@ console.log(checkIn_hour)
             <option value="23:00"> 23:00 PM </option>
           </select>
         </div>
-        <p>
-          Tu habitación va a estar lista para el check-in entre las x y las x
-        </p>
+        
       </div>
 
       <h2 className="card-title reservation-title-h2">Detalle de Reserva</h2>

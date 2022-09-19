@@ -32,6 +32,7 @@ const Header = () => {
     };
 
     setUserData(userDataOut);
+    navigate("/")
     refreshPage()
   };
 

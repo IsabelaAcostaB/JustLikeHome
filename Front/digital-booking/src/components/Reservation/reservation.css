@@ -103,7 +103,9 @@
 }
 
 .reservation-times-info{
+    display: flex;
     width: 90vw;
+    padding: 1rem 0;
     margin: 0 5vw 5vw 5vw;
 }
 
