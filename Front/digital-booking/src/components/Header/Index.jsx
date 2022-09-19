@@ -75,6 +75,12 @@ const Header = () => {
 
         {userData.isLogged ? (
           <div className="user-info">
+
+            <div className="administration">
+            <Link to="/administration"><h3>Administracion</h3></Link>
+              
+            </div>
+
             <div className="user-name">
               <div className="user-avatar">
                 <p>{firstLetter()}</p>
