@@ -29,6 +29,7 @@ const Header = () => {
       lastName: null,
       isLogged: false,
       token: null,
+      role:null
     };
 
     setUserData(userDataOut);
@@ -46,6 +47,17 @@ const Header = () => {
 
     return letters;
   };
+
+  const isAdmin = ()=>{
+    if (userData.role === "ADMIN"){
+    return(
+      <div className="administration">
+              <Link to="/administration"><h3>Administracion</h3></Link>
+      </div>
+    )
+    }
+  }
+
 
   return (
     <header>
@@ -76,9 +88,10 @@ const Header = () => {
         {userData.isLogged ? (
           <div className="user-info">
 
+
+            
             <div className="administration">
-            <Link to="/administration"><h3>Administracion</h3></Link>
-              
+              <Link to="/administration"><h3>Administracion</h3></Link>
             </div>
 
             <div className="user-name">

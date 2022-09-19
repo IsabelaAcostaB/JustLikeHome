@@ -15,7 +15,8 @@ export const UserProvider =({children})=>{
         name: null,
         lastName: null,
         isLogged: false,
-        token: null
+        token: null,
+        role: null
     });
 
     /* const [response, setResponse] = useState(null) */
