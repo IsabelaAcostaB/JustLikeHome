@@ -19,6 +19,9 @@ header{
 }
 
 
+.administration a{
+    color: var(--second-color);
+}
 
 .user-info{
     color: var(--first-color);
