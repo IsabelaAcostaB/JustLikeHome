@@ -7,8 +7,11 @@ import axios from "axios";
 import Url from "../../util/Url";
 import ProductHeader from "../Products/ProductHeader"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {faCirclePlus, faXmark} from '@fortawesome/free-solid-svg-icons'
+import {faCirclePlus, faXmark, faStar} from '@fortawesome/free-solid-svg-icons'
 import create from "./create.css"
+import { IndexRoute } from "react-router-3";
+import Radio from '@mui/material/Radio';
+
 
 const CreateProducts =() => {
     
@@ -70,28 +73,21 @@ const CreateProducts =() => {
         setProductData({...productData, [name]:value});
     }
 
-    const [formImages, setFormImg] =useState([])
+    
     const [img, setImg]= useState(
         {
             imageURL: null,
-            //main_img:null,
-            title: null 
+            main_img:null,
+            title: null,
+
         }
     );
 
     const handleImg =(e)=>{
-        //console.log(e.target.files);
-        //console.log(e.target.value);
-        //const {name, value} = e.target
-        //img.imgName
         
-        setImg({imageURL:e.target.value, title:getImageName(e.target.value)});
+        setImg({imageURL:e.target.value, main_img: "0", title:getImageName(e.target.value)});
     }
     
-
-    //let imagePath = e.target.files;
-    //let locationAPI = locationReservation.split("/");
-    //let location = locationAPI[2];
 
     const getImageName = imageName => {
         let name = imageName;
@@ -101,33 +97,69 @@ const CreateProducts =() => {
     }    
     
     const addImage=()=>{
-        
-        //Capturar valor del input
-        //Al apretar boton mas, pushea al array de imagenes ese valor
-        //productData.images.push(image)
-        //Vaciar input de imagenes
 
-        // Se muestra debajo del input, los nombre de las imagenes que pusimos
         productData.images.push(img)
         setImg({imageURL:"", title:""})
     }
 
 
-    const deleteImage =(i) =>{
-        //sacar del array dependiendo de su key
+    const deleteImage = (index) =>{
+        const allImages = [...productData.images]
+        allImages.splice(index,1);
+        setProductData({...productData, images:allImages})
 
-        //let foundIndex = productData.images.indexOf(i);
-        
-        //productData.images.splice(foundIndex,1);
-        
-        let newArray = productData.images.filter(p=>{
-            //p.imageURL !== i
-        })
-
-        setProductData({...productData, images:newArray})
-        
-        //console.log(productData);
+  
     } 
+
+
+    // RADIO BUTTON
+
+    const [selectedValue, setSelectedValue] = useState('');
+    
+    const handleChangeRadioButton = (event) => {
+        setSelectedValue(event.target.value);
+    };
+    
+    const RadioButton =({ix})=>{
+
+
+        const controlProps = (item) => ({
+            checked: selectedValue === item,
+            onChange: handleChangeRadioButton,
+            value: item,
+            name: 'image',
+            inputProps: { 'aria-label': item },
+        });
+
+        console.log(controlProps().value);
+        console.log(selectedValue);
+       
+        //si el radio button está marcado, entonces setear main image en 1.
+        
+
+        return(
+            <Radio
+                {...controlProps('image'+ix)}
+                sx={{
+                    color: "#496270",
+                    '&.Mui-checked': {
+                    color: "#e48561",
+                    },
+                    '& .MuiSvgIcon-root': {
+                        fontSize: 20,
+                      },
+                }}
+            />
+        )
+
+    }
+
+    
+
+
+
+
+
 
     //console.log(productData.images.indexOf("https://justlikehome-images.s3.us-east-2.amazonaws.com/util/logo+fondo+blanco+header.jpg"));
     //"https://justlikehome-images.s3.us-east-2.amazonaws.com/util/logo+fondo+blanco+header.jpg"
@@ -141,8 +173,8 @@ const CreateProducts =() => {
     <div className="main">
         <ProductHeader title ={"Administración"}  path ={"/"}/>
         <h1 className="title-h1">Crear producto</h1>
-        <div className="product-form">
-            <form className="form-p">
+     
+        <form className="product-form">
                 <div className="info-form">
                     <label htmlFor="title">Nombre Producto :</label>
                     <input type="text" name="title" id="product name" value={productData.title} onChange={handleChange} required/>
@@ -172,8 +204,9 @@ const CreateProducts =() => {
                 </div>
 
                 <div className="info-form">
-                    <label htmlFor="description">Descripción:</label>
-                    <input type="text" name="description" id="description" value={productData.description} onChange={handleChange} required/>    
+                    <label htmlFor="description">Descripción:</label>   
+                    <textarea name="description" className="description-form" minLength={"100"} maxLength={"1500"} autoCapitalize="sentences"
+                    value={productData.description} onChange={handleChange} required></textarea>
                 </div>
 
                 <div className="info-form">
@@ -211,19 +244,49 @@ const CreateProducts =() => {
                     onClick={deleteImage}
                      onClick={deleteImage(image)}
                      getImageName(image)
+
+                     image.imageURL
                     */}
                     <div className="input-image">
                         <input type="text" name="url" onChange={handleImg} />
                         <FontAwesomeIcon icon={faCirclePlus} onClick={addImage}/>
                     </div>
 
-                    
+                    {/*
+                    <div className="imageName-card">
+                            
+                            <FontAwesomeIcon icon={faStar} className="star"/>
+                            <div className="name-card">
+                            <p>ejemploNombre.jpg</p>
+                            <FontAwesomeIcon icon={faXmark}/>
+                            </div>
+                    </div>
+
+                    <div className="imageName-card">
+                        <input type="radio" name="image"/>
+                        <label htmlFor="image">ejemploNombre.jpg</label>
+                        <FontAwesomeIcon icon={faXmark}/>
+                        
+                    </div>
+
+                    <FontAwesomeIcon icon={faStar} className="star"/>
+                    <div className="name-card">
+                        <p>{image.title}</p>
+                        <FontAwesomeIcon icon={faXmark} onClick={()=>deleteImage(index)}/>
+                    </div>
+
+                    main={image.main_img} 
+
+                    */}
+
                     {productData.images.map((image, index) =>(
                         <div key={index} className="imageName-card">
-                            <p>{image.title}</p>
-                            <FontAwesomeIcon icon={faXmark} onClick={deleteImage(image)}/>
+                            <RadioButton ix={index} />
+                            <label htmlFor="image">{image.title}</label>
+                            <FontAwesomeIcon icon={faXmark} onClick={()=>deleteImage(index)}/>
                         </div>
                     ))}
+
                 </div>
 
                 <div>
@@ -231,12 +294,9 @@ const CreateProducts =() => {
                 </div>
                 <button className="button-2" onClick={handleSubmit}>Crear</button>
 
+        </form>
 
-
-            </form>
-
-            
-        </div>
+       
     </div>
 
     )
