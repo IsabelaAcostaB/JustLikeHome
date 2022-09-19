@@ -16,7 +16,7 @@ import ConfirmationReservation from "./components/Reservation/ConfirmationReserv
 import {ReservationProvider} from "./components/ReservationContext"
 import SearchTemplate from "./components/SearchPage/SearchTemplate"
 import Search from "./pages/Search/Search"
-
+import CreateProducts from "./components/CreateProducts/CreateProducts";
 function App() {
 
   return (
@@ -40,6 +40,8 @@ function App() {
           <Route path="/product/reservation/:id" element={<Reservation />}/>
           <Route path="/ConfirmationReservation/" element={<ConfirmationReservation />}/> 
           </Route>
+          <Route path="/administration" element={<CreateProducts />}/>
+
 
         </Routes>
         
