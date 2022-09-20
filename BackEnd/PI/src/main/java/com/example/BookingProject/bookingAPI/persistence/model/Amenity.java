@@ -24,7 +24,7 @@ public class Amenity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name="title")
+    @Column(name="title", unique = true)
     private String title;
 
     @Column(name="icon")

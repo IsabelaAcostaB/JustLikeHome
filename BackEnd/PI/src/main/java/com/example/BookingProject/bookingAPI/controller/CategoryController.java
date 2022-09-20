@@ -1,5 +1,6 @@
 package com.example.BookingProject.bookingAPI.controller;
 
+import com.example.BookingProject.bookingAPI.persistence.model.Amenity;
 import com.example.BookingProject.bookingAPI.persistence.model.Category;
 import com.example.BookingProject.bookingAPI.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,15 +19,18 @@ public class CategoryController {
     @PostMapping
     public ResponseEntity<Category> addCategory(@RequestBody Category category) {
 
+            if (categoryService.findByTitle(category.getTitle()).isPresent()) {
+                return new ResponseEntity<>(HttpStatus.CONFLICT);
+            }
             return new ResponseEntity<>(categoryService.saveCategory(category), HttpStatus.CREATED);
 
     }
-
 
     @PostMapping("/addMany")
     public ResponseEntity<?> addCategories(@RequestBody List<Category> categories) {
         return new ResponseEntity<>(categoryService.saveCategories(categories), HttpStatus.CREATED);
     }
+
     @GetMapping
     public ResponseEntity<?> findAllCategories() {
         return new ResponseEntity<>(categoryService.getAllCategories(),HttpStatus.OK);
@@ -34,7 +38,7 @@ public class CategoryController {
 
     @GetMapping("/name/{title}")
     public ResponseEntity<?> findCategoryByTitle(@PathVariable String title) {
-        return new ResponseEntity<>(categoryService.getCategoryByTitle(title), HttpStatus.OK);
+        return new ResponseEntity<>(categoryService.findByTitle(title), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")

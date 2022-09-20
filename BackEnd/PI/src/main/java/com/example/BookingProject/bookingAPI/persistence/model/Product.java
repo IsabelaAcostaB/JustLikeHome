@@ -25,7 +25,7 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name="title")
+    @Column(name="title", unique = true)
     private String title;
 
     @ManyToOne(cascade = CascadeType.MERGE)
@@ -72,6 +72,13 @@ public class Product {
     )
 
     private City city;
+
+
+    @OneToMany(cascade = CascadeType.MERGE)
+    @JoinColumn(
+            name = "product_id", referencedColumnName = "id"
+    )
+    private Set<Reservation> reservations = new HashSet<>();
 
 
 }

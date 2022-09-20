@@ -4,6 +4,7 @@ import com.example.BookingProject.bookingAPI.persistence.model.Category;
 import com.example.BookingProject.bookingAPI.persistence.model.City;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface CityService {
 
@@ -11,7 +12,8 @@ public interface CityService {
 
     List<City> saveAllCities(List<City> cities);
 
-    City findByName(String title);
+
+    Optional<City> findByName(String name);
 
     City getCityById(Long id);
 

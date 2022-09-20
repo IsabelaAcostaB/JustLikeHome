@@ -30,9 +30,8 @@ public class CategoryServiceImpl implements CategoryService {
     public  List<Category> saveCategories(List<Category> categories) {
         return categoryRepository.saveAll(categories);
     }
-
     @Override
-    public Category getCategoryByTitle(String title) {
+    public Optional<Category> findByTitle(String title) {
         return categoryRepository.findByTitle(title);
     }
     @Override

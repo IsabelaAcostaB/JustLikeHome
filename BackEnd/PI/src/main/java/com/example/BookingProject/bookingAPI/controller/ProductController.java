@@ -2,6 +2,7 @@ package com.example.BookingProject.bookingAPI.controller;
 
 import com.example.BookingProject.bookingAPI.persistence.model.Product;
 import com.example.BookingProject.bookingAPI.persistence.model.Reservation;
+import com.example.BookingProject.bookingAPI.persistence.model.User;
 import com.example.BookingProject.bookingAPI.persistence.repository.ProductRepository;
 import com.example.BookingProject.bookingAPI.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,8 +29,12 @@ public class ProductController {
 
     @PostMapping
     public ResponseEntity<?> addProduct(@RequestBody Product product){
+        if (productService.findByProductTitle(product.getTitle()).isPresent()) {
+            return new ResponseEntity<>(HttpStatus.CONFLICT);
+        }
         return new ResponseEntity<>(productService.saveProduct(product), HttpStatus.CREATED);
     }
+
 
     @GetMapping
     public ResponseEntity<?> findAllProducts() {

@@ -1,6 +1,7 @@
 package com.example.BookingProject.bookingAPI.controller;
 
 import com.example.BookingProject.bookingAPI.persistence.model.Amenity;
+import com.example.BookingProject.bookingAPI.persistence.model.Product;
 import com.example.BookingProject.bookingAPI.service.AmenityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,8 +16,12 @@ public class AmenityController {
     private AmenityService amenityService;
 
     @PostMapping
-    public String addAmenity(@RequestBody Amenity amenity){
-        return amenityService.saveAmenity(amenity);
+    public ResponseEntity<?> addAmenity(@RequestBody Amenity amenity){
+
+        if (amenityService.findByTitle(amenity.getTitle()).isPresent()) {
+            return new ResponseEntity<>(HttpStatus.CONFLICT);
+        }
+        return new ResponseEntity<>(amenityService.saveAmenity(amenity), HttpStatus.CREATED);
     }
 
     @GetMapping

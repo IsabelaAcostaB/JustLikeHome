@@ -1,6 +1,7 @@
 package com.example.BookingProject.bookingAPI.persistence.repository;
 
 import com.example.BookingProject.bookingAPI.persistence.model.Product;
+import com.example.BookingProject.bookingAPI.persistence.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import org.springframework.data.jpa.repository.Query;
@@ -10,9 +11,12 @@ import org.springframework.stereotype.Repository;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Long> {
+
+    Optional<Product> findByTitle(String title);
 
     // FIND BY CITY TITLE, ID AND CODE
 

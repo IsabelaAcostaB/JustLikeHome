@@ -22,13 +22,13 @@ public class City {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "name", nullable = false, length = 100)
+    @Column(name = "name", nullable = false, length = 100, unique = true)
     private String name;
 
     @Column(name = "country", nullable = false)
     private String country;
 
-    @Column(name = "city_code", nullable = false)
+    @Column(name = "city_code", nullable = false, unique = true)
     private String code;
 
 

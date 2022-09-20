@@ -1,6 +1,7 @@
 package com.example.BookingProject.bookingAPI.controller;
 import com.example.BookingProject.bookingAPI.persistence.model.Category;
 import com.example.BookingProject.bookingAPI.persistence.model.City;
+import com.example.BookingProject.bookingAPI.persistence.model.Product;
 import com.example.BookingProject.bookingAPI.service.CityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,9 +18,14 @@ public class CityController {
     private CityService cityService;
 
     @PostMapping
-    public String addCity(@RequestBody City city){
-        return cityService.saveCity(city);
+    public ResponseEntity addCity(@RequestBody City city){
+
+        if (cityService.findByName(city.getName()).isPresent()) {
+            return new ResponseEntity<>(HttpStatus.CONFLICT);
+        }
+        return new ResponseEntity<>(cityService.saveCity(city), HttpStatus.CREATED);
     }
+
 
     @PostMapping("/addMany")
     public ResponseEntity<?> addCities(@RequestBody List<City> cities) {

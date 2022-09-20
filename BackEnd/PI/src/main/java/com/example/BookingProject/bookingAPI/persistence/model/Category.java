@@ -27,7 +27,7 @@ public class Category {
     private Set<Product> products = new HashSet<>();
 
 
-    @Column(name = "title", nullable = false, length = 100)
+    @Column(name = "title", nullable = false, length = 100, unique = true)
     private String title;
 
     @Column(name = "description", nullable = false)
@@ -36,7 +36,7 @@ public class Category {
     @Column(name = "image_url", nullable = false)
     private String imageURL;
 
-    @Column(name = "category_code", nullable = false)
+    @Column(name = "category_code", nullable = false, unique = true)
     private String code;
 
 }

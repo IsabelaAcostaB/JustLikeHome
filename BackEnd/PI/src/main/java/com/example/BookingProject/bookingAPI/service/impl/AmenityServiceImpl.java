@@ -2,7 +2,6 @@ package com.example.BookingProject.bookingAPI.service.impl;
 
 import com.example.BookingProject.bookingAPI.exception.ResourceNotFoundException;
 import com.example.BookingProject.bookingAPI.persistence.model.Amenity;
-import com.example.BookingProject.bookingAPI.persistence.model.City;
 import com.example.BookingProject.bookingAPI.persistence.repository.AmenityRepository;
 import com.example.BookingProject.bookingAPI.service.AmenityService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +22,10 @@ public class AmenityServiceImpl implements AmenityService {
         Long amenity_id = amenity.getId();
         String amenity_name = amenity.getTitle();
         return "Amenity : "+ amenity_name + " with id :" + amenity_id +" , was successfully created." ;
+    }
+    @Override
+    public Optional<Amenity> findByTitle(String title) {
+        return amenityRepository.findByTitle(title);
     }
 
     @Override

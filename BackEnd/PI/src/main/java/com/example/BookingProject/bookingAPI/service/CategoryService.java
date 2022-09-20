@@ -4,6 +4,7 @@ import com.example.BookingProject.bookingAPI.persistence.model.Category;
 
 
 import java.util.List;
+import java.util.Optional;
 
 
 public interface CategoryService {
@@ -11,7 +12,8 @@ public interface CategoryService {
 
     List<Category> saveCategories(List<Category> categories);
 
-    Category getCategoryByTitle(String title);
+
+    Optional<Category> findByTitle(String title);
 
     Category getCategoryById(Long id);
 
