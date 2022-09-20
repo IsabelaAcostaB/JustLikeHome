@@ -186,6 +186,9 @@
   background-color: var(--fourth-color);
   text-align: center;
 }
+.select_checkin-hour {
+  background-color: #d0d0ca70
+}
 
 @media (min-width: 768px) {
   .reservation-container {
@@ -302,7 +305,7 @@
     /* width: 40vw; */
   }
   .reservation-container {
-    width: 55%;
+    width: 55vw;
     height: 34vh;
     margin: 0;
     margin-left: 2.5rem;
@@ -322,11 +325,12 @@
   }
 
   .block-reservation-page {
-    width: 55%;
+    width: 55vw;
     /* height: auto; */
     height: 65vh;
     padding: 0;
     margin-left: 2.5rem;
+    margin-bottom: 0;
   }
   .reservation-calendar {
     padding: 0;
@@ -337,7 +341,8 @@
 
   .reservation-times-info {
     margin: 0 0 0 2.5rem;
-    width: 55%;
+    width: 55vw;
+    height: auto;
   }
 
   .select-checkIn {
@@ -365,34 +370,38 @@
 
   .reservation-product-info {
     flex-direction: column;
-    width: 20vw;
+    width: 100%;
     padding: 0;
     margin: 0;
-    height: auto;
+    height: 171vh; 
   }
   .reservation-product-info>img{
     height: 60%;
     border-radius: 15px 15px 0 0;
     flex-direction: column;
-    width: 20vw;
+    width: 100%;
   }
   .info-reservation-and-product{
-    width: 20vw;
+    width: 100%;
   }
-  /* .info-reservation-and-product{
-    width: 20vw;
-  } */
-  /* .reservation-product-info {
-    flex-direction: column;
-    width: 20vw;
-  } */
- /*  .main-sections {
-    display: flex;
-    flex-direction: row;
+  .product-details{
+    
+      height: 20vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: left;
+  margin-right: 2.5rem;
   }
-  .reservation-product-info {
-    flex-direction: column;
-    width: 20vw;
-  } */
+  .reservation-data-h2, .reservation-dates-h2, .reservation-times-h2, .reservation-title-h2 {
+    padding: 2.5rem;
+    padding-bottom: 0;
+  }
+  .reservation-title-h2 {
+    padding-left: 0;
+  }
+  .policies-container-reservation > div.policies {
+    margin-top: 2rem;
+    padding: 2.5rem;
+}
   
 }

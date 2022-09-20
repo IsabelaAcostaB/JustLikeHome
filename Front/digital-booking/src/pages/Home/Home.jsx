@@ -3,11 +3,10 @@ import ListarCat from "../../components/categories/Categories";
 import SearchBar from "../../components/Buscador/SearchBar";
 import Listar from "../../components/List/List";
 import { FilterContext } from "../../components/FilterContext";
-import { UserContext}from "../../components/UserContext";
+import { UserContext } from "../../components/UserContext";
 import axios from "axios";
 import PaginationNumbers from "../../components/Pagination/Pagination";
 import Url from "../../util/Url";
-import jwtDecode from "jwt-decode";
 import jwt_decode from "jwt-decode";
 import "./homefiltered.css";
 
@@ -22,24 +21,48 @@ const Home = () => {
   const currentProducts = products.slice(indexFirstProduct, indexLastProduct);
 
   const pages = Math.ceil(products.length / productsPerPage);
+  const { userData, setUserData } = useContext(UserContext);
+
+  function logUser(){
+    let token = localStorage.getItem("jwt");
+    
+    let decode; 
+
+    if(token !== null){
+      decode = jwt_decode(token);
+      const getUser = async () => {
+        let url = Url() + "/api/user/" + decode.userId;
+        const result = await axios.get(url);
+        let newUser = result.data;
+        setUserData({
+          name: newUser.name,
+          lastName: newUser.lastName,
+          isLogged: true,
+          token: token
+      });
+      };
+      getUser();
+    }
+  }
+
+  logUser()
 
   /*---------------  Es el fetch para traer productos por ciudades -------------*/
 
   const { filterData } = useContext(FilterContext);
   useEffect(() => {
-      const getAllProducts = async () => {
-        const url = Url() + "/api/product";
-        const result = await axios.get(url);
-        setProducts(result.data);
-      };
-      getAllProducts();
-    }
-  , [filterData]);
+    const getAllProducts = async () => {
+      const url = Url() + "/api/product";
+      const result = await axios.get(url);
+      setProducts(result.data);
+    };
+    getAllProducts();
+  }, [filterData]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
- 
+
   return (
     <div className="main">
       <SearchBar />
