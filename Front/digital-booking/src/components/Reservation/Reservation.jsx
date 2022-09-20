@@ -222,6 +222,7 @@ const Reservation = () => {
           path={`/product/${reservationInfo.id}`}
         />
       )}
+      <section className="main-sections">
       <section className="section-reservation">
       <h2 className="reservation-data-h2">Completá tus datos</h2>
       <div className="card reservation-container">
@@ -257,8 +258,8 @@ const Reservation = () => {
         </form>
       </div>
       <h2 className="reservation-dates-h2">Fechas disponibles</h2>
-      <div className="reservationBlock">
-        <div className="calendarBlock">
+      <div className="reservationBlock block-reservation-page">
+        <div className="calendarBlock reservation-calendar">
           {windowDimension.width < 768 ? (
             <div>
               {" "}
@@ -332,6 +333,7 @@ const Reservation = () => {
         </div>
       </div>
       </section>
+      <section>
       <h2 className="card-title reservation-title-h2">Detalle de Reserva</h2>
 
       {reservationInfo && (
@@ -360,7 +362,8 @@ const Reservation = () => {
         </div>
         </div>
       )}
-
+      </section>
+</section>
       <div className="policies-container-reservation">
         {reservationInfo && <PoliciesRender2 product={reservationInfo} />}
       </div>
