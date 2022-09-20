@@ -18,9 +18,7 @@
 
 }
 .main-reservation{
-    display: flex;
-    /* height: 400px */
-   /*  max-height: 93vh; */
+
 }
 
 .reservation-container{
@@ -48,8 +46,6 @@
     padding: 20px;
     font-family: "Poppins", sans-serif;
 }
-
-
 
 
 .reservation-container-product{
@@ -107,17 +103,190 @@
     width: 90vw;
     padding: 1rem 0;
     margin: 0 5vw 5vw 5vw;
+    align-items: center;
+    /* height: 40vh; */
 }
 
-.reservation-times-info > p {
-    padding-left: 15px;
-    padding-top: 7px;
+.checkIn-info  {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    width: 90vw;
+    margin: 0 5vw ;
+    padding-bottom: 25px;
+}
+.checkIn-info-p{
+    /* padding-left: 15px;
+    padding-top: 7px; */
     font-weight: 200;
     line-height: 25px;
+    width: 75vw;
+}
+.checkIn-info  > svg {
+    height: 18px;
+    width: 8vw;
+    color: var(--second-color);
+}
+
+.select-checkIn > p {
+    font-weight: 200;
+    font-size: 12px;
+}
+/* .checkIn-info > p {
+    color: red;
+} */
+
+.policies-container-reservation > div.policies {
+    padding: 5vw;
+}
+
+.info-reservation-and-product{
+    display: flex;
+    flex-direction: column;
+    height: max-content;
+    box-sizing: border-box;
+    align-items: center;
+}
+.info-reservation-and-product > .button-c {
+    /* margin: 20px 30px; */
+    width: 70%;
+    margin-bottom: 20px;
+    margin-top: 10px;
 }
 
 
+.info-reservation-and-product >  .card-title{
+    text-align: center;
+}
+
+.info-reservation-and-product > .dates{
+    text-align: left;
+    margin: 0;
+    padding: 20px;
+    width: 100%;
+}
+ .dates > h3{
+    /* text-align: left;
+    margin: 0; */
+    padding: 10px 0 ;
+    margin-top: 0;
+    /* width: 100%; */
+}
+
+
+
+@media (min-width: 768px){
+    .reservation-container{
+        height: auto;
+        margin-top: 0;
+        padding-top: 0;
+    }
+    .reservation-form{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        height: auto;
+        padding: 0;
+        margin: 0;
+        width: 90vw;
+        align-items: center;
+    }
+    .form-labels-reservation{
+       /*  padding: 0;
+        margin: 0; */
+        display: flex;
+        flex-wrap: wrap;
+        width: 90vw;
+        align-items: center;
+        justify-content: space-evenly;
+        padding: 1rem;
+    }
+    .form-labels-reservation > div{
+        padding: 0;
+        margin: 0;
+        width: 40vw;
+    }
+    .reservation-form > .form-labels-reservation > div> input{
+        width: auto;
+    }
+
+    .checkIn-info{
+        width: 80vw;
+        margin-left: 0;
+    }
+    .checkIn-info>svg{
+        /* width: 80vw;
+        margin-left: 0; */
+        width: 18px;
+    }
+    .select-checkIn{
+        /* display: flex;
+        align-items: center;
+        justify-content: space-around; */
+        padding: 0;
+        margin: 0;
+        width: 90vw;
+        margin-left: 5vw;
+    }
+    .select-checkIn > p{
+        font-size: 14px;
+         
+        padding-bottom: 5px;
+    }
+    .select_checkin-hour{
+        margin: 0;
+        height: 50px;
+        width: 40vw;
+    }
+
+    .reservation-product-info{
+        display: flex;
+        flex-direction: row;
+        height: 40vh;
+    }
+    .reservation-product-info > img{
+        height: 100%;
+        width: 50%;
+        border-radius: 15px 0 0 15px;
+        /* object-fit: cover; */
+    }
+    .info-reservation-and-product{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-evenly;
+        width: 50%;
+        height: 100%;
+    }
+    .info-reservation-and-product >  .card-title{
+        text-align: center;
+    }
+    .info-reservation-and-product >  .card-title > h2{
+        font-size: 1.5rem;
+    }
+    .info-reservation-and-product > .dates{
+        text-align: left;
+        margin: 0;
+        padding: 20px;
+        width: 100%;
+    }
+     .dates > h3{
+        /* text-align: left;
+        margin: 0; */
+        padding: 10px 0 ;
+        margin-top: 0;
+        /* width: 100%; */
+    }
+    .info-reservation-and-product > .button-c {
+        width: 60%;
+    }
+}
+
 @media (min-width: 1024px) {
+    .section-reservation{
+        /* width: 40vw; */
+    }
     .reservation-container{
         width: 50%;
         /* padding: 0  0 0 2.5rem;
@@ -125,20 +294,21 @@
         margin-top: 2.5rem; */
         height: 34vh;
         margin: 0;
-    }
-    /* .reservation-form{
+        margin-left: 2.5rem;
         display: flex;
         flex-direction: row;
-    } */
-
-    /* .reservation-form > input{
-        padding: 1.5rem;
     }
-     */
+    
      .form-labels-reservation{
+        width: 50%;
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
+        margin-left: 2.5rem;
+        padding: 0;
+     }
+     .form-labels-reservation > div {
+        width: 40%;
      }
 
      .product > .reservationBlock > .calendarBlock{

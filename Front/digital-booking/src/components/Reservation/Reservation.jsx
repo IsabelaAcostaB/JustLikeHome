@@ -1,12 +1,10 @@
 import { DateRange } from "react-date-range";
 import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
-import calendar from "../CalendarReservation/calendar.css";
 import defaultLocale from "date-fns/locale/es";
 import useWindowDimensions from "../../hooks/useWindowDimensions.jsx";
 import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
-import { FilterContext } from "../FilterContext";
 import Url from "../../util/Url";
 import { PoliciesRender2 } from "../Products/Product";
 import jwt_decode from "jwt-decode";
@@ -14,6 +12,7 @@ import "./reservation.css";
 import ProductHeader from "../Products/ProductHeader";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
+import { faCheckCircle } from "@fortawesome/free-solid-svg-icons";
 import { ImagesRender } from "../List/List";
 import moment from "moment";
 import { ReservationContext } from "../ReservationContext";
@@ -109,34 +108,36 @@ const Reservation = () => {
   }
   Fetch();
 
-
-
-  function GetCheckInHour({product}) {
+  function GetCheckInHour({ product }) {
     let rules = product.policy.rules;
+    rules = rules.replaceAll('am', 'AM')
+    rules = rules.replaceAll('pm', 'PM')
     let arrayRules = rules.split(",");
-    arrayRules = arrayRules[2]
-    arrayRules = arrayRules.slice(10)
+    arrayRules = arrayRules[2];
+    arrayRules = arrayRules.slice(10);
     arrayRules = arrayRules.split("-");
 
-    if(arrayRules.length == 2){
-      
+    if (arrayRules.length == 2) {
       return (
-        <p>
-          Tu habitación va a estar lista para el check-in entre las {arrayRules[0]} y las {arrayRules[1]}
-        </p>
-      )
+        <div className="checkIn-info">
+          <FontAwesomeIcon icon={faCheckCircle} />
+          <p className="checkIn-info-p">
+            Tu habitación va a estar lista para el check-in entre las{" "}
+            {arrayRules[0]} y las {arrayRules[1]}
+          </p>
+        </div>
+      );
     } else {
       return (
-        <p>
-      Tu habitación va a estar lista para el check-in durante todo el día.
-    </p>
-      )
-      
+        <div className="checkIn-info">
+          <FontAwesomeIcon icon={faCheckCircle} />
+          <p className="checkIn-info-p">
+            Tu habitación va a estar lista para el check-in durante todo el día.
+          </p>
+        </div>
+      );
     }
   }
-
-
-
 
   const [Dropdown, setDropdown] = useState(false);
   const abrirCerrarDropdown = () => setDropdown(!Dropdown);
@@ -147,11 +148,9 @@ const Reservation = () => {
 
   /* --------------- POST ------------------- */
 
-
-  const [checkInHour, setCheckInHour] = useState(null)
-  let token = localStorage.getItem("jwt"); 
-  let decode= jwt_decode(token); 
-
+  const [checkInHour, setCheckInHour] = useState(null);
+  let token = localStorage.getItem("jwt");
+  let decode = jwt_decode(token);
 
   const navigate = useNavigate();
   let checkIn_hour;
@@ -193,7 +192,6 @@ const Reservation = () => {
     }
   };
 
- 
   const handleToggle = () => {
     setActive(!isActive);
   };
@@ -201,14 +199,12 @@ const Reservation = () => {
   function RenderErrorMessage() {
     if (isActive) {
       return (
-        
         <div className="reservation-error">
-
-            <FontAwesomeIcon
+          <FontAwesomeIcon
             icon={faCircleXmark}
             className="carousel-close"
             onClick={handleToggle}
-          />  
+          />
           <h2>Lamentablemente la reserva no ha podido realizarse</h2>
           <p>Por favor, intente más tarde</p>
           <button className="button-c button-error">Aceptar</button>
@@ -218,7 +214,7 @@ const Reservation = () => {
   }
 
   return (
-    <div className="main">
+    <div className="main .main-reservation">
       {reservationInfo && (
         <ProductHeader
           category={reservationInfo.category.title}
@@ -226,6 +222,7 @@ const Reservation = () => {
           path={`/product/${reservationInfo.id}`}
         />
       )}
+      <section className="section-reservation">
       <h2 className="reservation-data-h2">Completá tus datos</h2>
       <div className="card reservation-container">
         <form className="reservation-form">
@@ -298,14 +295,15 @@ const Reservation = () => {
         Tu horario de llegada{" "}
       </h2>
       <div className="card reservation-times-info">
-        {reservationInfo && (<GetCheckInHour product={reservationInfo}/>)}
-        <div>
+        {reservationInfo && <GetCheckInHour product={reservationInfo} />}
+        <div className="select-checkIn">
+          <p>Indicá tu horario estimado de llegada</p>
           <select
             name="check-in-hour"
             className="search_cities select_checkin-hour"
-            onChange={(e)=>setCheckInHour(checkIn_hour = e.target.value)}
+            onChange={(e) => setCheckInHour((checkIn_hour = e.target.value))}
           >
-            <option defaultValue="" >Selecciona tu hora de llegada</option>
+            <option defaultValue="">Seleccionar hora de llegada</option>
             <option value="00:00">00:00 AM</option>
             <option value="01:00"> 01:00 AM</option>
             <option value="02:00"> 02:00 AM</option>
@@ -332,37 +330,38 @@ const Reservation = () => {
             <option value="23:00"> 23:00 PM </option>
           </select>
         </div>
-        
       </div>
-
+      </section>
       <h2 className="card-title reservation-title-h2">Detalle de Reserva</h2>
 
       {reservationInfo && (
         <div className="card reservation-product-info">
           <ImagesRender item={reservationInfo} />
-          <div className="card-title" key={reservationInfo.id}>
-            <h2> {reservationInfo.title}</h2>
-            <p className="card-location">
-              <FontAwesomeIcon icon={faLocationDot} className="location-icon" />
-              {reservationInfo.city.name}, {reservationInfo.city.country}
-            </p>
-          </div>
-          <div className="dates">
-            <h3>
-              Check In: {day}/{month}/{year}
-            </h3>
-            <h3>
-              Check Out: {dayE}/{monthE}/{yearE}
-            </h3>
-          </div>
+            <div className="info-reservation-and-product">
+              <div className="card-title" key={reservationInfo.id}>
+                <h2> {reservationInfo.title}</h2>
+                <p className="card-location">
+                  <FontAwesomeIcon icon={faLocationDot} className="location-icon" />
+                  {reservationInfo.city.name}, {reservationInfo.city.country}
+                </p>
+              </div>
+              <div className="dates">
+                <h3>
+                  Check In: {day}/{month}/{year}
+                </h3>
+                <h3>
+                  Check Out: {dayE}/{monthE}/{yearE}
+                </h3>
+              </div>
 
-          <button className="button-c" onClick={postProductReservationDays}>
-            Confirmar reserva
-          </button>
+              <button className="button-c" onClick={postProductReservationDays}>
+                Confirmar reserva
+              </button>
+        </div>
         </div>
       )}
 
-      <div>
+      <div className="policies-container-reservation">
         {reservationInfo && <PoliciesRender2 product={reservationInfo} />}
       </div>
       <RenderErrorMessage />
