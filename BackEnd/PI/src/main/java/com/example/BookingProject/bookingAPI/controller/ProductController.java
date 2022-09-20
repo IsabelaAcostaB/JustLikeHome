@@ -1,12 +1,9 @@
 package com.example.BookingProject.bookingAPI.controller;
 
 import com.example.BookingProject.bookingAPI.persistence.model.Product;
-import com.example.BookingProject.bookingAPI.persistence.model.Reservation;
-import com.example.BookingProject.bookingAPI.persistence.model.User;
 import com.example.BookingProject.bookingAPI.persistence.repository.ProductRepository;
 import com.example.BookingProject.bookingAPI.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -46,6 +43,11 @@ public class ProductController {
         return productService.getProductById(id);
     }
 
+    @PutMapping
+    public ResponseEntity<?> update(@RequestBody Product product) {
+        return new ResponseEntity<>(productService.updateProduct(product),HttpStatus.OK);
+    }
+
 
     /*     Encontrar por ciudad      */
 
@@ -64,10 +66,7 @@ public class ProductController {
         return productRepository.findByCityCode(cityCode);
 
     }
-    @PutMapping
-    public ResponseEntity<?> update(@RequestBody Product product) {
-        return new ResponseEntity<>(productService.updateProduct(product),HttpStatus.OK);
-    }
+
 
      /*       Encontrar por categoria       */
 
@@ -103,7 +102,6 @@ public class ProductController {
             return null;
         }
     }
-
 
 
     /*         Encontrar por rango de fechas y ciudad       */

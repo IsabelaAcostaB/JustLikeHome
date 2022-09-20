@@ -1,7 +1,5 @@
 package com.example.BookingProject.bookingAPI.persistence.model;
 
-
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

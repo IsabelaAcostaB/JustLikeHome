@@ -1,7 +1,6 @@
 package com.example.BookingProject.bookingAPI.controller;
 
 import com.example.BookingProject.bookingAPI.persistence.model.Image;
-import com.example.BookingProject.bookingAPI.persistence.repository.ImageRepository;
 import com.example.BookingProject.bookingAPI.service.ImageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
