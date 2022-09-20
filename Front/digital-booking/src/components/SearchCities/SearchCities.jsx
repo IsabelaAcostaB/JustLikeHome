@@ -8,7 +8,7 @@ import Url from "../../util/Url";
 function SearchCities({setSearch}) {
 
   const [cities, setCities] = useState([]);
-
+  
   useEffect(() => {
     let url = Url() + "/api/city";
     axios.get(url)
