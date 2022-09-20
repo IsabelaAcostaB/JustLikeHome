@@ -119,7 +119,7 @@ const FormSignUp = () => {
 
     return(
         <div className="main-signUp">
-            <form  onSubmit={handleSubmit}>
+            <form className="formSignUp" onSubmit={handleSubmit}>
                 <div className="form-header">
                     <h2>Crear cuenta</h2>
                 </div>
