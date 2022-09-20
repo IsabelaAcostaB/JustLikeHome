@@ -233,7 +233,7 @@ const Reservation = () => {
               <input
                 type="text"
                 name="text"
-                id="name"
+                id="nameinput"
                 defaultValue={userData.name}
               />
             </div>
@@ -333,8 +333,8 @@ const Reservation = () => {
         </div>
       </div>
       </section>
-      <section>
-      <h2 className="card-title reservation-title-h2">Detalle de Reserva</h2>
+      <section className="product-details">
+      <h2 className="card-title reservation-title-h2">Detalles de reserva</h2>
 
       {reservationInfo && (
         <div className="card reservation-product-info">
