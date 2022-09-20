@@ -8,7 +8,6 @@ import { faCropSimple } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleXmark } from "@fortawesome/free-regular-svg-icons";
 import moment from 'moment/min/moment-with-locales';
-import CitiesSearch from "./CitiesSearch";
 import { set } from "date-fns";
 
 const SearchTemplate = () => {

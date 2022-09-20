@@ -8,6 +8,9 @@ import { Link } from "react-router-dom";
 import { UserContext } from "../UserContext.jsx";
 import { useNavigate, useLocation } from "react-router-dom";
 import { FilterContext } from "../../components/FilterContext";
+import jwt_decode from "jwt-decode";
+import axios from "axios";
+import Url from "../../util/Url";
 
 const Header = () => {
   const { userData, setUserData } = useContext(UserContext);
@@ -22,6 +25,32 @@ const Header = () => {
     window.location.reload();
  }
 
+ /* const {userData, setUserData} = useContext(UserContext) */
+
+  function logUser(){
+    let token = localStorage.getItem("jwt");
+    
+    let decode; 
+
+    if(token !== null){
+      decode = jwt_decode(token);
+      const getUser = async () => {
+        let url = Url() + "/api/user/" + decode.userId;
+        const result = await axios.get(url);
+        let newUser = result.data;
+        setUserData({
+          name: newUser.name,
+          lastName: newUser.lastName,
+          isLogged: true,
+          token: token
+      });
+      };
+      getUser();
+    }
+  }
+
+  logUser()
+
   const logOut = () => {
     localStorage.removeItem("jwt");
     const userDataOut = {
@@ -33,6 +62,7 @@ const Header = () => {
     };
 
     setUserData(userDataOut);
+    navigate("/")
     refreshPage()
   };
 
