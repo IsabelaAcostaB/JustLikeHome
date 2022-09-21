@@ -38,8 +38,6 @@ const FormSignIn = () => {
         role: result.data.role,
       };
 
-      console.log(result.data);
-
       if (result.data.token) {
         localStorage.setItem("jwt", result.data.token);
       }

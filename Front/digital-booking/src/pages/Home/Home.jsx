@@ -40,6 +40,7 @@ const Home = () => {
           email: newUser.email,
           isLogged: true,
           token: token,
+          role: newUser.role
         });
       };
       getUser();

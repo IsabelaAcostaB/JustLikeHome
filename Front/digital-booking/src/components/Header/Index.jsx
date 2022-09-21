@@ -90,7 +90,8 @@ const Header = () => {
 
         {userData.isLogged ? (
           <div className="user-info">
-            <div className="administration">
+            <div className={userData.role === "ADMIN" ? "administration" : "hide"
+              }>
               <Link to="/administration">
                 <h3>Administracion</h3>
               </Link>
