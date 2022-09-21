@@ -205,144 +205,98 @@ const CreateProducts = () => {
 
         <div className="main">
             <ProductHeader title={"Administración"} path={"/"} />
-            <h1 className="title-h1">Crear producto</h1>
+            <div className="create-product-block">
+                <h1 className="title-h1">Crear producto</h1>
 
-            <form className="product-form">
-                <div className="info-form">
-                    <label htmlFor="title">Nombre Producto :</label>
-                    <input type="text" name="title" id="product name" value={productData.title} onChange={handleChange} required />
+                <form className="product-form">
+                    <div className="info-form">
+                        <label htmlFor="title">Nombre Producto :</label>
+                        <input type="text" name="title" id="product name" value={productData.title} onChange={handleChange} required />
 
-                </div>
+                    </div>
 
-                <div>
-                    <label htmlFor="select">Categoría :</label>
-                    <select name="category" className="select-input">
-                        {categoriesInfo.map((category, index) => (
-                            <option value={category.id} key={index}>{category.title}</option>
-                        ))}
-                    </select>
+                    <div className="info-form">
+                        <label htmlFor="select">Categoría :</label>
+                        <select name="category" className="select-input">
+                            <option value="">Seleccione una categoría</option>
+                            {categoriesInfo.map((category, index) => (
+                                <option value={category.id} key={index}>{category.title}</option>
+                            ))}
+                        </select>
+
+                    </div>
+
+                    <div className="info-form">
+                        <label htmlFor="select">Ciudad :</label>
+                        <select name="city" className="select-input">
+                            <option value="">Seleccione la ciudad</option>
+                            {cities.map((city, index) => (
+                                <option value={city.code} key={index}>
+                                    {city.name}
+                                </option>
+
+                            ))}
+
+                        </select>
+                    </div>
+                    <div className="info-form">
+                        <label htmlFor="description-title">Titulo de la descripción:</label>
+                        <input type="textarea" name="description-title" id="description-title" value={productData.descriptionTitle} onChange={handleChange}
+                            placeholder="Hermosa casa de playa" required />
+                    </div>
+
+                    <div className="info-form">
+                        <label htmlFor="description">Descripción:</label>
+                        <textarea name="description" className="description-form" minLength={"100"} maxLength={"1500"} autoCapitalize="sentences"
+                            value={productData.description} onChange={handleChange} required></textarea>
+                    </div>
+
+                    <div className="info-form">
+                        <label htmlFor="adress">Dirección :</label>
+                        <input type="text" name="adress" id="adress" onChange={handleChange} required />
+                    </div>
 
 
-                </div>
-
-                <div>
-                    <label htmlFor="select">Ciudad :</label>
-                    <select name="city" className="search_cities">
-                        <option value="">Seleccione la ciudad</option>
-                        {cities.map((city, index) => (
-                            <option value={city.code} key={index}>
-                                {city.name}
-                            </option>
-
-                        ))}
-
-                    </select>
-                </div>
-                <div className="info-form">
-                    <label htmlFor="description-title">Titulo de la descripción:</label>
-                    <input type="textarea" name="description-title" id="description-title" value={productData.descriptionTitle} onChange={handleChange}
-                        placeholder="Hermosa casa de playa" required />
-                </div>
-
-                <div className="info-form">
-                    <label htmlFor="description">Descripción:</label>
-                    <textarea name="description" className="description-form" minLength={"100"} maxLength={"1500"} autoCapitalize="sentences"
-                        value={productData.description} onChange={handleChange} required></textarea>
-                </div>
-
-                <div className="info-form">
-                    <label htmlFor="adress">Dirección :</label>
-                    <input type="text" name="adress" id="adress" onChange={handleChange} required />
-                </div>
-
-                {/*
-                <div>
-                    <label htmlFor="latitude">Latitud :</label>
-                    <input type="text" name="text" id="latitude" required/>    
-                </div>
-
-                <div>
-                    <label htmlFor="length">Longitud :</label>
-                    <input type="text" name="text" id="length" />    
-                </div>
-                */}
-
-                <div>
-                    <h3>Características :</h3>
-                
-                    {amenities.map((amenitie, index) => (
-                    <label key={index} value="first_checkbox"><input type="checkbox" id="cbox1" value="first_checkbox"/>{ amenitie.title }</label>     
-                        ))}
+                    <div className="amenities-block">
+                        <h2>Características</h2>
                     
-                       
+                        {amenities.map((amenitie, index) => (
+                        <label key={index} className="amenitie"><input className="amenitie-checkbox" type="checkbox" id="amenitie" value="first_checkbox"/>{ amenitie.title }</label>     
+                            ))}
                         
-                </div>
-
-                <h2>Cargar imágenes</h2>
-
-                <div className="info-form">
-                    <label htmlFor="images">Agregue 5 o más imágenes y de ellas elija una como principal</label>
-                    {/*
-                    <input type="file" name="file" onChange={handleFiles}/>
-                    */}
-
-                    {/*
-                    onClick={addImage} 
-                    onClick={deleteImage}
-                     onClick={deleteImage(image)}
-                     getImageName(image)
-
-                     image.imageURL
-                    */}
-                    <div className="input-image">
-                        <input type="text" name="url" onChange={handleImg} />
-                        <FontAwesomeIcon icon={faCirclePlus} onClick={addImage} />
                     </div>
 
-                    {/*
-                    <div className="imageName-card">
-                            
-                            <FontAwesomeIcon icon={faStar} className="star"/>
-                            <div className="name-card">
-                            <p>ejemploNombre.jpg</p>
-                            <FontAwesomeIcon icon={faXmark}/>
+                    <div className="images-block">
+                        <h2>Cargar imágenes</h2>
+
+                        <div className="info-form">
+                            <label htmlFor="images">Agregue 5 o más imágenes y de ellas elija una como principal</label>
+
+
+                            <div className="input-image">
+                                <input type="text" name="url" onChange={handleImg} placeholder="Inserte https://"/>
+                                <FontAwesomeIcon icon={faCirclePlus} onClick={addImage} />
                             </div>
-                    </div>
 
-                    <div className="imageName-card">
-                        <input type="radio" name="image"/>
-                        <label htmlFor="image">ejemploNombre.jpg</label>
-                        <FontAwesomeIcon icon={faXmark}/>
-                        
-                    </div>
 
-                    <FontAwesomeIcon icon={faStar} className="star"/>
-                    <div className="name-card">
-                        <p>{image.title}</p>
-                        <FontAwesomeIcon icon={faXmark} onClick={()=>deleteImage(index)}/>
-                    </div>
+                            {productData.images.map((image, index) => (
+                            <div key={index} className="imageName-card">
+                                <RadioButton ix={index} />
+                                <label htmlFor="image">{image.title}</label>
+                                <FontAwesomeIcon icon={faXmark} onClick={() => deleteImage(index)} />
+                            </div>
+                            ))}
 
-                    main={image.main_img} 
-
-                    */}
-
-                    {productData.images.map((image, index) => (
-                        <div key={index} className="imageName-card">
-                            <RadioButton ix={index} />
-                            <label htmlFor="image">{image.title}</label>
-                            <FontAwesomeIcon icon={faXmark} onClick={() => deleteImage(index)} />
                         </div>
-                    ))}
+                    </div>
 
-                </div>
+                    <div>
+                        <p className="error">{errorMessage}</p>
+                    </div>
+                    <button className="button-2" onClick={handleSubmit}>Crear</button>
 
-                <div>
-                    <p className="error">{errorMessage}</p>
-                </div>
-                <button className="button-2" onClick={handleSubmit}>Crear</button>
-
-            </form>
-
+                </form>
+            </div>
 
         </div>
 
