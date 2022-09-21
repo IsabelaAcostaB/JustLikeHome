@@ -50,17 +50,6 @@ const Header = () => {
     return letters;
   };
 
-  const isAdmin = () => {
-    if (userData.role === "ADMIN") {
-      return (
-        <div className="administration">
-          <Link to="/administration">
-            <h3>Administracion</h3>
-          </Link>
-        </div>
-      );
-    }
-  };
 
   return (
     <header>
@@ -90,12 +79,11 @@ const Header = () => {
 
         {userData.isLogged ? (
           <div className="user-info">
-            <div className={userData.role === "ADMIN" ? "administration" : "hide"
-              }>
-              <Link to="/administration">
-                <h3>Administracion</h3>
-              </Link>
-            </div>
+            
+            {userData.role === "ADMIN" && <div className="administration">
+                        <Link to="/administration"><h3>Administracion</h3></Link>
+                  </div>
+            }
 
             <div className="user-name">
               <div className="user-avatar">
