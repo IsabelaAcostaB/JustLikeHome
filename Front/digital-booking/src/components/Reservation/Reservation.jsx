@@ -11,8 +11,12 @@ import jwt_decode from "jwt-decode";
 import "./reservation.css";
 import ProductHeader from "../Products/ProductHeader";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
+import {
+  faArrowCircleUp,
+  faLocationDot,
+} from "@fortawesome/free-solid-svg-icons";
 import { faCheckCircle } from "@fortawesome/free-solid-svg-icons";
+import { faArrowCircleDown } from "@fortawesome/free-solid-svg-icons";
 import { ImagesRender } from "../List/List";
 import moment from "moment";
 import { ReservationContext } from "../ReservationContext";
@@ -34,6 +38,8 @@ const Reservation = () => {
   const { userData, setUserData } = useContext(UserContext);
   const [reservationError, setReservationError] = useState(false);
   const [isActive, setActive] = useState(false);
+  const [errorCity, setErrorCity] = useState(false);
+  const [errorTime, setErrorTime] = useState(false);
 
   // RANGO DE FECHAS DEL CALENDARIO
   const [state, setState] = useState([
@@ -110,8 +116,8 @@ const Reservation = () => {
 
   function GetCheckInHour({ product }) {
     let rules = product.policy.rules;
-    rules = rules.replaceAll('am', 'AM')
-    rules = rules.replaceAll('pm', 'PM')
+    rules = rules.replaceAll("am", "AM");
+    rules = rules.replaceAll("pm", "PM");
     let arrayRules = rules.split(",");
     arrayRules = arrayRules[2];
     arrayRules = arrayRules.slice(10);
@@ -213,8 +219,21 @@ const Reservation = () => {
     }
   }
 
+  const validData = async () => {
+    console.log("1");
+    let cityInput = document.getElementById("cityinput").value;
+    checkInHour !== null ? setErrorTime(false) : setErrorTime(true);
+    console.log("2");
+    cityInput.length > 2 ? setErrorCity(false) : setErrorCity(true);
+    console.log(errorCity);
+
+    if (checkInHour !== null && cityInput.length > 2) {
+      postProductReservationDays();
+    }
+  };
+
   return (
-    <div className="main .main-reservation">
+    <div className="main main-reservation">
       {reservationInfo && (
         <ProductHeader
           category={reservationInfo.category.title}
@@ -223,147 +242,181 @@ const Reservation = () => {
         />
       )}
       <section className="main-sections">
-      <section className="section-reservation">
-      <h2 className="reservation-data-h2">Completá tus datos</h2>
-      <div className="card reservation-container">
-        <form className="reservation-form">
-          <div className="form-labels-reservation">
-            <div>
-              <label htmlFor="nombre">Nombre:</label>
-              <input
-                type="text"
-                name="text"
-                id="nameinput"
-                defaultValue={userData.name}
-              />
-            </div>
-            <div>
-              <label htmlFor="apellido">Apellido:</label>
-              <input
-                type="text"
-                name="text"
-                id="lastname"
-                defaultValue={userData.lastName}
-              />
-            </div>
-            <div>
-              <label htmlFor="email">Correo Electrónico:</label>
-              <input type="email" name="email" id="email" defaultValue={userData.email}/>
-            </div>
-            <div>
-              <label htmlFor="city">Ciudad:</label>
-              <input type="select" name="city" id="city" />
+        <section className="section-reservation">
+          <h2 className="reservation-data-h2">Completá tus datos</h2>
+          <div className="card reservation-container">
+            <form className="reservation-form">
+              <div className="form-labels-reservation">
+                <div>
+                  <label htmlFor="nombre">Nombre:</label>
+                  <input
+                    type="text"
+                    name="text"
+                    id="nameinput"
+                    defaultValue={userData.name}
+                  />
+                </div>
+                <div>
+                  <label htmlFor="apellido">Apellido:</label>
+                  <input
+                    type="text"
+                    name="text"
+                    id="lastname"
+                    defaultValue={userData.lastName}
+                  />
+                </div>
+                <div>
+                  <label htmlFor="email">Correo Electrónico:</label>
+                  <input
+                    type="text"
+                    name="email"
+                    id="email"
+                    defaultValue={userData.email}
+                  />
+                </div>
+                <div>
+                  <label htmlFor="city" className="label-city">
+                    Ciudad:
+                    <p className={errorCity ? "error-city-p" : "hide"}>
+                      Por favor indica tu ciudad
+                    </p>
+                  </label>
+                  <input
+                    type="text"
+                    name="city"
+                    id="cityinput"
+                    className={errorCity ? "error-city" : "city-input"}
+                  />
+                </div>
+              </div>
+            </form>
+          </div>
+          <h2 className="reservation-dates-h2">Fechas disponibles</h2>
+          <div className="reservationBlock block-reservation-page">
+            <div className="calendarBlock reservation-calendar">
+              {windowDimension.width < 768 ? (
+                <div>
+                  {" "}
+                  <DateRange
+                    className="calendar-mobile"
+                    editableDateInputs={true}
+                    onChange={(item) => setState([item.selection])}
+                    moveRangeOnFirstSelection={false}
+                    ranges={state}
+                    locale={defaultLocale}
+                    minDate={new Date()}
+                    disabledDates={disabledDates}
+                  />
+                </div>
+              ) : (
+                <div>
+                  <DateRange
+                    className="calendar-tablet"
+                    onChange={(item) => setState([item.selection])}
+                    showSelectionPreview={true}
+                    moveRangeOnFirstSelection={false}
+                    months={2}
+                    ranges={state}
+                    direction="horizontal"
+                    locale={defaultLocale}
+                    minDate={new Date()}
+                    disabledDates={disabledDates}
+                  />
+                </div>
+              )}
             </div>
           </div>
-        </form>
-      </div>
-      <h2 className="reservation-dates-h2">Fechas disponibles</h2>
-      <div className="reservationBlock block-reservation-page">
-        <div className="calendarBlock reservation-calendar">
-          {windowDimension.width < 768 ? (
-            <div>
-              {" "}
-              <DateRange
-                className="calendar-mobile"
-                editableDateInputs={true}
-                onChange={(item) => setState([item.selection])}
-                moveRangeOnFirstSelection={false}
-                ranges={state}
-                locale={defaultLocale}
-                minDate={new Date()}
-                disabledDates={disabledDates}
-              />
+          <h2 className="card-title reservation-times-h2">
+            Tu horario de llegada{" "}
+          </h2>
+          <div className="card reservation-times-info">
+            {reservationInfo && <GetCheckInHour product={reservationInfo} />}
+            <div className="select-checkIn">
+              <p>Indicá tu horario estimado de llegada</p>
+              <p className={errorTime ? "error-time-p" : "hide"}>
+                <FontAwesomeIcon icon={faArrowCircleDown} />
+                Por favor indica tu horario de llegada
+              </p>
+              <select
+                name="check-in-hour"
+                className={
+                  errorTime
+                    ? "search_cities select_checkin-hour error-time"
+                    : "search_cities select_checkin-hour"
+                }
+                onChange={(e) =>
+                  setCheckInHour((checkIn_hour = e.target.value))
+                }
+              >
+                <option value="null">Seleccionar hora de llegada</option>
+                <option value="00:00">00:00 AM</option>
+                <option value="01:00"> 01:00 AM</option>
+                <option value="02:00"> 02:00 AM</option>
+                <option value="03:00"> 03:00 AM</option>
+                <option value="04:00"> 04:00 AM </option>
+                <option value="05:00"> 05:00 AM</option>
+                <option value="06:00"> 06:00 AM</option>
+                <option value="07:00"> 07:00 AM</option>
+                <option value="08:00"> 08:00 AM</option>
+                <option value="09:00"> 09:00 AM </option>
+                <option value="10:00"> 10:00 AM</option>
+                <option value="11:00"> 11:00 AM</option>
+                <option value="12:00"> 12:00 PM</option>
+                <option value="13:00"> 13:00 PM</option>
+                <option value="14:00"> 14:00 PM </option>
+                <option value="15:00"> 15:00 PM</option>
+                <option value="16:00"> 16:00 PM</option>
+                <option value="17:00"> 17:00 PM </option>
+                <option value="18:00"> 18:00 PM</option>
+                <option value="19:00"> 19:00 PM</option>
+                <option value="20:00"> 20:00 PM </option>
+                <option value="21:00"> 21:00 PM</option>
+                <option value="22:00"> 22:00 PM</option>
+                <option value="23:00"> 23:00 PM </option>
+              </select>
             </div>
-          ) : (
-            <div>
-              <DateRange
-                className="calendar-tablet"
-                onChange={(item) => setState([item.selection])}
-                showSelectionPreview={true}
-                moveRangeOnFirstSelection={false}
-                months={2}
-                ranges={state}
-                direction="horizontal"
-                locale={defaultLocale}
-                minDate={new Date()}
-                disabledDates={disabledDates}
-              />
+          </div>
+        </section>
+        <section className="product-details">
+          <h2 className="card-title reservation-title-h2">
+            Detalles de reserva
+          </h2>
+
+          {reservationInfo && (
+            <div className="card reservation-product-info">
+              <ImagesRender item={reservationInfo} />
+              <div className="info-reservation-and-product">
+                <div className="card-title" key={reservationInfo.id}>
+                  <h2> {reservationInfo.title}</h2>
+                  <p className="card-location">
+                    <FontAwesomeIcon
+                      icon={faLocationDot}
+                      className="location-icon"
+                    />
+                    {reservationInfo.city.name}, {reservationInfo.city.country}
+                  </p>
+                </div>
+                <div className="dates">
+                  <h3>
+                    Check In: {day}/{month}/{year}
+                  </h3>
+                  <h3>
+                    Check Out: {dayE}/{monthE}/{yearE}
+                  </h3>
+                </div>
+
+                <button
+                  className="button-c"
+                  /* onClick={postProductReservationDays} */
+                  onClick={validData}
+                >
+                  Confirmar reserva
+                </button>
+              </div>
             </div>
           )}
-        </div>
-      </div>
-      <h2 className="card-title reservation-times-h2">
-        Tu horario de llegada{" "}
-      </h2>
-      <div className="card reservation-times-info">
-        {reservationInfo && <GetCheckInHour product={reservationInfo} />}
-        <div className="select-checkIn">
-          <p>Indicá tu horario estimado de llegada</p>
-          <select
-            name="check-in-hour"
-            className="search_cities select_checkin-hour"
-            onChange={(e) => setCheckInHour((checkIn_hour = e.target.value))}
-          >
-            <option defaultValue="">Seleccionar hora de llegada</option>
-            <option value="00:00">00:00 AM</option>
-            <option value="01:00"> 01:00 AM</option>
-            <option value="02:00"> 02:00 AM</option>
-            <option value="03:00"> 03:00 AM</option>
-            <option value="04:00"> 04:00 AM </option>
-            <option value="05:00"> 05:00 AM</option>
-            <option value="06:00"> 06:00 AM</option>
-            <option value="07:00"> 07:00 AM</option>
-            <option value="08:00"> 08:00 AM</option>
-            <option value="09:00"> 09:00 AM </option>
-            <option value="10:00"> 10:00 AM</option>
-            <option value="11:00"> 11:00 AM</option>
-            <option value="12:00"> 12:00 PM</option>
-            <option value="13:00"> 13:00 PM</option>
-            <option value="14:00"> 14:00 PM </option>
-            <option value="15:00"> 15:00 PM</option>
-            <option value="16:00"> 16:00 PM</option>
-            <option value="17:00"> 17:00 PM </option>
-            <option value="18:00"> 18:00 PM</option>
-            <option value="19:00"> 19:00 PM</option>
-            <option value="20:00"> 20:00 PM </option>
-            <option value="21:00"> 21:00 PM</option>
-            <option value="22:00"> 22:00 PM</option>
-            <option value="23:00"> 23:00 PM </option>
-          </select>
-        </div>
-      </div>
+        </section>
       </section>
-      <section className="product-details">
-      <h2 className="card-title reservation-title-h2">Detalles de reserva</h2>
-
-      {reservationInfo && (
-        <div className="card reservation-product-info">
-          <ImagesRender item={reservationInfo} />
-            <div className="info-reservation-and-product">
-              <div className="card-title" key={reservationInfo.id}>
-                <h2> {reservationInfo.title}</h2>
-                <p className="card-location">
-                  <FontAwesomeIcon icon={faLocationDot} className="location-icon" />
-                  {reservationInfo.city.name}, {reservationInfo.city.country}
-                </p>
-              </div>
-              <div className="dates">
-                <h3>
-                  Check In: {day}/{month}/{year}
-                </h3>
-                <h3>
-                  Check Out: {dayE}/{monthE}/{yearE}
-                </h3>
-              </div>
-
-              <button className="button-c" onClick={postProductReservationDays}>
-                Confirmar reserva
-              </button>
-        </div>
-        </div>
-      )}
-      </section>
-</section>
       <div className="policies-container-reservation">
         {reservationInfo && <PoliciesRender2 product={reservationInfo} />}
       </div>
