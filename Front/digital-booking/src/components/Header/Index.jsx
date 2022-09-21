@@ -18,23 +18,24 @@ const Header = () => {
 
   const location = useLocation();
 
-  const refreshPage = ()=>{
+  const refreshPage = () => {
     window.location.reload();
- }
+  };
 
   const logOut = () => {
     localStorage.removeItem("jwt");
     const userDataOut = {
       name: null,
       lastName: null,
+      email: null,
       isLogged: false,
       token: null,
-      role:null
+      role: null,
     };
 
     setUserData(userDataOut);
-    navigate("/")
-    refreshPage()
+    navigate("/");
+    refreshPage();
   };
 
   const firstLetter = () => {
@@ -49,16 +50,17 @@ const Header = () => {
     return letters;
   };
 
-  const isAdmin = ()=>{
-    if (userData.role === "ADMIN"){
-    return(
-      <div className="administration">
-              <Link to="/administration"><h3>Administracion</h3></Link>
-      </div>
-    )
+  const isAdmin = () => {
+    if (userData.role === "ADMIN") {
+      return (
+        <div className="administration">
+          <Link to="/administration">
+            <h3>Administracion</h3>
+          </Link>
+        </div>
+      );
     }
-  }
-
+  };
 
   return (
     <header>
@@ -88,11 +90,10 @@ const Header = () => {
 
         {userData.isLogged ? (
           <div className="user-info">
-
-
-            
             <div className="administration">
-              <Link to="/administration"><h3>Administracion</h3></Link>
+              <Link to="/administration">
+                <h3>Administracion</h3>
+              </Link>
             </div>
 
             <div className="user-name">

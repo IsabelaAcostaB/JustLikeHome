@@ -1,29 +1,30 @@
-import React, {useState, useContext} from "react";
+import React, { useState, useContext } from "react";
 import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
 import { FilterContext } from "../FilterContext";
 import { DateRangePicker } from "react-date-range";
 import SearchCities from "../SearchCities/SearchCities";
 import "./searchbar.css";
-import defaultLocale from 'date-fns/locale/es'
-import useWindowDimensions from "../../hooks/useWindowDimensions.jsx"
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {faLocationDot, faCalendarDays} from '@fortawesome/free-solid-svg-icons'
-import moment from 'moment/min/moment-with-locales';
+import defaultLocale from "date-fns/locale/es";
+import useWindowDimensions from "../../hooks/useWindowDimensions.jsx";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faLocationDot,
+  faCalendarDays,
+} from "@fortawesome/free-solid-svg-icons";
+import moment from "moment/min/moment-with-locales";
 import { Link } from "react-router-dom";
-
 
 function SearchBar() {
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
-  
 
-  const [search, setSearch] = useState({ 
+  const [search, setSearch] = useState({
     cityCode: null,
     rangeOfDates: {
-      checkIn:null,
-      checkOut: null
-    } 
+      checkIn: null,
+      checkOut: null,
+    },
   });
   /* 
   const [search, setSearch] = useState(filterData); */
@@ -31,10 +32,10 @@ function SearchBar() {
   /* setSearch(FilterContext) */
   /* setSearch(filterData) */
 
-  const {handleFilterData} = useContext(FilterContext);
-  
-  const windowDimension = useWindowDimensions()
-  
+  const { handleFilterData } = useContext(FilterContext);
+
+  const windowDimension = useWindowDimensions();
+
   const selectionRange = {
     startDate: startDate,
     endDate: endDate,
@@ -46,11 +47,11 @@ function SearchBar() {
     setEndDate(ranges.selection.endDate);
   };
 
-  const [dropCalendar, setDropCalendar] = useState(false)
+  const [dropCalendar, setDropCalendar] = useState(false);
 
-  const showCalendar =()=>{
-    setDropCalendar(!dropCalendar)
-  }
+  const showCalendar = () => {
+    setDropCalendar(!dropCalendar);
+  };
 
   /*
   <SearchIcon 
@@ -75,107 +76,111 @@ function SearchBar() {
   value={searchInput}
   */
 
-  function newDateFormatter(date){
-    const dateDayFirst = moment(date).locale('es');
+  function newDateFormatter(date) {
+    const dateDayFirst = moment(date).locale("es");
 
-    return(
-      dateDayFirst.format('DD/MM/YYYY')
-    )
+    return dateDayFirst.format("DD/MM/YYYY");
   }
 
-  function sendedDateFomatter(date){
-    const d = moment(date).locale('es');
-    return(
-      d.format('YYYY-MM-DD')
-    )
-
+  function sendedDateFomatter(date) {
+    const d = moment(date).locale("es");
+    return d.format("YYYY-MM-DD");
   }
 
-  const [inputPlaceholder, setInputPlaceholder] = useState("Check in - Check out")
+  const [inputPlaceholder, setInputPlaceholder] = useState(
+    "Check in - Check out"
+  );
 
-  function applyDates(){
+  function applyDates() {
     setSearch({
       ...search,
       rangeOfDates: {
-        checkIn:sendedDateFomatter(startDate),
-        checkOut: sendedDateFomatter(endDate)
-      }
+        checkIn: sendedDateFomatter(startDate),
+        checkOut: sendedDateFomatter(endDate),
+      },
     });
 
-    setInputPlaceholder(newDateFormatter(startDate)+ " - " +newDateFormatter(endDate));
-    setDropCalendar(false)
-
+    setInputPlaceholder(
+      newDateFormatter(startDate) + " - " + newDateFormatter(endDate)
+    );
+    setDropCalendar(false);
   }
 
-
-  function RedirectSearch(){
-    if(search.cityCode != null || search.rangeOfDates.checkIn != null || search.rangeOfDates.checkOut != null || search.category != null){
-      return(
+  function RedirectSearch() {
+    if (
+      search.cityCode != null ||
+      search.rangeOfDates.checkIn != null ||
+      search.rangeOfDates.checkOut != null ||
+      search.category != null
+    ) {
+      return (
         <Link to="/filtrado">
-          <div className="button-search" onClick={() => handleFilterData(search)}>
-          Buscar
-        </div>
-      </Link>
-      )
+          <div
+            className="button-search"
+            onClick={() => handleFilterData(search)}
+          >
+            Buscar
+          </div>
+        </Link>
+      );
     } else {
-      return(
+      return (
         <div className="button-search" onClick={() => handleFilterData(search)}>
           Buscar
         </div>
-      )
+      );
     }
-    
   }
   return (
     <div className="searchbar-container">
       <h1> Busca ofertas en casas, cabañas y mucho más</h1>
 
       <div className="search-bar">
-        <SearchCities setSearch={newSearch => setSearch({...search, ...newSearch})} />
+        <SearchCities
+          setSearch={(newSearch) => setSearch({ ...search, ...newSearch })}
+        />
         <div className="search-bar-dates">
-          <div className="search-input" onClick={showCalendar} >
+          <div className="search-input" onClick={showCalendar}>
             <FontAwesomeIcon icon={faCalendarDays} />
             <span>{inputPlaceholder}</span>
           </div>
           {dropCalendar && (
-          <div className="calendar-container">
-            {windowDimension.width < 768 ?
-            <DateRangePicker
-              ranges={[selectionRange]}
-              minDate={new Date()}
-              rangeColors={["#E48561"]}
-              onChange={handleSelect}
-              locale= {defaultLocale}
-              direction="horizontal"
-              months={1} 
-              showDateDisplay={false}
-  
-            />
-            :
-            <DateRangePicker
-              ranges={[selectionRange]}
-              minDate={new Date()}
-              rangeColors={["#E48561"]}
-              onChange={handleSelect}
-              locale= {defaultLocale}
-              direction="horizontal"
-              months={2} 
-              showDateDisplay={false}
-            />
-            }
+            <div className="calendar-container">
+              {windowDimension.width < 768 ? (
+                <DateRangePicker
+                  ranges={[selectionRange]}
+                  minDate={new Date()}
+                  rangeColors={["#E48561"]}
+                  onChange={handleSelect}
+                  locale={defaultLocale}
+                  direction="horizontal"
+                  months={1}
+                  showDateDisplay={false}
+                />
+              ) : (
+                <DateRangePicker
+                  ranges={[selectionRange]}
+                  minDate={new Date()}
+                  rangeColors={["#E48561"]}
+                  onChange={handleSelect}
+                  locale={defaultLocale}
+                  direction="horizontal"
+                  months={2}
+                  showDateDisplay={false}
+                />
+              )}
 
-            <div className="button-search-container">
-              <button className="button-search"  onClick={applyDates}>Aplicar</button>
+              <div className="button-search-container">
+                <button className="button-search" onClick={applyDates}>
+                  Aplicar
+                </button>
+              </div>
             </div>
-          </div>
-        )}
+          )}
         </div>
 
-        <RedirectSearch/>
-
-
+        <RedirectSearch />
       </div>
-      
     </div>
   );
 }

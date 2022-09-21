@@ -248,7 +248,7 @@ const Reservation = () => {
             </div>
             <div>
               <label htmlFor="email">Correo Electrónico:</label>
-              <input type="email" name="email" id="email" />
+              <input type="email" name="email" id="email" defaultValue={userData.email}/>
             </div>
             <div>
               <label htmlFor="city">Ciudad:</label>

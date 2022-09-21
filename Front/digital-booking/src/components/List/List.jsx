@@ -19,18 +19,15 @@ function AmenitiesIcons({ product }) {
   );
 }
 
-export function ImagesRender({item}){
+export function ImagesRender({ item }) {
   let mainImage;
   for (let i = 0; i < item.images.length; i++) {
-    if (item.images[i].main_img ==1){
-      mainImage = item.images[i].imageURL
+    if (item.images[i].main_img == 1) {
+      mainImage = item.images[i].imageURL;
     }
-    
   }
 
-  return (
-    <img src={mainImage} class="card-img-top" />
-  )
+  return <img src={mainImage} class="card-img-top" />;
 }
 
 function Cards({ products }) {
@@ -41,10 +38,7 @@ function Cards({ products }) {
   return products.map((item) => (
     <div className="card card-shadow m-3 home-card">
       <div className="container-img-cards">
-        
-        {/* <img src={item.images[4].imageURL} class="card-img-top" />
-        <img src={item.images[4].imageURL} class="card-img-top" /> */}
-        <ImagesRender item={item}/>
+        <ImagesRender item={item} />
       </div>
       <div className="card-title" key={item.id}>
         <h2> {item.title}</h2>
@@ -53,7 +47,6 @@ function Cards({ products }) {
           <FontAwesomeIcon icon={faLocationDot} className="location-icon" />
           {item.city.name}, {item.city.country}
         </p>
-        {/* <p className="card-description">{item.description}</p>  */}
         <AmenitiesIcons product={item} />
         <AcortarDescripcion item={item} />
         <Link className="button-2" to={`/product/${item.id}`}>

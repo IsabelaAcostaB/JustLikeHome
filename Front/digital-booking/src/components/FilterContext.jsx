@@ -14,8 +14,6 @@ export const FilterProvider =({children})=>{
       
     });
 
-
-
     const handleFilterData = newValues => {
         setFilterData({...filterData, ...newValues})
     }

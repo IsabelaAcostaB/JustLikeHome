@@ -1,7 +1,7 @@
 import React from "react";
-import Home from "./pages/Home/Home"
-import app from "./styles/App.css"
-import { BrowserRouter, Routes, Route } from "react-router-dom"
+import Home from "./pages/Home/Home";
+import app from "./styles/App.css";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import SignIn from "./pages/SignIn/SignIn";
 import SignUp from "./pages/SignUp/SignUp";
 import Header from "./components/Header/Index";
@@ -10,22 +10,19 @@ import Listar from "./components/List/List";
 import ProductPage from "./pages/Product/ProductTemplate";
 import { UserProvider } from "./components/UserContext";
 import { FilterProvider } from "./components/FilterContext";
-import Reservation from "./components/Reservation/Reservation"
+import Reservation from "./components/Reservation/Reservation";
 import PrivateRoute from "./components/RequireAuth";
 import ConfirmationMessage from "./components/Reservation/ConfirmationMessage";
-import { ReservationProvider } from "./components/ReservationContext"
-import SearchTemplate from "./components/SearchPage/SearchTemplate"
-import Search from "./pages/Search/Search"
+import { ReservationProvider } from "./components/ReservationContext";
+import Search from "./pages/Search/Search";
+
 import CreateProducts from "./components/CreateProducts/CreateProducts";
 
 //import AdminRoute from "./components/AdminAuth"
 
-
 function App() {
-
   return (
     <div className="App">
-
       <UserProvider>
         <FilterProvider>
           <ReservationProvider>
@@ -39,27 +36,35 @@ function App() {
                 <Route path="/product/:id" element={<ProductPage />} />
                 <Route path="/filtrado" element={<Search />} />
 
-
-
-                
-                <Route path="/ConfirmationProduct" element={<ConfirmationMessage message={"Su propiedad fue creada con éxito"} />} />
-
-
+                <Route
+                  path="/ConfirmationProduct"
+                  element={
+                    <ConfirmationMessage
+                      message={"Su propiedad fue creada con éxito"}
+                    />
+                  }
+                />
 
                 {/* 
           <Route element={<AdminRoute />}>
           </Route>
           */}
 
-
                 <Route element={<PrivateRoute />}>
-                  <Route path="/product/reservation/:id" element={<Reservation />} />
-                  <Route path="/ConfirmationMessage" element={<ConfirmationMessage message={"Su reservación se ha realizado con éxito"} />} />
+                  <Route
+                    path="/product/reservation/:id"
+                    element={<Reservation />}
+                  />
+                  <Route
+                    path="/ConfirmationMessage"
+                    element={
+                      <ConfirmationMessage
+                        message={"Su reservación se ha realizado con éxito"}
+                      />
+                    }
+                  />
                   <Route path="/administration" element={<CreateProducts />} />
-
                 </Route>
-                
-
               </Routes>
 
               <Footer />
@@ -67,10 +72,8 @@ function App() {
           </ReservationProvider>
         </FilterProvider>
       </UserProvider>
-
     </div>
-  )
-};
+  );
+}
 
 export default App;
-

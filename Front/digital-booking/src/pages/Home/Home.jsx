@@ -23,12 +23,12 @@ const Home = () => {
   const pages = Math.ceil(products.length / productsPerPage);
   const { userData, setUserData } = useContext(UserContext);
 
-  function logUser(){
+  function logUser() {
     let token = localStorage.getItem("jwt");
-    
-    let decode; 
 
-    if(token !== null){
+    let decode;
+
+    if (token !== null) {
       decode = jwt_decode(token);
       const getUser = async () => {
         let url = Url() + "/api/user/" + decode.userId;
@@ -37,15 +37,16 @@ const Home = () => {
         setUserData({
           name: newUser.name,
           lastName: newUser.lastName,
+          email: newUser.email,
           isLogged: true,
-          token: token
-      });
+          token: token,
+        });
       };
       getUser();
     }
   }
 
-  logUser()
+  logUser();
 
   /*---------------  Es el fetch para traer productos por ciudades -------------*/
 
