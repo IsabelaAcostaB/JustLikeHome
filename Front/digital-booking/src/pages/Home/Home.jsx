@@ -8,6 +8,8 @@ import axios from "axios";
 import PaginationNumbers from "../../components/Pagination/Pagination";
 import Url from "../../util/Url";
 import jwt_decode from "jwt-decode";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowAltCircleUp, faArrowCircleUp, faArrowUp } from "@fortawesome/free-solid-svg-icons";
 import "./homefiltered.css";
 
 const Home = () => {
@@ -65,6 +67,16 @@ const Home = () => {
     window.scrollTo(0, 0);
   }, []);
 
+ /*  function onClick(){
+ 
+      window.scrollTo(0, 0);
+  } */
+  const onClick = () => {
+ 
+
+      window.scrollTo(0, 0);
+  }
+
   return (
     <div className="main">
       <SearchBar />
@@ -73,8 +85,10 @@ const Home = () => {
       <ListarCat />
       <h2 className="recommendation-h2">Recomendados</h2>
       <Listar products={currentProducts} />
-
+      <div className="pagination" onClick={onClick}>
+        <p className="to-the-top">Volver al inicio  <FontAwesomeIcon icon={faArrowUp} className="pagination-icon" /></p>
       <PaginationNumbers pages={pages} setCurrentPage={setCurrentPage} />
+      </div>
     </div>
   );
 };

@@ -93,10 +93,9 @@ const Header = () => {
             <div className={userData.role === "ADMIN" ? "administration" : "hide"
               }>
               <Link to="/administration">
-                <h3>Administracion</h3>
+                <h3>Administración</h3>
               </Link>
             </div>
-
             <div className="user-name">
               <div className="user-avatar">
                 <p>{firstLetter()}</p>

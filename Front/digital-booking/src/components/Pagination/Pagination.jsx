@@ -9,12 +9,12 @@ const PaginationNumbers =({pages,setCurrentPage})=>{
 
     const theme = createTheme({
         status: {
-          danger: '#e53e3e',
+          danger: '#384d58',
         },
         palette: {
           primary: {
-            main: '#e48561',
-            darker: '#e48561',
+            main: '#d0d0ca',
+            darker: '#384d58',
           },
           neutral: {
             main: '#384d58',
@@ -33,7 +33,7 @@ const PaginationNumbers =({pages,setCurrentPage})=>{
     return(
         <ThemeProvider theme={theme}>
         <Stack spacing={2}>
-            <Pagination count={pages} color="primary" size='large'
+            <Pagination count={pages} color="primary" size='medium'
             onChange={showCurrentProducts}
 
             />

@@ -36,6 +36,9 @@ header{
 .administration a{
     color: var(--second-color);
 }
+.administration > a > h3:hover{
+    cursor: pointer;
+}
 
 
 .user-name{
@@ -72,6 +75,7 @@ header{
     color: var(--second-color);
 
 }
+
 
 .name{
     color: var(--first-color);

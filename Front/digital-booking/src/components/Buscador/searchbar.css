@@ -233,6 +233,13 @@
     top: 38vh;
 
   }
+  .search-input, .search_cities {
+    width: 80vw;
+    height: 4vh;
+  }
+  .searchbar-container { 
+    height: 35vh;
+  }
 }
 
 
@@ -246,6 +253,7 @@
   .searchbar-container {
     flex-direction: column;
     align-items: center;
+    height: 45vh ;
   }
 
   .search-bar {
@@ -267,6 +275,7 @@
 
   .search_cities {
     width: 25vw;
+    height: 6vh;
   }
 
   .calendar-container {
@@ -299,6 +308,7 @@
 
   .search-input {
     width: 25vw;
+    height: 6vh;
   }
   .search-input > button {
     background-color: white;
