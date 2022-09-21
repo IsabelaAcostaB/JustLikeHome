@@ -70,17 +70,18 @@ function Sidebar() {
 
         <div className="side-bar-options">
           {userData.isLogged ? (
-            <div>
-              <div className="administration-bar">
-                <Link to="/administration">
-                  <h3>Administracion</h3>
-                </Link>
-              </div>
-              <Link to="/" className="options" onClick={logOut}>
-                <h3>
-                  ¿Deseas <span>cerrar sesión?</span>
-                </h3>
-              </Link>
+            <div className="admin-logout-option">
+
+                                            
+            {userData.role === "ADMIN" && <div className="administration-bar">
+                <Link to="/administration" onClick={()=>setShowSideBar(false)} ><h3>Administracion</h3></Link>
+                </div>
+
+            }
+
+            <Link to="/" className="logOut" onClick={logOut}><h3>¿Deseas <span>cerrar sesión?</span></h3></Link>
+
+
             </div>
           ) : (
             <ul className="options">

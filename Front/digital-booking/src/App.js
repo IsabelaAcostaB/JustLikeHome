@@ -18,7 +18,7 @@ import Search from "./pages/Search/Search";
 
 import CreateProducts from "./components/CreateProducts/CreateProducts";
 
-//import AdminRoute from "./components/AdminAuth"
+import AdminRoute from "./components/AdminAuth"
 
 function App() {
   return (
@@ -36,19 +36,13 @@ function App() {
                 <Route path="/product/:id" element={<ProductPage />} />
                 <Route path="/filtrado" element={<Search />} />
 
-                <Route
-                  path="/ConfirmationProduct"
-                  element={
-                    <ConfirmationMessage
-                      message={"Su propiedad fue creada con éxito"}
-                    />
-                  }
-                />
 
-                {/* 
-          <Route element={<AdminRoute />}>
-          </Route>
-          */}
+                <Route element={<AdminRoute />}>
+                  <Route path="/administration" element={<CreateProducts />} />
+                  <Route path="/ConfirmationProduct" element={<ConfirmationMessage message={"Su propiedad fue creada con éxito"} />} />
+                
+                </Route>
+
 
                 <Route element={<PrivateRoute />}>
                   <Route
@@ -63,7 +57,7 @@ function App() {
                       />
                     }
                   />
-                  <Route path="/administration" element={<CreateProducts />} />
+
                 </Route>
               </Routes>
 
