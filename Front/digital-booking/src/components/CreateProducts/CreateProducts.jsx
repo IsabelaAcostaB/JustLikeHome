@@ -375,11 +375,6 @@ const CreateProducts = () => {
 
                         </div>
 
-                        <div className="info-form">
-                            <label htmlFor="address">Dirección :</label>
-                            <input type="text" name="address" id="address" value={formValues.address} onChange={handleChange}/>
-                            <p className="error">{formErrors.address}</p>
-                        </div>
 
                         <div className="info-form" id="cityDiv">
                             <label htmlFor="cityId">Ciudad :</label>
@@ -394,6 +389,13 @@ const CreateProducts = () => {
 
                             </select>
                             <p className="error">{formErrors.cityId}</p>
+                        </div>
+
+
+                        <div className="info-form">
+                            <label htmlFor="address">Dirección :</label>
+                            <input type="text" name="address" id="address" value={formValues.address} onChange={handleChange}/>
+                            <p className="error">{formErrors.address}</p>
                         </div>
 
                         <div className="info-form">
@@ -416,13 +418,14 @@ const CreateProducts = () => {
 
                     <div className="amenities-block">
                         <h2>Características</h2>
-                    
+                        <div className="amenities">
                         {amenities.map((amenitie, index) => (
                         <label key={index} className="amenitie"><input className="amenitie-checkbox" type="checkbox" id="amenitiesId" value={amenitie.id}
                         onChange={handleCheckbox}
                         
                         />{ amenitie.title }</label>     
                         ))}
+                        </div>
 
                         <p className="error">{formErrors.amenetiesId}</p>
                         
@@ -454,9 +457,9 @@ const CreateProducts = () => {
                     </div>
 
 
-                    {/* defaultValue={policy.rules}
-                    defaultValue={policy.health_safety}
-                    defaultValue={policy.cancellation_policy}
+                    {/* defaultValue={policies[0].rules}
+                    defaultValue={policies[0].health_safety}
+                    defaultValue={policies[0].cancellation_policy}
                     
                     
                     */}
@@ -466,15 +469,15 @@ const CreateProducts = () => {
                         
                         <label htmlFor="rules">Normas de la casa:</label>
                         <textarea name="rules" className="description-form" minLength={"20"} maxLength={"500"} autoCapitalize="sentences"
-                            ></textarea>
+                            defaultValue={policies[0].rules}></textarea>
                     
                         <label htmlFor="health-safety">Salud y seguridad:</label>
                         <textarea name="health-safety" className="description-form" minLength={"20"} maxLength={"500"} autoCapitalize="sentences"
-                             ></textarea>
+                             defaultValue={policies[0].health_safety}></textarea>
 
                         <label htmlFor="cancellation-policy">Políticas de cancelación:</label>
                         <textarea name="cancellation-policy" className="description-form" minLength={"20"} maxLength={"500"} autoCapitalize="sentences"
-                             ></textarea>
+                            defaultValue={policies[0].cancellation_policy} ></textarea>
                         
                         
                     </div>
