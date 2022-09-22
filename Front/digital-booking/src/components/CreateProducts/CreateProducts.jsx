@@ -358,13 +358,13 @@ const CreateProducts = () => {
                 <form className="product-form">
                     <div className="inputs-block">
                         <div className="info-form">
-                            <label htmlFor="title">Nombre Producto :</label>
+                            <label htmlFor="title">Nombre del producto:</label>
                             <input type="text" name="title" id="title" onChange={handleChange} />
                             <p className="error">{formErrors.title}</p>
                         </div>
 
                         <div className="info-form" id="categoryDiv">
-                            <label htmlFor="categoryId">Categoría :</label>
+                            <label htmlFor="categoryId">Categoría:</label>
                             <select name="categoryId" className="select-input" onChange={handleChange}>
                                 <option value="">Seleccione una categoría</option>
                                 {categoriesInfo.map((category, index) => (
@@ -377,7 +377,7 @@ const CreateProducts = () => {
 
 
                         <div className="info-form" id="cityDiv">
-                            <label htmlFor="cityId">Ciudad :</label>
+                            <label htmlFor="cityId">Ciudad:</label>
                             <select name="cityId" className="select-input" value={formValues.city} onChange={handleChange} >
                                 <option value="">Seleccione la ciudad</option>
                                 {cities.map((city, index) => (
@@ -393,7 +393,7 @@ const CreateProducts = () => {
 
 
                         <div className="info-form">
-                            <label htmlFor="address">Dirección :</label>
+                            <label htmlFor="address">Dirección:</label>
                             <input type="text" name="address" id="address" value={formValues.address} onChange={handleChange}/>
                             <p className="error">{formErrors.address}</p>
                         </div>
@@ -463,24 +463,25 @@ const CreateProducts = () => {
                     
                     
                     */}
-                    <div className="policy-block">
+                   <div className="policy-block">
                         <h2>Políticas de la propiedad</h2>
 
                         
                         <label htmlFor="rules">Normas de la casa:</label>
                         <textarea name="rules" className="description-form" minLength={"20"} maxLength={"500"} autoCapitalize="sentences"
-                            defaultValue={policies[0].rules}></textarea>
+                            ></textarea>
                     
                         <label htmlFor="health-safety">Salud y seguridad:</label>
                         <textarea name="health-safety" className="description-form" minLength={"20"} maxLength={"500"} autoCapitalize="sentences"
-                             defaultValue={policies[0].health_safety}></textarea>
+                             ></textarea>
 
                         <label htmlFor="cancellation-policy">Políticas de cancelación:</label>
                         <textarea name="cancellation-policy" className="description-form" minLength={"20"} maxLength={"500"} autoCapitalize="sentences"
-                            defaultValue={policies[0].cancellation_policy} ></textarea>
+                             ></textarea>
                         
                         
                     </div>
+                    
 
                     
 
