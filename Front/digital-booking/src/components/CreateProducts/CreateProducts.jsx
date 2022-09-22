@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useContext } from "react";
 import bootstrap from "bootstrap";
 import { Link, useNavigate } from "react-router-dom"
@@ -6,7 +5,7 @@ import axios from "axios";
 import Url from "../../util/Url";
 import ProductHeader from "../Products/ProductHeader"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCirclePlus, faXmark, faStar } from '@fortawesome/free-solid-svg-icons'
+import { faCirclePlus, faXmark } from '@fortawesome/free-solid-svg-icons'
 import create from "./create.css"
 import Radio from '@mui/material/Radio';
 //import PolicyCard from "./Policy Card/PolicyCard";
@@ -147,7 +146,10 @@ const CreateProducts = () => {
 
             findImagesId(formValues, allImg)
 
-            
+            console.log(allImg);
+            console.log(productData.images);
+
+
             
             const postProduct = async () => {
 
@@ -173,8 +175,7 @@ const CreateProducts = () => {
     
             }
             await postProduct()
-
-
+        
 
         }
     }
@@ -240,13 +241,15 @@ const CreateProducts = () => {
 
     
 
-
     const findImagesId = (imgsForm, allImg) => {
+        //array con los nombres de las imágenes que subí
         let titleImg = imgsForm.images.map(i=>i.title);
+        //Mapeo de los nombres, por cada nombre busca si es igual a algún titulo de las imgs de la Base de datos
+        //Cuando lo encuentra, desestructura para devolverme sólo el id de esa imagen
         const imgIds = titleImg.map(title=>{
-            const { id} = allImg.find(imageItem => imageItem.title === title);
+            const {id} = allImg.find(imageItem => imageItem.title == title);
         
-            return { id }
+            return {id}
         }) 
         imgsForm.imagesId=imgIds;
     }
@@ -336,57 +339,62 @@ const CreateProducts = () => {
                 <h1 className="title-h1">Crear producto</h1>
 
                 <form className="product-form">
-                    <div className="info-form">
-                        <label htmlFor="title">Nombre Producto :</label>
-                        <input type="text" name="title" id="title" onChange={handleChange} />
-                        <p className="error">{formErrors.title}</p>
+                    <div className="inputs-block">
+                        <div className="info-form">
+                            <label htmlFor="title">Nombre Producto :</label>
+                            <input type="text" name="title" id="title" onChange={handleChange} />
+                            <p className="error">{formErrors.title}</p>
+                        </div>
+
+                        <div className="info-form" id="categoryDiv">
+                            <label htmlFor="categoryId">Categoría :</label>
+                            <select name="categoryId" className="select-input" onChange={handleChange}>
+                                <option value="">Seleccione una categoría</option>
+                                {categoriesInfo.map((category, index) => (
+                                    <option value={category.id} key={index} >{category.title}</option>
+                                ))}
+                            </select>
+                            <p className="error">{formErrors.categoryId}</p>
+
+                        </div>
+
+                        <div className="info-form">
+                            <label htmlFor="address">Dirección :</label>
+                            <input type="text" name="address" id="address" value={formValues.address} onChange={handleChange}/>
+                            <p className="error">{formErrors.address}</p>
+                        </div>
+
+                        <div className="info-form" id="cityDiv">
+                            <label htmlFor="cityId">Ciudad :</label>
+                            <select name="cityId" className="select-input" value={formValues.city} onChange={handleChange} >
+                                <option value="">Seleccione la ciudad</option>
+                                {cities.map((city, index) => (
+                                    <option value={city.id} key={index}>
+                                        {city.name}
+                                    </option>
+
+                                ))}
+
+                            </select>
+                            <p className="error">{formErrors.cityId}</p>
+                        </div>
+
+                        <div className="info-form">
+                            <label htmlFor="descriptionTitle">Titulo de la descripción:</label>
+                            <input type="textarea" name="descriptionTitle" id="descriptionTitle" value={formValues.descriptionTitle} onChange={handleChange}
+                                placeholder="Hermosa casa de playa" required />
+                            <p className="error">{formErrors.descriptionTitle}</p>
+                        </div>
+
+                        <div className="info-form">
+                            <label htmlFor="description">Descripción:</label>
+                            <textarea name="description" className="description-form" minLength={"100"} maxLength={"1500"} autoCapitalize="sentences"
+                                value={formValues.description} onChange={handleChange} required></textarea>
+                            <p className="error">{formErrors.description}</p>
+                        </div>
+                    
                     </div>
-
-                    <div className="info-form">
-                        <label htmlFor="categoryId">Categoría :</label>
-                        <select name="categoryId" className="select-input" onChange={handleChange}>
-                            <option value="">Seleccione una categoría</option>
-                            {categoriesInfo.map((category, index) => (
-                                <option value={category.id} key={index} >{category.title}</option>
-                            ))}
-                        </select>
-                        <p className="error">{formErrors.categoryId}</p>
-
-                    </div>
-
-                    <div className="info-form">
-                        <label htmlFor="cityId">Ciudad :</label>
-                        <select name="cityId" className="select-input" value={formValues.city} onChange={handleChange} >
-                            <option value="">Seleccione la ciudad</option>
-                            {cities.map((city, index) => (
-                                <option value={city.id} key={index}>
-                                    {city.name}
-                                </option>
-
-                            ))}
-
-                        </select>
-                        <p className="error">{formErrors.cityId}</p>
-                    </div>
-                    <div className="info-form">
-                        <label htmlFor="descriptionTitle">Titulo de la descripción:</label>
-                        <input type="textarea" name="descriptionTitle" id="descriptionTitle" value={formValues.descriptionTitle} onChange={handleChange}
-                            placeholder="Hermosa casa de playa" required />
-                        <p className="error">{formErrors.descriptionTitle}</p>
-                    </div>
-
-                    <div className="info-form">
-                        <label htmlFor="description">Descripción:</label>
-                        <textarea name="description" className="description-form" minLength={"100"} maxLength={"1500"} autoCapitalize="sentences"
-                            value={formValues.description} onChange={handleChange} required></textarea>
-                        <p className="error">{formErrors.description}</p>
-                    </div>
-
-                    <div className="info-form">
-                        <label htmlFor="address">Dirección :</label>
-                        <input type="text" name="address" id="address" value={formValues.address} onChange={handleChange}/>
-                        <p className="error">{formErrors.address}</p>
-                    </div>
+                    
 
 
                     <div className="amenities-block">
