@@ -15,6 +15,7 @@ import ConfirmationMessage from "./components/Reservation/ConfirmationMessage";
 import { ReservationProvider } from "./components/ReservationContext";
 import Search from "./pages/Search/Search";
 import CreateProducts from "./components/CreateProducts/CreateProducts";
+import MyReservationsPage from "./pages/MyReservations/MyReservationsTemplate";
 
 import AdminRoute from "./components/AdminAuth";
 
@@ -37,6 +38,7 @@ function App() {
 
                 <Route element={<AdminRoute />}>
                   <Route path="/administration" element={<CreateProducts />} />
+                  
                   <Route
                     path="/ConfirmationProduct"
                     element={
@@ -52,6 +54,7 @@ function App() {
                     path="/product/reservation/:id"
                     element={<Reservation />}
                   />
+                  <Route path="/myreservations" element={<MyReservationsPage />} />
                   <Route
                     path="/ConfirmationMessage"
                     element={

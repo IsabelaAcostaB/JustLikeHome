@@ -84,6 +84,10 @@ const Header = () => {
                         <Link to="/administration"><h3>Administracion</h3></Link>
                   </div>
             }
+            {userData.role !== null && <div className="reservations">
+                        <Link to="/myreservations"><h3>Mis reservas</h3></Link>
+                  </div>
+            }
 
             <div className="user-name">
               <div className="user-avatar">

@@ -1,9 +1,10 @@
+import React, { useState, useEffect, useContext } from "react";
 import { DateRange } from "react-date-range";
 import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
 import defaultLocale from "date-fns/locale/es";
 import useWindowDimensions from "../../hooks/useWindowDimensions.jsx";
-import React, { useState, useEffect, useContext } from "react";
+
 import axios from "axios";
 import Url from "../../util/Url";
 import { PoliciesRender2 } from "../Products/Product";

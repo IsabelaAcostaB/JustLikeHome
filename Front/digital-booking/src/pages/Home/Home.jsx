@@ -64,8 +64,6 @@ const Home = () => {
       const url = Url() + "/api/product";
       const result = await axios.get(url);
       result.finally( isLoading(false), setProducts(result.data))
-    /*   setProducts(result.data);
-      console.log(result.data) */
     };
     getAllProducts();
    
