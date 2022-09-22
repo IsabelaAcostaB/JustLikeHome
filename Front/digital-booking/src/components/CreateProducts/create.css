@@ -91,7 +91,7 @@
     margin: 10px 0px;
 }
 
-.amenities{
+.amenities-block > .amenities{
     display: grid;
     grid-template-columns: auto auto;
 }
