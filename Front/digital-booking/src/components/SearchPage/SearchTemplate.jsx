@@ -6,18 +6,15 @@ import axios from "axios";
 import "./searchtemplate.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleXmark } from "@fortawesome/free-regular-svg-icons";
+import { faMag } from "@fortawesome/free-regular-svg-icons";
+import { faFaceFrown } from "@fortawesome/free-regular-svg-icons";
 import moment from "moment/min/moment-with-locales";
 import useWindowDimensions from "../../hooks/useWindowDimensions";
 import Loader from "../../util/Loader";
-import {
-  faArrowAltCircleUp,
-  faArrowCircleUp,
-  faArrowUp,
-} from "@fortawesome/free-solid-svg-icons";
-import { set } from "date-fns";
 
 const SearchTemplate = () => {
   const [products, setProducts] = useState([]);
+  const [noResults, setNoResults] = useState(false);
   const [categories, setCategories] = useState([]);
   const [cities, setCities] = useState([]);
   const { width } = useWindowDimensions();
@@ -202,11 +199,36 @@ const SearchTemplate = () => {
       };
       getAllProducts();
     }
+
+   
   }, [filterData]);
 
   function RenderFilters() {
     let checkIn = filterData.rangeOfDates.checkIn;
     let checkOut = filterData.rangeOfDates.checkOut;
+    let city;
+    let category;
+
+    if(filterData.category == "cabania"){
+      category = "cabaña"
+    } else if(filterData.category == "casaDePlaya"){
+      category = "casa de playa"
+    } else {
+      category = filterData.category
+    }
+
+    if(filterData.cityCode == "buenosAires"){
+      city = "buenos aires"
+    } else if(filterData.cityCode == "bogota"){
+      city = "bogotá"
+    } else if(filterData.cityCode == "medellin"){
+      city = "medellín"
+    }  else if(filterData.cityCode == "cordoba"){
+      city = "córdoba"
+    } else{
+      city= filterData.cityCode
+    }
+
 
     function newDateFormatter(date) {
       const dateDayFirst = moment(date).locale("es");
@@ -233,10 +255,11 @@ const SearchTemplate = () => {
       filterData.rangeOfDates.checkIn !== null &&
       filterData.rangeOfDates.checkOut !== null
     ) {
+      
       return (
         <ul type="none" className="filters-applied">
           <li>
-            {filterData.cityCode}
+            {city}
             <FontAwesomeIcon
               icon={faCircleXmark}
               className="no-filter"
@@ -244,7 +267,7 @@ const SearchTemplate = () => {
             />
           </li>
           <li>
-            {filterData.category}
+            {category}
             <FontAwesomeIcon
               icon={faCircleXmark}
               className="no-filter"
@@ -276,7 +299,7 @@ const SearchTemplate = () => {
       return (
         <ul type="none" className="filters-applied">
           <li>
-            {filterData.cityCode}
+            {city}
             <FontAwesomeIcon
               icon={faCircleXmark}
               className="no-filter"
@@ -308,7 +331,7 @@ const SearchTemplate = () => {
       return (
         <ul type="none" className="filters-applied">
           <li>
-            {filterData.category}
+            {category}
             <FontAwesomeIcon
               icon={faCircleXmark}
               className="no-filter"
@@ -336,7 +359,7 @@ const SearchTemplate = () => {
       return (
         <ul type="none" className="filters-applied">
           <li>
-            {filterData.cityCode}
+            {city}
             <FontAwesomeIcon
               icon={faCircleXmark}
               className="no-filter"
@@ -344,7 +367,7 @@ const SearchTemplate = () => {
             />
           </li>
           <li>
-            {filterData.category}
+            {category}
             <FontAwesomeIcon
               icon={faCircleXmark}
               className="no-filter"
@@ -357,7 +380,7 @@ const SearchTemplate = () => {
       return (
         <ul type="none" className="filters-applied">
           <li>
-            {filterData.cityCode}
+            {city}
             <FontAwesomeIcon
               icon={faCircleXmark}
               className="no-filter"
@@ -370,7 +393,7 @@ const SearchTemplate = () => {
       return (
         <ul type="none" className="filters-applied">
           <li>
-            {filterData.category}
+            {category}
             <FontAwesomeIcon
               icon={faCircleXmark}
               className="no-filter"
@@ -478,13 +501,24 @@ const SearchTemplate = () => {
   const onClick = () => {
     document.getElementById("search-bar").scrollIntoView();
   };
+  
+  function NoResultsRender({products}){
+    if(products.length === 0){
+      setNoResults(true)
+      return(
+        <div className="no-matches">
 
-  function LoaderProducts() {
-    if (loading) {
-      return <Loader />;
+           <h2>Ups... parece que está vacío
+
+            </h2> 
+        </div>
+      )
     } else {
-      return <Listar products={products} />;
+      setNoResults(false)
+      return(<Listar products={products} />)
+      
     }
+    
   }
 
   return (
@@ -497,7 +531,9 @@ const SearchTemplate = () => {
       </div>
       <div className="filters">
         <FiltersCategories width={width} />
-        {loading ? <Loader /> : <Listar products={products} />}
+        {/* {loading ? <Loader /> : <Listar products={products} />}
+        {noResults ? <NoResultsRender /> : null} */}
+        {loading ? <Loader /> : <NoResultsRender products={products} />}
       </div>
     </div>
   );

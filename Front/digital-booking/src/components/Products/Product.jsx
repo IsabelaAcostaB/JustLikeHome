@@ -103,8 +103,8 @@ function Product() {
       axios
         .get(url)
         .then((response) => setProductInfo(response.data))
-        .catch((error) => console.log(error))
-/*         .finally(isLoading(false)); */
+        .catch((error) => console.log(error));
+      /*         .finally(isLoading(false)); */
     }, [url]);
   }
 
@@ -191,6 +191,15 @@ function Product() {
     }
   }
 
+  /* const rendered= () => {
+  alert("image rendered");
+}
+const startRender= () => {
+  requestAnimationFrame(rendered());
+}
+const loaded = () => {
+  requestAnimationFrame(startRender());
+} */
   function ImagesRender({ product }) {
     let arrayImages = [];
     for (let i = 0; i <= 4; i++) {
@@ -199,7 +208,9 @@ function Product() {
       }
     }
     arrayImages = arrayImages.slice(0, 4);
-    isLoading(false)
+    if (arrayImages.length == 4) {
+      isLoading(false);
+    }
     return arrayImages.map((item) => (
       <div key={item.id}>
         <img src={item.imageURL} />
@@ -214,9 +225,18 @@ function Product() {
         mainImage = item.images[i].imageURL;
       }
     }
-    /* isLoading(false) */
     return <img src={mainImage} />;
   }
+
+  const myTimeout = setTimeout(setLoading, 3000);
+function setLoading(){
+isLoading(false)
+}
+
+
+  /* localStorage.setItem("url", locationId); */
+ 
+
 
   return (
     <div className="main">
@@ -255,15 +275,16 @@ function Product() {
               <FontAwesomeIcon icon={faShareSquare} />
               <FontAwesomeIcon icon={faHeart} />
             </div>
-
-            <div className="gallery-container">
-              <div id="mainImage">
-                {/* {loading ? <Loader /> : <ImagesMain item={productInfo} />} */}
-                 <ImagesMain item={productInfo}/> 
-              </div>
-           {/*    {loading ? <Loader /> : <ImagesRender product={productInfo} />} */}
-               <ImagesRender product={productInfo} /> 
-            </div>
+              {loading ? (
+                <Loader />
+              ) : (
+                <div className="gallery-container">
+                  <div id="mainImage">
+                    <ImagesMain item={productInfo} />
+                  </div>
+                  <ImagesRender product={productInfo} />
+                </div>
+              )} 
             <p className="gallery-p" onClick={handleToggle}>
               Ver más
             </p>

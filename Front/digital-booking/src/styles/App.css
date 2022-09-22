@@ -381,6 +381,7 @@ h1.category-title {
   padding-left: 12px;
   display: flex;
   padding-top: 3px;
+  flex-wrap: wrap;
   /* justify-content: space-evenly; */
 }
 
@@ -420,6 +421,11 @@ h1.category-title {
 .pagination > .to-the-top > p:hover,
 .pagination > .to-the-top > p > svg:hover {
   cursor: pointer;
+}
+
+.reservation > .button-c{
+  cursor: pointer;
+  margin-top: 20px;
 }
 
 @media (min-width: 768px) {

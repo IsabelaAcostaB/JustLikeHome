@@ -40,6 +40,7 @@ const Reservation = () => {
   const [isActive, setActive] = useState(false);
   const [errorCity, setErrorCity] = useState(false);
   const [errorTime, setErrorTime] = useState(false);
+  const [errorDate, setErrorDate] = useState(false);
 
   // RANGO DE FECHAS DEL CALENDARIO
   const [state, setState] = useState([
@@ -220,14 +221,15 @@ const Reservation = () => {
   }
 
   const validData = async () => {
-    console.log("1");
+
     let cityInput = document.getElementById("cityinput").value;
     checkInHour !== null ? setErrorTime(false) : setErrorTime(true);
-    console.log("2");
     cityInput.length > 2 ? setErrorCity(false) : setErrorCity(true);
+    sendedDateFomatter(endDate) !== sendedDateFomatter(startDate)? setErrorDate(false) : setErrorDate(true);
+
     console.log(errorCity);
 
-    if (checkInHour !== null && cityInput.length > 2) {
+    if (checkInHour !== null && cityInput.length > 2 && sendedDateFomatter(endDate) !== sendedDateFomatter(startDate)) {
       postProductReservationDays();
     }
   };
@@ -334,7 +336,6 @@ const Reservation = () => {
             <div className="select-checkIn">
               <p>Indicá tu horario estimado de llegada</p>
               <p className={errorTime ? "error-time-p" : "hide"}>
-                <FontAwesomeIcon icon={faArrowCircleDown} />
                 Por favor indica tu horario de llegada
               </p>
               <select
@@ -404,7 +405,17 @@ const Reservation = () => {
                     Check Out: {dayE}/{monthE}/{yearE}
                   </h3>
                 </div>
-
+              <div className="errors-reservation">
+                <p className={errorTime ? "error-time-p" : "hide"}>
+                Por favor indica tu horario de llegada
+              </p>
+                <p className={errorCity ? "error-city-p" : "hide"}>
+                Por favor indica tu ciudad
+              </p>
+                <p className={errorDate ? "error-dates-p" : "hide"}>
+                No se permite indicar la misma fecha de check in y check out
+              </p>
+              </div>
                 <button
                   className="button-c"
                   /* onClick={postProductReservationDays} */

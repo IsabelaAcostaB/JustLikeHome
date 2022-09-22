@@ -5,6 +5,7 @@ import Footer from "../../components/Footer/Index"
 
 
 const SignUp =()=>{
+    /* localStorage.removeItem("url"); */
     return(
 
         <>

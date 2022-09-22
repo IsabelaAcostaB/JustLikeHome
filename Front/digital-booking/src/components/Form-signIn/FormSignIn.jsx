@@ -10,7 +10,8 @@ const FormSignIn = () => {
   const { userData, setUserData } = useContext(UserContext);
 
   const [validData, setValidData] = useState(true);
-
+  let urlReservation = localStorage.getItem("url");
+  
   const navigate = useNavigate();
 
   const getValues = (target) => {
@@ -43,7 +44,12 @@ const FormSignIn = () => {
       }
 
       setUserData(userDataLog);
-      navigate("/");
+      if(urlReservation){
+        navigate(`/product/reservation/${urlReservation}`);
+      } else {
+        navigate("/");
+      }
+      
     } else {
       setValidData(false);
     }
@@ -67,7 +73,7 @@ const FormSignIn = () => {
           Por favor vuelva a intentarlo, sus credenciales son inválidas
         </p>
 
-        <button className="button-2" type="submit">
+        <button className="button-2" type="submit" >
           Ingresar
         </button>
 

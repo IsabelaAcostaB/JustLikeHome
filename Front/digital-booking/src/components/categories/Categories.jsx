@@ -23,7 +23,12 @@ const Categorias = () => {
       className="card card-shadow m-3 home-card"
       onClick={() => handleFilterData({ category: item.code })}
     >
-      <Link to="/filtrado">
+      <Link
+        to="/filtrado"
+        onClick={() => {
+          window.scrollTo(0, 0);
+        }}
+      >
         <img src={item.imageURL} class="card-img-top" />
         <div className="card-title" key={item.id}>
           <h2> {item.title}</h2>

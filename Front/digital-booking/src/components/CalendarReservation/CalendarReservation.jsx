@@ -9,7 +9,8 @@ import { Link } from "react-router-dom";
 
 const CalendarReservation = ({ id, disabledD }) => {
   let location = window.location.pathname;
-
+  let locationPath = location.split("/");
+  let locationId = locationPath[2];
   const [state, setState] = useState([
     {
       startDate: new Date(),
@@ -21,6 +22,12 @@ const CalendarReservation = ({ id, disabledD }) => {
   //disabledDates={disabledDates}
 
   const windowDimension = useWindowDimensions();
+  let url = localStorage.getItem("url");
+  const setReservation = () => {
+    if(url == null || url !== locationId){
+      localStorage.setItem("url", locationId);
+    }
+  }
 
   return (
     <div className="reservationBlock">
@@ -51,7 +58,7 @@ const CalendarReservation = ({ id, disabledD }) => {
         <div className="reservation">
           <h3>Agregá tus fechas de viaje para obtener precios exactos</h3>
           {/* <button className="button-c">Iniciar reserva</button> */}
-          <Link className="button-c" to={`/product/reservation/${id}`}>
+          <Link className="button-c" to={`/product/reservation/${id}`} onClick={url == null ? setReservation : setReservation}>
             Iniciar reserva
           </Link>
         </div>

@@ -23,6 +23,7 @@ const Home = () => {
   const [productsPerPage, setProductsPerPage] = useState(8);
   const [currentPage, setCurrentPage] = useState(1);
   const [loading, isLoading] = useState(true);
+  localStorage.removeItem("url");
 
   const indexFirstProduct = (currentPage - 1) * productsPerPage;
   const indexLastProduct = indexFirstProduct + productsPerPage;
@@ -95,7 +96,7 @@ const Home = () => {
           Volver al inicio{" "}
           <FontAwesomeIcon icon={faArrowUp} className="pagination-icon" />
         </p>
-        <PaginationNumbers pages={pages} setCurrentPage={setCurrentPage} />
+        <PaginationNumbers pages={pages} setCurrentPage={setCurrentPage}/>
       </div>
     </div>
   );

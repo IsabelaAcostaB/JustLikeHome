@@ -214,8 +214,20 @@ text-align: right;
   color: #d51b1b;
   font-size: 12px;
 }
+.error-time-p{
+  color: #d51b1b;
+}
 .error-city-p > svg{
   padding-right: 10px;
+}
+.errors-reservation {
+  padding:20px;
+}
+.errors-reservation > .error-city-p, .error-time-p, .error-dates-p{
+  text-align: left;
+  color: #d51b1b;
+  font-weight:500;
+  font-size: 1rem;
 }
 
 .label-city{
