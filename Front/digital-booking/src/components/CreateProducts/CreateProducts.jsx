@@ -144,12 +144,8 @@ const CreateProducts = () => {
             await postImages();
             const allImg = await getImages();
 
-            findImagesId(formValues, allImg)
-
-            console.log(allImg);
-            console.log(productData.images);
-
-
+            productData.images = findImagesId(formValues, allImg)
+                
             
             const postProduct = async () => {
 
@@ -175,6 +171,8 @@ const CreateProducts = () => {
     
             }
             await postProduct()
+            
+            
         
 
         }
@@ -248,10 +246,12 @@ const CreateProducts = () => {
         //Cuando lo encuentra, desestructura para devolverme sólo el id de esa imagen
         const imgIds = titleImg.map(title=>{
             const {id} = allImg.find(imageItem => imageItem.title == title);
-        
+            
             return {id}
         }) 
-        imgsForm.imagesId=imgIds;
+        
+        return imgIds
+        
     }
 
 
@@ -273,6 +273,9 @@ const CreateProducts = () => {
         let name = imageName;
         let separatedName = name.split("/");
         let lastElement = separatedName.pop()
+        if (lastElement.length>15){
+
+        }
         return lastElement
     }
 
@@ -289,6 +292,20 @@ const CreateProducts = () => {
         setFormValues({ ...formValues, images: allImages })
     }
 
+
+    //Para abreviar el titulo
+    const abbTitle = (title)=>{
+        //si length>15 entonces cortalo, agregar ...img
+        let lengthTitle = title.length;
+        let newTitle
+        if (lengthTitle>15){
+            newTitle = title.slice(0,14)
+        }else{
+            return title
+        }
+
+        return newTitle+'...'
+    }
 
 
     // ---------------------------------------      RADIO BUTTON: Seleccionar imagen principal
@@ -419,7 +436,7 @@ const CreateProducts = () => {
 
 
                             <div className="input-image">
-                                <input type="text" name="url" onChange={handleImg} placeholder="Inserte https://"/>
+                                <input type="text" name="url" value={img.imageURL} onChange={handleImg} placeholder="Inserte https://"/>
                                 <FontAwesomeIcon icon={faCirclePlus} onClick={addImage} />
                                 
                             </div>
@@ -428,7 +445,7 @@ const CreateProducts = () => {
                             {formValues.images.map((image, index) => (
                             <div key={index} className="imageName-card">
                                 <RadioButton ix={index} />
-                                <label htmlFor="image">{image.title}</label>
+                                <label htmlFor="image">{abbTitle(image.title)}</label>
                                 <FontAwesomeIcon icon={faXmark} onClick={() => deleteImage(index)} />
                             </div>
                             ))}

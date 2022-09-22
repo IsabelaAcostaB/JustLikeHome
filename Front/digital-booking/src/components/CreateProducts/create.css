@@ -102,6 +102,9 @@
     flex-direction: row;
     align-items: center;
 }
+.input-image input{
+    width:65vw;
+}
 
 .input-image svg{
     color: var(--second-color);
@@ -114,43 +117,13 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    width: 70vw;
+    width: 50vw;
     height: 30px;
-    border-radius: 5px;
-    background-color: #fff;
-    box-shadow: 0 5px 5px rgb(175, 172, 172);
-    /*border: 1px solid var(--second-color);*/
+    border-radius: 15px;
+    background-color: rgb(73, 98, 112, 0.3);
     margin: 5px 0px;
     padding: 0px 15px;
 
-}
-
-.imageName-card svg, .name-card svg{
-    font-size: 15px;
-    cursor: pointer;    
-}
-
-
-
-
-
-
-.name-card{
-    width: 55vw;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    margin-left: 10px;
-}
-
-.star{
-    color: rgb(175, 173, 173);
-}
-
-.star:hover{
-    color: var(--fifth-color);
-    cursor: pointer;
 }
 
 /*------INPUT RADIO ---------*/
@@ -161,17 +134,18 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    margin-left: 10px;
+    font-size: 10px;
+    margin-bottom: 0px;
 }
 
 .imageName-card svg{
     font-size: 15px;
     cursor: pointer;
-    margin-left: 5px;
+    
 }
 .radio-input{
-    width: 15px;
-    height: 15px;
+    width: 10px;
+    height: 10px;
     box-shadow: none;
     cursor: pointer;
     
