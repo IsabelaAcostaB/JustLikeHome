@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
 import { fawashingmachine } from "@fortawesome/free-solid-svg-icons";
@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import styles from "../../styles/App.css";
 import "bootstrap";
 import AcortarDescripcion from "./Description";
+import Loader from "../../util/Loader";
 
 /* import Loader from "react-js-loader"; */
 
@@ -30,7 +31,8 @@ export function ImagesRender({ item }) {
   return <img src={mainImage} class="card-img-top" />;
 }
 
-function Cards({ products }) {
+function Cards({ products}) {
+  
   /*  if (loading){
     return <Loader type="spinner-circle" bgColor={"#384d58"} title={"Buscando"} color={'#e48561'} size={50} />
   } */
@@ -57,11 +59,12 @@ function Cards({ products }) {
   ));
 }
 
-function Listar({ products }) {
+function Listar({ products, newLoading }) {
+
   return (
-    <div class="card-deck cards-recommended" >
+    <div className="card-deck cards-recommended" >
       <div className="cards-container-recommended">
-        <Cards products={products} />
+         <Cards products={products} /> 
       </div>
     </div>
   );

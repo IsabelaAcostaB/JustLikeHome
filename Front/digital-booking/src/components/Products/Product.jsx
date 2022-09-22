@@ -14,24 +14,35 @@ import CarouselRender from "../Carousel/Carousel";
 import CalendarReservation from "../CalendarReservation/CalendarReservation";
 import Url from "../../util/Url";
 import PoliciesRender from "./Policies";
-import {ReservationContext} from "../ReservationContext"
-import moment from 'moment';
+import { ReservationContext } from "../ReservationContext";
+import moment from "moment";
+import Loader from "../../util/Loader";
 
-function ImagesRender({ product }) {
+/* function ImagesRender({ product }) {
   let arrayImages = [];
   for (let i = 0; i <= 4; i++) {
-    if (product.images[i].main_img == 0){
-      arrayImages.push(product.images[i])
+    if (product.images[i].main_img == 0) {
+      arrayImages.push(product.images[i]);
     }
-    
   }
-  arrayImages = arrayImages.slice(0,4)
+  arrayImages = arrayImages.slice(0, 4);
   return arrayImages.map((item) => (
     <div key={item.id}>
       <img src={item.imageURL} />
     </div>
   ));
 }
+
+function ImagesMain({ item }) {
+  let mainImage;
+  for (let i = 0; i < item.images.length; i++) {
+    if (item.images[i].main_img == 1) {
+      mainImage = item.images[i].imageURL;
+    }
+  }
+
+  return <img src={mainImage} />;
+} */
 
 export function PoliciesRender2({ product }) {
   let rules = product.policy.rules;
@@ -75,23 +86,10 @@ export function PoliciesRender2({ product }) {
   );
 }
 
-function ImagesMain({item}){
-  let mainImage;
-  for (let i = 0; i < item.images.length; i++) {
-    if (item.images[i].main_img ==1){
-      mainImage = item.images[i].imageURL
-    }
-    
-  }
-
-  return (
-    <img src={mainImage} />
-  )
-}
-
 function Product() {
   const [productInfo, setProductInfo] = useState();
-  const { width} = useWindowDimensions();
+  const [loading, isLoading] = useState(true);
+  const { width } = useWindowDimensions();
   let location = window.location.pathname;
   const [isActive, setActive] = useState(false);
   const handleToggle = () => {
@@ -105,7 +103,8 @@ function Product() {
       axios
         .get(url)
         .then((response) => setProductInfo(response.data))
-        .catch((error) => console.log(error));
+        .catch((error) => console.log(error))
+/*         .finally(isLoading(false)); */
     }, [url]);
   }
 
@@ -119,65 +118,56 @@ function Product() {
   let locationPath = location.split("/");
   let locationId = locationPath[2];
 
+  const { reservationsDates, setReservationsDates } =
+    useContext(ReservationContext);
+  const token = localStorage.getItem("jwt");
 
-  
-  const {reservationsDates, setReservationsDates}= useContext(ReservationContext)
-  const token = localStorage.getItem("jwt")
-
-
-  useEffect(()=>{
-    const getProductReservationDays = async ()=>{
-      try{
-        const url = Url()+ "/api/reservation/findProduct/"+locationId;
-        const result = await axios.get(url,{
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
+  useEffect(() => {
+    const getProductReservationDays = async () => {
+      try {
+        const url = Url() + "/api/reservation/findProduct/" + locationId;
+        const result = await axios.get(url, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
         });
 
-      setReservationsDates(result.data)
-      } catch(e){
-        console.log(e.message)
+        setReservationsDates(result.data);
+      } catch (e) {
+        console.log(e.message);
       }
-    }
-    getProductReservationDays()
-  },[locationId])
+    };
+    getProductReservationDays();
+  }, [locationId]);
 
   // DESHABILITA LAS FECHAS RESERVADAS EN EL CALENDARIO
-  const getRange = (startDate, endDate, type = 'days') => {
-    let fromDate = moment(startDate)
-    let toDate = moment(endDate)
-    let diff = toDate.diff(fromDate, type)
+  const getRange = (startDate, endDate, type = "days") => {
+    let fromDate = moment(startDate);
+    let toDate = moment(endDate);
+    let diff = toDate.diff(fromDate, type);
     let range = [];
     for (let i = 0; i <= diff; i++) {
-      range.push(moment(startDate).add(i, type)._d)
+      range.push(moment(startDate).add(i, type)._d);
     }
-    return range
-  }
+    return range;
+  };
 
+  const disabledDates = [];
 
-  const disabledDates = []
-  
-  let allDays = [] 
-  reservationsDates.map( rd=>{
-    allDays = [...allDays, ...getRange(rd.checkIn, rd.checkOut)]
-  })
- 
-  const days = allDays
-  
-  days.map((d)=>{
-    const year = d.getFullYear()
-    const month = d.getMonth()
-    const day = d.getDate()
+  let allDays = [];
+  reservationsDates.map((rd) => {
+    allDays = [...allDays, ...getRange(rd.checkIn, rd.checkOut)];
+  });
 
-    disabledDates.push(
-      new Date(year, month, day)
-    )
-  })
+  const days = allDays;
 
+  days.map((d) => {
+    const year = d.getFullYear();
+    const month = d.getMonth();
+    const day = d.getDate();
 
-
-
+    disabledDates.push(new Date(year, month, day));
+  });
 
   /* ----- Tipo de carousel renderizado segun device width ----- */
   function CarouselDevice({ width, product }) {
@@ -199,6 +189,33 @@ function Product() {
     } else {
       return <CarouselRender product={product} interval="3000" />;
     }
+  }
+
+  function ImagesRender({ product }) {
+    let arrayImages = [];
+    for (let i = 0; i <= 4; i++) {
+      if (product.images[i].main_img == 0) {
+        arrayImages.push(product.images[i]);
+      }
+    }
+    arrayImages = arrayImages.slice(0, 4);
+    isLoading(false)
+    return arrayImages.map((item) => (
+      <div key={item.id}>
+        <img src={item.imageURL} />
+      </div>
+    ));
+  }
+
+  function ImagesMain({ item }) {
+    let mainImage;
+    for (let i = 0; i < item.images.length; i++) {
+      if (item.images[i].main_img == 1) {
+        mainImage = item.images[i].imageURL;
+      }
+    }
+    /* isLoading(false) */
+    return <img src={mainImage} />;
   }
 
   return (
@@ -241,10 +258,11 @@ function Product() {
 
             <div className="gallery-container">
               <div id="mainImage">
-                <ImagesMain item={productInfo}/>
-
+                {/* {loading ? <Loader /> : <ImagesMain item={productInfo} />} */}
+                 <ImagesMain item={productInfo}/> 
               </div>
-              <ImagesRender product={productInfo} />
+           {/*    {loading ? <Loader /> : <ImagesRender product={productInfo} />} */}
+               <ImagesRender product={productInfo} /> 
             </div>
             <p className="gallery-p" onClick={handleToggle}>
               Ver más
@@ -264,10 +282,12 @@ function Product() {
               </div>
             </div>
 
-            <CalendarReservation id={productInfo.id} disabledD={disabledDates}/>
+            <CalendarReservation
+              id={productInfo.id}
+              disabledD={disabledDates}
+            />
 
             <PoliciesRender product={productInfo} />
-
           </div>
         </div>
       )}

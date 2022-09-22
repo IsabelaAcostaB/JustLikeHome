@@ -52,13 +52,13 @@ const FormSignUp = () => {
           const response = await axios.post(url, userData);
 
           if (response.status === 201) {
-            const userDataLog = {
+         /*    const userDataLog = {
               name: userData.name,
               lastName: userData.lastName,
               email: userData.email,
               isLogged: true,
               token: userData.token,
-            };
+            }; */
 
             navigate("/signIn");
           }

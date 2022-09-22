@@ -128,6 +128,23 @@
 .main-search > .pagination {
   justify-content: right;
 }
+.spinner{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+  height: 47vw;
+/*   margin: 0 20vw; */
+  
+ /*  border-radius: 50%; */
+
+  background-image: url("https://justlikehome-images.s3.us-east-2.amazonaws.com/util/loader.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.spinner > p{
+  font-size: 5rem;
+}
 
 @media (min-width: 768px) {
   .page > .pagination {

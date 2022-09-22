@@ -36,7 +36,7 @@ const Categorias = () => {
 
 function ListarCat() {
   return (
-    <div className="card-deck" id="category-container">
+    <div className="card-deck">
       <div className="cards-container-category">
         <Categorias />
       </div>

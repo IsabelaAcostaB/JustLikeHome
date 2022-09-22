@@ -8,8 +8,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleXmark } from "@fortawesome/free-regular-svg-icons";
 import moment from "moment/min/moment-with-locales";
 import useWindowDimensions from "../../hooks/useWindowDimensions";
-
-import { faArrowAltCircleUp, faArrowCircleUp, faArrowUp } from "@fortawesome/free-solid-svg-icons";
+import Loader from "../../util/Loader";
+import {
+  faArrowAltCircleUp,
+  faArrowCircleUp,
+  faArrowUp,
+} from "@fortawesome/free-solid-svg-icons";
 import { set } from "date-fns";
 
 const SearchTemplate = () => {
@@ -44,36 +48,31 @@ const SearchTemplate = () => {
       filterData.cityCode &&
       filterData.category
     ) {
+      isLoading(true);
       const getProductsByCityAndDatesAndCategory = async () => {
+        /* let results;
+        let resultsFiltered = []; */
         const url =
           Url() +
           `/api/product/${filterData.cityCode}/${filterData.rangeOfDates.checkIn}/${filterData.rangeOfDates.checkOut}`;
         const result = await axios.get(url);
         let results = result.data;
         let resultsFiltered = [];
-        setProducts(result.data);
         results.forEach((element) => {
           if (element.category.code === filterData.category) {
             resultsFiltered.push(element);
           }
         });
         setProducts(resultsFiltered);
+        result.finally(isLoading(false));
       };
-
       getProductsByCityAndDatesAndCategory();
     } else if (
       filterData.rangeOfDates.checkIn &&
       filterData.rangeOfDates.checkOut &&
       filterData.cityCode
     ) {
-      /* const getProductsByCityAndDates = async () => {
-        const url =
-          Url() +
-          `/api/product/${filterData.cityCode}/${filterData.rangeOfDates.checkIn}/${filterData.rangeOfDates.checkOut}`;
-        const result = await axios.get(url);
-        setProducts(result.data);
-      };
-      getProductsByCityAndDates(); */
+      isLoading(true);
       const getProductsByDatesAndCity = async () => {
         let checkIn = filterData.rangeOfDates.checkIn.replaceAll("/", "-");
         let checkOut = filterData.rangeOfDates.checkOut.replaceAll("/", "-");
@@ -89,6 +88,7 @@ const SearchTemplate = () => {
           }
         });
         setProducts(resultsFiltered);
+        result.finally(isLoading(false));
       };
       getProductsByDatesAndCity();
     } else if (
@@ -96,6 +96,7 @@ const SearchTemplate = () => {
       filterData.rangeOfDates.checkOut &&
       filterData.category
     ) {
+      isLoading(true);
       const getProductsByDatesAndCategory = async () => {
         let checkIn = filterData.rangeOfDates.checkIn.replaceAll("/", "-");
         let checkOut = filterData.rangeOfDates.checkOut.replaceAll("/", "-");
@@ -111,15 +112,16 @@ const SearchTemplate = () => {
           }
         });
         setProducts(resultsFiltered);
+        result.finally(isLoading(false));
       };
       getProductsByDatesAndCategory();
     } else if (filterData.cityCode && filterData.category) {
+      isLoading(true);
       const getProductsByCityAndCategory = async () => {
         const url =
           Url() + `/api/product/productCity/id/${filterData.cityCode}`;
         const result = await axios.get(url);
         let results = result.data;
-        console.log(results);
         let resultsFiltered = [];
 
         results.forEach((element) => {
@@ -130,23 +132,27 @@ const SearchTemplate = () => {
         });
 
         setProducts(resultsFiltered);
+        result.finally(isLoading(false));
       };
       getProductsByCityAndCategory();
     } else if (
       filterData.rangeOfDates.checkIn &&
       filterData.rangeOfDates.checkOut
     ) {
+      isLoading(true);
       const getProductsByDates = async () => {
         let checkIn = filterData.rangeOfDates.checkIn.replaceAll("/", "-");
         let checkOut = filterData.rangeOfDates.checkOut.replaceAll("/", "-");
 
         const url = Url() + `/api/product/${checkIn}/${checkOut}`;
         const result = await axios.get(url);
+        result.finally(setProducts(result.data), isLoading(false));
 
         setProducts(result.data);
       };
       getProductsByDates();
     } else if (filterData.cityCode && filterData.category) {
+      isLoading(true);
       const getProductsByCityAndCategory = async () => {
         const url =
           Url() + `/api/product/productCity/id/${filterData.cityCode}`;
@@ -161,32 +167,38 @@ const SearchTemplate = () => {
           }
           /* element.city.code == filterData.cityCode ? resultsFiltered.push(element) : null */
         });
-
+        result.finally(isLoading(false));
         setProducts(resultsFiltered);
       };
       getProductsByCityAndCategory();
     } else if (filterData.category) {
+      isLoading(true);
       //console.log('por categoria')
       const getProductsByCategory = async () => {
         const url =
           Url() + `/api/product/productCategory/code/${filterData.category}`;
         const result = await axios.get(url);
-        setProducts(result.data);
+        result.finally(setProducts(result.data), isLoading(false)); /* 
+        setProducts(result.data); */
       };
       getProductsByCategory();
     } else if (filterData.cityCode) {
+      isLoading(true);
       const getProductsByCity = async () => {
         const url =
           Url() + `/api/product/productCity/id/${filterData.cityCode}`;
         const result = await axios.get(url);
-        setProducts(result.data);
+        result.finally(setProducts(result.data), isLoading(false)); /* 
+        setProducts(result.data); */
       };
       getProductsByCity();
     } else {
+      isLoading(true);
       const getAllProducts = async () => {
         const url = Url() + "/api/product";
         const result = await axios.get(url);
-        setProducts(result.data);
+        result.finally(setProducts(result.data), isLoading(false)); /* 
+        setProducts(result.data); */
       };
       getAllProducts();
     }
@@ -393,81 +405,6 @@ const SearchTemplate = () => {
     }
   }
 
-  function RenderFilterDates() {
-    let checkIn = filterData.rangeOfDates.checkIn;
-    let checkOut = filterData.rangeOfDates.checkOut;
-
-    function newDateFormatter(date) {
-      const dateDayFirst = moment(date).locale("es");
-
-      return dateDayFirst.format("DD/MM/YYYY");
-    }
-
-    function changeDates() {
-      if (
-        filterData.rangeOfDates.checkIn !== null &&
-        filterData.rangeOfDates.checkOut !== null
-      ) {
-        checkIn = filterData.rangeOfDates.checkIn.replaceAll("-", "/");
-        checkOut = filterData.rangeOfDates.checkOut.replaceAll("-", "/");
-        checkIn = newDateFormatter(checkIn);
-        checkOut = newDateFormatter(checkOut);
-      }
-    }
-    changeDates();
-
-    if (
-      filterData.rangeOfDates.checkIn !== null &&
-      filterData.rangeOfDates.checkOut !== null
-    ) {
-      return (
-        <li>
-          {checkIn} - {checkOut}
-          <FontAwesomeIcon
-            icon={faCircleXmark}
-            className="no-filter"
-            onClick={() =>
-              handleFilterData({
-                rangeOfDates: {
-                  checkIn: null,
-                  checkOut: null,
-                },
-              })
-            }
-          />
-        </li>
-      );
-    }
-  }
-  function RenderFilterCategory() {
-    if (filterData.category !== null) {
-      return (
-        <li>
-          {filterData.category}
-          <FontAwesomeIcon
-            icon={faCircleXmark}
-            className="no-filter"
-            onClick={() => handleFilterData({ category: null })}
-          />
-        </li>
-      );
-    }
-  }
-  function RenderFilterCity() {
-    if (filterData.city !== null) {
-      return (
-        <li>
-          {filterData.cityCode}
-          <FontAwesomeIcon
-            icon={faCircleXmark}
-            className="no-filter"
-            onClick={() => handleFilterData({ cityCode: null })}
-          />
-        </li>
-      );
-    }
-  }
-
   function FiltersCategories({ width }) {
     if (width >= 768) {
       return (
@@ -539,11 +476,16 @@ const SearchTemplate = () => {
   }
 
   const onClick = () => {
- 
-
     document.getElementById("search-bar").scrollIntoView();
-}
+  };
 
+  function LoaderProducts() {
+    if (loading) {
+      return <Loader />;
+    } else {
+      return <Listar products={products} />;
+    }
+  }
 
   return (
     <div className="page">
@@ -555,8 +497,7 @@ const SearchTemplate = () => {
       </div>
       <div className="filters">
         <FiltersCategories width={width} />
-
-        <Listar products={products} />
+        {loading ? <Loader /> : <Listar products={products} />}
       </div>
     </div>
   );
