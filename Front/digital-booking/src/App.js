@@ -1,6 +1,5 @@
-import React from "react";
+import React, { useContext, useState, useEffect } from "react";
 import Home from "./pages/Home/Home";
-import app from "./styles/App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import SignIn from "./pages/SignIn/SignIn";
 import SignUp from "./pages/SignUp/SignUp";
@@ -15,12 +14,12 @@ import PrivateRoute from "./components/RequireAuth";
 import ConfirmationMessage from "./components/Reservation/ConfirmationMessage";
 import { ReservationProvider } from "./components/ReservationContext";
 import Search from "./pages/Search/Search";
-
 import CreateProducts from "./components/CreateProducts/CreateProducts";
 
-import AdminRoute from "./components/AdminAuth"
+import AdminRoute from "./components/AdminAuth";
 
 function App() {
+  
   return (
     <div className="App">
       <UserProvider>
@@ -36,13 +35,17 @@ function App() {
                 <Route path="/product/:id" element={<ProductPage />} />
                 <Route path="/filtrado" element={<Search />} />
 
-
                 <Route element={<AdminRoute />}>
                   <Route path="/administration" element={<CreateProducts />} />
-                  <Route path="/ConfirmationProduct" element={<ConfirmationMessage message={"Su propiedad fue creada con éxito"} />} />
-                
+                  <Route
+                    path="/ConfirmationProduct"
+                    element={
+                      <ConfirmationMessage
+                        message={"Su propiedad fue creada con éxito"}
+                      />
+                    }
+                  />
                 </Route>
-
 
                 <Route element={<PrivateRoute />}>
                   <Route
@@ -57,7 +60,6 @@ function App() {
                       />
                     }
                   />
-
                 </Route>
               </Routes>
 

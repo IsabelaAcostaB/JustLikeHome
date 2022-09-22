@@ -4,25 +4,24 @@ import SearchBar from "../../components/Buscador/SearchBar"
 import Footer from "../../components/Footer/Index"
 import PaginationNumbers from "../../components/Pagination/Pagination";
 import { useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowUp} from "@fortawesome/free-solid-svg-icons";
 
 const Search = () => {
-    /*
-    const [productsPerPage, setProductsPerPage] = useState(6);
-    const [currentPage, setCurrentPage] = useState(1);
+    const onClick = () => {
+ 
 
-    const indexFirstProduct = (currentPage - 1) * productsPerPage;
-    const indexLastProduct = indexFirstProduct + productsPerPage;
-    const currentProducts = products.slice(indexFirstProduct, indexLastProduct);
-
-    const pages = Math.ceil(products.length / productsPerPage);
-
-    */
+        document.getElementById("search-bar").scrollIntoView();
+    }
     return(
-        <div className="main">
+        <div className="main main-search">
         <Header/>
         <SearchBar/>
         <SearchTemplate/>
         {/*<PaginationNumbers pages={pages} setCurrentPage={setCurrentPage} /> */}
+        <div className="pagination" >
+        <p className="to-the-top" onClick={onClick}>Volver al inicio  <FontAwesomeIcon icon={faArrowUp} className="pagination-icon" /></p>
+      </div>
         </div>
     )
 }

@@ -200,9 +200,10 @@
   /* background-color: rgba(213, 77, 27, 0.283); */
   
 }
-.error-time-p{
+.select-checkIn > .error-time-p{
   padding-top: 10px;
   color: #d51b1b;
+  font-weight: bold;
 }
 .error-time-p > svg{
   padding-right: 10px;
@@ -230,6 +231,7 @@ text-align: right;
 
 }
 @media (min-width: 768px) {
+  
   .reservation-container {
     height: auto;
     margin-top: 0;

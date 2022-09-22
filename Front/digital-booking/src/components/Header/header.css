@@ -29,7 +29,7 @@ header{
 
 .logo img{
     height: 8vh;
-
+    cursor: pointer;
 }
 
 

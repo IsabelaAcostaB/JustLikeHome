@@ -132,7 +132,7 @@ function SearchBar() {
     }
   }
   return (
-    <div className="searchbar-container">
+    <div className="searchbar-container" id="search-bar">
       <h1> Busca ofertas en casas, cabañas y mucho más</h1>
 
       <div className="search-bar">

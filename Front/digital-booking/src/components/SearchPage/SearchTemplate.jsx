@@ -7,12 +7,16 @@ import "./searchtemplate.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleXmark } from "@fortawesome/free-regular-svg-icons";
 import moment from "moment/min/moment-with-locales";
+import useWindowDimensions from "../../hooks/useWindowDimensions";
+
+import { faArrowAltCircleUp, faArrowCircleUp, faArrowUp } from "@fortawesome/free-solid-svg-icons";
 import { set } from "date-fns";
 
 const SearchTemplate = () => {
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
   const [cities, setCities] = useState([]);
+  const { width } = useWindowDimensions();
   const [loading, isLoading] = useState(true);
   const { handleFilterData } = useContext(FilterContext);
 
@@ -464,21 +468,9 @@ const SearchTemplate = () => {
     }
   }
 
-
-
-
-  return (
-    <div className="page">
-      <div className="filter-header">
-        <h2>Resultados de tu búsqueda:</h2>
-        <ul type="none" className="filters-applied">
-           <RenderFilters /> 
-          {/* <RenderFilterDates />
-          <RenderFilterCategory />
-          <RenderFilterCity />  */}
-        </ul>
-      </div>
-      <div className="filters">
+  function FiltersCategories({ width }) {
+    if (width >= 768) {
+      return (
         <div className="filters-container">
           <div className="categories">
             <h3>Categorías</h3>
@@ -507,6 +499,62 @@ const SearchTemplate = () => {
             </ul>
           </div>
         </div>
+      );
+    } else {
+      return (
+        <div className="filters-container">
+          <div className="categories">
+            <h3>Categorías</h3>
+            <select
+              name="city"
+              onChange={(e) => handleFilterData({ category: e.target.value })}
+              className="filter-categories"
+            >
+              <option value="">Selecciona una categoria</option>
+              {categories.map((category, index) => (
+                <option value={category.code} key={index}>
+                  {category.title}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div className="cities">
+            <h3>Ciudades</h3>
+            <select
+              name="city"
+              onChange={(e) => handleFilterData({ cityCode: e.target.value })}
+              className="filter-cities"
+            >
+              <option value="">Selecciona una ciudad</option>
+              {cities.map((city, index) => (
+                <option value={city.code} key={index}>
+                  {city.name}
+                </option>
+              ))}
+            </select>
+          </div>
+        </div>
+      );
+    }
+  }
+
+  const onClick = () => {
+ 
+
+    document.getElementById("search-bar").scrollIntoView();
+}
+
+
+  return (
+    <div className="page">
+      <div className="filter-header">
+        <h2>Resultados de tu búsqueda:</h2>
+        <ul type="none" className="filters-applied">
+          <RenderFilters width={width} />
+        </ul>
+      </div>
+      <div className="filters">
+        <FiltersCategories width={width} />
 
         <Listar products={products} />
       </div>

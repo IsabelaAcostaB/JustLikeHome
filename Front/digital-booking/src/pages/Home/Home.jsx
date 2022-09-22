@@ -15,7 +15,7 @@ import "./homefiltered.css";
 const Home = () => {
   const [products, setProducts] = useState([]);
 
-  const [productsPerPage, setProductsPerPage] = useState(6);
+  const [productsPerPage, setProductsPerPage] = useState(8);
   const [currentPage, setCurrentPage] = useState(1);
 
   const indexFirstProduct = (currentPage - 1) * productsPerPage;
@@ -74,19 +74,20 @@ const Home = () => {
   const onClick = () => {
  
 
-      window.scrollTo(0, 0);
+    document.getElementById("category-container").scrollIntoView();
   }
 
+ /*  document.getElementById("divFirst").scrollIntoView(); */
   return (
     <div className="main">
       <SearchBar />
       <h1 className="category-title">Bienvenido a Just like Home</h1>
       <h2 className="category-title">Selecciona un tipo de alojamiento</h2>
       <ListarCat />
-      <h2 className="recommendation-h2">Recomendados</h2>
+      <h2 className="recommendation-h2" id="recommendation-h2">Recomendados</h2>
       <Listar products={currentProducts} />
-      <div className="pagination" onClick={onClick}>
-        <p className="to-the-top">Volver al inicio  <FontAwesomeIcon icon={faArrowUp} className="pagination-icon" /></p>
+      <div className="pagination" >
+        <p className="to-the-top" onClick={onClick}>Volver al inicio  <FontAwesomeIcon icon={faArrowUp} className="pagination-icon" /></p>
       <PaginationNumbers pages={pages} setCurrentPage={setCurrentPage} />
       </div>
     </div>

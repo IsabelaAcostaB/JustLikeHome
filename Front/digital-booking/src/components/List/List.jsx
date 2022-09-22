@@ -59,7 +59,7 @@ function Cards({ products }) {
 
 function Listar({ products }) {
   return (
-    <div class="card-deck cards-recommended">
+    <div class="card-deck cards-recommended" >
       <div className="cards-container-recommended">
         <Cards products={products} />
       </div>

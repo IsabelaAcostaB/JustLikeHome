@@ -89,9 +89,6 @@ function ImagesMain({item}){
   )
 }
 
-
-
-
 function Product() {
   const [productInfo, setProductInfo] = useState();
   const { width} = useWindowDimensions();

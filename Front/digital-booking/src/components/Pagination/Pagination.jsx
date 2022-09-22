@@ -25,6 +25,8 @@ const PaginationNumbers =({pages,setCurrentPage})=>{
 
     const showCurrentProducts =(event, page)=>{
         event.preventDefault();
+
+        /* document.getElementById("category-container").scrollIntoView(); */
         setCurrentPage(page);
         
 
