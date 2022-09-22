@@ -18,5 +18,5 @@ public interface CategoryRepository extends JpaRepository<Category, Long> {
     @Query(value = " SELECT count(*) \n" +
             "FROM product  \n" +
             "WHERE category_id = (:id);", nativeQuery = true)
-    List<Category> getQuantityInCategoryById(@Param("id") Long id);
+    Integer getQuantityInCategoryById(@Param("id") Long id);
 }
