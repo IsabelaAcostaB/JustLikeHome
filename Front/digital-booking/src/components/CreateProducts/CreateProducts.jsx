@@ -58,15 +58,16 @@ const CreateProducts = () => {
         title: null,
         categoryId: null,
         images: [],
+        imagesId: [],
         descriptionTitle: null,
         description: null,
         amenitiesId: [],
         availability: true,
-        policyId: 1,
+        policyId: {id: 1},
         cityId: null,
-        reservation_id: null
+        address: null
     }
-)
+    )
 
     const handleChange = (e) => {
         const { name, value } = e.target
@@ -74,11 +75,10 @@ const CreateProducts = () => {
     }
 
 
+
     
     const validInput = (values)=>{
         const errors ={}
-        //const regex = /[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+/;
-
         if(!values.title){
             errors.title = "El título es obligatorio"
         }else if(values.title.length<3){
@@ -95,8 +95,8 @@ const CreateProducts = () => {
 
         if (!values.descriptionTitle){
             errors.descriptionTitle = "El titulo de la descripción es obligatorio"
-        }else if (values.descriptionTitle.length>=30 || values.descriptionTitle.length<4){
-            errors.descriptionTitle = "El titulo tiene que tener entre 4 a 30 caracteres"
+        }else if (values.descriptionTitle.length>=100 || values.descriptionTitle.length<4){
+            errors.descriptionTitle = "El titulo tiene que tener entre 4 a 100 caracteres"
         }
 
         if (!values.description){
@@ -122,100 +122,142 @@ const CreateProducts = () => {
 
         return errors;
     }
- 
-    
 
-    const handleSubmit =(event)=>{
+    let token = localStorage.getItem("jwt");
+
+    const handleSubmit = async (event)=>{
         event.preventDefault();
         setFormErrors(validInput(formValues))
-        setIsSubmit(true)
-    }
-
-    
-    useEffect(()=>{
-        if(Object.keys(formErrors).length === 0 && isSubmit){
-
-
-            let token = localStorage.getItem("jwt");
-            
-            const productData ={
+        if(Object.keys(validInput(formValues)).length === 0){
+            const productData = {
   
                 title: formValues.title,
-                categoryId: formValues.categoryId,
-                images: formValues.images,
-                descriptionTitle: formValues.descriptionTitle,
+                category: {id: formValues.categoryId},
+                images: formValues.imagesId,
+                description_title: formValues.descriptionTitle,
                 description: formValues.description,
-                amenitiesId: formValues.amenitiesId,
+                amenities: formValues.amenitiesId,
                 availability: true,
-                policyId: 1,
-                cityId: formValues.cityId,
-                reservation_id: null
+                policy: {id: 1},
+                city: {id: formValues.cityId}
             }
 
-            
+            await postImages();
+            const allImg = await getImages();
 
+            findImagesId(formValues, allImg)
+
+            
+            
             const postProduct = async () => {
 
                 try {
     
-                    const url = Url() + "api/product";
+                    const url = Url() + "/api/product";
                     const response = await axios.post(url, productData,{
                         headers: {
                           Authorization: `Bearer ${token}`,
                         },
-                      }
-                    );
+                    });
     
-    
-                    if (response.status === 201) {
-                        navigate("/message")
+                    if (response.request.status === 201) {
+                        navigate("/ConfirmationProduct")
                     }
                     else {
                         setErrorMessage("Lamentablemente, el producto no ha podido crearse. Por favor, intente más tarde")
                     }
                 } catch (error) {
-              
-                    setErrorMessage("Lamentablemente, el producto no ha podido crearse. Por favor, intente más tarde")
+                    console.log(error);
+                    setErrorMessage("Lamentablemente, el producto no se puede crear")
                 }
     
             }
-            postProduct()
+            await postProduct()
+
+
 
         }
-    },[formErrors]);
+    }
 
-    //console.log(formValues);
+    
+    
 
-    // CARACTERISTICAS
-    const [amenetieId, setAmenetieId] = useState(
-        {
-            id: null
-        }
-    )
+
+
+    // ---------------------------------------------   CARACTERISTICAS
 
     const handleCheckbox = (e) =>{
         if (e.target.checked){
-            setAmenetieId({id:e.target.value})
-            formValues.amenitiesId.push(amenetieId)
-        } else{
-            let amenitiesArray = formValues.amenitiesId.filter( e => e.target.value !== amenetieId.id)
-            setFormValues({ ...formValues, amenitiesId: amenitiesArray })
+
+            formValues.amenitiesId.push({ id:e.target.value}) 
+        } else if (!e.target.checked){
+            const allAmeneties = formValues.amenitiesId;
+            let foundIndex = allAmeneties.map(a =>a.id).indexOf(e.target.value)
+            allAmeneties.splice(foundIndex, 1);
         }
-    
+
     }
 
-    /*
-    
-        setAmenetieId({id: null})
-    */
 
-    // IMAGENES
+    //-------------------------------------------------   IMAGENES  ----------------------------
+    
+
+    //  POST Y GET DE IMÁGENES ------
+
+    const [postCreatedImg, setPostCreatedImg] = useState(false)
+
+
+    const postImages = async ()=>{
+        const dataImg = formValues.images;
+
+        //const imagenes = []
+        try {
+            const url = Url() + "/api/image/addMany";
+            const result = await axios.post(url, dataImg,{
+                headers: {
+                  Authorization: `Bearer ${token}`,
+                },
+              });
+      
+            if (result.request.status === 200) {
+              console.log("Post de imágenes bien");
+              setPostCreatedImg(true)
+            } 
+        } catch (e) {
+            console.log(e.message);
+        }
+    }
+
+    const getImages = async()=>{
+        try{
+            const url = Url()+ "/api/image";
+            const result = await axios.get(url);
+            return result.data;
+        } catch(e){
+            console.log(e.message)
+        }
+    }
+
+    
+
+
+    const findImagesId = (imgsForm, allImg) => {
+        let titleImg = imgsForm.images.map(i=>i.title);
+        const imgIds = titleImg.map(title=>{
+            const { id} = allImg.find(imageItem => imageItem.title === title);
+        
+            return { id }
+        }) 
+        imgsForm.imagesId=imgIds;
+    }
+
+
+
     const [img, setImg] = useState(
         {
             imageURL: null,
             main_img: null,
             title: null,
-
         }
     );
 
@@ -224,9 +266,6 @@ const CreateProducts = () => {
     }
 
 
-
-    
-    
     const getImageName = imageName => {
         let name = imageName;
         let separatedName = name.split("/");
@@ -237,28 +276,30 @@ const CreateProducts = () => {
     const addImage = () => {
 
         formValues.images.push(img)
-        setImg({ imageURL: "", title: "" })
+        setImg({ imageURL: "", main_img: "", title: "" })
     }
 
 
     const deleteImage = (index) => {
-        const allImages = [...formValues.images]
+        const allImages = formValues.images
         allImages.splice(index, 1);
         setFormValues({ ...formValues, images: allImages })
     }
 
 
 
-    // RADIO BUTTON
+    // ---------------------------------------      RADIO BUTTON: Seleccionar imagen principal
 
-    const [selectedValue, setSelectedValue] = useState('');
+    const [selectedValue, setSelectedValue] = useState(null);
 
     const handleChangeRadioButton = (event) => {
-        setSelectedValue(event.target.value);
+        formValues.images.map(imgg => imgg.main_img = '0');
+        const index = parseInt(event.target.value.split('image')[1]);
+        formValues.images[index].main_img='1';
+        setSelectedValue(event.target.value); 
     };
 
     const RadioButton = ({ ix }) => {
-
 
         const controlProps = (item) => ({
             checked: selectedValue === item,
@@ -267,19 +308,6 @@ const CreateProducts = () => {
             name: 'image',
             inputProps: { 'aria-label': item },
         });
-
-        
-
-        //si el radio button está marcado, entonces setear main image en 1.
-
-        /*
-        if(controlProps('image' + ix).checked){
-            setImg({...img, main_img:'1'})
-        }
-        */
-        
-
-        //console.log(productData.images)
 
         return (
             <Radio
@@ -300,19 +328,6 @@ const CreateProducts = () => {
 
 
 
-
-
-
-
-
-    //console.log(productData.images.indexOf("https://justlikehome-images.s3.us-east-2.amazonaws.com/util/logo+fondo+blanco+header.jpg"));
-    //"https://justlikehome-images.s3.us-east-2.amazonaws.com/util/logo+fondo+blanco+header.jpg"
-    //"https://justlikehome-images.s3.us-east-2.amazonaws.com/util/casa-campo.jpg"
-
-    //logo+fondo+blanco+header.png
-    //casa-campo.jpg
-    //value={productData.images}
-
     return (
 
         <div className="main">
@@ -323,16 +338,16 @@ const CreateProducts = () => {
                 <form className="product-form">
                     <div className="info-form">
                         <label htmlFor="title">Nombre Producto :</label>
-                        <input type="text" name="title" id="title" value={formValues.title} onChange={handleChange} />
+                        <input type="text" name="title" id="title" onChange={handleChange} />
                         <p className="error">{formErrors.title}</p>
                     </div>
 
                     <div className="info-form">
                         <label htmlFor="categoryId">Categoría :</label>
-                        <select name="categoryId" className="select-input"  onChange={handleChange}>
+                        <select name="categoryId" className="select-input" onChange={handleChange}>
                             <option value="">Seleccione una categoría</option>
                             {categoriesInfo.map((category, index) => (
-                                <option value={formValues.categoryId} key={index} >{category.title}</option>
+                                <option value={category.id} key={index} >{category.title}</option>
                             ))}
                         </select>
                         <p className="error">{formErrors.categoryId}</p>
@@ -341,11 +356,10 @@ const CreateProducts = () => {
 
                     <div className="info-form">
                         <label htmlFor="cityId">Ciudad :</label>
-                        <select name="cityId" className="select-input"  onChange={handleChange} >
+                        <select name="cityId" className="select-input" value={formValues.city} onChange={handleChange} >
                             <option value="">Seleccione la ciudad</option>
-                            {/*value={city.id} */}
                             {cities.map((city, index) => (
-                                <option value={formValues.cityId} key={index}>
+                                <option value={city.id} key={index}>
                                     {city.name}
                                 </option>
 
@@ -355,7 +369,7 @@ const CreateProducts = () => {
                         <p className="error">{formErrors.cityId}</p>
                     </div>
                     <div className="info-form">
-                        <label htmlFor="description-title">Titulo de la descripción:</label>
+                        <label htmlFor="descriptionTitle">Titulo de la descripción:</label>
                         <input type="textarea" name="descriptionTitle" id="descriptionTitle" value={formValues.descriptionTitle} onChange={handleChange}
                             placeholder="Hermosa casa de playa" required />
                         <p className="error">{formErrors.descriptionTitle}</p>
@@ -370,8 +384,7 @@ const CreateProducts = () => {
 
                     <div className="info-form">
                         <label htmlFor="address">Dirección :</label>
-                        {/* value={formValues.address} onChange={handleChange}*/}
-                        <input type="text" name="address" id="address" required />
+                        <input type="text" name="address" id="address" value={formValues.address} onChange={handleChange}/>
                         <p className="error">{formErrors.address}</p>
                     </div>
 
@@ -380,7 +393,7 @@ const CreateProducts = () => {
                         <h2>Características</h2>
                     
                         {amenities.map((amenitie, index) => (
-                        <label key={index} className="amenitie"><input className="amenitie-checkbox" type="checkbox" id="amenitie" value={amenitie.id}
+                        <label key={index} className="amenitie"><input className="amenitie-checkbox" type="checkbox" id="amenitiesId" value={amenitie.id}
                         onChange={handleCheckbox}
                         
                         />{ amenitie.title }</label>     
@@ -437,14 +450,6 @@ const CreateProducts = () => {
                         <label htmlFor="cancellation-policy">Políticas de cancelación:</label>
                         <textarea name="cancellation-policy" className="description-form" minLength={"20"} maxLength={"500"} autoCapitalize="sentences"
                              ></textarea>
-                        
-
-                        {/* 
-                        {policies.map((policy, index) =>(  
-                            <PolicyCard ix={index} rules={policy.rules} healthAndSafety={policy.health_safety} cancellationPolicy={policy.cancellation_policy}/> 
-                        ))}
-                        */}
-
                         
                         
                     </div>
