@@ -2,6 +2,7 @@ package com.example.BookingProject.bookingAPI.controller;
 
 import com.example.BookingProject.bookingAPI.persistence.model.Amenity;
 import com.example.BookingProject.bookingAPI.persistence.model.Category;
+import com.example.BookingProject.bookingAPI.persistence.repository.CategoryRepository;
 import com.example.BookingProject.bookingAPI.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,6 +16,9 @@ import java.util.List;
 public class CategoryController {
     @Autowired
     private CategoryService categoryService;
+
+    @Autowired
+    private CategoryRepository categoryRepository;
 
     @PostMapping
     public ResponseEntity<Category> addCategory(@RequestBody Category category) {
@@ -44,6 +48,11 @@ public class CategoryController {
     @GetMapping("/{id}")
     public ResponseEntity<?> findCategoryById(@PathVariable Long id) {
         return new ResponseEntity<>(categoryService.getCategoryById(id), HttpStatus.OK);
+    }
+
+    @GetMapping("/total/{id}")
+    public ResponseEntity<?> findQuantityInCategoryById(@PathVariable Long id) {
+        return new ResponseEntity<>(categoryRepository.getQuantityInCategoryById(id), HttpStatus.OK);
     }
 
     @PutMapping()

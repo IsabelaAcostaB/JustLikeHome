@@ -19,9 +19,5 @@ public interface ReservationRepository extends JpaRepository<Reservation, Long> 
             "FROM reservation  \n" +
             "JOIN product ON reservation.product_id = product.id  \n" +
             "WHERE reservation.user_id = (:id);", nativeQuery = true)
-            
-            
-            
-            
     List<Reservation> getReservationsByUserId(@Param("id") Long id);
 }
