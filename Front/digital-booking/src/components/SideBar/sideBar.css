@@ -138,3 +138,9 @@ a span{
 .hide{
     display: none;
 }
+
+.administration-bar, .reservations, .administration{
+    margin-top: 10px;
+    padding: 0px 20px 0px 0px;
+    text-align: end;
+}
