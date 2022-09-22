@@ -78,6 +78,10 @@ function Sidebar() {
                 </div>
 
             }
+            {userData.role !== null && <div className="reservations administration">
+                        <Link to="/myreservations" onClick={() => setShowSideBar(false)}><h3>Mis reservas</h3></Link>
+                  </div>
+            }
 
             <Link to="/" className="logOut" onClick={logOut}><h3>¿Deseas <span>cerrar sesión?</span></h3></Link>
 

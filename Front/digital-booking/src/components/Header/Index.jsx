@@ -84,7 +84,7 @@ const Header = () => {
                         <Link to="/administration"><h3>Administracion</h3></Link>
                   </div>
             }
-            {userData.role !== null && <div className="reservations">
+            {userData.role !== null && <div className="reservations administration">
                         <Link to="/myreservations"><h3>Mis reservas</h3></Link>
                   </div>
             }

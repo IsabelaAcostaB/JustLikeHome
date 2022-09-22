@@ -1,0 +1,226 @@
+-- ----------------------------DATA -----------------------------
+
+
+ INSERT INTO category (id, description,image_url,title)
+ VALUES(1,  "0 casas","url cateogory", "Casa");
+
+ INSERT INTO category (id, description,image_url,title)
+ VALUES(2,  "0 apartamentos","url apartamento", "Apartamento");
+
+ INSERT INTO city (id, country,location,name)
+ VALUES(1,  "Francia","Europa", "Paris");
+
+ INSERT INTO city (id, country,location,name)
+ VALUES(1,  "Francia","Europa", "Lyon");
+
+
+ INSERT INTO product (id, availability,description,description_title,title,category_id,city_id)
+ VALUES (1, true, "hermosa casa en la pradera", "Casa pequeña en la pradera","Casa Azul", 1, 1) ;
+
+ INSERT INTO product (id, availability,description,description_title,title,category_id,city_id)
+ VALUES (3, true, "hermosa casa en la pradera", "Casa pequeña en la pradera","Casa Azul", 1, 2);
+
+ INSERT INTO product (id, availability,description,description_title,title,category_id,city_id)
+ VALUES (4, true, "hermosa casa en la pradera", "Casa pequeña en la pradera","Casa Azul", 2, 2) ;
+
+
+
+-- ------------------------------STORED PROCEDURES ------------------------------------
+
+
+--   ---------------CATEGORY ---------------
+
+
+ /*DELIMITER $$
+ CREATE PROCEDURE get_product_by_category(IN categoria varchar(50))
+ 	BEGIN
+ 		SELECT product.*, category.title
+ 		FROM product
+ 		INNER JOIN category
+ 		ON product.category_id = category.id
+ 		WHERE category.title = categoria;
+ 	END$$
+
+ CALL get_product_by_category("Apartamento");*/
+
+
+ /*DELIMITER $$
+ CREATE PROCEDURE get_product_by_category_id(IN id_category long)
+ 	BEGIN
+  		SELECT product.*, category.title
+ 		FROM product
+  		INNER JOIN category
+  		ON product.category_id = category.id
+  		WHERE category.id = id_category;
+  	END$$
+
+ CALL get_product_by_category_id(2);*/
+
+
+
+--   ---------------CITY ---------------
+
+/*DELIMITER $$
+CREATE PROCEDURE get_product_by_city_name(IN ciudad varchar(50))
+	BEGIN
+		Select product.*, city.name
+		FROM product
+		INNER JOIN city
+		ON product.city_id = city.id
+		WHERE city.name = ciudad;
+	END$$
+
+
+ CALL get_product_by_city_name("Paris");*/
+
+
+ /*DELIMITER $$
+ CREATE PROCEDURE get_product_by_city_id(IN id_city int)
+ 	BEGIN
+ 		Select product.*, city.id, city.name
+ 		FROM product
+ 		INNER JOIN city
+ 		ON product.city_id = city.id
+ 		WHERE city.id = id_city;
+ 	END$$
+  CALL get_product_by_city_id(1);*/
+
+
+-- -----------------------------VIEWS -------------------------------
+
+--   ---------------CATEGORY ---------------
+
+ /*CREATE VIEW get_product_by_category AS
+ 		SELECT product.*, category.title
+ 		FROM product
+ 		INNER JOIN category
+ 		ON product.category_id = category.id
+ 		WHERE category.title = categoria;*/
+
+
+
+ /*CREATE VIEW get_product_by_category_id AS
+ 		Select product.*, city.id, city.name
+ 		FROM product
+ 		INNER JOIN city
+ 		ON product.city_id = city.id
+ 		WHERE city.id = id_city;
+ 		*/
+
+
+--   ---------------CITY ---------------
+
+ /*CREATE VIEW get_product_by_city_name AS
+ 		SELECT product.*, city.name
+ 		FROM product
+ 		INNER JOIN city
+ 		ON product.city_id = city.id
+ 		WHERE city.name = ciudad;*/
+
+
+
+ /*CREATE VIEW get_product_by_city_id AS
+ 		Select product.*, city.id, city.name
+ 		FROM product
+ 		INNER JOIN city-- ------------------------------STORED PROCEDURES ------------------------------------
+
+
+                       --   ---------------CATEGORY ---------------
+
+
+                        /*DELIMITER $$
+                        CREATE PROCEDURE get_product_by_category(IN categoria varchar(50))
+                        	BEGIN
+                        		SELECT product.*, category.title
+                        		FROM product
+                        		INNER JOIN category
+                        		ON product.category_id = category.id
+                        		WHERE category.title = categoria;
+                        	END$$
+
+                        CALL get_product_by_category("Apartamento");*/
+
+
+                        /*DELIMITER $$
+                        CREATE PROCEDURE get_product_by_category_id(IN id_category long)
+                        	BEGIN
+                         		SELECT product.*, category.title
+                        		FROM product
+                         		INNER JOIN category
+                         		ON product.category_id = category.id
+                         		WHERE category.id = id_category;
+                         	END$$
+
+                        CALL get_product_by_category_id(2);*/
+
+
+
+                       --   ---------------CITY ---------------
+
+                       /*DELIMITER $$
+                       CREATE PROCEDURE get_product_by_city_name(IN ciudad varchar(50))
+                       	BEGIN
+                       		Select product.*, city.name
+                       		FROM product
+                       		INNER JOIN city
+                       		ON product.city_id = city.id
+                       		WHERE city.name = ciudad;
+                       	END$$
+
+
+                        CALL get_product_by_city_name("Paris");*/
+
+
+                        /*DELIMITER $$
+                        CREATE PROCEDURE get_product_by_city_id(IN id_city int)
+                        	BEGIN
+                        		Select product.*, city.id, city.name
+                        		FROM product
+                        		INNER JOIN city
+                        		ON product.city_id = city.id
+                        		WHERE city.id = id_city;
+                        	END$$
+                         CALL get_product_by_city_id(1);*/
+
+
+                       -- -----------------------------VIEWS -------------------------------
+
+                       --   ---------------CATEGORY ---------------
+
+                        /*CREATE VIEW get_product_by_category AS
+                        		SELECT product.*, category.title
+                        		FROM product
+                        		INNER JOIN category
+                        		ON product.category_id = category.id
+                        		WHERE category.title = categoria;*/
+
+
+
+                        /*CREATE VIEW get_product_by_category_id AS
+                        		Select product.*, city.id, city.name
+                        		FROM product
+                        		INNER JOIN city
+                        		ON product.city_id = city.id
+                        		WHERE city.id = id_city;
+                        		*/
+
+
+                       --   ---------------CITY ---------------
+
+                        /*CREATE VIEW get_product_by_city_name AS
+                        		SELECT product.*, city.name
+                        		FROM product
+                        		INNER JOIN city
+                        		ON product.city_id = city.id
+                        		WHERE city.name = ciudad;*/
+
+
+
+                        /*CREATE VIEW get_product_by_city_id AS
+                        		Select product.*, city.id, city.name
+                        		FROM product
+                        		INNER JOIN city
+                        		ON product.city_id = city.id
+                        		WHERE city.id = 1;*/
+ 		ON product.city_id = city.id
+ 		WHERE city.id = 1;*/
