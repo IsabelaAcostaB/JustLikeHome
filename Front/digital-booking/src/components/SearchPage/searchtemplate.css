@@ -349,9 +349,6 @@
     height: 10vh;
   }
 
-  .filter-header > h2 {
-  }
-
   .filters-applied {
     height: 100%;
     display: flex;

@@ -39,15 +39,36 @@ const Header = () => {
   };
 
   const firstLetter = () => {
+    
+     /*
+    let name = userData.name
+    let lastName = userData.lastName
+    
+    let separatedNames = name.split(" ")
+    let separatedLastNames = lastName.split(" ")
+
+    //TOMAR SOLO EL PRIMER NOMBRE Y HASTA DOS APELLIDOS
+
+    */
+
     let completeName = `${userData.name} ${userData.lastName}`;
+    let separetedCompleteName = completeName.split(" ");
+
+
+    let nameWithoutEmptySpace = separetedCompleteName.filter((name) => name !=="");
+
+
+    
     let inicials = [];
-    completeName.split(" ").map((word) => {
+    
+    nameWithoutEmptySpace.map((word) => {
       inicials.push(word[0].toUpperCase());
     });
 
     let letters = inicials.join("");
 
     return letters;
+  
   };
 
 
