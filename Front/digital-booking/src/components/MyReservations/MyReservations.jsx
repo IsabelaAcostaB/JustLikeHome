@@ -32,7 +32,7 @@ function MyReservationsTemplate() {
   };
 
   function RenderReservations() {
-    Fetch();
+   
     return (
       <div className="reservations-container">
         {reservations &&
@@ -63,6 +63,7 @@ function MyReservationsTemplate() {
   }
 
   function NoResultsRender({items}){
+    Fetch();
     if(items.length === 0){
       setNoResults(true)
       isLoading(false)
