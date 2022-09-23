@@ -35,16 +35,37 @@ function Sidebar() {
   };
 
   const firstLetter = () => {
-    let completeName = `${userData.name} ${userData.lastName}`;
-    let inicials = [];
-    completeName.split(" ").map((word) => {
-      inicials.push(word[0].toUpperCase());
-    });
+    
+    /*
+   let name = userData.name
+   let lastName = userData.lastName
+   
+   let separatedNames = name.split(" ")
+   let separatedLastNames = lastName.split(" ")
 
-    let letters = inicials.join("");
+   //TOMAR SOLO EL PRIMER NOMBRE Y HASTA DOS APELLIDOS
 
-    return letters;
-  };
+   */
+
+   let completeName = `${userData.name} ${userData.lastName}`;
+   let separetedCompleteName = completeName.split(" ");
+
+
+   let nameWithoutEmptySpace = separetedCompleteName.filter((name) => name !=="");
+
+
+   
+   let inicials = [];
+   
+   nameWithoutEmptySpace.map((word) => {
+     inicials.push(word[0].toUpperCase());
+   });
+
+   let letters = inicials.join("");
+
+   return letters;
+ 
+ };
 
   if (showSideBar) {
     return (
@@ -70,21 +91,36 @@ function Sidebar() {
 
         <div className="side-bar-options">
           {userData.isLogged ? (
-            <div className="admin-logout-option">
 
+            <div className="option-container">
                                             
-            {userData.role === "ADMIN" && <div className="administration-bar">
-                <Link to="/administration" onClick={()=>setShowSideBar(false)} ><h3>Administracion</h3></Link>
-                </div>
+              <div>
+                <ul className="options">
+                  {userData.role === "ADMIN" && 
+        
+                  
+                  <li className="administration-bar">
+                    <Link to="/administration" onClick={()=>setShowSideBar(false)} ><h3>Administracion</h3></Link>
+                  </li>
+                  }
 
-            }
-            {userData.role !== null && <div className="reservations administration">
-                        <Link to="/myreservations" onClick={() => setShowSideBar(false)}><h3>Mis reservas</h3></Link>
-                  </div>
-            }
 
-            <Link to="/" className="logOut" onClick={logOut}><h3>¿Deseas <span>cerrar sesión?</span></h3></Link>
+                  {userData.role !== null && 
+                    <li className="reservations administration">
+                      <Link to="/myreservations" onClick={() => setShowSideBar(false)}><h3>Mis reservas</h3></Link>
+                    </li>
+                  }
 
+                </ul>
+              </div>
+
+              <div>
+                <ul className="options">
+                  <li className="logOut">
+                    <Link to="/" onClick={logOut}><h3>¿Deseas <span>cerrar sesión?</span></h3></Link>
+                  </li>
+                </ul>
+              </div>
 
             </div>
           ) : (
@@ -95,12 +131,12 @@ function Sidebar() {
                 </Link>
               </li>
 
-              <li className="sign-up">
+              <li>
                 <Link to="/signUp" onClick={() => setShowSideBar(false)}>
                   <h3>Crear cuenta</h3>
                 </Link>
               </li>
-              <li className="sign-in">
+              <li>
                 <Link to="/signIn" onClick={() => setShowSideBar(false)}>
                   <h3>Iniciar sesión</h3>
                 </Link>
