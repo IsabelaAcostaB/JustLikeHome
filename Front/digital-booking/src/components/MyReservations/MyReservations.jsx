@@ -12,21 +12,24 @@ function MyReservationsTemplate() {
   let decode = jwt_decode(token);
   const [reservations, setReservations] = useState([]);
   const [loading, isLoading] = useState(true);
+  
+  const [noResults, setNoResults] = useState(false);
 
   const Fetch = () => {
     let url = Url() + "/api/reservation/userReservation/" + decode.userId;
     if (reservations.length === 0) {
       const getAllReservations = async () => {
         const result = await axios.get(url);
-        setReservations(result.data) 
+        setReservations(result.data);
       };
       getAllReservations();
-    }else if (reservations.length > 0 && loading){
-        isLoading(false)
+      console.log(reservations.length)
+    } else if (reservations.length > 0 && loading) {
+      isLoading(false);
+    } else{
+      isLoading(false);
     }
-
   };
-
 
   function RenderReservations() {
     Fetch();
@@ -59,11 +62,37 @@ function MyReservationsTemplate() {
     );
   }
 
+  function NoResultsRender({items}){
+    if(items.length === 0){
+      setNoResults(true)
+      isLoading(false)
+      return(
+        <div className="no-matches">
+
+           <h2>Ups... parece que está vacío
+
+            </h2> 
+        </div>
+      )
+    } else {
+      setNoResults(false)
+      return(<RenderReservations />)
+    }
+    
+  }
+
   return (
     <div>
-      <h2 className="details" id="details">Detalles de reservas</h2>
-      <section className={loading ? "" : "hide"}><Loader/></section>
-      <section className={loading ? "hide" : ""}><RenderReservations/></section>
+      <h2 className="details" id="details">
+        Detalles de reservas
+      </h2>
+      <section className={loading ? "" : "hide"}>
+        <Loader />
+      </section>
+      <section /* className={loading ? "hide" : ""} */>
+        {/* <RenderReservations /> */}
+        <NoResultsRender items={reservations}/>
+      </section>
     </div>
   );
 }

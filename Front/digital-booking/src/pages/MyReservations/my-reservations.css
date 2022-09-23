@@ -2,6 +2,12 @@
     padding: 0 1.5rem;
     height: auto;
 }
+.main-reservations > div > section >  div.no-matches{
+    width: 95vw;
+    padding: 2.5vw;
+    text-align: center;
+    height: 80vh;
+}
 .details {
     text-align: center;
     width: 100%;
