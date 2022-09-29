@@ -20,7 +20,7 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 
     // FIND BY CITY TITLE, ID AND CODE
 
-    @Query(value = "SELECT product.*, city.name FROM product INNER JOIN city ON product.city_id = city.id WHERE city.name = (:name)", nativeQuery = true)
+    @Query(value = "SELECT product.*, city.name FROM product INNER JOIN city ON product.city_id = cityunlink gitlab repo.id WHERE city.name = (:name)", nativeQuery = true)
     List<Product> findByCityName(@Param("name") String city);
 
     @Query(value = " SELECT product.*, city.id FROM product INNER JOIN city ON product.city_id = city.id WHERE city.id =(:id)", nativeQuery = true)
