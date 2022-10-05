@@ -1,5 +1,8 @@
 package com.example.BookingProject.bookingAPI.persistence.model;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.*;
 
 import javax.persistence.*;
@@ -14,6 +17,10 @@ import javax.persistence.*;
 @ToString(exclude = {"user", "product"})
 
 @Table(name = "reservation")
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id"
+)
 public class Reservation {
 
     @Id
@@ -43,5 +50,6 @@ public class Reservation {
             name = "product_id",
             referencedColumnName = "id", nullable = false
     )
+
     private Product product;
 }

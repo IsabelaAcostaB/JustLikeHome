@@ -1,19 +1,26 @@
 package com.example.BookingProject.bookingAPI.persistence.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import lombok.*;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @Entity
 @Table(name = "product")
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id"
+)
 public class Product {
 
     @Id
@@ -67,5 +74,15 @@ public class Product {
     )
 
     private City city;
+
+
+    @OneToMany(cascade = CascadeType.MERGE)
+    @JoinColumn(
+            name = "product_id", referencedColumnName = "id"
+    )
+
+    @JsonIgnore
+    private Set<Reservation> reservations = new HashSet<>();
+
 
 }
