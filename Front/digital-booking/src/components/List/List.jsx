@@ -14,7 +14,7 @@ function AmenitiesIcons({ product }) {
   return (
     <div className="card-amenities">
       {product.amenities.map((item) => (
-        <img src={item.icon} />
+        <img src={item.icon} key={item.id}/>
       ))}
     </div>
   );
@@ -28,7 +28,7 @@ export function ImagesRender({ item }) {
     }
   }
 
-  return <img src={mainImage} class="card-img-top" />;
+  return <img key={item.id} src={mainImage} className="card-img-top" />;
 }
 
 function Cards({ products}) {
@@ -38,7 +38,7 @@ function Cards({ products}) {
   } */
 
   return products.map((item) => (
-    <div className="card card-shadow m-3 home-card">
+    <div className="card card-shadow m-3 home-card" key={item.id}>
       <div className="container-img-cards">
         <ImagesRender item={item} />
       </div>

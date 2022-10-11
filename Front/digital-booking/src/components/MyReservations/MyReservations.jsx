@@ -23,7 +23,6 @@ function MyReservationsTemplate() {
         setReservations(result.data);
       };
       getAllReservations();
-      console.log(reservations.length)
     } else if (reservations.length > 0 && loading) {
       isLoading(false);
     } else{

@@ -29,7 +29,7 @@ const Categorias = () => {
           window.scrollTo(0, 0);
         }}
       >
-        <img src={item.imageURL} class="card-img-top" />
+        <img src={item.imageURL} className="card-img-top" />
         <div className="card-title" key={item.id}>
           <h2> {item.title}</h2>
           <p className="card-text">{item.description}</p>
